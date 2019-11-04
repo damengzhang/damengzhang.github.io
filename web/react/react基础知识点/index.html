@@ -56,32 +56,40 @@
   };
 </script>
 
-  <meta name="description" content="无穷尽">
+  <meta name="description" content="react jsx    react 组件  react Props  react State  条件渲染  列表和key  表单疑问类组件内部函数体外不能定义变量？">
 <meta name="keywords" content="前端 教程 大梦 DaMeng Zhang">
-<meta property="og:type" content="website">
-<meta property="og:title" content="张大梦">
-<meta property="og:url" content="http://yoursite.com/page/4/index.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="react基础知识点">
+<meta property="og:url" content="http://yoursite.com/web/react/react基础知识点/index.html">
 <meta property="og:site_name" content="张大梦">
-<meta property="og:description" content="无穷尽">
+<meta property="og:description" content="react jsx    react 组件  react Props  react State  条件渲染  列表和key  表单疑问类组件内部函数体外不能定义变量？">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/web/react/react基础知识点/react_jsx.PNG">
+<meta property="og:image" content="http://yoursite.com/web/react/react基础知识点/react_组件.PNG">
+<meta property="og:image" content="http://yoursite.com/web/react/react基础知识点/react_props.PNG">
+<meta property="og:image" content="http://yoursite.com/web/react/react基础知识点/react_state.PNG">
+<meta property="og:image" content="http://yoursite.com/web/react/react基础知识点/condition_render.PNG">
+<meta property="og:image" content="http://yoursite.com/web/react/react基础知识点/list_key.PNG">
+<meta property="og:updated_time" content="2019-11-02T15:21:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="张大梦">
-<meta name="twitter:description" content="无穷尽">
-  <link rel="canonical" href="http://yoursite.com/page/4/">
+<meta name="twitter:title" content="react基础知识点">
+<meta name="twitter:description" content="react jsx    react 组件  react Props  react State  条件渲染  列表和key  表单疑问类组件内部函数体外不能定义变量？">
+<meta name="twitter:image" content="http://yoursite.com/web/react/react基础知识点/react_jsx.PNG">
+  <link rel="canonical" href="http://yoursite.com/web/react/react基础知识点/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: true,
-    isPost: false,
+    isHome: false,
+    isPost: true,
     isPage: false,
     isArchive: false
   };
 </script>
 
-  <title>张大梦</title>
+  <title>react基础知识点 | 张大梦</title>
   
 
 
@@ -211,13 +219,14 @@
 
           <div id="content" class="content">
             
+
   <div id="posts" class="posts-expand">
-        <article itemscope itemtype="http://schema.org/Article">
+      <article itemscope itemtype="http://schema.org/Article">
   
   
   
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/tortoisegit/修改完github用户名后，在本地pull之前拉的工程，提示没有权限/">
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/web/react/react基础知识点/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="DaMeng">
@@ -229,9 +238,8 @@
       <meta itemprop="name" content="张大梦">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/tortoisegit/修改完github用户名后，在本地pull之前拉的工程，提示没有权限/" class="post-title-link" itemprop="url">修改完github用户名后，在本地pull之前拉的工程，提示没有权限</a>
+        <h1 class="post-title" itemprop="name headline">react基础知识点
+
           
         </h1>
 
@@ -246,7 +254,7 @@
                 
               
 
-              <time title="创建时间：2019-10-02 00:00:00" itemprop="dateCreated datePublished" datetime="2019-10-02T00:00:00+08:00">2019-10-02</time>
+              <time title="创建时间：2019-03-06 19:25:13" itemprop="dateCreated datePublished" datetime="2019-03-06T19:25:13+08:00">2019-03-06</time>
             </span>
           
             <span class="post-meta-item">
@@ -255,7 +263,14 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Git/" itemprop="url" rel="index"><span itemprop="name">Git</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web/" itemprop="url" rel="index"><span itemprop="name">web</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web/react/" itemprop="url" rel="index"><span itemprop="name">react</span></a></span>
 
                 
                 
@@ -274,47 +289,70 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>修改完github用户名后，在本地pull之前的工程，提示”make sure you have the correct access rights”，如图:</p>
-<img src="/tortoisegit/修改完github用户名后，在本地pull之前拉的工程，提示没有权限/1.png">
+        <h2 id="react-jsx"><a href="#react-jsx" class="headerlink" title="react jsx"></a>react jsx</h2><img src="/web/react/react基础知识点/react_jsx.PNG">
 
 
 
-<h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h3><img src="/tortoisegit/修改完github用户名后，在本地pull之前拉的工程，提示没有权限/2.png">
+<h2 id="react-组件"><a href="#react-组件" class="headerlink" title="react 组件"></a>react 组件</h2><img src="/web/react/react基础知识点/react_组件.PNG">
 
+<h2 id="react-Props"><a href="#react-Props" class="headerlink" title="react Props"></a>react Props</h2><img src="/web/react/react基础知识点/react_props.PNG">
 
+<h2 id="react-State"><a href="#react-State" class="headerlink" title="react State"></a>react State</h2><img src="/web/react/react基础知识点/react_state.PNG">
 
-<p>重新pull，就会提示成功</p>
-<img src="/tortoisegit/修改完github用户名后，在本地pull之前拉的工程，提示没有权限/3.png">
+<h2 id="条件渲染"><a href="#条件渲染" class="headerlink" title="条件渲染"></a>条件渲染</h2><img src="/web/react/react基础知识点/condition_render.PNG">
 
+<h2 id="列表和key"><a href="#列表和key" class="headerlink" title="列表和key"></a>列表和key</h2><img src="/web/react/react基础知识点/list_key.PNG">
 
-        
-      
+<h2 id="表单"><a href="#表单" class="headerlink" title="表单"></a>表单</h2><h2 id="疑问"><a href="#疑问" class="headerlink" title="疑问"></a>疑问</h2><p>类组件内部函数体外不能定义变量？</p>
+
     </div>
 
     
     
     
+        
+      
+
       <footer class="post-footer">
-          <div class="post-eof"></div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/web/react/react事件处理/" rel="next" title="react事件处理">
+                  <i class="fa fa-chevron-left"></i> react事件处理
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/web/eslint/eslint配置/" rel="prev" title="ESLint使用">
+                  ESLint使用 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
         
       </footer>
+    
   </div>
   
   
   
   </article>
 
-    
   </div>
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
 
 
           </div>
           
+    
+    <div class="comments" id="gitalk-container"></div>
+  
 
         </div>
           
@@ -327,6 +365,11 @@
 
   <aside class="sidebar">
     <div class="sidebar-inner">
+        
+        
+        
+        
+      
 
       <ul class="sidebar-nav motion-element">
         <li class="sidebar-nav-toc">
@@ -339,6 +382,8 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#react-jsx"><span class="nav-number">1.</span> <span class="nav-text">react jsx</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#react-组件"><span class="nav-number">2.</span> <span class="nav-text">react 组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#react-Props"><span class="nav-number">3.</span> <span class="nav-text">react Props</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#react-State"><span class="nav-number">4.</span> <span class="nav-text">react State</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#条件渲染"><span class="nav-number">5.</span> <span class="nav-text">条件渲染</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#列表和key"><span class="nav-number">6.</span> <span class="nav-text">列表和key</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表单"><span class="nav-number">7.</span> <span class="nav-text">表单</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#疑问"><span class="nav-number">8.</span> <span class="nav-text">疑问</span></a></li></ol></div>
+        
       </div>
       <!--/noindex-->
 
@@ -506,6 +551,24 @@
 
   
 
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID: 'd094643ce67eeeb1c96a',
+      clientSecret: '2d2523ebc5546e28ddc6d361b9f4aa63090e7920',
+      repo: 'tk',
+      owner: 'damengzhang',
+      admin: ['damengzhang'],
+      id: '5e8258bfa2f5d94e573b1c062fa490ac',
+        language: 'zh-CN',
+      
+      distractionFreeMode: 'true'
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+</script>
 
 </body>
 </html>

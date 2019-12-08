@@ -217,7 +217,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/linux/Linux中的进程管理/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/npm/npm-ERR-EINVAL-invalid-argument-read/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="张大梦">
@@ -231,7 +231,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/linux/Linux中的进程管理/" class="post-title-link" itemprop="url">Linux中的进程管理</a>
+            <a href="/npm/npm-ERR-EINVAL-invalid-argument-read/" class="post-title-link" itemprop="url">npm ERR! invalid argument, read</a>
           
         </h1>
 
@@ -246,7 +246,7 @@
                 
               
 
-              <time title="创建时间：2019-07-02 00:00:00" itemprop="dateCreated datePublished" datetime="2019-07-02T00:00:00+08:00">2019-07-02</time>
+              <time title="创建时间：2019-10-02 00:00:00" itemprop="dateCreated datePublished" datetime="2019-10-02T00:00:00+08:00">2019-10-02</time>
             </span>
           
             <span class="post-meta-item">
@@ -255,7 +255,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/npm/" itemprop="url" rel="index"><span itemprop="name">npm</span></a></span>
 
                 
                 
@@ -274,31 +274,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="查看"><a href="#查看" class="headerlink" title="查看"></a>查看</h3><h4 id="ps"><a href="#ps" class="headerlink" title="ps"></a>ps</h4><p>使用ps查看某个时间点的进程运行情况。ps auxf  -&gt; 列出类似于进程树的的程序显示</p>
-<h4 id="top"><a href="#top" class="headerlink" title="top"></a>top</h4><p>使用top动态查看进程的变化。top  [-d 数字]  | top [-bnp]</p>
-<p>参数：</p>
-<p>-d：配置界面更新的秒数</p>
-<p>-b：以批处理的方式处理输出  </p>
-<p>-n：与-b搭配，配置执行几次top输出的结果</p>
-<p>-p：指定监控的pid</p>
-<p>在top执行过程中可以使用的命令</p>
-<p>?：显示top中可以输入的按键命令</p>
-<p>P：以CPU的使用资源排序</p>
-<p>M：以MEM的使用资源排序</p>
-<p>N：以PID排序</p>
-<p>T：以使用的CPU时间累积（time+）排序</p>
-<p>k：给某个PID信号</p>
-<p>r：重新配置PID的nice值</p>
-<p>q：离开top</p>
-<h4 id="pstree"><a href="#pstree" class="headerlink" title="pstree"></a>pstree</h4><p>查看进程间关系。pstree  [-A|-U]  -[up]</p>
-<p>参数：</p>
-<p>-A：用ASCII字符来连接进程间关系</p>
-<p>-U：用utf-8字符来连接进程间关系</p>
-<p>-p：列出PID</p>
-<p>-u：列出每个进程所属账号</p>
-<h3 id="管理"><a href="#管理" class="headerlink" title="管理"></a>管理</h3><p>通过信号来管理进程</p>
-<h4 id="kill"><a href="#kill" class="headerlink" title="kill"></a>kill</h4><p>kill -singnal  PID</p>
-<h4 id="killall"><a href="#killall" class="headerlink" title="killall"></a>killall</h4><p>killall  -signal  命令名称</p>
+          <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>npm之前运行正常，今天执行npm install 时，突然报错:</p>
+<p>npm ERR! EINVAL: invalid argument, read</p>
+<p>查看日志如图：</p>
+<img src="/npm/npm-ERR-EINVAL-invalid-argument-read/npm_install_error.png">
+
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>然后通过下面步骤解决了：<br>        1、重新安装node最新的lts版本<br>        2、更新npm到最新版本:  npm install -g npm@latest<br>        3、删除当前的node_modules目录： rm -rf node_modules<br>        4、重新安装：npm install</p>
 
         
       
@@ -322,7 +303,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/31/">31</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -366,7 +347,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-count">31</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

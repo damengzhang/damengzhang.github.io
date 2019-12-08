@@ -217,7 +217,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/tortoisegit/Tortoisegit pull时，提示Couldn't load this key(unable to open file)/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/web/react/Hook规则/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="张大梦">
@@ -231,7 +231,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/tortoisegit/Tortoisegit pull时，提示Couldn't load this key(unable to open file)/" class="post-title-link" itemprop="url">Tortoisegit pull时，提示Couldn't load this key(unable to open file)</a>
+            <a href="/web/react/Hook规则/" class="post-title-link" itemprop="url">Hook规则</a>
           
         </h1>
 
@@ -246,7 +246,7 @@
                 
               
 
-              <time title="创建时间：2019-10-02 00:00:00" itemprop="dateCreated datePublished" datetime="2019-10-02T00:00:00+08:00">2019-10-02</time>
+              <time title="创建时间：2019-10-17 20:00:28" itemprop="dateCreated datePublished" datetime="2019-10-17T20:00:28+08:00">2019-10-17</time>
             </span>
           
             <span class="post-meta-item">
@@ -255,14 +255,14 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Git/" itemprop="url" rel="index"><span itemprop="name">Git</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web/" itemprop="url" rel="index"><span itemprop="name">web</span></a></span>
 
                 
                 
                   ，
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Git/Tortoisegit/" itemprop="url" rel="index"><span itemprop="name">Tortoisegit</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web/react/" itemprop="url" rel="index"><span itemprop="name">react</span></a></span>
 
                 
                 
@@ -281,27 +281,20 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>之前新建了个ppk文件，删了旧的，今天在本地执行pull操作时，提示下面错误</p>
-<img src="/tortoisegit/Tortoisegit%20pull时，提示Couldn%27t%20load%20this%20key(unable%20to%20open%20file)/error.png">
+          <p>Hook的本质是js函数，使用hook需要遵循两条规则：</p>
+<ul>
+<li><p>只在顶层使用<code>Hook</code></p>
+<p>为了保证<code>Hook</code>在每次都以相同的顺序被调用，确保总是在React函数的顶层调用<code>Hook</code>，不要在循环、条件、嵌套中调用<code>Hook</code></p>
+</li>
+<li><p>只在React函数中调用Hook</p>
+</li>
+</ul>
+<h2 id="使用ESlint插件"><a href="#使用ESlint插件" class="headerlink" title="使用ESlint插件"></a>使用ESlint插件</h2><p>可以使用 <a href="https://www.npmjs.com/package/eslint-plugin-react-hooks" target="_blank" rel="noopener"><code>eslint-plugin-react-hooks</code></a>插件强制执行Hook规则。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">//下载插件</span><br><span class="line">npm install eslint-plugin-react-hooks --save-dev</span><br><span class="line"></span><br><span class="line">//配置eslint</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">"plugins"</span>: [</span><br><span class="line">    // ...</span><br><span class="line">    <span class="string">"react-hooks"</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">"rules"</span>: &#123;</span><br><span class="line">    // ...</span><br><span class="line">    "react-hooks/rules-of-hooks": "error", // 检查 Hook 的规则</span><br><span class="line">    "react-hooks/exhaustive-deps": "warn" // 检查 effect 的依赖</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h3><p>从网上搜的方法是，配置remote，可惜并没有看到remote选项</p>
-<img src="/tortoisegit/Tortoisegit%20pull时，提示Couldn%27t%20load%20this%20key(unable%20to%20open%20file)/png1.png">
+<p>如果我们想要有条件地执行一个 effect，可以将判断放到 Hook 的<em>内部</em>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">useEffect(function persistForm() &#123;</span><br><span class="line">   // 👍 将条件判断放置在 effect 中</span><br><span class="line">   if (name !== &apos;&apos;) &#123;</span><br><span class="line">     localStorage.setItem(&apos;formData&apos;, name);</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;);</span><br></pre></td></tr></table></figure>
 
-
-
-<p>于是，通过在pull弹出中，如下图操作，找到remote配置</p>
-<img src="/tortoisegit/Tortoisegit%20pull时，提示Couldn%27t%20load%20this%20key(unable%20to%20open%20file)/png2.png">
-
-
-
-<p>如下图，选择最新的ppk文件，然后确定</p>
-<img src="/tortoisegit/Tortoisegit%20pull时，提示Couldn%27t%20load%20this%20key(unable%20to%20open%20file)/png3.png">
-
-
-
-
-
-<p>重新pull时，就不会再提示无法加载了key文件了</p>
 
         
       
@@ -325,7 +318,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/31/">31</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -369,7 +362,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-count">31</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

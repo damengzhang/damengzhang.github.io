@@ -56,16 +56,19 @@
   };
 </script>
 
-  <meta name="keywords" content="前端 教程 大梦 DaMeng Zhang">
+  <meta name="description" content="12345678910111213function ListItem(props)&amp;#123;    return &amp;lt;li&amp;gt;&amp;#123;props.num&amp;#125;&amp;lt;/li&amp;gt; ;&amp;#125;function NumList(props)&amp;#123;    const nums = props.nums;    const listItems = nums.map(fu">
+<meta name="keywords" content="前端 教程 大梦 DaMeng Zhang">
 <meta property="og:type" content="article">
 <meta property="og:title" content="react列表和key">
 <meta property="og:url" content="http://yoursite.com/web/react/react列表和key/index.html">
 <meta property="og:site_name" content="张大梦">
+<meta property="og:description" content="12345678910111213function ListItem(props)&amp;#123;    return &amp;lt;li&amp;gt;&amp;#123;props.num&amp;#125;&amp;lt;/li&amp;gt; ;&amp;#125;function NumList(props)&amp;#123;    const nums = props.nums;    const listItems = nums.map(fu">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/web/react/react列表和key/list_key.PNG">
-<meta property="og:updated_time" content="2019-12-08T12:52:32.000Z">
+<meta property="og:updated_time" content="2019-12-09T15:18:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="react列表和key">
+<meta name="twitter:description" content="12345678910111213function ListItem(props)&amp;#123;    return &amp;lt;li&amp;gt;&amp;#123;props.num&amp;#125;&amp;lt;/li&amp;gt; ;&amp;#125;function NumList(props)&amp;#123;    const nums = props.nums;    const listItems = nums.map(fu">
 <meta name="twitter:image" content="http://yoursite.com/web/react/react列表和key/list_key.PNG">
   <link rel="canonical" href="http://yoursite.com/web/react/react列表和key/">
 
@@ -282,6 +285,8 @@
 
       
         <img src="/web/react/react列表和key/list_key.PNG">
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function ListItem(props)&#123;</span><br><span class="line">    return &lt;li&gt;&#123;props.num&#125;&lt;/li&gt; ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function NumList(props)&#123;</span><br><span class="line">    const nums = props.nums;</span><br><span class="line">    const listItems = nums.map(function(num)&#123;</span><br><span class="line">        //重要：map中配置key属性</span><br><span class="line">        return &lt;ListItem key=&#123;num.toString()&#125; num=&#123;num&#125; &gt;&lt;/ListItem&gt;</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    return &lt;ul&gt;&#123;listItems&#125;&lt;/ul&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
     </div>

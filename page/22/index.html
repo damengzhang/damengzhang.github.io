@@ -281,7 +281,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h3><p>context提供了一种可以在组件之间传递数据的方法，常用于管理全局变量。</p>
+          <h3 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h3><p><code>Context</code>的作用是共享组件树的全局数据，如主题、语言等。<code>Context</code>使我们无需为了在组件间传递数据，而为每层组件手动添加props。。</p>
 <h3 id="API"><a href="#API" class="headerlink" title="API"></a>API</h3><h4 id="React-createContext"><a href="#React-createContext" class="headerlink" title="React.createContext"></a>React.createContext</h4><ul>
 <li><p>用来创建Context对象，以供其他组件订阅。</p>
 </li>
@@ -297,7 +297,7 @@
 </li>
 <li><p>当Provider的值变化时，其内部的所有<code>消费组件</code>会被重新渲染。</p>
 </li>
-<li><p>Provider及其内部<code>消费组件</code>不受限与shouldComponentUpdate函数。</p>
+<li><p>Provider及其内部<code>消费组件</code>不受制于shouldComponentUpdate函数。</p>
 </li>
 </ul>
 <figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;MyContext.Provider value=&#123;<span class="string">"somevalue"</span>&#125; /&gt;</span><br></pre></td></tr></table></figure>

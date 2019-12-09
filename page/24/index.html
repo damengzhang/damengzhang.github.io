@@ -283,6 +283,8 @@
       
           <img src="/web/react/react列表和key/list_key.PNG">
 
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function ListItem(props)&#123;</span><br><span class="line">    return &lt;li&gt;&#123;props.num&#125;&lt;/li&gt; ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function NumList(props)&#123;</span><br><span class="line">    const nums = props.nums;</span><br><span class="line">    const listItems = nums.map(function(num)&#123;</span><br><span class="line">        //重要：map中配置key属性</span><br><span class="line">        return &lt;ListItem key=&#123;num.toString()&#125; num=&#123;num&#125; &gt;&lt;/ListItem&gt;</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    return &lt;ul&gt;&#123;listItems&#125;&lt;/ul&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
         
       

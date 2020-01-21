@@ -217,7 +217,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/linux/linux中的工作管理/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/linux/Linux中的进程管理/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="张大梦">
@@ -231,7 +231,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/linux/linux中的工作管理/" class="post-title-link" itemprop="url">linux中的工作管理</a>
+            <a href="/linux/Linux中的进程管理/" class="post-title-link" itemprop="url">Linux中的进程管理</a>
           
         </h1>
 
@@ -274,23 +274,31 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>工作管理（job controll），在 bash下（登录系统取得的bash shell），对自身的多个工作的管理</p>
-<ul>
-<li><p>将命令扔到后台执行:  &amp;</p>
-<ul>
-<li>此时会得到job number和pid</li>
-<li>需要处理后台工作的输出信息，防止影响前台操作</li>
-</ul>
-</li>
-<li><p>查看目前的后台工作状态：jobs</p>
-</li>
-<li><p>将目前的工作丢到后台中暂停:    ctrl + z</p>
-</li>
-<li><p>将后台暂停的工作变成运行状态： bg %jobnumber</p>
-</li>
-<li><p>将后台工作拿到前台来处理:  fg  %jobnumber</p>
-</li>
-</ul>
+          <h3 id="查看"><a href="#查看" class="headerlink" title="查看"></a>查看</h3><h4 id="ps"><a href="#ps" class="headerlink" title="ps"></a>ps</h4><p>使用ps查看某个时间点的进程运行情况。ps auxf  -&gt; 列出类似于进程树的的程序显示</p>
+<h4 id="top"><a href="#top" class="headerlink" title="top"></a>top</h4><p>使用top动态查看进程的变化。top  [-d 数字]  | top [-bnp]</p>
+<p>参数：</p>
+<p>-d：配置界面更新的秒数</p>
+<p>-b：以批处理的方式处理输出  </p>
+<p>-n：与-b搭配，配置执行几次top输出的结果</p>
+<p>-p：指定监控的pid</p>
+<p>在top执行过程中可以使用的命令</p>
+<p>?：显示top中可以输入的按键命令</p>
+<p>P：以CPU的使用资源排序</p>
+<p>M：以MEM的使用资源排序</p>
+<p>N：以PID排序</p>
+<p>T：以使用的CPU时间累积（time+）排序</p>
+<p>k：给某个PID信号</p>
+<p>r：重新配置PID的nice值</p>
+<p>q：离开top</p>
+<h4 id="pstree"><a href="#pstree" class="headerlink" title="pstree"></a>pstree</h4><p>查看进程间关系。pstree  [-A|-U]  -[up]</p>
+<p>参数：</p>
+<p>-A：用ASCII字符来连接进程间关系</p>
+<p>-U：用utf-8字符来连接进程间关系</p>
+<p>-p：列出PID</p>
+<p>-u：列出每个进程所属账号</p>
+<h3 id="管理"><a href="#管理" class="headerlink" title="管理"></a>管理</h3><p>通过信号来管理进程</p>
+<h4 id="kill"><a href="#kill" class="headerlink" title="kill"></a>kill</h4><p>kill -singnal  PID</p>
+<h4 id="killall"><a href="#killall" class="headerlink" title="killall"></a>killall</h4><p>killall  -signal  命令名称</p>
 
         
       
@@ -314,7 +322,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/14/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><span class="page-number current">15</span><a class="page-number" href="/page/16/">16</a><span class="space">&hellip;</span><a class="page-number" href="/page/31/">31</a><a class="extend next" rel="next" href="/page/16/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/14/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><span class="page-number current">15</span><a class="page-number" href="/page/16/">16</a><span class="space">&hellip;</span><a class="page-number" href="/page/34/">34</a><a class="extend next" rel="next" href="/page/16/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -358,7 +366,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-count">34</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -371,7 +379,7 @@
             <a href="/categories/">
           
         
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -384,7 +392,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -419,7 +427,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; 2019 – <span itemprop="copyrightYear">2020</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>

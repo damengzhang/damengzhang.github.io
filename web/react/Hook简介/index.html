@@ -56,18 +56,18 @@
   };
 </script>
 
-  <meta name="description" content="Hook是React16.8的新特性。 Hook是钩子函数，通过使用Hook可以在函数组件中引入React state及生命周期等特性，它可以让我们在不编写class的情况下使用state及其他的React特性。 引入Hook的原因为了解决如下问题：  在组件之间复用状态逻辑很难 ​    React之前用render props和高阶组件解决此问题，但需要重新组织组件结构。现在可以使用Hook在">
-<meta name="keywords" content="前端 教程 大梦 DaMeng Zhang">
+  <meta name="description" content="Hook 是什么Hook 是 React 16.8.0 的新特性。 Hook 是钩子函数，通过使用 Hook 可以在 函数组件 中引入 React state 及 生命周期 等特性，它可以让我们在不编写 class 的情况下使用 state 及其他的 React 特性。 Hook 可以解决什么问题Hook 可以解决如下问题：  组件间复用状态逻辑困难 ​    React 之前用 render p">
+<meta name="keywords" content="react,Hook">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hook简介">
+<meta property="og:title" content="Hook 简介">
 <meta property="og:url" content="http://yoursite.com/web/react/Hook简介/index.html">
-<meta property="og:site_name" content="张大梦">
-<meta property="og:description" content="Hook是React16.8的新特性。 Hook是钩子函数，通过使用Hook可以在函数组件中引入React state及生命周期等特性，它可以让我们在不编写class的情况下使用state及其他的React特性。 引入Hook的原因为了解决如下问题：  在组件之间复用状态逻辑很难 ​    React之前用render props和高阶组件解决此问题，但需要重新组织组件结构。现在可以使用Hook在">
+<meta property="og:site_name" content="DaMeng">
+<meta property="og:description" content="Hook 是什么Hook 是 React 16.8.0 的新特性。 Hook 是钩子函数，通过使用 Hook 可以在 函数组件 中引入 React state 及 生命周期 等特性，它可以让我们在不编写 class 的情况下使用 state 及其他的 React 特性。 Hook 可以解决什么问题Hook 可以解决如下问题：  组件间复用状态逻辑困难 ​    React 之前用 render p">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-08T12:50:00.000Z">
+<meta property="og:updated_time" content="2020-08-21T11:18:42.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hook简介">
-<meta name="twitter:description" content="Hook是React16.8的新特性。 Hook是钩子函数，通过使用Hook可以在函数组件中引入React state及生命周期等特性，它可以让我们在不编写class的情况下使用state及其他的React特性。 引入Hook的原因为了解决如下问题：  在组件之间复用状态逻辑很难 ​    React之前用render props和高阶组件解决此问题，但需要重新组织组件结构。现在可以使用Hook在">
+<meta name="twitter:title" content="Hook 简介">
+<meta name="twitter:description" content="Hook 是什么Hook 是 React 16.8.0 的新特性。 Hook 是钩子函数，通过使用 Hook 可以在 函数组件 中引入 React state 及 生命周期 等特性，它可以让我们在不编写 class 的情况下使用 state 及其他的 React 特性。 Hook 可以解决什么问题Hook 可以解决如下问题：  组件间复用状态逻辑困难 ​    React 之前用 render p">
   <link rel="canonical" href="http://yoursite.com/web/react/Hook简介/">
 
 
@@ -82,7 +82,7 @@
   };
 </script>
 
-  <title>Hook简介 | 张大梦</title>
+  <title>Hook 简介 | DaMeng</title>
   
 
 
@@ -129,7 +129,7 @@
     <div>
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">张大梦</span>
+        <span class="site-title">DaMeng</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -148,17 +148,6 @@
 <nav class="site-nav">
   
   <ul id="menu" class="menu">
-      
-      
-      
-        
-        <li class="menu-item menu-item-home">
-      
-    
-
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
-
-  </li>
       
       
       
@@ -222,16 +211,16 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/web/react/Hook简介/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="张大梦">
-      <meta itemprop="description" content="无穷尽">
+      <meta itemprop="name" content="DaMeng">
+      <meta itemprop="description" content="forever">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="张大梦">
+      <meta itemprop="name" content="DaMeng">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">Hook简介
+        <h1 class="post-title" itemprop="name headline">Hook 简介
 
           
         </h1>
@@ -247,7 +236,7 @@
                 
               
 
-              <time title="创建时间：2019-10-22 19:20:49" itemprop="dateCreated datePublished" datetime="2019-10-22T19:20:49+08:00">2019-10-22</time>
+              <time title="创建时间：2019-09-22 19:20:49" itemprop="dateCreated datePublished" datetime="2019-09-22T19:20:49+08:00">2019-09-22</time>
             </span>
           
             <span class="post-meta-item">
@@ -282,18 +271,32 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>Hook是React16.8的新特性。</p>
-<p>Hook是钩子函数，通过使用Hook可以在函数组件中引入React state及生命周期等特性，它可以让我们在不编写class的情况下使用state及其他的React特性。</p>
-<h2 id="引入Hook的原因"><a href="#引入Hook的原因" class="headerlink" title="引入Hook的原因"></a>引入Hook的原因</h2><p>为了解决如下问题：</p>
+        <h1 id="Hook-是什么"><a href="#Hook-是什么" class="headerlink" title="Hook 是什么"></a>Hook 是什么</h1><p>Hook 是 React 16.8.0 的新特性。</p>
+<p>Hook 是钩子函数，通过使用 Hook 可以在 <code>函数组件</code> 中引入 <code>React state</code> 及 <code>生命周期</code> 等特性，它可以让我们在不编写 class 的情况下使用 state 及其他的 React 特性。</p>
+<h1 id="Hook-可以解决什么问题"><a href="#Hook-可以解决什么问题" class="headerlink" title="Hook 可以解决什么问题"></a>Hook 可以解决什么问题</h1><p>Hook 可以解决如下问题：</p>
 <ul>
-<li><p>在组件之间复用状态逻辑很难</p>
-<p>​    React之前用render props和高阶组件解决此问题，但需要重新组织组件结构。现在可以<strong>使用Hook在无需修改组件结构的情况下复用状态逻辑</strong>。</p>
+<li><p>组件间复用状态逻辑困难</p>
+<p>​    React 之前用 <code>render props</code> 和 <code>高阶组件</code> 解决此问题，但需要重新组织组件结构。现在可以<strong>使用 Hook 在无需修改组件结构的情况下复用状态逻辑</strong>。</p>
 </li>
 <li><p>复杂组件越来越难以理解</p>
-<p>   之前在不同的生命周期中维护的互相关联的代码，现在可以使用<strong>Hook 将组件中相互关联的部分拆分成更小的函数（比如设置订阅或请求数据）</strong>。还可以使用 reducer 来管理组件的内部状态，使其更加可预测。</p>
+<p>​    之前在不同的生命周期中维护的逻辑关联的代码，现在可以使用 <strong>Hook 将组件中逻辑关联的部分拆分成更小的函数（比如设置订阅或请求数据）</strong>。还可以使用 reducer 来管理组件的内部状态，使其更加可预测。</p>
 </li>
-<li><p>难以理解的class</p>
-<p>​    <strong>Hook 使你在非 class 的情况下可以使用更多的 React 特性。</strong></p>
+<li><p>避开 class</p>
+<p>​    js 中的 class 和其他语言中的 class 有很大区别，特别是 this 的工作方式，编写 React 组件时，需要额外编写 this 和事件处理器的绑定，而这些代码其实非常冗余。</p>
+<p>​    class 不能很好的压缩，会使得热加载出现不稳定的情况。</p>
+<p>​    <strong>Hook 能够使你避开 class 也能使用更多的 React 特性。</strong></p>
+</li>
+</ul>
+<h1 id="Hook-对现有代码的影响"><a href="#Hook-对现有代码的影响" class="headerlink" title="Hook 对现有代码的影响"></a>Hook 对现有代码的影响</h1><ul>
+<li>可选功能<ul>
+<li>无需重写现有代码即可使用 Hook</li>
+<li>不是非得用 Hook 不可，如果不想也可以不用</li>
+</ul>
+</li>
+<li>100% 向后兼容</li>
+<li>可用版本<ul>
+<li>从 React 16.8.0 版本之后可以使用 Hook</li>
+</ul>
 </li>
 </ul>
 
@@ -306,14 +309,25 @@
       
 
       <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/react/" rel="tag"># react</a>
+            
+              <a href="/tags/Hook/" rel="tag"># Hook</a>
+            
+          </div>
+        
 
         
 
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/web/react/Hook规则/" rel="next" title="Hook规则">
-                  <i class="fa fa-chevron-left"></i> Hook规则
+                <a href="/maven/Maven/" rel="next" title="Maven">
+                  <i class="fa fa-chevron-left"></i> Maven
                 </a>
               
             </div>
@@ -322,8 +336,8 @@
 
             <div class="post-nav-prev post-nav-item">
               
-                <a href="/web/react/State Hook/" rel="prev" title="state hook">
-                  state hook <i class="fa fa-chevron-right"></i>
+                <a href="/web/react/State Hook/" rel="prev" title="State Hook">
+                  State Hook <i class="fa fa-chevron-right"></i>
                 </a>
               
             </div>
@@ -342,9 +356,6 @@
 
           </div>
           
-    
-    <div class="comments" id="gitalk-container"></div>
-  
 
         </div>
           
@@ -374,15 +385,15 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#引入Hook的原因"><span class="nav-number">1.</span> <span class="nav-text">引入Hook的原因</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Hook-是什么"><span class="nav-text">Hook 是什么</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hook-可以解决什么问题"><span class="nav-text">Hook 可以解决什么问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hook-对现有代码的影响"><span class="nav-text">Hook 对现有代码的影响</span></a></li></ol></div>
         
       </div>
       <!--/noindex-->
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">张大梦</p>
-  <div class="site-description" itemprop="description">无穷尽</div>
+  <p class="site-author-name" itemprop="name">DaMeng</p>
+  <div class="site-description" itemprop="description">forever</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
@@ -390,7 +401,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-count">110</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -403,7 +414,7 @@
             <a href="/categories/">
           
         
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">32</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -416,7 +427,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">75</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -455,11 +466,8 @@
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">张大梦</span>
+  <span class="author" itemprop="copyrightHolder">DaMeng</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
-  <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.4.1</div>
 
         
 <div class="busuanzi-count" style="display:none">
@@ -542,25 +550,6 @@
   
 
   
-
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
-
-<script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
-    var gitalk = new Gitalk({
-      clientID: 'd094643ce67eeeb1c96a',
-      clientSecret: '2d2523ebc5546e28ddc6d361b9f4aa63090e7920',
-      repo: 'tk',
-      owner: 'damengzhang',
-      admin: ['damengzhang'],
-      id: '1e931baafa7a970fb1a827a75317d8db',
-        language: 'zh-CN',
-      
-      distractionFreeMode: 'true'
-    });
-    gitalk.render('gitalk-container');
-  }, window.Gitalk);
-</script>
 
 </body>
 </html>

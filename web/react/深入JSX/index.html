@@ -56,18 +56,18 @@
   };
 </script>
 
-  <meta name="description" content="​    JSX其实是React. createElement(component, props, …children)函数的语法糖。故使用jsx前，需先引用React库。 123456789101112import React from &amp;apos;react&amp;apos;;//先引用react库&amp;lt;MyButton color=&amp;quot;blue&amp;quot; shadowSize=&amp;#12">
-<meta name="keywords" content="前端 教程 大梦 DaMeng Zhang">
+  <meta name="description" content="JSX 其实是 React. createElement(component, props, …children) 函数的语法糖。故使用 jsx 前，需先引用 React 库。 123456789101112import React from &amp;apos;react&amp;apos;;//先引用react库&amp;lt;MyButton color=&amp;quot;blue&amp;quot; shadowSize=&amp;#">
+<meta name="keywords" content="react">
 <meta property="og:type" content="article">
 <meta property="og:title" content="深入JSX">
 <meta property="og:url" content="http://yoursite.com/web/react/深入JSX/index.html">
-<meta property="og:site_name" content="张大梦">
-<meta property="og:description" content="​    JSX其实是React. createElement(component, props, …children)函数的语法糖。故使用jsx前，需先引用React库。 123456789101112import React from &amp;apos;react&amp;apos;;//先引用react库&amp;lt;MyButton color=&amp;quot;blue&amp;quot; shadowSize=&amp;#12">
+<meta property="og:site_name" content="DaMeng">
+<meta property="og:description" content="JSX 其实是 React. createElement(component, props, …children) 函数的语法糖。故使用 jsx 前，需先引用 React 库。 123456789101112import React from &amp;apos;react&amp;apos;;//先引用react库&amp;lt;MyButton color=&amp;quot;blue&amp;quot; shadowSize=&amp;#">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-08T12:46:54.000Z">
+<meta property="og:updated_time" content="2020-08-18T03:19:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入JSX">
-<meta name="twitter:description" content="​    JSX其实是React. createElement(component, props, …children)函数的语法糖。故使用jsx前，需先引用React库。 123456789101112import React from &amp;apos;react&amp;apos;;//先引用react库&amp;lt;MyButton color=&amp;quot;blue&amp;quot; shadowSize=&amp;#12">
+<meta name="twitter:description" content="JSX 其实是 React. createElement(component, props, …children) 函数的语法糖。故使用 jsx 前，需先引用 React 库。 123456789101112import React from &amp;apos;react&amp;apos;;//先引用react库&amp;lt;MyButton color=&amp;quot;blue&amp;quot; shadowSize=&amp;#">
   <link rel="canonical" href="http://yoursite.com/web/react/深入JSX/">
 
 
@@ -82,7 +82,7 @@
   };
 </script>
 
-  <title>深入JSX | 张大梦</title>
+  <title>深入JSX | DaMeng</title>
   
 
 
@@ -129,7 +129,7 @@
     <div>
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">张大梦</span>
+        <span class="site-title">DaMeng</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -148,17 +148,6 @@
 <nav class="site-nav">
   
   <ul id="menu" class="menu">
-      
-      
-      
-        
-        <li class="menu-item menu-item-home">
-      
-    
-
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
-
-  </li>
       
       
       
@@ -222,13 +211,13 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/web/react/深入JSX/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="张大梦">
-      <meta itemprop="description" content="无穷尽">
+      <meta itemprop="name" content="DaMeng">
+      <meta itemprop="description" content="forever">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="张大梦">
+      <meta itemprop="name" content="DaMeng">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">深入JSX
@@ -282,11 +271,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>​    JSX其实是React. createElement(component, props, …children)函数的语法糖。故使用jsx前，需先引用React库。</p>
+        <p>JSX 其实是 React. createElement(component, props, …children) 函数的语法糖。故使用 jsx 前，需先引用 React 库。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import React from &apos;react&apos;;//先引用react库</span><br><span class="line">&lt;MyButton color=&quot;blue&quot; shadowSize=&#123;2&#125;&gt;</span><br><span class="line">  Click Me</span><br><span class="line">&lt;/MyButton&gt;</span><br><span class="line"></span><br><span class="line">//上面jsx会编译成如下代码：</span><br><span class="line"></span><br><span class="line">React.createElement(</span><br><span class="line">  MyButton,</span><br><span class="line">  &#123;color: &apos;blue&apos;, shadowSize: 2&#125;,</span><br><span class="line">  &apos;Click Me&apos;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 
-<h2 id="JSX组件标签"><a href="#JSX组件标签" class="headerlink" title="JSX组件标签"></a>JSX组件标签</h2><ul>
-<li><p>大写字母开头的jSX标签才会被识别为React组件</p>
+<h2 id="1-JSX-组件标签"><a href="#1-JSX-组件标签" class="headerlink" title="1 JSX 组件标签"></a>1 JSX 组件标签</h2><ul>
+<li><p>大写字母开头的 JSX 标签才会被识别为 React 组件</p>
 </li>
 <li><p>组件标签可以使用点语法</p>
 </li>
@@ -298,15 +287,16 @@
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">import React from &apos;react&apos;;</span><br><span class="line">import &#123; PhotoStory, VideoStory &#125; from &apos;./stories&apos;;</span><br><span class="line"></span><br><span class="line">const components = &#123;</span><br><span class="line">  photo: PhotoStory,</span><br><span class="line">  video: VideoStory</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">function Story(props) &#123;</span><br><span class="line">  //错误，标签不能为表达式components[props.storyType]</span><br><span class="line">  return &lt;components[props.storyType] story=&#123;props.story&#125; /&gt;;	</span><br><span class="line">  // 正确！JSX 类型可以是大写字母开头的变量。</span><br><span class="line">  const SpecificStory = components[props.storyType];</span><br><span class="line">  return &lt;SpecificStory story=&#123;props.story&#125; /&gt;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="JSX中的Props"><a href="#JSX中的Props" class="headerlink" title="JSX中的Props"></a>JSX中的Props</h2><p>JSX中的props可以为js表达式、字符串，props属性的默认值为ture，可以将对象使用展开运算符传递给Props。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">//使用js表达式</span><br><span class="line">&lt;MyComponent foo=&#123;1 + 2 + 3 + 4&#125; /&gt;</span><br><span class="line"></span><br><span class="line">//下面两个字符串值等价</span><br><span class="line">&lt;MyComponent message=&quot;&amp;lt;3&quot; /&gt;</span><br><span class="line">&lt;MyComponent message=&#123;&apos;&lt;3&apos;&#125; /&gt;</span><br><span class="line"></span><br><span class="line">//下面两者等价</span><br><span class="line">&lt;MyTextBox autocomplete /&gt;</span><br><span class="line">&lt;MyTextBox autocomplete=&#123;true&#125; /&gt;</span><br><span class="line"></span><br><span class="line">//将对象使用展开运算符...传递给Props</span><br><span class="line">function App2() &#123;</span><br><span class="line">  const props = &#123;firstName: &apos;Ben&apos;, lastName: &apos;Hector&apos;&#125;;</span><br><span class="line">  return &lt;Greeting &#123;...props&#125; /&gt;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="2-JSX-中的-Props"><a href="#2-JSX-中的-Props" class="headerlink" title="2 JSX 中的 Props"></a>2 JSX 中的 Props</h2><p>JSX 中的 props 可以为 JS 表达式、字符串，props 属性的默认值为 ture，可以将对象使用展开运算符传递给Props。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">//使用js表达式</span><br><span class="line">&lt;MyComponent foo=&#123;1 + 2 + 3 + 4&#125; /&gt;</span><br><span class="line"></span><br><span class="line">//下面两个字符串值等价</span><br><span class="line">&lt;MyComponent message=&quot;&amp;lt;3&quot; /&gt;</span><br><span class="line">&lt;MyComponent message=&#123;&apos;&lt;3&apos;&#125; /&gt;</span><br><span class="line"></span><br><span class="line">//下面两者等价，props 属性默认值为 true</span><br><span class="line">&lt;MyTextBox autocomplete /&gt;</span><br><span class="line">&lt;MyTextBox autocomplete=&#123;true&#125; /&gt;</span><br><span class="line"></span><br><span class="line">//将对象使用展开运算符...传递给Props</span><br><span class="line">function App2() &#123;</span><br><span class="line">  const props = &#123;firstName: &apos;Ben&apos;, lastName: &apos;Hector&apos;&#125;;</span><br><span class="line">  return &lt;Greeting &#123;...props&#125; /&gt;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="JSX中的子元素"><a href="#JSX中的子元素" class="headerlink" title="JSX中的子元素"></a>JSX中的子元素</h2><p>jsx组件的开始和结束标签之间的内容，会通过Props.children传递给组件。</p>
-<h3 id="字符串、表达式、函数作为子元素"><a href="#字符串、表达式、函数作为子元素" class="headerlink" title="字符串、表达式、函数作为子元素"></a>字符串、表达式、函数作为子元素</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">//字符串为子元素时，jsx会移除行首尾的空格及空行，字符串之间的新行会被压缩为一个空格，下面几种书写方式是等效的</span><br><span class="line">&lt;div&gt;Hello World&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;div&gt;</span><br><span class="line">  Hello World</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;div&gt;</span><br><span class="line">  Hello</span><br><span class="line">  World</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;div&gt;</span><br><span class="line"></span><br><span class="line">  Hello World</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">//js表达式为子元素</span><br><span class="line">function Item(props) &#123;</span><br><span class="line">  return &lt;li&gt;&#123;props.message&#125;&lt;/li&gt;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function TodoList() &#123;</span><br><span class="line">  const todos = [&apos;finish doc&apos;, &apos;submit pr&apos;, &apos;nag dan to review&apos;];</span><br><span class="line">  return (</span><br><span class="line">    &lt;ul&gt;</span><br><span class="line">      &#123;todos.map((message) =&gt; &lt;Item key=&#123;message&#125; message=&#123;message&#125; /&gt;)&#125;</span><br><span class="line">    &lt;/ul&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//函数为子元素</span><br><span class="line">function Repeat(props) &#123;</span><br><span class="line">  let items = [];</span><br><span class="line">  for (let i = 0; i &lt; props.numTimes; i++) &#123;</span><br><span class="line">    items.push(props.children(i));</span><br><span class="line">  &#125;</span><br><span class="line">  return &lt;div&gt;&#123;items&#125;&lt;/div&gt;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function ListOfTenThings() &#123;</span><br><span class="line">  return (</span><br><span class="line">    &lt;Repeat numTimes=&#123;10&#125;&gt;</span><br><span class="line">      &#123;(index) =&gt; &lt;div key=&#123;index&#125;&gt;This is item &#123;index&#125; in the list&lt;/div&gt;&#125;</span><br><span class="line">    &lt;/Repeat&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-JSX-中的子元素"><a href="#3-JSX-中的子元素" class="headerlink" title="3 JSX 中的子元素"></a>3 JSX 中的子元素</h2><p>JSX 组件的开始和结束标签之间的内容，会通过 Props.children 传递给组件。</p>
+<h3 id="3-1-字符串、表达式、函数"><a href="#3-1-字符串、表达式、函数" class="headerlink" title="3.1 字符串、表达式、函数"></a>3.1 字符串、表达式、函数</h3><p>字符串为子元素时，JSX 会移除行首尾的空格及空行，字符串之间的新行会被压缩为一个空格，下面几种书写方式是等效的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;Hello World&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;div&gt;</span><br><span class="line">  Hello World</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;div&gt;</span><br><span class="line">  Hello</span><br><span class="line">  World</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;div&gt;</span><br><span class="line"></span><br><span class="line">  Hello World</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">//js表达式为子元素</span><br><span class="line">function Item(props) &#123;</span><br><span class="line">  return &lt;li&gt;&#123;props.message&#125;&lt;/li&gt;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function TodoList() &#123;</span><br><span class="line">  const todos = [&apos;finish doc&apos;, &apos;submit pr&apos;, &apos;nag dan to review&apos;];</span><br><span class="line">  return (</span><br><span class="line">    &lt;ul&gt;</span><br><span class="line">      &#123;todos.map((message) =&gt; &lt;Item key=&#123;message&#125; message=&#123;message&#125; /&gt;)&#125;</span><br><span class="line">    &lt;/ul&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//函数为子元素</span><br><span class="line">function Repeat(props) &#123;</span><br><span class="line">  let items = [];</span><br><span class="line">  for (let i = 0; i &lt; props.numTimes; i++) &#123;</span><br><span class="line">    items.push(props.children(i));</span><br><span class="line">  &#125;</span><br><span class="line">  return &lt;div&gt;&#123;items&#125;&lt;/div&gt;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function ListOfTenThings() &#123;</span><br><span class="line">  return (</span><br><span class="line">    &lt;Repeat numTimes=&#123;10&#125;&gt;</span><br><span class="line">      &#123;(index) =&gt; &lt;div key=&#123;index&#125;&gt;This is item &#123;index&#125; in the list&lt;/div&gt;&#125;</span><br><span class="line">    &lt;/Repeat&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="组件作为子元素"><a href="#组件作为子元素" class="headerlink" title="组件作为子元素"></a>组件作为子元素</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;MyContainer&gt;</span><br><span class="line">  &lt;MyFirstComponent /&gt;</span><br><span class="line">  &lt;MySecondComponent /&gt;</span><br><span class="line">&lt;/MyContainer&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="3-2-组件"><a href="#3-2-组件" class="headerlink" title="3.2 组件"></a>3.2 组件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;MyContainer&gt;</span><br><span class="line">  &lt;MyFirstComponent /&gt;</span><br><span class="line">  &lt;MySecondComponent /&gt;</span><br><span class="line">&lt;/MyContainer&gt;</span><br></pre></td></tr></table></figure>
 
-<h3 id="布尔类型、Null-以及-Undefined作为子元素"><a href="#布尔类型、Null-以及-Undefined作为子元素" class="headerlink" title="布尔类型、Null 以及 Undefined作为子元素"></a>布尔类型、Null 以及 Undefined作为子元素</h3><p>布尔类型、Null 以及 Undefined 将会忽略</p>
+<h3 id="3-3-布尔类型、Null-以及-Undefined"><a href="#3-3-布尔类型、Null-以及-Undefined" class="headerlink" title="3.3 布尔类型、Null 以及 Undefined"></a>3.3 布尔类型、Null 以及 Undefined</h3><p>布尔类型、Null 以及 Undefined 将会忽略</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">//以下的 JSX 表达式渲染结果相同：</span><br><span class="line">&lt;div /&gt;</span><br><span class="line"></span><br><span class="line">&lt;div&gt;&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;div&gt;&#123;false&#125;&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;div&gt;&#123;null&#125;&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;div&gt;&#123;undefined&#125;&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;div&gt;&#123;true&#125;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
 
 <p>值得注意的是有一些 <a href="https://developer.mozilla.org/en-US/docs/Glossary/Falsy" target="_blank" rel="noopener">“falsy” 值</a>，如数字 <code>0</code>，仍然会被 React 渲染。例如，以下代码并不会像你预期那样工作，因为当 <code>props.messages</code> 是空数组时，<code>0</code> 仍然会被渲染：</p>
@@ -326,14 +316,23 @@
       
 
       <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/react/" rel="tag"># react</a>
+            
+          </div>
+        
 
         
 
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/web/react/高阶组件/" rel="next" title="高阶组件">
-                  <i class="fa fa-chevron-left"></i> 高阶组件
+                <a href="/web/react/render Props/" rel="next" title="Render Props">
+                  <i class="fa fa-chevron-left"></i> Render Props
                 </a>
               
             </div>
@@ -342,8 +341,8 @@
 
             <div class="post-nav-prev post-nav-item">
               
-                <a href="/web/react/性能优化/" rel="prev" title="性能优化">
-                  性能优化 <i class="fa fa-chevron-right"></i>
+                <a href="/web/webpack/webpack 自动生成 html 模板/" rel="prev" title="webpack 自动生成 html 模板文件">
+                  webpack 自动生成 html 模板文件 <i class="fa fa-chevron-right"></i>
                 </a>
               
             </div>
@@ -362,9 +361,6 @@
 
           </div>
           
-    
-    <div class="comments" id="gitalk-container"></div>
-  
 
         </div>
           
@@ -394,15 +390,15 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JSX组件标签"><span class="nav-number">1.</span> <span class="nav-text">JSX组件标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSX中的Props"><span class="nav-number">2.</span> <span class="nav-text">JSX中的Props</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSX中的子元素"><span class="nav-number">3.</span> <span class="nav-text">JSX中的子元素</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串、表达式、函数作为子元素"><span class="nav-number">3.1.</span> <span class="nav-text">字符串、表达式、函数作为子元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组件作为子元素"><span class="nav-number">3.2.</span> <span class="nav-text">组件作为子元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#布尔类型、Null-以及-Undefined作为子元素"><span class="nav-number">3.3.</span> <span class="nav-text">布尔类型、Null 以及 Undefined作为子元素</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-JSX-组件标签"><span class="nav-text">1 JSX 组件标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-JSX-中的-Props"><span class="nav-text">2 JSX 中的 Props</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-JSX-中的子元素"><span class="nav-text">3 JSX 中的子元素</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-字符串、表达式、函数"><span class="nav-text">3.1 字符串、表达式、函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-组件"><span class="nav-text">3.2 组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-布尔类型、Null-以及-Undefined"><span class="nav-text">3.3 布尔类型、Null 以及 Undefined</span></a></li></ol></li></ol></div>
         
       </div>
       <!--/noindex-->
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">张大梦</p>
-  <div class="site-description" itemprop="description">无穷尽</div>
+  <p class="site-author-name" itemprop="name">DaMeng</p>
+  <div class="site-description" itemprop="description">forever</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
@@ -410,7 +406,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-count">110</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -423,7 +419,7 @@
             <a href="/categories/">
           
         
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">32</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -436,7 +432,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">75</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -475,11 +471,8 @@
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">张大梦</span>
+  <span class="author" itemprop="copyrightHolder">DaMeng</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
-  <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.4.1</div>
 
         
 <div class="busuanzi-count" style="display:none">
@@ -562,25 +555,6 @@
   
 
   
-
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
-
-<script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
-    var gitalk = new Gitalk({
-      clientID: 'd094643ce67eeeb1c96a',
-      clientSecret: '2d2523ebc5546e28ddc6d361b9f4aa63090e7920',
-      repo: 'tk',
-      owner: 'damengzhang',
-      admin: ['damengzhang'],
-      id: 'adf2b8c7d2e5413e502a674834b37df4',
-        language: 'zh-CN',
-      
-      distractionFreeMode: 'true'
-    });
-    gitalk.render('gitalk-container');
-  }, window.Gitalk);
-</script>
 
 </body>
 </html>

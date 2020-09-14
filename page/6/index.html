@@ -56,17 +56,17 @@
   };
 </script>
 
-  <meta name="description" content="无穷尽">
+  <meta name="description" content="forever">
 <meta name="keywords" content="前端 教程 大梦 DaMeng Zhang">
 <meta property="og:type" content="website">
-<meta property="og:title" content="张大梦">
+<meta property="og:title" content="DaMeng">
 <meta property="og:url" content="http://yoursite.com/page/6/index.html">
-<meta property="og:site_name" content="张大梦">
-<meta property="og:description" content="无穷尽">
+<meta property="og:site_name" content="DaMeng">
+<meta property="og:description" content="forever">
 <meta property="og:locale" content="zh-CN">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="张大梦">
-<meta name="twitter:description" content="无穷尽">
+<meta name="twitter:title" content="DaMeng">
+<meta name="twitter:description" content="forever">
   <link rel="canonical" href="http://yoursite.com/page/6/">
 
 
@@ -81,7 +81,7 @@
   };
 </script>
 
-  <title>张大梦</title>
+  <title>DaMeng</title>
   
 
 
@@ -128,7 +128,7 @@
     <div>
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">张大梦</span>
+        <span class="site-title">DaMeng</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -147,17 +147,6 @@
 <nav class="site-nav">
   
   <ul id="menu" class="menu">
-      
-      
-      
-        
-        <li class="menu-item menu-item-home">
-      
-    
-
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
-
-  </li>
       
       
       
@@ -217,21 +206,21 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/web/react/自定义Hook/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/web/react/ReactRedux/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="张大梦">
-      <meta itemprop="description" content="无穷尽">
+      <meta itemprop="name" content="DaMeng">
+      <meta itemprop="description" content="forever">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="张大梦">
+      <meta itemprop="name" content="DaMeng">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/web/react/自定义Hook/" class="post-title-link" itemprop="url">自定义Hook</a>
+            <a href="/web/react/ReactRedux/" class="post-title-link" itemprop="url">ReactRedux</a>
           
         </h1>
 
@@ -246,7 +235,7 @@
                 
               
 
-              <time title="创建时间：2019-10-09 19:50:18" itemprop="dateCreated datePublished" datetime="2019-10-09T19:50:18+08:00">2019-10-09</time>
+              <time title="创建时间：2020-07-19 18:40:38" itemprop="dateCreated datePublished" datetime="2020-07-19T18:40:38+08:00">2020-07-19</time>
             </span>
           
             <span class="post-meta-item">
@@ -281,15 +270,93 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="解决什么问题"><a href="#解决什么问题" class="headerlink" title="解决什么问题"></a>解决什么问题</h2><p>在React中，主要通过<code>render props</code>和<code>高阶组件</code>这两种方式来共享组件之间的状态。</p>
-<p><code>自定义Hook</code>可以在不增加组件的情况下，解决共享组件间状态的问题。</p>
-<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p><code>自定义Hook</code>是一个函数，其内部可以调用（只能在顶层调用）其他的Hook。我们可以自由的决定它的参数是什么，以及它应该返回什么（如果需要的话）。</p>
-<p><strong>自定义 Hook 必须以 “use” 开头吗？</strong>必须如此。React用名称来识别Hook，进而去判断Hook使用是否规范。</p>
-<p><strong>在两个组件中使用相同的 Hook 会共享 state 吗？</strong>不会。<code>自定义Hook</code> 是一种重用<em>状态逻辑</em>的机制(例如设置为订阅并存储当前值)，所以每次使用<code>自定义Hook</code> 时，其中的所有 state 和副作用都是完全隔离的。</p>
-<p><strong>自定义 Hook 如何获取独立的 state？</strong>每次<em>调用</em> Hook，它都会获取独立的 state。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">//定义自定义hook</span><br><span class="line">import React, &#123; useState, useEffect &#125; from &apos;react&apos;;</span><br><span class="line"></span><br><span class="line">function useFriendStatus(friendID) &#123;</span><br><span class="line">  const [isOnline, setIsOnline] = useState(null);</span><br><span class="line"></span><br><span class="line">  useEffect(() =&gt; &#123;</span><br><span class="line">    function handleStatusChange(status) &#123;</span><br><span class="line">      setIsOnline(status.isOnline);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ChatAPI.subscribeToFriendStatus(friendID, handleStatusChange);</span><br><span class="line">    return () =&gt; &#123;</span><br><span class="line">      ChatAPI.unsubscribeFromFriendStatus(friendID, handleStatusChange);</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  return isOnline;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//使用自定义hook</span><br><span class="line">function FriendStatus(props) &#123;</span><br><span class="line">  const isOnline = useFriendStatus(props.friend.id);</span><br><span class="line"></span><br><span class="line">  if (isOnline === null) &#123;</span><br><span class="line">    return &apos;Loading...&apos;;</span><br><span class="line">  &#125;</span><br><span class="line">  return isOnline ? &apos;Online&apos; : &apos;Offline&apos;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//使用自定义hook</span><br><span class="line">function FriendListItem(props) &#123;</span><br><span class="line">  const isOnline = useFriendStatus(props.friend.id);</span><br><span class="line"></span><br><span class="line">  return (</span><br><span class="line">    &lt;li style=&#123;&#123; color: isOnline ? &apos;green&apos; : &apos;black&apos; &#125;&#125;&gt;</span><br><span class="line">      &#123;props.friend.name&#125;</span><br><span class="line">    &lt;/li&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <h1 id="1-概述"><a href="#1-概述" class="headerlink" title="1 概述"></a>1 概述</h1><p>ReactRedux 是 Redux 官方为 React 提供的绑定库，让我们可以在 React 中更方便的使用 Redux。</p>
+<p>在 ReactRedux 中，用户只需要提供 UI 组件，ReactRedux 会自动生成容器组件来管理状态。</p>
+<h1 id="2-怎么使用"><a href="#2-怎么使用" class="headerlink" title="2 怎么使用"></a>2 怎么使用</h1><h2 id="2-1-安装"><a href="#2-1-安装" class="headerlink" title="2.1 安装"></a>2.1 安装</h2><p>ReactRedux 基于 redux，所以需要将 redux 一并安装。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install redux react-redux</span><br></pre></td></tr></table></figure>
 
-<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>可以在多个hook之间传递消息。</p>
+<h2 id="2-2-使用"><a href="#2-2-使用" class="headerlink" title="2.2 使用"></a>2.2 使用</h2><h3 id="2-2-1-Provider-组件"><a href="#2-2-1-Provider-组件" class="headerlink" title="2.2.1 Provider 组件"></a>2.2.1 Provider 组件</h3><p>Provider 是 ReactRedux 提供的组件，这个组件能够连接 Store ，并可以将 Store 提供给所有的子组件。</p>
+<p>Provider 内部使用 React 的 Context 机制使 Store 在子组件内共享。</p>
+<ul>
+<li><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Provider store&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用</p>
+<p>使用 Provider 把 React 根组件包裹起来，即可将 Store 专递给所有子组件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">"react"</span>;</span><br><span class="line"><span class="keyword">import</span> TodoList <span class="keyword">from</span> <span class="string">"./TodoList.js"</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Provider &#125; <span class="keyword">from</span> <span class="string">"react-redux"</span>;</span><br><span class="line"><span class="keyword">import</span> store <span class="keyword">from</span> <span class="string">"./store"</span>;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;Provider store=&#123;store&#125;&gt;</span><br><span class="line">    &lt;TodoList /&gt;</span><br><span class="line">  &lt;<span class="regexp">/Provider&gt;,</span></span><br><span class="line"><span class="regexp">  rootEl</span></span><br><span class="line"><span class="regexp">)</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="2-2-2-connect-方法"><a href="#2-2-2-connect-方法" class="headerlink" title="2.2.2 connect 方法"></a>2.2.2 connect 方法</h3><p>connect 是 ReactRedux 提供的方法，能够将 UI 组件和 ReduxStore 连接起来，并返回一个新的、包裹了 UI 组件的、可以管理 UI 组件状态的<strong>容器组件</strong>。</p>
+<ul>
+<li><p>语法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">connect</span>(<span class="params">mapStateToProps?, mapDispatchToProps?, mergeProps?, options?</span>)</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><code>mapStateToProps?: (state, ownProps?) =&gt; Object</code></p>
+<ul>
+<li>参数<ul>
+<li>state:  是全局的 ReduxStore</li>
+<li>ownProps?:  容器组件的 props 属性</li>
+</ul>
+</li>
+<li>返回值：会作为 UI 组件的 props 属性</li>
+<li>功能描述： <ul>
+<li>通过 mapStateToProps  可以将 ReduxStore 中的数据映射到 UI 组件的 props 属性。</li>
+<li>mapStateToProps 是 ReduxStore 的监听器，当 ReduxStore 更新时，就会触发 Ui 组件的重新渲染。不传递 mapStateToProps 时， UI 组件将不感知 ReduxStore 的更新。    </li>
+<li>使用了参数 ownProps 后，当容器组件的 props 发生变化，会触发 UI 组件的更新。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><code>mapDispatchToProps?: Object | (dispatch, ownProps?) =&gt; Object</code></p>
+<ul>
+<li>参数<ul>
+<li>dispatch: 即 ReduxStore.dispatch</li>
+<li>ownProps？: 容器组件的 props 属性</li>
+</ul>
+</li>
+<li>返回值<ul>
+<li>函数类型时，返回值为 dispatch 和 UI 组件的 函数类型 props 的对应关系</li>
+<li>对象类型时，此对象为 dispatch 和 UI 组件的 函数类型 props 的对应关系</li>
+</ul>
+</li>
+<li>功能描述<ul>
+<li>​    通过 mapDispatchToProps 可以将 dispatch 和 UI 组件的 函数类型 props 对应起来</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><code>mergeProps?: (stateProps, dispatchProps, ownProps) =&gt; Object</code></p>
+<ul>
+<li>参数<ul>
+<li>stateProps：mapStateToProps 返回值</li>
+<li>dispatchProps： mapDispatchToProps 返回值</li>
+<li>ownProps：容器组件的 props 属性</li>
+</ul>
+</li>
+<li>返回值<ul>
+<li>返回值会作为 UI 组件的 props 属性</li>
+</ul>
+</li>
+<li>功能描述<ul>
+<li>用来自定义 UI 组件的 props 属性</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><code>options?: Object</code></p>
+<ul>
+<li>参数<ul>
+<li>[<code>pure = true</code>] <em>(Boolean)</em>: 为 true 时，connector 将执行 <code>shouldComponentUpdate</code> 并且浅对比 <code>mergeProps</code> 的结果，避免不必要的更新，前提是当前组件是一个“纯”组件，它不依赖于任何的输入或 state 而只依赖于 props 和 Redux store 的 state。<em>默认值为 true。</em></li>
+<li>[<code>withRef = false</code>] <em>(Boolean)</em>: 如果为 true，connector 会保存一个对被包装组件实例的引用，该引用通过 <code>getWrappedInstance()</code> 方法获得。<em>默认值为 false。</em></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 
         
       
@@ -313,7 +380,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/34/">34</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/110/">110</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -348,8 +415,8 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">张大梦</p>
-  <div class="site-description" itemprop="description">无穷尽</div>
+  <p class="site-author-name" itemprop="name">DaMeng</p>
+  <div class="site-description" itemprop="description">forever</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
@@ -357,7 +424,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-count">110</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -370,7 +437,7 @@
             <a href="/categories/">
           
         
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">32</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -383,7 +450,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">75</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -422,11 +489,8 @@
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">张大梦</span>
+  <span class="author" itemprop="copyrightHolder">DaMeng</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
-  <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.4.1</div>
 
         
 <div class="busuanzi-count" style="display:none">
@@ -509,7 +573,6 @@
   
 
   
-
 
 </body>
 </html>

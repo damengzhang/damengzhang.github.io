@@ -56,18 +56,18 @@
   };
 </script>
 
-  <meta name="description" content="Hook的本质是js函数，使用hook需要遵循两条规则：  只在顶层使用Hook 为了保证Hook在每次都以相同的顺序被调用，确保总是在React函数的顶层调用Hook，不要在循环、条件、嵌套中调用Hook  只在React函数中调用Hook   使用ESlint插件可以使用 eslint-plugin-react-hooks插件强制执行Hook规则。 123456789101112131415/">
+  <meta name="description" content="使用 Hook 需要遵循的规则Hook 的本质是 js 函数，使用 Hook 需要遵循下面两条规则：  只在顶层使用 Hook 为了保证 Hook 在每次都以相同的顺序被调用（只有 Hook 的调用顺序在多次渲染之间保持一致，React 才能正确地将内部 state 和对应的 Hook 进行关联），确保总是在 React 函数的顶层调用 Hook，不要在循环、条件、嵌套中调用 Hook  只在 R">
 <meta name="keywords" content="前端 教程 大梦 DaMeng Zhang">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hook规则">
+<meta property="og:title" content="使用 React Hook 需要遵循的规则">
 <meta property="og:url" content="http://yoursite.com/web/react/Hook规则/index.html">
-<meta property="og:site_name" content="张大梦">
-<meta property="og:description" content="Hook的本质是js函数，使用hook需要遵循两条规则：  只在顶层使用Hook 为了保证Hook在每次都以相同的顺序被调用，确保总是在React函数的顶层调用Hook，不要在循环、条件、嵌套中调用Hook  只在React函数中调用Hook   使用ESlint插件可以使用 eslint-plugin-react-hooks插件强制执行Hook规则。 123456789101112131415/">
+<meta property="og:site_name" content="DaMeng">
+<meta property="og:description" content="使用 Hook 需要遵循的规则Hook 的本质是 js 函数，使用 Hook 需要遵循下面两条规则：  只在顶层使用 Hook 为了保证 Hook 在每次都以相同的顺序被调用（只有 Hook 的调用顺序在多次渲染之间保持一致，React 才能正确地将内部 state 和对应的 Hook 进行关联），确保总是在 React 函数的顶层调用 Hook，不要在循环、条件、嵌套中调用 Hook  只在 R">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-08T12:49:32.000Z">
+<meta property="og:updated_time" content="2020-07-14T08:03:06.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hook规则">
-<meta name="twitter:description" content="Hook的本质是js函数，使用hook需要遵循两条规则：  只在顶层使用Hook 为了保证Hook在每次都以相同的顺序被调用，确保总是在React函数的顶层调用Hook，不要在循环、条件、嵌套中调用Hook  只在React函数中调用Hook   使用ESlint插件可以使用 eslint-plugin-react-hooks插件强制执行Hook规则。 123456789101112131415/">
+<meta name="twitter:title" content="使用 React Hook 需要遵循的规则">
+<meta name="twitter:description" content="使用 Hook 需要遵循的规则Hook 的本质是 js 函数，使用 Hook 需要遵循下面两条规则：  只在顶层使用 Hook 为了保证 Hook 在每次都以相同的顺序被调用（只有 Hook 的调用顺序在多次渲染之间保持一致，React 才能正确地将内部 state 和对应的 Hook 进行关联），确保总是在 React 函数的顶层调用 Hook，不要在循环、条件、嵌套中调用 Hook  只在 R">
   <link rel="canonical" href="http://yoursite.com/web/react/Hook规则/">
 
 
@@ -82,7 +82,7 @@
   };
 </script>
 
-  <title>Hook规则 | 张大梦</title>
+  <title>使用 React Hook 需要遵循的规则 | DaMeng</title>
   
 
 
@@ -129,7 +129,7 @@
     <div>
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">张大梦</span>
+        <span class="site-title">DaMeng</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -148,17 +148,6 @@
 <nav class="site-nav">
   
   <ul id="menu" class="menu">
-      
-      
-      
-        
-        <li class="menu-item menu-item-home">
-      
-    
-
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
-
-  </li>
       
       
       
@@ -222,16 +211,16 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/web/react/Hook规则/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="张大梦">
-      <meta itemprop="description" content="无穷尽">
+      <meta itemprop="name" content="DaMeng">
+      <meta itemprop="description" content="forever">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="张大梦">
+      <meta itemprop="name" content="DaMeng">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">Hook规则
+        <h1 class="post-title" itemprop="name headline">使用 React Hook 需要遵循的规则
 
           
         </h1>
@@ -282,15 +271,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>Hook的本质是js函数，使用hook需要遵循两条规则：</p>
+        <h1 id="使用-Hook-需要遵循的规则"><a href="#使用-Hook-需要遵循的规则" class="headerlink" title="使用 Hook 需要遵循的规则"></a>使用 Hook 需要遵循的规则</h1><p>Hook 的本质是 js 函数，使用 <code>Hook</code> 需要遵循下面两条规则：</p>
 <ul>
-<li><p>只在顶层使用<code>Hook</code></p>
-<p>为了保证<code>Hook</code>在每次都以相同的顺序被调用，确保总是在React函数的顶层调用<code>Hook</code>，不要在循环、条件、嵌套中调用<code>Hook</code></p>
+<li><p>只在顶层使用 <code>Hook</code></p>
+<p>为了保证 <code>Hook</code> 在每次都以相同的顺序被调用（<strong>只有 Hook 的调用顺序在多次渲染之间保持一致，React 才能正确地将内部 state 和对应的 Hook 进行关联</strong>），确保总是在 React 函数的顶层调用 <code>Hook</code>，不要在循环、条件、嵌套中调用 <code>Hook</code></p>
 </li>
-<li><p>只在React函数中调用Hook</p>
+<li><p>只在 React 函数组件中调用 <code>Hook</code>（<code>自定义 Hook</code> 中也可以调用 <code>Hook</code>）</p>
 </li>
 </ul>
-<h2 id="使用ESlint插件"><a href="#使用ESlint插件" class="headerlink" title="使用ESlint插件"></a>使用ESlint插件</h2><p>可以使用 <a href="https://www.npmjs.com/package/eslint-plugin-react-hooks" target="_blank" rel="noopener"><code>eslint-plugin-react-hooks</code></a>插件强制执行Hook规则。</p>
+<h2 id="使用-ESlint-插件"><a href="#使用-ESlint-插件" class="headerlink" title="使用 ESlint 插件"></a>使用 ESlint 插件</h2><p>官方推荐使用 <a href="https://www.npmjs.com/package/eslint-plugin-react-hooks" target="_blank" rel="noopener"><code>eslint-plugin-react-hooks</code></a> 插件强制执行 <code>Hook</code> 规则。</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">//下载插件</span><br><span class="line">npm install eslint-plugin-react-hooks --save-dev</span><br><span class="line"></span><br><span class="line">//配置eslint</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">"plugins"</span>: [</span><br><span class="line">    // ...</span><br><span class="line">    <span class="string">"react-hooks"</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">"rules"</span>: &#123;</span><br><span class="line">    // ...</span><br><span class="line">    "react-hooks/rules-of-hooks": "error", // 检查 Hook 的规则</span><br><span class="line">    "react-hooks/exhaustive-deps": "warn" // 检查 effect 的依赖</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>如果我们想要有条件地执行一个 effect，可以将判断放到 Hook 的<em>内部</em>：</p>
@@ -322,8 +311,8 @@
 
             <div class="post-nav-prev post-nav-item">
               
-                <a href="/web/react/Hook简介/" rel="prev" title="Hook简介">
-                  Hook简介 <i class="fa fa-chevron-right"></i>
+                <a href="/web/webpack/webpack 代码分离/" rel="prev" title="webpack 代码分离">
+                  webpack 代码分离 <i class="fa fa-chevron-right"></i>
                 </a>
               
             </div>
@@ -342,9 +331,6 @@
 
           </div>
           
-    
-    <div class="comments" id="gitalk-container"></div>
-  
 
         </div>
           
@@ -374,15 +360,15 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用ESlint插件"><span class="nav-number">1.</span> <span class="nav-text">使用ESlint插件</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#使用-Hook-需要遵循的规则"><span class="nav-text">使用 Hook 需要遵循的规则</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-ESlint-插件"><span class="nav-text">使用 ESlint 插件</span></a></li></ol></li></ol></div>
         
       </div>
       <!--/noindex-->
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">张大梦</p>
-  <div class="site-description" itemprop="description">无穷尽</div>
+  <p class="site-author-name" itemprop="name">DaMeng</p>
+  <div class="site-description" itemprop="description">forever</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
@@ -390,7 +376,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-count">110</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -403,7 +389,7 @@
             <a href="/categories/">
           
         
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">32</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -416,7 +402,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">75</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -455,11 +441,8 @@
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">张大梦</span>
+  <span class="author" itemprop="copyrightHolder">DaMeng</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
-  <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.4.1</div>
 
         
 <div class="busuanzi-count" style="display:none">
@@ -542,25 +525,6 @@
   
 
   
-
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
-
-<script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
-    var gitalk = new Gitalk({
-      clientID: 'd094643ce67eeeb1c96a',
-      clientSecret: '2d2523ebc5546e28ddc6d361b9f4aa63090e7920',
-      repo: 'tk',
-      owner: 'damengzhang',
-      admin: ['damengzhang'],
-      id: 'd2c46bdc952c5797a06d8434ddeae806',
-        language: 'zh-CN',
-      
-      distractionFreeMode: 'true'
-    });
-    gitalk.render('gitalk-container');
-  }, window.Gitalk);
-</script>
 
 </body>
 </html>

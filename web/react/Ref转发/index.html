@@ -56,18 +56,18 @@
   };
 </script>
 
-  <meta name="description" content="作用Ref转发允许组件接收ref参数，并将ref向下转发给子组件，进而达到在组件外部对组件的子组件进行管理的目的。可用于需要在组件外部对组件内部的子组件进行管理的场景。 转发ref到子组件123456789const FancyButton = React.forwardRef((props, ref) =&amp;gt; (  &amp;lt;button ref=&amp;#123;ref&amp;#125; classNa">
-<meta name="keywords" content="前端 教程 大梦 DaMeng Zhang">
+  <meta name="description" content="1 是什么Ref 转发指组件接收 ref 参数，并将 ref 参数传递给子节点。 2 解决什么问题解决需要在组件外部对组件内部节点进行管理的问题。 3 使用 只有通过 React.forwardRef 创建的组件，才有获取和转发 ref 的能力。普通组件的 props 中不存在 ref 属性，组件内部也获取不到 ref 参数。 ref 转发控制的节点既可以是原生的 DOM 节点，也可以是 Reac">
+<meta name="keywords" content="react,Ref">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Ref转发">
+<meta property="og:title" content="Ref 转发">
 <meta property="og:url" content="http://yoursite.com/web/react/Ref转发/index.html">
-<meta property="og:site_name" content="张大梦">
-<meta property="og:description" content="作用Ref转发允许组件接收ref参数，并将ref向下转发给子组件，进而达到在组件外部对组件的子组件进行管理的目的。可用于需要在组件外部对组件内部的子组件进行管理的场景。 转发ref到子组件123456789const FancyButton = React.forwardRef((props, ref) =&amp;gt; (  &amp;lt;button ref=&amp;#123;ref&amp;#125; classNa">
+<meta property="og:site_name" content="DaMeng">
+<meta property="og:description" content="1 是什么Ref 转发指组件接收 ref 参数，并将 ref 参数传递给子节点。 2 解决什么问题解决需要在组件外部对组件内部节点进行管理的问题。 3 使用 只有通过 React.forwardRef 创建的组件，才有获取和转发 ref 的能力。普通组件的 props 中不存在 ref 属性，组件内部也获取不到 ref 参数。 ref 转发控制的节点既可以是原生的 DOM 节点，也可以是 Reac">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-08T12:51:50.000Z">
+<meta property="og:updated_time" content="2020-08-22T04:19:46.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Ref转发">
-<meta name="twitter:description" content="作用Ref转发允许组件接收ref参数，并将ref向下转发给子组件，进而达到在组件外部对组件的子组件进行管理的目的。可用于需要在组件外部对组件内部的子组件进行管理的场景。 转发ref到子组件123456789const FancyButton = React.forwardRef((props, ref) =&amp;gt; (  &amp;lt;button ref=&amp;#123;ref&amp;#125; classNa">
+<meta name="twitter:title" content="Ref 转发">
+<meta name="twitter:description" content="1 是什么Ref 转发指组件接收 ref 参数，并将 ref 参数传递给子节点。 2 解决什么问题解决需要在组件外部对组件内部节点进行管理的问题。 3 使用 只有通过 React.forwardRef 创建的组件，才有获取和转发 ref 的能力。普通组件的 props 中不存在 ref 属性，组件内部也获取不到 ref 参数。 ref 转发控制的节点既可以是原生的 DOM 节点，也可以是 Reac">
   <link rel="canonical" href="http://yoursite.com/web/react/Ref转发/">
 
 
@@ -82,7 +82,7 @@
   };
 </script>
 
-  <title>Ref转发 | 张大梦</title>
+  <title>Ref 转发 | DaMeng</title>
   
 
 
@@ -129,7 +129,7 @@
     <div>
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">张大梦</span>
+        <span class="site-title">DaMeng</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -148,17 +148,6 @@
 <nav class="site-nav">
   
   <ul id="menu" class="menu">
-      
-      
-      
-        
-        <li class="menu-item menu-item-home">
-      
-    
-
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
-
-  </li>
       
       
       
@@ -222,16 +211,16 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/web/react/Ref转发/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="张大梦">
-      <meta itemprop="description" content="无穷尽">
+      <meta itemprop="name" content="DaMeng">
+      <meta itemprop="description" content="forever">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="张大梦">
+      <meta itemprop="name" content="DaMeng">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">Ref转发
+        <h1 class="post-title" itemprop="name headline">Ref 转发
 
           
         </h1>
@@ -282,15 +271,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><p><code>Ref转发</code>允许组件接收ref参数，并将ref向下转发给子组件，进而达到在组件外部对组件的子组件进行管理的目的。可用于需要在组件外部对组件内部的子组件进行管理的场景。</p>
-<h2 id="转发ref到子组件"><a href="#转发ref到子组件" class="headerlink" title="转发ref到子组件"></a>转发ref到子组件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">const FancyButton = React.forwardRef((props, ref) =&gt; (</span><br><span class="line">  &lt;button ref=&#123;ref&#125; className=&quot;FancyButton&quot;&gt;</span><br><span class="line">    &#123;props.children&#125;</span><br><span class="line">  &lt;/button&gt;</span><br><span class="line">));</span><br><span class="line"></span><br><span class="line">// 你可以直接获取 DOM button 的 ref：</span><br><span class="line">const ref = React.createRef();</span><br><span class="line">&lt;FancyButton ref=&#123;ref&#125;&gt;Click me!&lt;/FancyButton&gt;;</span><br></pre></td></tr></table></figure>
-
-<p><strong>注意</strong>：</p>
-<ul>
-<li>只有通过<code>React.forwardRef</code>创建的组件，才有获取和转发ref的能力。普通组件props中不存在ref，组件内部也获取不到ref参数。</li>
-<li>ref转发既可以用来控制组件内部的dom节点，也可用来控制组件内部的react组件。</li>
+        <h1 id="1-是什么"><a href="#1-是什么" class="headerlink" title="1 是什么"></a>1 是什么</h1><p><code>Ref 转发</code>指组件接收 ref 参数，并将 ref 参数传递给子节点。</p>
+<h1 id="2-解决什么问题"><a href="#2-解决什么问题" class="headerlink" title="2 解决什么问题"></a>2 解决什么问题</h1><p>解决需要在组件外部对组件内部节点进行管理的问题。</p>
+<h1 id="3-使用"><a href="#3-使用" class="headerlink" title="3 使用"></a>3 使用</h1><ul>
+<li>只有通过 <code>React.forwardRef</code> 创建的组件，才有获取和转发 ref 的能力。普通组件的 props 中不存在 ref 属性，组件内部也获取不到 ref 参数。</li>
+<li>ref 转发控制的节点既可以是原生的 DOM 节点，也可以是 React 组件。</li>
 </ul>
-<h2 id="在高阶组件中转发Ref"><a href="#在高阶组件中转发Ref" class="headerlink" title="在高阶组件中转发Ref"></a>在高阶组件中转发Ref</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">import React from &apos;react&apos;;</span><br><span class="line">import ReactDOM from &apos;react-dom&apos;;</span><br><span class="line"></span><br><span class="line">function logProps(WrappedCompoonents)&#123;</span><br><span class="line">    class LogProps extends React.Component&#123;</span><br><span class="line">        componentDidUpdate(prevProps)&#123;</span><br><span class="line">            console.log(&apos;old props&apos;, prevProps);</span><br><span class="line">            console.log(&apos;new props&apos;, this.props);</span><br><span class="line">        &#125;</span><br><span class="line">        render()&#123;</span><br><span class="line">            const &#123;forward, ...rest&#125; = this.props;</span><br><span class="line">            return &lt;WrappedCompoonents forward=&#123;forward&#125; &#123;...rest&#125;&gt;&lt;/WrappedCompoonents&gt;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   return React.forwardRef((props, ref)=&gt;&#123;</span><br><span class="line">        return &lt;LogProps &#123;...props&#125; forward=&#123;ref&#125;&gt;&lt;/LogProps&gt;</span><br><span class="line">   &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class FancyButton extends React.Component&#123;</span><br><span class="line">    render()&#123;</span><br><span class="line">        console.log(&apos;ref&apos;, this.props.forward);</span><br><span class="line">        return (</span><br><span class="line">            &lt;button ref=&#123;this.props.forward&#125; className=&quot;FancyButton&quot;&gt;</span><br><span class="line">              click</span><br><span class="line">            &lt;/button&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var Fancy = logProps(FancyButton);</span><br><span class="line">var ref = React.createRef();</span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">    &lt;Fancy  ref=&#123;ref&#125;&gt;&lt;/Fancy&gt;,</span><br><span class="line">    document.getElementById(&apos;root&apos;),</span><br><span class="line">    function()&#123;</span><br><span class="line">        ref.current.className = &apos;change&apos;</span><br><span class="line">    &#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h2 id="3-1-转发-Ref-到内部节点"><a href="#3-1-转发-Ref-到内部节点" class="headerlink" title="3.1 转发 Ref 到内部节点"></a>3.1 转发 Ref 到内部节点</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// 通过 React.forwardRef 函数创建的组件，才能接收到外部的 ref 属性，</span><br><span class="line">const FancyButton = React.forwardRef((props, ref) =&gt; (</span><br><span class="line">  &lt;button ref=&#123;ref&#125; className=&quot;FancyButton&quot;&gt;</span><br><span class="line">    &#123;props.children&#125;</span><br><span class="line">  &lt;/button&gt;</span><br><span class="line">));</span><br><span class="line"></span><br><span class="line">// 你可以直接获取 DOM button 的 ref：</span><br><span class="line">const ref = React.createRef();</span><br><span class="line">&lt;FancyButton ref=&#123;ref&#125;&gt;Click me!&lt;/FancyButton&gt;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-2-在高阶组件中转发-Ref"><a href="#3-2-在高阶组件中转发-Ref" class="headerlink" title="3.2 在高阶组件中转发 Ref"></a>3.2 在高阶组件中转发 Ref</h2><p>高阶组件默认无法透传 ref 属性给被包装组件，可以通过使用 React.forwardRef 来创建高阶组件的返回值以达到透传 ref 属性的能力。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">import React from &apos;react&apos;;</span><br><span class="line">import ReactDOM from &apos;react-dom&apos;;</span><br><span class="line"></span><br><span class="line">function logProps(WrappedCompoonents)&#123;</span><br><span class="line">    class LogProps extends React.Component&#123;</span><br><span class="line">        componentDidUpdate(prevProps)&#123;</span><br><span class="line">            console.log(&apos;old props&apos;, prevProps);</span><br><span class="line">            console.log(&apos;new props&apos;, this.props);</span><br><span class="line">        &#125;</span><br><span class="line">        render()&#123;</span><br><span class="line">            // 3、提取 forward 属性</span><br><span class="line">            const &#123;forward, ...rest&#125; = this.props;</span><br><span class="line">            // 4、将 forward 配置给被包装组件的 ref</span><br><span class="line">            return &lt;WrappedCompoonents ref=&#123;forward&#125; &#123;...rest&#125;&gt;&lt;/WrappedCompoonents&gt;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">   // 1、通过 React.forwardRef 创建有接受 ref 参数能力的组件</span><br><span class="line">   return React.forwardRef((props, ref)=&gt;&#123;</span><br><span class="line">       //2、 将 ref 属性值通过属性 forward 传递给包装组件</span><br><span class="line">        return &lt;LogProps &#123;...props&#125; forward=&#123;ref&#125;&gt;&lt;/LogProps&gt;</span><br><span class="line">   &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
     </div>
@@ -302,14 +292,25 @@
       
 
       <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/react/" rel="tag"># react</a>
+            
+              <a href="/tags/Ref/" rel="tag"># Ref</a>
+            
+          </div>
+        
 
         
 
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/web/react/react Context/" rel="next" title="react Context">
-                  <i class="fa fa-chevron-left"></i> react Context
+                <a href="/web/jquery/$ajax 需要注意的参数/" rel="next" title="$.ajax 配置 headers 方法">
+                  <i class="fa fa-chevron-left"></i> $.ajax 配置 headers 方法
                 </a>
               
             </div>
@@ -318,8 +319,8 @@
 
             <div class="post-nav-prev post-nav-item">
               
-                <a href="/web/react/高阶组件/" rel="prev" title="高阶组件">
-                  高阶组件 <i class="fa fa-chevron-right"></i>
+                <a href="/web/ts/TypeScript声明文件/" rel="prev" title="TypeScript 声明文件">
+                  TypeScript 声明文件 <i class="fa fa-chevron-right"></i>
                 </a>
               
             </div>
@@ -338,9 +339,6 @@
 
           </div>
           
-    
-    <div class="comments" id="gitalk-container"></div>
-  
 
         </div>
           
@@ -370,15 +368,15 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#作用"><span class="nav-number">1.</span> <span class="nav-text">作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#转发ref到子组件"><span class="nav-number">2.</span> <span class="nav-text">转发ref到子组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在高阶组件中转发Ref"><span class="nav-number">3.</span> <span class="nav-text">在高阶组件中转发Ref</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-是什么"><span class="nav-text">1 是什么</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-解决什么问题"><span class="nav-text">2 解决什么问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-使用"><span class="nav-text">3 使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-转发-Ref-到内部节点"><span class="nav-text">3.1 转发 Ref 到内部节点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-在高阶组件中转发-Ref"><span class="nav-text">3.2 在高阶组件中转发 Ref</span></a></li></ol></li></ol></div>
         
       </div>
       <!--/noindex-->
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">张大梦</p>
-  <div class="site-description" itemprop="description">无穷尽</div>
+  <p class="site-author-name" itemprop="name">DaMeng</p>
+  <div class="site-description" itemprop="description">forever</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
@@ -386,7 +384,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-count">110</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -399,7 +397,7 @@
             <a href="/categories/">
           
         
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">32</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -412,7 +410,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">75</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -451,11 +449,8 @@
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">张大梦</span>
+  <span class="author" itemprop="copyrightHolder">DaMeng</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
-  <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.4.1</div>
 
         
 <div class="busuanzi-count" style="display:none">
@@ -538,25 +533,6 @@
   
 
   
-
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
-
-<script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
-    var gitalk = new Gitalk({
-      clientID: 'd094643ce67eeeb1c96a',
-      clientSecret: '2d2523ebc5546e28ddc6d361b9f4aa63090e7920',
-      repo: 'tk',
-      owner: 'damengzhang',
-      admin: ['damengzhang'],
-      id: 'e8fca8c5794b555fea7a5580dc968eea',
-        language: 'zh-CN',
-      
-      distractionFreeMode: 'true'
-    });
-    gitalk.render('gitalk-container');
-  }, window.Gitalk);
-</script>
 
 </body>
 </html>

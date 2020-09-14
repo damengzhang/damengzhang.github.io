@@ -56,17 +56,17 @@
   };
 </script>
 
-  <meta name="description" content="无穷尽">
+  <meta name="description" content="forever">
 <meta name="keywords" content="前端 教程 大梦 DaMeng Zhang">
 <meta property="og:type" content="website">
-<meta property="og:title" content="张大梦">
+<meta property="og:title" content="DaMeng">
 <meta property="og:url" content="http://yoursite.com/page/32/index.html">
-<meta property="og:site_name" content="张大梦">
-<meta property="og:description" content="无穷尽">
+<meta property="og:site_name" content="DaMeng">
+<meta property="og:description" content="forever">
 <meta property="og:locale" content="zh-CN">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="张大梦">
-<meta name="twitter:description" content="无穷尽">
+<meta name="twitter:title" content="DaMeng">
+<meta name="twitter:description" content="forever">
   <link rel="canonical" href="http://yoursite.com/page/32/">
 
 
@@ -81,7 +81,7 @@
   };
 </script>
 
-  <title>张大梦</title>
+  <title>DaMeng</title>
   
 
 
@@ -128,7 +128,7 @@
     <div>
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">张大梦</span>
+        <span class="site-title">DaMeng</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -147,17 +147,6 @@
 <nav class="site-nav">
   
   <ul id="menu" class="menu">
-      
-      
-      
-        
-        <li class="menu-item menu-item-home">
-      
-    
-
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
-
-  </li>
       
       
       
@@ -217,21 +206,21 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/web/react/react条件渲染/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/web/react/Effec Hook/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="张大梦">
-      <meta itemprop="description" content="无穷尽">
+      <meta itemprop="name" content="DaMeng">
+      <meta itemprop="description" content="forever">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="张大梦">
+      <meta itemprop="name" content="DaMeng">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/web/react/react条件渲染/" class="post-title-link" itemprop="url">react条件渲染</a>
+            <a href="/web/react/Effec Hook/" class="post-title-link" itemprop="url">Effect Hook</a>
           
         </h1>
 
@@ -246,7 +235,7 @@
                 
               
 
-              <time title="创建时间：2018-01-10 18:18:48" itemprop="dateCreated datePublished" datetime="2018-01-10T18:18:48+08:00">2018-01-10</time>
+              <time title="创建时间：2019-09-27 18:40:38" itemprop="dateCreated datePublished" datetime="2019-09-27T18:40:38+08:00">2019-09-27</time>
             </span>
           
             <span class="post-meta-item">
@@ -281,8 +270,25 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <img src="/web/react/react条件渲染/condition_render.PNG">
+          <h1 id="Effect-Hook-是什么"><a href="#Effect-Hook-是什么" class="headerlink" title="Effect Hook 是什么"></a>Effect Hook 是什么</h1><p>可以将 <code>Effect Hook</code> 看做是 class 组件中 <code>componentDidMount</code>、<code>componentDidUpdate</code>、<code>componentWillUnmount</code> 三个函数的组合。</p>
+<h1 id="Effect-Hook-解决什么问题"><a href="#Effect-Hook-解决什么问题" class="headerlink" title="Effect Hook 解决什么问题"></a>Effect Hook 解决什么问题</h1><p><code>Effect Hook</code> 可以解决 <code>class</code> 组件同一生命周期函数经常包含不相关的逻辑，但又把相关逻辑分离到了不同生命周期的问题。<code>Effect Hook</code> 会在每次渲染后（<strong>挂载或更新，在 class 组件中，这两个过程是两个不同个生命周期</strong>）被执行，我们可以在 <code>Effect Hook</code> 中执行<strong>副作用操作</strong>，如数据获取、dom 更新、事件的监听和清除、定时器的设定和清理等，从而将相关逻辑聚集在同一个地方。</p>
+<p>与  <code>componentDidMount</code>  或  <code>componentDidUpdate</code> 不同，使用 <code>useEffect</code> 调度的 <code>effect</code>（<strong>传给 useEffect 的函数叫做 effect</strong>） 不会阻塞浏览器更新屏幕，这让我们的应用看起来响应更快。</p>
+<h1 id="effect-的清除机制"><a href="#effect-的清除机制" class="headerlink" title="effect 的清除机制"></a>effect 的清除机制</h1><p>当我们在 effect 中添加了监听、定时器等需要清理的资源时，可以给 <code>effect</code> 返回一个清理函数，将清理操作放到清理函数中。React 会在组件卸载、和下次执行对应 effect 时，执行此清理函数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; useState, useEffect &#125; from &apos;react&apos;;</span><br><span class="line"></span><br><span class="line">function FriendStatus(props) &#123;</span><br><span class="line">  const [isOnline, setIsOnline] = useState(null);</span><br><span class="line"></span><br><span class="line">  useEffect(() =&gt; &#123;</span><br><span class="line">    function handleStatusChange(status) &#123;</span><br><span class="line">      setIsOnline(status.isOnline);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ChatAPI.subscribeToFriendStatus(props.friend.id, handleStatusChange);</span><br><span class="line">    // 在 effect 函数中，返回一个清理函数，并将清理操作作为清理函数的内容:</span><br><span class="line">    // 清理函数会在下次执行此 effect 时，默认进行执行</span><br><span class="line">    return function cleanup() &#123;</span><br><span class="line">      ChatAPI.unsubscribeFromFriendStatus(props.friend.id, handleStatusChange);</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  if (isOnline === null) &#123;</span><br><span class="line">    return &apos;Loading...&apos;;</span><br><span class="line">  &#125;</span><br><span class="line">  return isOnline ? &apos;Online&apos; : &apos;Offline&apos;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<p>当 effect 内容不需要清理时，则无需返回函数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">useEffect(() =&gt; &#123;</span><br><span class="line">    //effect 无需清理时 则不需要返回清理函数</span><br><span class="line">    document.title = `You clicked $&#123;count&#125; times`;</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+
+<h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><h2 id="逻辑分离"><a href="#逻辑分离" class="headerlink" title="逻辑分离"></a>逻辑分离</h2><p>可以使用多个 effect，将不同的逻辑分离开。React 会按照 effect 声明的顺序依次调用组件中的<em>每一个</em> effect。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">function FriendStatusWithCounter(props) &#123;</span><br><span class="line">  const [count, setCount] = useState(0);</span><br><span class="line">  useEffect(() =&gt; &#123;</span><br><span class="line">    document.title = `You clicked $&#123;count&#125; times`;</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  const [isOnline, setIsOnline] = useState(null);</span><br><span class="line">  useEffect(() =&gt; &#123;</span><br><span class="line">    function handleStatusChange(status) &#123;</span><br><span class="line">      setIsOnline(status.isOnline);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ChatAPI.subscribeToFriendStatus(props.friend.id, handleStatusChange);</span><br><span class="line">    return () =&gt; &#123;</span><br><span class="line">      ChatAPI.unsubscribeFromFriendStatus(props.friend.id, handleStatusChange);</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;);</span><br><span class="line">  // ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="控制渲染频率（性能）"><a href="#控制渲染频率（性能）" class="headerlink" title="控制渲染频率（性能）"></a>控制渲染频率（性能）</h2><p>可以通过给 useEffect 传递第二个参数（数组类型）来控制组件的渲染。</p>
+<p>下面示例中，将 count 作为数组参数传递给 useEffect 时，react 只有当 count 的值发生变化时，才会调用 effect 函数和清理函数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">useEffect(() =&gt; &#123;</span><br><span class="line">  document.title = `You clicked $&#123;count&#125; times`;</span><br><span class="line">&#125;, [count]); // 仅在 count 更改时更新</span><br></pre></td></tr></table></figure>
+
+<p>当 useEffect 的第二个参数的数组中有多个元素时，只有当所有元素都没有发生变化时，react 才会忽略 effect的执行。</p>
+<p>当 useEffect 的第二个参数的数组为空时，这就告诉 React 你的 effect 不依赖于 props 或 state 中的任何值，所以它永远都不需要重复执行。</p>
+<h2 id="语法校验"><a href="#语法校验" class="headerlink" title="语法校验"></a>语法校验</h2><p>官方推荐启用 <a href="https://www.npmjs.com/package/eslint-plugin-react-hooks#installation" target="_blank" rel="noopener"><code>eslint-plugin-react-hooks</code></a> 中的 <a href="https://github.com/facebook/react/issues/14920" target="_blank" rel="noopener"><code>exhaustive-deps</code></a> 规则。此规则会在添加错误依赖时发出警告并给出修复建议</p>
 
         
       
@@ -306,7 +312,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/31/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/31/">31</a><span class="page-number current">32</span><a class="page-number" href="/page/33/">33</a><a class="page-number" href="/page/34/">34</a><a class="extend next" rel="next" href="/page/33/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/31/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/31/">31</a><span class="page-number current">32</span><a class="page-number" href="/page/33/">33</a><span class="space">&hellip;</span><a class="page-number" href="/page/110/">110</a><a class="extend next" rel="next" href="/page/33/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -341,8 +347,8 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">张大梦</p>
-  <div class="site-description" itemprop="description">无穷尽</div>
+  <p class="site-author-name" itemprop="name">DaMeng</p>
+  <div class="site-description" itemprop="description">forever</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
@@ -350,7 +356,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-count">110</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -363,7 +369,7 @@
             <a href="/categories/">
           
         
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">32</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -376,7 +382,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">75</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -415,11 +421,8 @@
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">张大梦</span>
+  <span class="author" itemprop="copyrightHolder">DaMeng</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
-  <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.4.1</div>
 
         
 <div class="busuanzi-count" style="display:none">
@@ -502,7 +505,6 @@
   
 
   
-
 
 </body>
 </html>

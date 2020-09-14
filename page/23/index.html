@@ -56,17 +56,17 @@
   };
 </script>
 
-  <meta name="description" content="无穷尽">
+  <meta name="description" content="forever">
 <meta name="keywords" content="前端 教程 大梦 DaMeng Zhang">
 <meta property="og:type" content="website">
-<meta property="og:title" content="张大梦">
+<meta property="og:title" content="DaMeng">
 <meta property="og:url" content="http://yoursite.com/page/23/index.html">
-<meta property="og:site_name" content="张大梦">
-<meta property="og:description" content="无穷尽">
+<meta property="og:site_name" content="DaMeng">
+<meta property="og:description" content="forever">
 <meta property="og:locale" content="zh-CN">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="张大梦">
-<meta name="twitter:description" content="无穷尽">
+<meta name="twitter:title" content="DaMeng">
+<meta name="twitter:description" content="forever">
   <link rel="canonical" href="http://yoursite.com/page/23/">
 
 
@@ -81,7 +81,7 @@
   };
 </script>
 
-  <title>张大梦</title>
+  <title>DaMeng</title>
   
 
 
@@ -128,7 +128,7 @@
     <div>
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">张大梦</span>
+        <span class="site-title">DaMeng</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -147,17 +147,6 @@
 <nav class="site-nav">
   
   <ul id="menu" class="menu">
-      
-      
-      
-        
-        <li class="menu-item menu-item-home">
-      
-    
-
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
-
-  </li>
       
       
       
@@ -217,21 +206,21 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/web/react/react组件/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/web/webpack/webpack tree shaking/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="张大梦">
-      <meta itemprop="description" content="无穷尽">
+      <meta itemprop="name" content="DaMeng">
+      <meta itemprop="description" content="forever">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="张大梦">
+      <meta itemprop="name" content="DaMeng">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/web/react/react组件/" class="post-title-link" itemprop="url">react组件</a>
+            <a href="/web/webpack/webpack tree shaking/" class="post-title-link" itemprop="url">webpack tree shaking</a>
           
         </h1>
 
@@ -246,7 +235,7 @@
                 
               
 
-              <time title="创建时间：2018-11-09 19:29:36" itemprop="dateCreated datePublished" datetime="2018-11-09T19:29:36+08:00">2018-11-09</time>
+              <time title="创建时间：2020-03-19 00:00:00" itemprop="dateCreated datePublished" datetime="2020-03-19T00:00:00+08:00">2020-03-19</time>
             </span>
           
             <span class="post-meta-item">
@@ -262,7 +251,14 @@
                   ，
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web/react/" itemprop="url" rel="index"><span itemprop="name">react</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web/webpack/" itemprop="url" rel="index"><span itemprop="name">webpack</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web/webpack/性能优化/" itemprop="url" rel="index"><span itemprop="name">性能优化</span></a></span>
 
                 
                 
@@ -281,8 +277,21 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <img src="/web/react/react组件/react_组件.PNG">
+          <h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><p>tree shaking 用于描述移除 js 上下文中未引用的代码。</p>
+<p>tree shaking 依赖于 es6 模块语法（ import 、 export）的静态结构特性。</p>
+<h1 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h1><p>1、使用 es6 模块语法（即 import export）</p>
+<p>2、确保没有 compiler 将 ES2015 模块语法转换为 CommonJS 模块</p>
+<p>3、在项目 <code>package.json</code> 文件中，添加一个 “sideEffects” 属性</p>
+<p>4、通过将 <code>mode</code> 选项设置为 <a href="https://webpack.docschina.org/concepts/mode/#mode-production" target="_blank" rel="noopener"><code>production</code></a>，启用 minification(代码压缩) 和 tree shaking。</p>
+<h1 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// math.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">square</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x * x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">cube</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x * x * x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//index.js</span></span><br><span class="line"><span class="keyword">import</span> &#123; cube &#125; <span class="keyword">from</span> <span class="string">"./math"</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(cube(<span class="number">2</span>));</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//webpack.config.js</span></span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">"path"</span>);</span><br><span class="line"><span class="keyword">const</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">"html-webpack-plugin"</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">	entry: &#123;</span><br><span class="line">		main: path.resolve(__dirname, <span class="string">"src/js/index.js"</span>),</span><br><span class="line">	&#125;,</span><br><span class="line">	output: &#123;</span><br><span class="line">		filename: <span class="string">"./js/[name].[contenthash:5].js"</span>,</span><br><span class="line">		path: path.resolve(__dirname, <span class="string">"dist"</span>),</span><br><span class="line">	&#125;,</span><br><span class="line">	plugins: [<span class="keyword">new</span> HtmlWebpackPlugin()],</span><br><span class="line">	optimization: &#123;</span><br><span class="line">		usedExports: <span class="literal">true</span>, <span class="comment">// 会用注释标记哪些导出被使用了，一些优化代码的插件会使用此注释进行 treeshaking</span></span><br><span class="line">		minimize: <span class="literal">true</span>, <span class="comment">//设置为 true 时，webpack 会使用 TerserPlugin 压缩 bundle，会删除 usedExports 标记的未使用导出</span></span><br><span class="line">	&#125;,</span><br><span class="line">	mode: <span class="string">"development"</span>, <span class="comment">// 设置成 production 时，会默认设置 usedExports 和 minimize 为 true</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://webpack.js.org/guides/tree-shaking/" target="_blank" rel="noopener">https://webpack.js.org/guides/tree-shaking/</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/40052192" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/40052192</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/32831172" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/32831172</a></p>
 
         
       
@@ -306,7 +315,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/22/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><span class="page-number current">23</span><a class="page-number" href="/page/24/">24</a><span class="space">&hellip;</span><a class="page-number" href="/page/34/">34</a><a class="extend next" rel="next" href="/page/24/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/22/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><span class="page-number current">23</span><a class="page-number" href="/page/24/">24</a><span class="space">&hellip;</span><a class="page-number" href="/page/110/">110</a><a class="extend next" rel="next" href="/page/24/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -341,8 +350,8 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">张大梦</p>
-  <div class="site-description" itemprop="description">无穷尽</div>
+  <p class="site-author-name" itemprop="name">DaMeng</p>
+  <div class="site-description" itemprop="description">forever</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
@@ -350,7 +359,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-count">110</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -363,7 +372,7 @@
             <a href="/categories/">
           
         
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">32</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -376,7 +385,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">75</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -415,11 +424,8 @@
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">张大梦</span>
+  <span class="author" itemprop="copyrightHolder">DaMeng</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
-  <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.4.1</div>
 
         
 <div class="busuanzi-count" style="display:none">
@@ -502,7 +508,6 @@
   
 
   
-
 
 </body>
 </html>

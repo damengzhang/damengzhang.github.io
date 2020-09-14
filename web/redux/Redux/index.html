@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.1">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/b_icon.png?v=7.4.1">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/s_icon.png?v=7.4.1">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.1" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.1">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.4.1',
+    exturl: false,
+    sidebar: {"position":"left","display":"hide","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: true,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="1 是什么Redux 是一个可以管理数据的第三方库，能够协助 React 等界面库对数据进行统一管理。 Redux 并不是必须的，当应用中的数据交互比较简单，使用 React 内部的 state、props、context、ref 等可以轻松完成时，就不必使用 Redux 来对数据进行统一管理。  2 设计核心s 唯一数据源 只有 Store 自己可以直接修改数据 Reducer 是纯函数  3">
+<meta name="keywords" content="Redux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Redux">
+<meta property="og:url" content="http://yoursite.com/web/redux/Redux/index.html">
+<meta property="og:site_name" content="DaMeng">
+<meta property="og:description" content="1 是什么Redux 是一个可以管理数据的第三方库，能够协助 React 等界面库对数据进行统一管理。 Redux 并不是必须的，当应用中的数据交互比较简单，使用 React 内部的 state、props、context、ref 等可以轻松完成时，就不必使用 Redux 来对数据进行统一管理。  2 设计核心s 唯一数据源 只有 Store 自己可以直接修改数据 Reducer 是纯函数  3">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-09-14T11:25:48.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Redux">
+<meta name="twitter:description" content="1 是什么Redux 是一个可以管理数据的第三方库，能够协助 React 等界面库对数据进行统一管理。 Redux 并不是必须的，当应用中的数据交互比较简单，使用 React 内部的 state、props、context、ref 等可以轻松完成时，就不必使用 Redux 来对数据进行统一管理。  2 设计核心s 唯一数据源 只有 Store 自己可以直接修改数据 Reducer 是纯函数  3">
+  <link rel="canonical" href="http://yoursite.com/web/redux/Redux/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Redux | DaMeng</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">DaMeng</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/web/redux/Redux/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DaMeng">
+      <meta itemprop="description" content="forever">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaMeng">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">Redux
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2020-07-10 18:40:38" itemprop="dateCreated datePublished" datetime="2020-07-10T18:40:38+08:00">2020-07-10</time>
+            </span>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web/" itemprop="url" rel="index"><span itemprop="name">web</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web/Redux/" itemprop="url" rel="index"><span itemprop="name">Redux</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="1-是什么"><a href="#1-是什么" class="headerlink" title="1 是什么"></a>1 是什么</h1><p>Redux 是一个可以管理数据的第三方库，能够协助 React 等界面库对数据进行统一管理。</p>
+<p>Redux 并不是必须的，当应用中的数据交互比较简单，使用 React 内部的 state、props、context、ref 等可以轻松完成时，就不必使用 Redux 来对数据进行统一管理。 </p>
+<h1 id="2-设计核心s"><a href="#2-设计核心s" class="headerlink" title="2 设计核心s"></a>2 设计核心s</h1><ul>
+<li>唯一数据源</li>
+<li>只有 Store 自己可以直接修改数据</li>
+<li>Reducer 是纯函数</li>
+</ul>
+<h1 id="3-API"><a href="#3-API" class="headerlink" title="3 API"></a>3 API</h1><h2 id="3-1-createStore-reducer-preloadedState-enhancer"><a href="#3-1-createStore-reducer-preloadedState-enhancer" class="headerlink" title="3.1 createStore(reducer, [preloadedState], enhancer)"></a>3.1 createStore(reducer, [preloadedState], enhancer)</h2><ul>
+<li>store.subscribe()</li>
+<li>store.dispatch(action)</li>
+<li>store.getState()</li>
+</ul>
+<h2 id="3-2-combineReducers-reducers"><a href="#3-2-combineReducers-reducers" class="headerlink" title="3.2 combineReducers(reducers)"></a>3.2 combineReducers(reducers)</h2><ul>
+<li><p>可以合并多个 reducer。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">rootReducer = combineReducers(&#123;<span class="attr">potato</span>: potatoReducer, <span class="attr">tomato</span>: tomatoReducer&#125;)</span><br><span class="line"><span class="comment">// rootReducer 将返回如下的 state 对象</span></span><br><span class="line">&#123;</span><br><span class="line">  potato: &#123;</span><br><span class="line">    <span class="comment">// ... potatoes, 和一些其他由 potatoReducer 管理的 state 对象 ... </span></span><br><span class="line">  &#125;,</span><br><span class="line">  tomato: &#123;</span><br><span class="line">    <span class="comment">// ... tomatoes, 和一些其他由 tomatoReducer 管理的 state 对象，比如说 sauce 属性 ...</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="3-3-applyMiddlleware-…middleware"><a href="#3-3-applyMiddlleware-…middleware" class="headerlink" title="3.3 applyMiddlleware(…middleware)"></a>3.3 applyMiddlleware(…middleware)</h2><ul>
+<li>参数： <ul>
+<li>每个 middleware 函数的形式为：({ getState, dispatch }) =&gt; next =&gt; action</li>
+</ul>
+</li>
+<li>功能描述：<ul>
+<li>将多个 middleware 组合在一起，每个 middleware 无需关心其他 middleware 的信息。</li>
+</ul>
+</li>
+<li>返回值：<ul>
+<li>应用了 middleware 的 store enhancer，返回值形式为： createStore =&gt; createStore</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-4-compose-…functions"><a href="#3-4-compose-…functions" class="headerlink" title="3.4 compose( …functions )"></a>3.4 compose( …functions )</h2><ul>
+<li>参数：<ul>
+<li>多个需要组合的函数，除了最右边的函数，其余函数都只能接收一个参数，每个函数的返回值都会作为相邻左边函数的参数。</li>
+</ul>
+</li>
+<li>返回值：<ul>
+<li>返回从右到左依次执行函数参数的组合函数，如 <code>compose(f, g, h)  会返回 (...args) =&gt; f(g(h(...args)))</code></li>
+</ul>
+</li>
+<li>功能描述：<ul>
+<li>从右到左组合多个函数，使用 compose 来依次执行多个 store enhancer</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-5-bindActionCreator-actionCreators-dispatch"><a href="#3-5-bindActionCreator-actionCreators-dispatch" class="headerlink" title="3.5 bindActionCreator(actionCreators, dispatch)"></a>3.5 bindActionCreator(actionCreators, dispatch)</h2><ul>
+<li><p>参数：</p>
+<ul>
+<li><p>actionCreators：如下两种类型</p>
+<ul>
+<li><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//第一种： 一个 actionsCreator 的函数</span></span><br><span class="line">initItemAction = <span class="function">(<span class="params">value</span>) =&gt;</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> &#123;</span><br><span class="line">		type: INIT_ITEM,</span><br><span class="line">		value,</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//第二种：由多个 actionCreator 组成的对象</span></span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> TodoActionCreators <span class="keyword">from</span> <span class="string">'./TodoActionCreators'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(TodoActionCreators);</span><br><span class="line"><span class="comment">// &#123;</span></span><br><span class="line"><span class="comment">//   addTodo: Function, </span></span><br><span class="line"><span class="comment">//   removeTodo: Function</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>dispatch： Store.dispatch</p>
+</li>
+</ul>
+</li>
+<li><p>返回值：</p>
+<ul>
+<li>actionCreators</li>
+</ul>
+</li>
+<li><p>功能描述：</p>
+<ul>
+<li><p>修改 actionCreators 中每个 actionCreator 的实现，将其包裹在 dispatch 中。修改后的效果为，执行 actionCreator 创建 action时 ，会同时执行 dispatch(action)，使得执行  actionCreator 的返回值为 dispatch(action) 后的结果。</p>
+</li>
+<li><p>下面例子对比使用 bindActionCreator 前后写法的变化</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> TodoActionCreators <span class="keyword">from</span> <span class="string">'./TodoActionCreators'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//不使用 bindActionCreator 时,创建完 action, 需要手动执行 dispatch</span></span><br><span class="line"><span class="keyword">let</span> action = TodoActionCreators.addTodo(<span class="string">'Use Redux'</span>);</span><br><span class="line">    dispatch(action);</span><br><span class="line">    </span><br><span class="line"><span class="comment">//使用 bindActionCreator 把 TodoActionCreators 和 dispatch 绑定后，创建完 action 的同时会在内部自动执行 dispatch</span></span><br><span class="line"> <span class="keyword">this</span>.boundActionCreators = bindActionCreators(TodoActionCreators, dispatch);</span><br><span class="line">    boundActionCreators.addTodo(<span class="string">'Use Redux'</span>);</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="4-中间件"><a href="#4-中间件" class="headerlink" title="4 中间件"></a>4 中间件</h1><h2 id="4-1-middleware"><a href="#4-1-middleware" class="headerlink" title="4.1 middleware"></a>4.1 middleware</h2><h3 id="4-1-1-是什么"><a href="#4-1-1-是什么" class="headerlink" title="4.1.1 是什么"></a>4.1.1 是什么</h3><p>middleware 是 sotre.dispatch 的扩展功能。</p>
+<h3 id="4-1-2-有什么作用"><a href="#4-1-2-有什么作用" class="headerlink" title="4.1.2 有什么作用"></a>4.1.2 有什么作用</h3><p>通过Middleware 可以扩展 store.dispatch 功能 ，它会在 dispatch(action) 之后，到达 reducer 之前的扩展点 store.dispatch。 </p>
+<p>可以利用 middleware 来进行日志记录、创建崩溃报告、调用异步接口或者路由等等。Middleware 最常用的场景就是异步 dispatch  action。</p>
+<h2 id="4-2-redux-thunk"><a href="#4-2-redux-thunk" class="headerlink" title="4.2 redux-thunk"></a>4.2 redux-thunk</h2><h3 id="4-2-1-是什么"><a href="#4-2-1-是什么" class="headerlink" title="4.2.1 是什么"></a>4.2.1 是什么</h3><p>thunk 是包裹了表达式的函数，它想表达的编程思想是：通过函数来包裹表达式，进而达到延迟或异步执行表达式的目的。</p>
+<p>redux-thunk 是运用了 thunk 编程思想的 redux 中间件。</p>
+<h3 id="4-2-2-有什么作用"><a href="#4-2-2-有什么作用" class="headerlink" title="4.2.2 有什么作用"></a>4.2.2 有什么作用</h3><p>redux-thunk 的作用是使 redux 能够异步 dispatch action。</p>
+<p>redux-thunk 使 store.dispatch 可以接收函数类型的 actionCreator（dispatch 默认只支持对象类型的 actionCreator），把 strore.dispatch( actionObj ) 包裹在函数类型的 actionCreator 内部，进而达到*<em>异步 dispatch(action) *</em>的目的。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> getListDataAction = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// store.dispatch 接收到此函数类型的 action 时，会直接执行它，并给它传递 dispatch 参数。</span></span><br><span class="line">	<span class="keyword">return</span> <span class="function">(<span class="params">dispatch</span>) =&gt;</span> &#123;</span><br><span class="line">		axios.get(<span class="string">"/api/list.json"</span>).then(<span class="function">(<span class="params">response</span>) =&gt;</span> &#123;</span><br><span class="line">			dispatch(initListAction(response.data));</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-2-3-怎么用"><a href="#4-2-3-怎么用" class="headerlink" title="4.2.3 怎么用"></a>4.2.3 怎么用</h3><ul>
+<li><p>安装</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install redux-thunk</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置</p>
+<ul>
+<li><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//store/index.js</span></span><br><span class="line"><span class="comment">//基本配置</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; createStore, applyMiddleware &#125; <span class="keyword">from</span> <span class="string">'redux'</span>;</span><br><span class="line"><span class="keyword">import</span> thunk <span class="keyword">from</span> <span class="string">'redux-thunk'</span>;</span><br><span class="line"><span class="keyword">import</span> rootReducer <span class="keyword">from</span> <span class="string">'./reducers/index'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Note: this API requires redux@&gt;=3.1.0</span></span><br><span class="line"><span class="keyword">const</span> store = createStore(rootReducer, applyMiddleware(thunk));</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+</li>
+</ul>
+<pre><code><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//store/index.js</span></span><br><span class="line"><span class="comment">// 和 redux-devtools 一起使用时的配置</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">import</span> &#123; createStore, applyMiddleware, compose &#125; <span class="keyword">from</span> <span class="string">"redux"</span>;</span><br><span class="line">    <span class="keyword">import</span> thunk <span class="keyword">from</span> <span class="string">"redux-thunk"</span>;</span><br><span class="line">    <span class="keyword">import</span> reducer <span class="keyword">from</span> <span class="string">"./reducer"</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">const</span> composeEnhancers =</span><br><span class="line">    	<span class="keyword">typeof</span> <span class="built_in">window</span> === <span class="string">"object"</span> &amp;&amp; <span class="built_in">window</span>.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__</span><br><span class="line">    		? <span class="built_in">window</span>.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__(&#123;&#125;)</span><br><span class="line">    		: compose;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">const</span> enhancer = composeEnhancers(applyMiddleware(thunk));</span><br><span class="line">    </span><br><span class="line">  <span class="keyword">const</span> store = createStore(reducer, enhancer);</span><br></pre></td></tr></table></figure>
+
+
+​    </code></pre><ul>
+<li><p>使用</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// createAction.js 文件</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// getListDataAction 返回的 action 是个函数</span></span><br><span class="line"><span class="comment">// 这个函数被有一个 dispatch 参数</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> getListDataAction = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="function">(<span class="params">dispatch</span>) =&gt;</span> &#123;</span><br><span class="line">		axios.get(<span class="string">"/api/list.json"</span>).then(<span class="function">(<span class="params">response</span>) =&gt;</span> &#123;</span><br><span class="line">			dispatch(initListAction(response.data));</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//dispatch 一个函数后 store 会立即执行此函数</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TodoList</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">	componentDidMount() &#123;</span><br><span class="line">	<span class="comment">//getListDataAction() 返回一个函数</span></span><br><span class="line">    <span class="comment">//当 dispatch 接收到一个函数类型的 action 时，会立即执行返回的函数，并传递 dispatch 参数    </span></span><br><span class="line">		store.dispatch(getListDataAction());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/Redux/" rel="tag"># Redux</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/web/react/dom diff/" rel="next" title="react dom diff">
+                  <i class="fa fa-chevron-left"></i> react dom diff
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/npm/npm 常用命令/" rel="prev" title="npm 常用命令">
+                  npm 常用命令 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-是什么"><span class="nav-text">1 是什么</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-设计核心s"><span class="nav-text">2 设计核心s</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-API"><span class="nav-text">3 API</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-createStore-reducer-preloadedState-enhancer"><span class="nav-text">3.1 createStore(reducer, [preloadedState], enhancer)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-combineReducers-reducers"><span class="nav-text">3.2 combineReducers(reducers)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-applyMiddlleware-…middleware"><span class="nav-text">3.3 applyMiddlleware(…middleware)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-compose-…functions"><span class="nav-text">3.4 compose( …functions )</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5-bindActionCreator-actionCreators-dispatch"><span class="nav-text">3.5 bindActionCreator(actionCreators, dispatch)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-中间件"><span class="nav-text">4 中间件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-middleware"><span class="nav-text">4.1 middleware</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-1-是什么"><span class="nav-text">4.1.1 是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-2-有什么作用"><span class="nav-text">4.1.2 有什么作用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-redux-thunk"><span class="nav-text">4.2 redux-thunk</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-1-是什么"><span class="nav-text">4.2.1 是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-2-有什么作用"><span class="nav-text">4.2.2 有什么作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-3-怎么用"><span class="nav-text">4.2.3 怎么用</span></a></li></ol></li></ol></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">DaMeng</p>
+  <div class="site-description" itemprop="description">forever</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">110</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        <span class="site-state-item-count">32</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        <span class="site-state-item-count">75</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/damengzhang" title="GitHub &rarr; https://github.com/damengzhang" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DaMeng</span>
+</div>
+
+        
+<div class="busuanzi-count" style="display:none">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.1"></script><script src="/js/motion.js?v=7.4.1"></script>
+<script src="/js/schemes/pisces.js?v=7.4.1"></script>
+
+<script src="/js/next-boot.js?v=7.4.1"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

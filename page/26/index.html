@@ -56,17 +56,17 @@
   };
 </script>
 
-  <meta name="description" content="无穷尽">
+  <meta name="description" content="forever">
 <meta name="keywords" content="前端 教程 大梦 DaMeng Zhang">
 <meta property="og:type" content="website">
-<meta property="og:title" content="张大梦">
+<meta property="og:title" content="DaMeng">
 <meta property="og:url" content="http://yoursite.com/page/26/index.html">
-<meta property="og:site_name" content="张大梦">
-<meta property="og:description" content="无穷尽">
+<meta property="og:site_name" content="DaMeng">
+<meta property="og:description" content="forever">
 <meta property="og:locale" content="zh-CN">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="张大梦">
-<meta name="twitter:description" content="无穷尽">
+<meta name="twitter:title" content="DaMeng">
+<meta name="twitter:description" content="forever">
   <link rel="canonical" href="http://yoursite.com/page/26/">
 
 
@@ -81,7 +81,7 @@
   };
 </script>
 
-  <title>张大梦</title>
+  <title>DaMeng</title>
   
 
 
@@ -128,7 +128,7 @@
     <div>
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">张大梦</span>
+        <span class="site-title">DaMeng</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -147,17 +147,6 @@
 <nav class="site-nav">
   
   <ul id="menu" class="menu">
-      
-      
-      
-        
-        <li class="menu-item menu-item-home">
-      
-    
-
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
-
-  </li>
       
       
       
@@ -217,21 +206,21 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/web/react/react state/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/web/react/Hook API/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="张大梦">
-      <meta itemprop="description" content="无穷尽">
+      <meta itemprop="name" content="DaMeng">
+      <meta itemprop="description" content="forever">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="张大梦">
+      <meta itemprop="name" content="DaMeng">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/web/react/react state/" class="post-title-link" itemprop="url">react state</a>
+            <a href="/web/react/Hook API/" class="post-title-link" itemprop="url">Hook API</a>
           
         </h1>
 
@@ -246,7 +235,7 @@
                 
               
 
-              <time title="创建时间：2018-03-10 19:10:28" itemprop="dateCreated datePublished" datetime="2018-03-10T19:10:28+08:00">2018-03-10</time>
+              <time title="创建时间：2019-10-15 19:40:38" itemprop="dateCreated datePublished" datetime="2019-10-15T19:40:38+08:00">2019-10-15</time>
             </span>
           
             <span class="post-meta-item">
@@ -281,9 +270,19 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <img src="/web/react/react%20state/react_state.PNG">
+          <h2 id="基础Hook"><a href="#基础Hook" class="headerlink" title="基础Hook"></a>基础Hook</h2><h3 id="useState"><a href="#useState" class="headerlink" title="useState"></a>useState</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line">useState</span><br><span class="line">功能：定义state参数和state更新函数</span><br><span class="line">参数： state参数的初始化值，参数类型可以是函数</span><br><span class="line">返回值：数组，数组内容为 state参数名 和 state参数的更新函数</span><br><span class="line">*/</span><br><span class="line">const [stateName, setStateFun] = useState(initialState);</span><br><span class="line"></span><br><span class="line">const [stateName, setStateFun] = useState(() =&gt; &#123;</span><br><span class="line">  const initialState = someExpensiveComputation(props);</span><br><span class="line">  return initialState;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">/*</span><br><span class="line">useState返回的setStateFun</span><br><span class="line">功能：更新state参数值。</span><br><span class="line">参数：新的state值，参数类型可以是函数</span><br><span class="line">*/</span><br><span class="line">setStateFun(newStateValue);</span><br><span class="line"></span><br><span class="line">//当setStateFun的参数为对象时，setStateFun不会自动合并对象值</span><br><span class="line">setStateFun(prevState =&gt; &#123;</span><br><span class="line">  // 也可以使用 Object.assign新旧对象的值</span><br><span class="line">  return &#123;...prevState, ...updatedValues&#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
+<h3 id="useEffect"><a href="#useEffect" class="headerlink" title="useEffect"></a>useEffect</h3><p>我们将传递给useEffect的函数称为effect，efffect的作用是执行改变dom、添加监听、设置定时器等操作。</p>
+<h4 id="effect的执行时机"><a href="#effect的执行时机" class="headerlink" title="effect的执行时机"></a>effect的执行时机</h4><p>默认情况下，<code>effect</code>会在组件被渲染之后执行。与 <code>componentDidMount</code>、<code>componentDidUpdate</code> 不同的是，在浏览器完成布局与绘制<strong>之后</strong>，传给 <code>useEffect</code> 的函数会延迟调用。</p>
+<h4 id="effect的条件执行"><a href="#effect的条件执行" class="headerlink" title="effect的条件执行"></a>effect的条件执行</h4><p>可以将其配置成在某些值改变的时候再执行。只需给useEffect传递第二个参数，参数类型为数组，让因变量成为数组元素即可。</p>
+<p>如果想执行只运行一次的 effect（仅在组件挂载和卸载时执行），可以传递一个空数组（<code>[]</code>）作为第二个参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">useEffect(</span><br><span class="line">  () =&gt; &#123;</span><br><span class="line">    const subscription = props.source.subscribe();</span><br><span class="line">    return () =&gt; &#123;</span><br><span class="line">      subscription.unsubscribe();</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  /*</span><br><span class="line">  //只有当props.source的值发生变化时才执行effect</span><br><span class="line">  当数组为空时，</span><br><span class="line">  */  </span><br><span class="line">  [props.source]</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
 
+<p>当需要清除effect中添加的监听、定时器等资源时，只需让effect返回一个清理函数，将清理操作放入清理函数中即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">useEffect(() =&gt; &#123;</span><br><span class="line">  const subscription = props.source.subscribe();</span><br><span class="line">  return () =&gt; &#123;</span><br><span class="line">    // 清除订阅</span><br><span class="line">    subscription.unsubscribe();</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>如果组件多次渲染（通常如此），则<strong>在执行下一个 effect 之前，上一个 effect 就已被清除</strong>。</p>
+<h3 id="useContext"><a href="#useContext" class="headerlink" title="useContext"></a>useContext</h3><h2 id="额外的Hook"><a href="#额外的Hook" class="headerlink" title="额外的Hook"></a>额外的Hook</h2><h3 id="useReducer"><a href="#useReducer" class="headerlink" title="useReducer"></a>useReducer</h3><h3 id="useCallback"><a href="#useCallback" class="headerlink" title="useCallback"></a>useCallback</h3><h3 id="useMemo"><a href="#useMemo" class="headerlink" title="useMemo"></a>useMemo</h3><h3 id="useRef"><a href="#useRef" class="headerlink" title="useRef"></a>useRef</h3><h3 id="useImperativeHandle"><a href="#useImperativeHandle" class="headerlink" title="useImperativeHandle"></a>useImperativeHandle</h3><h3 id="useLayoutEffect"><a href="#useLayoutEffect" class="headerlink" title="useLayoutEffect"></a>useLayoutEffect</h3><h3 id="useDebugValue"><a href="#useDebugValue" class="headerlink" title="useDebugValue"></a>useDebugValue</h3>
         
       
     </div>
@@ -306,7 +305,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/25/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/25/">25</a><span class="page-number current">26</span><a class="page-number" href="/page/27/">27</a><span class="space">&hellip;</span><a class="page-number" href="/page/34/">34</a><a class="extend next" rel="next" href="/page/27/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/25/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/25/">25</a><span class="page-number current">26</span><a class="page-number" href="/page/27/">27</a><span class="space">&hellip;</span><a class="page-number" href="/page/110/">110</a><a class="extend next" rel="next" href="/page/27/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -341,8 +340,8 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">张大梦</p>
-  <div class="site-description" itemprop="description">无穷尽</div>
+  <p class="site-author-name" itemprop="name">DaMeng</p>
+  <div class="site-description" itemprop="description">forever</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
@@ -350,7 +349,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-count">110</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -363,7 +362,7 @@
             <a href="/categories/">
           
         
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">32</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -376,7 +375,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">75</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -415,11 +414,8 @@
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">张大梦</span>
+  <span class="author" itemprop="copyrightHolder">DaMeng</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
-  <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.4.1</div>
 
         
 <div class="busuanzi-count" style="display:none">
@@ -502,7 +498,6 @@
   
 
   
-
 
 </body>
 </html>

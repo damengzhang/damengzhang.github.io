@@ -56,16 +56,19 @@
   };
 </script>
 
-  <meta name="keywords" content="前端 教程 大梦 DaMeng Zhang">
+  <meta name="description" content="123456789101112131415161718192021import React, &amp;#123; Component &amp;#125; from &amp;quot;react&amp;quot;;import &amp;#123; PropTypes &amp;#125; from &amp;quot;prop-types&amp;quot;;class TodoItem extends Component &amp;#123;	rende">
+<meta name="keywords" content="前端 教程 大梦 DaMeng Zhang">
 <meta property="og:type" content="article">
 <meta property="og:title" content="react Props">
 <meta property="og:url" content="http://yoursite.com/web/react/react Props/index.html">
-<meta property="og:site_name" content="张大梦">
+<meta property="og:site_name" content="DaMeng">
+<meta property="og:description" content="123456789101112131415161718192021import React, &amp;#123; Component &amp;#125; from &amp;quot;react&amp;quot;;import &amp;#123; PropTypes &amp;#125; from &amp;quot;prop-types&amp;quot;;class TodoItem extends Component &amp;#123;	rende">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/web/react/react%20Props/react_props.PNG">
-<meta property="og:updated_time" content="2019-12-08T12:44:14.000Z">
+<meta property="og:updated_time" content="2020-08-18T02:52:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="react Props">
+<meta name="twitter:description" content="123456789101112131415161718192021import React, &amp;#123; Component &amp;#125; from &amp;quot;react&amp;quot;;import &amp;#123; PropTypes &amp;#125; from &amp;quot;prop-types&amp;quot;;class TodoItem extends Component &amp;#123;	rende">
 <meta name="twitter:image" content="http://yoursite.com/web/react/react%20Props/react_props.PNG">
   <link rel="canonical" href="http://yoursite.com/web/react/react Props/">
 
@@ -81,7 +84,7 @@
   };
 </script>
 
-  <title>react Props | 张大梦</title>
+  <title>react Props | DaMeng</title>
   
 
 
@@ -128,7 +131,7 @@
     <div>
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">张大梦</span>
+        <span class="site-title">DaMeng</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -147,17 +150,6 @@
 <nav class="site-nav">
   
   <ul id="menu" class="menu">
-      
-      
-      
-        
-        <li class="menu-item menu-item-home">
-      
-    
-
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
-
-  </li>
       
       
       
@@ -221,13 +213,13 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/web/react/react Props/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="张大梦">
-      <meta itemprop="description" content="无穷尽">
+      <meta itemprop="name" content="DaMeng">
+      <meta itemprop="description" content="forever">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="张大梦">
+      <meta itemprop="name" content="DaMeng">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">react Props
@@ -246,7 +238,7 @@
                 
               
 
-              <time title="创建时间：2018-03-09 19:30:08" itemprop="dateCreated datePublished" datetime="2018-03-09T19:30:08+08:00">2018-03-09</time>
+              <time title="创建时间：2018-02-13 19:30:08" itemprop="dateCreated datePublished" datetime="2018-02-13T19:30:08+08:00">2018-02-13</time>
             </span>
           
             <span class="post-meta-item">
@@ -283,6 +275,8 @@
       
         <img src="/web/react/react%20Props/react_props.PNG">
 
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; Component &#125; from &quot;react&quot;;</span><br><span class="line">import &#123; PropTypes &#125; from &quot;prop-types&quot;;</span><br><span class="line"></span><br><span class="line">class TodoItem extends Component &#123;</span><br><span class="line">	render() &#123;</span><br><span class="line">		const &#123; index, deleteItem, content &#125; = this.props;</span><br><span class="line">		return (</span><br><span class="line">			&lt;li index=&#123;index&#125; onClick=&#123;() =&gt; deleteItem(index)&#125;&gt;</span><br><span class="line">				&#123;content&#125;</span><br><span class="line">			&lt;/li&gt;</span><br><span class="line">		);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">TodoItem.propType = &#123;</span><br><span class="line">	content: PropTypes.string,</span><br><span class="line">	index: PropTypes.number,</span><br><span class="line">	deleteItem: PropTypes.func,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">export default TodoItem;</span><br></pre></td></tr></table></figure>
+
 
     </div>
 
@@ -299,8 +293,8 @@
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/web/react/react jsx/" rel="next" title="react jsx">
-                  <i class="fa fa-chevron-left"></i> react jsx
+                <a href="/web/react/react组件/" rel="next" title="react组件">
+                  <i class="fa fa-chevron-left"></i> react组件
                 </a>
               
             </div>
@@ -329,9 +323,6 @@
 
           </div>
           
-    
-    <div class="comments" id="gitalk-container"></div>
-  
 
         </div>
           
@@ -366,8 +357,8 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">张大梦</p>
-  <div class="site-description" itemprop="description">无穷尽</div>
+  <p class="site-author-name" itemprop="name">DaMeng</p>
+  <div class="site-description" itemprop="description">forever</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
@@ -375,7 +366,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-count">110</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -388,7 +379,7 @@
             <a href="/categories/">
           
         
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">32</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -401,7 +392,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">75</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -440,11 +431,8 @@
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">张大梦</span>
+  <span class="author" itemprop="copyrightHolder">DaMeng</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
-  <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.4.1</div>
 
         
 <div class="busuanzi-count" style="display:none">
@@ -527,25 +515,6 @@
   
 
   
-
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
-
-<script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
-    var gitalk = new Gitalk({
-      clientID: 'd094643ce67eeeb1c96a',
-      clientSecret: '2d2523ebc5546e28ddc6d361b9f4aa63090e7920',
-      repo: 'tk',
-      owner: 'damengzhang',
-      admin: ['damengzhang'],
-      id: '5e3f7d782b4d4aee3ea140092d988384',
-        language: 'zh-CN',
-      
-      distractionFreeMode: 'true'
-    });
-    gitalk.render('gitalk-container');
-  }, window.Gitalk);
-</script>
 
 </body>
 </html>

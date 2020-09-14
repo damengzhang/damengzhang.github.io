@@ -61,7 +61,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="ESLint使用">
 <meta property="og:url" content="http://yoursite.com/web/eslint/eslint配置/index.html">
-<meta property="og:site_name" content="张大梦">
+<meta property="og:site_name" content="DaMeng">
 <meta property="og:description" content="lint简介lint最早用于c语言，用来检查代码。目前作为通用术语，用来表示代码检查工具。 javascript经历的主流lint工具如下： 1、JSLint 2、JSHint 3、Eslint ESlint配置初始化项目12//在新建好的文件夹下，执行如下命令，得到package.jsonnpm init -y  安装&amp;amp;初始化ESLint1234567891011//方式一：全局安装 &amp;">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/web/eslint/eslint配置/eslint_init.PNG">
@@ -84,7 +84,7 @@
   };
 </script>
 
-  <title>ESLint使用 | 张大梦</title>
+  <title>ESLint使用 | DaMeng</title>
   
 
 
@@ -131,7 +131,7 @@
     <div>
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">张大梦</span>
+        <span class="site-title">DaMeng</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -150,17 +150,6 @@
 <nav class="site-nav">
   
   <ul id="menu" class="menu">
-      
-      
-      
-        
-        <li class="menu-item menu-item-home">
-      
-    
-
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
-
-  </li>
       
       
       
@@ -224,13 +213,13 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/web/eslint/eslint配置/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="张大梦">
-      <meta itemprop="description" content="无穷尽">
+      <meta itemprop="name" content="DaMeng">
+      <meta itemprop="description" content="forever">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="张大梦">
+      <meta itemprop="name" content="DaMeng">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">ESLint使用
@@ -400,8 +389,8 @@
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/web/react/性能优化/" rel="next" title="性能优化">
-                  <i class="fa fa-chevron-left"></i> 性能优化
+                <a href="/web/webpack/webpack loader/" rel="next" title="webpack loader">
+                  <i class="fa fa-chevron-left"></i> webpack loader
                 </a>
               
             </div>
@@ -410,8 +399,8 @@
 
             <div class="post-nav-prev post-nav-item">
               
-                <a href="/linux/linux中的工作管理/" rel="prev" title="linux中的工作管理">
-                  linux中的工作管理 <i class="fa fa-chevron-right"></i>
+                <a href="/web/javascript/作用域 作用域链/" rel="prev" title="作用域 作用域链">
+                  作用域 作用域链 <i class="fa fa-chevron-right"></i>
                 </a>
               
             </div>
@@ -430,9 +419,6 @@
 
           </div>
           
-    
-    <div class="comments" id="gitalk-container"></div>
-  
 
         </div>
           
@@ -462,15 +448,15 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#lint简介"><span class="nav-number">1.</span> <span class="nav-text">lint简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ESlint配置"><span class="nav-number">2.</span> <span class="nav-text">ESlint配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#初始化项目"><span class="nav-number">2.1.</span> <span class="nav-text">初始化项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装-amp-初始化ESLint"><span class="nav-number">2.2.</span> <span class="nav-text">安装&amp;初始化ESLint</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置ESLint规则"><span class="nav-number">2.3.</span> <span class="nav-text">配置ESLint规则</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#配置方式"><span class="nav-number">2.3.1.</span> <span class="nav-text">配置方式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1、通过配置注释"><span class="nav-number">2.3.1.1.</span> <span class="nav-text">1、通过配置注释</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2、通过配置文件"><span class="nav-number">2.3.1.2.</span> <span class="nav-text">2、通过配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#配置文件类型"><span class="nav-number">2.3.1.2.1.</span> <span class="nav-text">配置文件类型</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#配置文件使用方式"><span class="nav-number">2.3.1.2.2.</span> <span class="nav-text">配置文件使用方式</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#eslintrc-和-package-json"><span class="nav-number">2.3.1.2.3.</span> <span class="nav-text">.eslintrc.* 和 package.json</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#命令行参数-c"><span class="nav-number">2.3.1.2.4.</span> <span class="nav-text">命令行参数-c</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#配置规则优先级总结"><span class="nav-number">2.3.1.2.5.</span> <span class="nav-text">配置规则优先级总结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#具体规则说明"><span class="nav-number">2.3.2.</span> <span class="nav-text">具体规则说明</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置忽略文件"><span class="nav-number">2.4.</span> <span class="nav-text">配置忽略文件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#eslintignore"><span class="nav-number">2.4.0.1.</span> <span class="nav-text">.eslintignore</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#–ignore-path"><span class="nav-number">2.4.0.2.</span> <span class="nav-text">–ignore-path</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#package-json"><span class="nav-number">2.4.0.3.</span> <span class="nav-text">package.json</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令行说明"><span class="nav-number">2.5.</span> <span class="nav-text">命令行说明</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#lint简介"><span class="nav-text">lint简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ESlint配置"><span class="nav-text">ESlint配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#初始化项目"><span class="nav-text">初始化项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装-amp-初始化ESLint"><span class="nav-text">安装&amp;初始化ESLint</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置ESLint规则"><span class="nav-text">配置ESLint规则</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#配置方式"><span class="nav-text">配置方式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1、通过配置注释"><span class="nav-text">1、通过配置注释</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2、通过配置文件"><span class="nav-text">2、通过配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#配置文件类型"><span class="nav-text">配置文件类型</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#配置文件使用方式"><span class="nav-text">配置文件使用方式</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#eslintrc-和-package-json"><span class="nav-text">.eslintrc.* 和 package.json</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#命令行参数-c"><span class="nav-text">命令行参数-c</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#配置规则优先级总结"><span class="nav-text">配置规则优先级总结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#具体规则说明"><span class="nav-text">具体规则说明</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置忽略文件"><span class="nav-text">配置忽略文件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#eslintignore"><span class="nav-text">.eslintignore</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#–ignore-path"><span class="nav-text">–ignore-path</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#package-json"><span class="nav-text">package.json</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令行说明"><span class="nav-text">命令行说明</span></a></li></ol></li></ol></div>
         
       </div>
       <!--/noindex-->
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">张大梦</p>
-  <div class="site-description" itemprop="description">无穷尽</div>
+  <p class="site-author-name" itemprop="name">DaMeng</p>
+  <div class="site-description" itemprop="description">forever</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
@@ -478,7 +464,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-count">110</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -491,7 +477,7 @@
             <a href="/categories/">
           
         
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">32</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -504,7 +490,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">75</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -543,11 +529,8 @@
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">张大梦</span>
+  <span class="author" itemprop="copyrightHolder">DaMeng</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
-  <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.4.1</div>
 
         
 <div class="busuanzi-count" style="display:none">
@@ -630,25 +613,6 @@
   
 
   
-
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
-
-<script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
-    var gitalk = new Gitalk({
-      clientID: 'd094643ce67eeeb1c96a',
-      clientSecret: '2d2523ebc5546e28ddc6d361b9f4aa63090e7920',
-      repo: 'tk',
-      owner: 'damengzhang',
-      admin: ['damengzhang'],
-      id: 'c3f9aa96a8ca4ddbdab7327bdc1d3440',
-        language: 'zh-CN',
-      
-      distractionFreeMode: 'true'
-    });
-    gitalk.render('gitalk-container');
-  }, window.Gitalk);
-</script>
 
 </body>
 </html>

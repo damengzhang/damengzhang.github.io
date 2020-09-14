@@ -56,18 +56,18 @@
   };
 </script>
 
-  <meta name="description" content="State Hook解决什么问题state hook可以用来给函数组件添加state。 没有state hook之前，函数组件属于无状态组件，想给函数组件添加state时，只能将其转换为class组件。 State Hook的使用方法定义12345678910/*定义：1、引入useState函数2、调用useState函数*/import React, &amp;#123; useState &amp;#125">
-<meta name="keywords" content="前端 教程 大梦 DaMeng Zhang">
+  <meta name="description" content="State Hook 解决什么问题state hook 可以用来给 函数组件 添加 state。 没有 state hook 之前， 函数组件 属于 无状态组件，想给 函数组件 添加 state 时，只能将其转换为 class 组件。 State Hook 的使用方法定义12import React, &amp;#123; useState &amp;#125; from &apos;react&apos;;[stateName,">
+<meta name="keywords" content="Hook">
 <meta property="og:type" content="article">
-<meta property="og:title" content="state hook">
+<meta property="og:title" content="State Hook">
 <meta property="og:url" content="http://yoursite.com/web/react/State Hook/index.html">
-<meta property="og:site_name" content="张大梦">
-<meta property="og:description" content="State Hook解决什么问题state hook可以用来给函数组件添加state。 没有state hook之前，函数组件属于无状态组件，想给函数组件添加state时，只能将其转换为class组件。 State Hook的使用方法定义12345678910/*定义：1、引入useState函数2、调用useState函数*/import React, &amp;#123; useState &amp;#125">
+<meta property="og:site_name" content="DaMeng">
+<meta property="og:description" content="State Hook 解决什么问题state hook 可以用来给 函数组件 添加 state。 没有 state hook 之前， 函数组件 属于 无状态组件，想给 函数组件 添加 state 时，只能将其转换为 class 组件。 State Hook 的使用方法定义12import React, &amp;#123; useState &amp;#125; from &apos;react&apos;;[stateName,">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-08T12:52:08.000Z">
+<meta property="og:updated_time" content="2020-08-21T11:40:58.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="state hook">
-<meta name="twitter:description" content="State Hook解决什么问题state hook可以用来给函数组件添加state。 没有state hook之前，函数组件属于无状态组件，想给函数组件添加state时，只能将其转换为class组件。 State Hook的使用方法定义12345678910/*定义：1、引入useState函数2、调用useState函数*/import React, &amp;#123; useState &amp;#125">
+<meta name="twitter:title" content="State Hook">
+<meta name="twitter:description" content="State Hook 解决什么问题state hook 可以用来给 函数组件 添加 state。 没有 state hook 之前， 函数组件 属于 无状态组件，想给 函数组件 添加 state 时，只能将其转换为 class 组件。 State Hook 的使用方法定义12import React, &amp;#123; useState &amp;#125; from &apos;react&apos;;[stateName,">
   <link rel="canonical" href="http://yoursite.com/web/react/State Hook/">
 
 
@@ -82,7 +82,7 @@
   };
 </script>
 
-  <title>state hook | 张大梦</title>
+  <title>State Hook | DaMeng</title>
   
 
 
@@ -129,7 +129,7 @@
     <div>
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">张大梦</span>
+        <span class="site-title">DaMeng</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -148,17 +148,6 @@
 <nav class="site-nav">
   
   <ul id="menu" class="menu">
-      
-      
-      
-        
-        <li class="menu-item menu-item-home">
-      
-    
-
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
-
-  </li>
       
       
       
@@ -222,16 +211,16 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/web/react/State Hook/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="张大梦">
-      <meta itemprop="description" content="无穷尽">
+      <meta itemprop="name" content="DaMeng">
+      <meta itemprop="description" content="forever">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="张大梦">
+      <meta itemprop="name" content="DaMeng">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">state hook
+        <h1 class="post-title" itemprop="name headline">State Hook
 
           
         </h1>
@@ -247,7 +236,7 @@
                 
               
 
-              <time title="创建时间：2019-11-09 19:20:06" itemprop="dateCreated datePublished" datetime="2019-11-09T19:20:06+08:00">2019-11-09</time>
+              <time title="创建时间：2019-09-25 19:20:06" itemprop="dateCreated datePublished" datetime="2019-09-25T19:20:06+08:00">2019-09-25</time>
             </span>
           
             <span class="post-meta-item">
@@ -282,39 +271,39 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="State-Hook解决什么问题"><a href="#State-Hook解决什么问题" class="headerlink" title="State Hook解决什么问题"></a>State Hook解决什么问题</h2><p><code>state hook</code>可以用来给<code>函数组件</code>添加<code>state</code>。</p>
-<p>没有<code>state hook</code>之前，<code>函数组件</code>属于<code>无状态组件</code>，想给<code>函数组件</code>添加state时，只能将其转换为class组件。</p>
-<h2 id="State-Hook的使用方法"><a href="#State-Hook的使用方法" class="headerlink" title="State Hook的使用方法"></a>State Hook的使用方法</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line">定义：</span><br><span class="line">1、引入useState函数</span><br><span class="line">2、调用useState函数</span><br><span class="line">*/</span><br><span class="line">import React, &#123; useState &#125; from &apos;react&apos;;</span><br><span class="line"></span><br><span class="line">function Example() &#123;</span><br><span class="line">  // 声明一个叫 “count” 的 state 变量</span><br><span class="line">  const [count, setCount] = useState(0);</span><br></pre></td></tr></table></figure>
+        <h2 id="State-Hook-解决什么问题"><a href="#State-Hook-解决什么问题" class="headerlink" title="State Hook 解决什么问题"></a>State Hook 解决什么问题</h2><p><code>state hook</code> 可以用来给 <code>函数组件</code> 添加 <code>state</code>。</p>
+<p>没有 <code>state hook</code> 之前， <code>函数组件</code> 属于 <code>无状态组件</code>，想给 <code>函数组件</code> 添加 state 时，只能将其转换为 class 组件。</p>
+<h2 id="State-Hook-的使用方法"><a href="#State-Hook-的使用方法" class="headerlink" title="State Hook 的使用方法"></a>State Hook 的使用方法</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; useState &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line">[stateName, setStateFun] = useState(initValue);</span><br></pre></td></tr></table></figure>
 
-<p>在函数组件中，通过调用<code>useState()</code>函数来定义state变量，它与class里面的this.state提供的功能相同。</p>
-<p><strong>useState的返回值</strong>：返回一个有两个值的数组。第一个值是当前的 state，第二个值是更新 state 的函数。上面示例中，count就是刚刚定义的state变量，setCount就是用来更新count的函数。</p>
-<p><strong>useState的参数</strong>：用来初始化state变量。上面示例中的参数0，即表示count的初始值。</p>
-<h3 id="读取State"><a href="#读取State" class="headerlink" title="读取State"></a>读取State</h3><p>在class组件中，读取state变量时，通过this.state，如this.state.count。</p>
+<p>在函数组件中，通过调用 <code>useState()</code> 函数来定义 state 变量，它与 class 里面的 this.state 提供的功能相同。</p>
+<p><strong>useState 的返回值</strong>：返回一个有两个值的数组。第一个值是 state 变量，第二个值是更新 state 变量的函数。上面示例中，count 就是刚刚定义的 state 变量，setCount 就是用来更新 count 的函数。</p>
+<p><strong>useState 的参数</strong>：用来初始化 state 变量。上面示例中的参数 0，即表示 count 的初始值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line">定义：</span><br><span class="line">1、引入useState函数</span><br><span class="line">2、调用useState函数</span><br><span class="line">*/</span><br><span class="line">import React, &#123; useState &#125; from &apos;react&apos;;</span><br><span class="line"></span><br><span class="line">function Example() &#123;</span><br><span class="line">  // 声明一个叫 “count” 的 state 变量，和用来更新 count 的函数 setCount</span><br><span class="line">  const [count, setCount] = useState(0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="读取State"><a href="#读取State" class="headerlink" title="读取State"></a>读取State</h3><p>在 class 组件中，读取 state 变量时，通过 this.state，如 this.state.count。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;You clicked &#123;this.state.count&#125; times&lt;/p&gt;</span><br></pre></td></tr></table></figure>
 
-<p>在函数组件中，读取state变量时，直接使用即可，如count。</p>
+<p>在函数组件中，读取 state 变量时，直接使用即可，如 count。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;You clicked &#123;count&#125; times&lt;/p&gt;</span><br></pre></td></tr></table></figure>
 
-<h3 id="更新State"><a href="#更新State" class="headerlink" title="更新State"></a>更新State</h3><p>在class组件中，需要调用 <code>this.setState()</code> 来更新state变量：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;button onClick=&#123;() =&gt; this.setState(&#123; count: this.state.count + 1 &#125;)&#125;&gt;</span><br><span class="line">  Click me</span><br><span class="line">&lt;/button&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="更新State"><a href="#更新State" class="headerlink" title="更新State"></a>更新State</h3><p>在 class 组件中，需要调用 <code>this.setState()</code> 来更新 state 变量：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//setState 更新 State 时，会使用新值和旧值进行合并  </span></span><br><span class="line">&lt;button onClick=&#123;() =&gt; <span class="keyword">this</span>.setState(&#123; <span class="attr">count</span>: <span class="keyword">this</span>.state.count + <span class="number">1</span> &#125;)&#125;&gt;</span><br><span class="line">    Click me</span><br><span class="line">  &lt;<span class="regexp">/button&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p>在函数组件中，使用<code>useState()</code>函数返回的<code>更新函数</code>（如setCount函数）来更新对应的state变量：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;button onClick=&#123;() =&gt; setCount(count + 1)&#125;&gt;</span><br><span class="line">  Click me</span><br><span class="line">&lt;/button&gt;</span><br></pre></td></tr></table></figure>
+<p>在函数组件中，使用 <code>useState()</code> 函数返回的 <code>更新函数</code>（如 setCount 函数）来更新对应的 state 变量：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//useState 更新 State 时，会直接用新值替换旧值</span></span><br><span class="line">&lt;button onClick=&#123;() =&gt; setCount(count + <span class="number">1</span>)&#125;&gt;</span><br><span class="line">   Click me</span><br><span class="line"> &lt;<span class="regexp">/button&gt;</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"> 1:  import React, &#123; useState &#125; from &apos;react&apos;;</span><br><span class="line"> 2:</span><br><span class="line"> 3:  function Example() &#123;</span><br><span class="line">     //使用useState函数定义state变量</span><br><span class="line"> 4:    const [count, setCount] = useState(0);</span><br><span class="line"> 5:</span><br><span class="line"> 6:    return (</span><br><span class="line"> 7:      &lt;div&gt;</span><br><span class="line">         &#123;/*使用state变量*/&#125;</span><br><span class="line"> 8:        &lt;p&gt;You clicked &#123;count&#125; times&lt;/p&gt;</span><br><span class="line">         </span><br><span class="line">         &#123;//修改state变量&#125;</span><br><span class="line"> 9:        &lt;button onClick=&#123;() =&gt; setCount(count + 1)&#125;&gt;</span><br><span class="line">10:         Click me</span><br><span class="line">11:        &lt;/button&gt;</span><br><span class="line">12:      &lt;/div&gt;</span><br><span class="line">13:    );</span><br><span class="line">14:  &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"> 1:  import React, &#123; useState &#125; from &apos;react&apos;;</span><br><span class="line"> 2:</span><br><span class="line"> 3:  function Example() &#123;</span><br><span class="line">     //使用useState函数定义state变量</span><br><span class="line"> 4:    const [count, setCount] = useState(0);</span><br><span class="line"> 5:</span><br><span class="line"> 6:    return (</span><br><span class="line"> 7:      &lt;div&gt;</span><br><span class="line">         &#123;/*使用state变量*/&#125;</span><br><span class="line"> 8:        &lt;p&gt;You clicked &#123;count&#125; times&lt;/p&gt;</span><br><span class="line">         </span><br><span class="line">         &#123;//修改state变量&#125;</span><br><span class="line"> 9:        &lt;button onClick=&#123;() =&gt; setCount(count + 1)&#125;&gt;</span><br><span class="line">10:         Click me</span><br><span class="line">11:        &lt;/button&gt;</span><br><span class="line">12:      &lt;/div&gt;</span><br><span class="line">13:    );</span><br><span class="line">14:  &#125;</span><br></pre></td></tr></table></figure>
 
-<p><strong>定义多个state变量方法</strong>：</p>
+<p><strong>定义多个 state 变量方法</strong>：</p>
 <ul>
-<li><p>多次调用useState</p>
+<li><p>多次调用 useState</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function ExampleWithManyStates() &#123;</span><br><span class="line">  // 声明多个 state 变量</span><br><span class="line">  const [age, setAge] = useState(42);</span><br><span class="line">  const [fruit, setFruit] = useState(&apos;banana&apos;);</span><br><span class="line">  const [todos, setTodos] = useState([&#123; text: &apos;学习 Hook&apos; &#125;]);</span><br></pre></td></tr></table></figure>
-
-
-
+</li>
+<li><p>将多个变量通过对象或数组的方式存入同一个 state 变量</p>
 </li>
 </ul>
-<ul>
-<li>将多个变量通过对象或数组的方式存入同一个state变量</li>
-</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Box</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> [state, setState] = useState(&#123; <span class="attr">left</span>: <span class="number">0</span>, <span class="attr">top</span>: <span class="number">0</span>, <span class="attr">width</span>: <span class="number">100</span>, <span class="attr">height</span>: <span class="number">100</span> &#125;);</span><br><span class="line">  </span><br><span class="line">  useEffect(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">handleWindowMouseMove</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">      <span class="comment">// 展开 「...state」 以确保我们没有 「丢失」 width 和 height</span></span><br><span class="line">      <span class="comment">// useState 更新 State 时，会用新值替换旧值，而不是新旧值合并</span></span><br><span class="line">      setState(<span class="function"><span class="params">state</span> =&gt;</span> (&#123; ...state, <span class="attr">left</span>: e.pageX, <span class="attr">top</span>: e.pageY &#125;));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 注意：这是个简化版的实现</span></span><br><span class="line">    <span class="built_in">window</span>.addEventListener(<span class="string">'mousemove'</span>, handleWindowMouseMove);</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">window</span>.removeEventListener(<span class="string">'mousemove'</span>, handleWindowMouseMove);</span><br><span class="line">  &#125;, []);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
     </div>
 
@@ -325,14 +314,23 @@
       
 
       <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/Hook/" rel="tag"># Hook</a>
+            
+          </div>
+        
 
         
 
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/web/react/Hook简介/" rel="next" title="Hook简介">
-                  <i class="fa fa-chevron-left"></i> Hook简介
+                <a href="/web/react/Hook简介/" rel="next" title="Hook 简介">
+                  <i class="fa fa-chevron-left"></i> Hook 简介
                 </a>
               
             </div>
@@ -340,6 +338,10 @@
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
+              
+                <a href="/web/react/Effec Hook/" rel="prev" title="Effect Hook">
+                  Effect Hook <i class="fa fa-chevron-right"></i>
+                </a>
               
             </div>
           </div>
@@ -357,9 +359,6 @@
 
           </div>
           
-    
-    <div class="comments" id="gitalk-container"></div>
-  
 
         </div>
           
@@ -389,15 +388,15 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#State-Hook解决什么问题"><span class="nav-number">1.</span> <span class="nav-text">State Hook解决什么问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#State-Hook的使用方法"><span class="nav-number">2.</span> <span class="nav-text">State Hook的使用方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义"><span class="nav-number">2.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#读取State"><span class="nav-number">2.2.</span> <span class="nav-text">读取State</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更新State"><span class="nav-number">2.3.</span> <span class="nav-text">更新State</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">2.4.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#State-Hook-解决什么问题"><span class="nav-text">State Hook 解决什么问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#State-Hook-的使用方法"><span class="nav-text">State Hook 的使用方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义"><span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#读取State"><span class="nav-text">读取State</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更新State"><span class="nav-text">更新State</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#示例"><span class="nav-text">示例</span></a></li></ol></li></ol></div>
         
       </div>
       <!--/noindex-->
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">张大梦</p>
-  <div class="site-description" itemprop="description">无穷尽</div>
+  <p class="site-author-name" itemprop="name">DaMeng</p>
+  <div class="site-description" itemprop="description">forever</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
@@ -405,7 +404,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-count">110</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -418,7 +417,7 @@
             <a href="/categories/">
           
         
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">32</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -431,7 +430,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">75</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -470,11 +469,8 @@
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">张大梦</span>
+  <span class="author" itemprop="copyrightHolder">DaMeng</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
-  <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.4.1</div>
 
         
 <div class="busuanzi-count" style="display:none">
@@ -557,25 +553,6 @@
   
 
   
-
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
-
-<script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
-    var gitalk = new Gitalk({
-      clientID: 'd094643ce67eeeb1c96a',
-      clientSecret: '2d2523ebc5546e28ddc6d361b9f4aa63090e7920',
-      repo: 'tk',
-      owner: 'damengzhang',
-      admin: ['damengzhang'],
-      id: '3638c9d1fc64063901805e3840531aad',
-        language: 'zh-CN',
-      
-      distractionFreeMode: 'true'
-    });
-    gitalk.render('gitalk-container');
-  }, window.Gitalk);
-</script>
 
 </body>
 </html>

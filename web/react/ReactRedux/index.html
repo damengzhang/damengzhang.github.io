@@ -64,7 +64,7 @@
 <meta property="og:site_name" content="DaMeng">
 <meta property="og:description" content="1 概述ReactRedux 是 Redux 官方为 React 提供的绑定库，让我们可以在 React 中更方便的使用 Redux。 在 ReactRedux 中，用户只需要提供 UI 组件，ReactRedux 会自动生成容器组件来管理状态。 2 怎么使用2.1 安装ReactRedux 基于 redux，所以需要将 redux 一并安装。 1npm install redux react-r">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-08-21T10:54:42.000Z">
+<meta property="og:updated_time" content="2020-10-09T12:40:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ReactRedux">
 <meta name="twitter:description" content="1 概述ReactRedux 是 Redux 官方为 React 提供的绑定库，让我们可以在 React 中更方便的使用 Redux。 在 ReactRedux 中，用户只需要提供 UI 组件，ReactRedux 会自动生成容器组件来管理状态。 2 怎么使用2.1 安装ReactRedux 基于 redux，所以需要将 redux 一并安装。 1npm install redux react-r">
@@ -278,20 +278,13 @@
 
 <h2 id="2-2-使用"><a href="#2-2-使用" class="headerlink" title="2.2 使用"></a>2.2 使用</h2><h3 id="2-2-1-Provider-组件"><a href="#2-2-1-Provider-组件" class="headerlink" title="2.2.1 Provider 组件"></a>2.2.1 Provider 组件</h3><p>Provider 是 ReactRedux 提供的组件，这个组件能够连接 Store ，并可以将 Store 提供给所有的子组件。</p>
 <p>Provider 内部使用 React 的 Context 机制使 Store 在子组件内共享。</p>
-<ul>
-<li><p>语法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Provider store&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>使用</p>
-<p>使用 Provider 把 React 根组件包裹起来，即可将 Store 专递给所有子组件</p>
+<h4 id="2-2-1-1-语法"><a href="#2-2-1-1-语法" class="headerlink" title="2.2.1.1 语法"></a>2.2.1.1 语法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Provider store&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-2-1-2-示例"><a href="#2-2-1-2-示例" class="headerlink" title="2.2.1.2 示例"></a>2.2.1.2 示例</h4><p>使用 Provider 把 React 根组件包裹起来，即可将 Store 专递给所有子组件</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">"react"</span>;</span><br><span class="line"><span class="keyword">import</span> TodoList <span class="keyword">from</span> <span class="string">"./TodoList.js"</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Provider &#125; <span class="keyword">from</span> <span class="string">"react-redux"</span>;</span><br><span class="line"><span class="keyword">import</span> store <span class="keyword">from</span> <span class="string">"./store"</span>;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;Provider store=&#123;store&#125;&gt;</span><br><span class="line">    &lt;TodoList /&gt;</span><br><span class="line">  &lt;<span class="regexp">/Provider&gt;,</span></span><br><span class="line"><span class="regexp">  rootEl</span></span><br><span class="line"><span class="regexp">)</span></span><br></pre></td></tr></table></figure>
 
-</li>
-</ul>
 <h3 id="2-2-2-connect-方法"><a href="#2-2-2-connect-方法" class="headerlink" title="2.2.2 connect 方法"></a>2.2.2 connect 方法</h3><p>connect 是 ReactRedux 提供的方法，能够将 UI 组件和 ReduxStore 连接起来，并返回一个新的、包裹了 UI 组件的、可以管理 UI 组件状态的<strong>容器组件</strong>。</p>
-<ul>
-<li><p>语法</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">connect</span>(<span class="params">mapStateToProps?, mapDispatchToProps?, mergeProps?, options?</span>)</span></span><br></pre></td></tr></table></figure>
+<h4 id="2-2-2-1-语法"><a href="#2-2-2-1-语法" class="headerlink" title="2.2.2.1 语法"></a>2.2.2.1 语法</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">connect</span>(<span class="params">mapStateToProps?, mapDispatchToProps?, mergeProps?, options?</span>)</span></span><br></pre></td></tr></table></figure>
 
 <ul>
 <li><p><code>mapStateToProps?: (state, ownProps?) =&gt; Object</code></p>
@@ -356,8 +349,8 @@
 </ul>
 </li>
 </ul>
-</li>
-</ul>
+<h4 id="2-2-2-2-示例"><a href="#2-2-2-2-示例" class="headerlink" title="2.2.2.2 示例"></a>2.2.2.2 示例</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">"react"</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; connect &#125; <span class="keyword">from</span> <span class="string">"react-redux"</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; updateInputValueAction, addListDataAction &#125; <span class="keyword">from</span> <span class="string">"./store/actions"</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">TodoList</span>(<span class="params">props</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> (</span><br><span class="line">		&lt;div&gt;</span><br><span class="line">			&lt;input type=<span class="string">"text"</span> value=&#123;props.inputValue&#125; onChange=&#123;props.onInputChange&#125; /&gt;</span><br><span class="line">			&lt;button onClick=&#123;props.addListData&#125;&gt;submit&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">		&lt;/</span>div&gt;</span><br><span class="line">	);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> mapStateToProps = <span class="function">(<span class="params">state, ownProps</span>) =&gt;</span> &#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">"hh"</span>, ownProps);</span><br><span class="line">	<span class="keyword">return</span> &#123;</span><br><span class="line">		inputValue: state.todoList.inputValue,</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> mapDispatchToProps = <span class="function">(<span class="params">dispatch</span>) =&gt;</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> &#123;</span><br><span class="line">		onInputChange: <span class="function">(<span class="params">e</span>) =&gt;</span> &#123;</span><br><span class="line">			dispatch(updateInputValueAction(e.target.value));</span><br><span class="line">		&#125;,</span><br><span class="line">		addListData: <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">			dispatch(addListDataAction());</span><br><span class="line">		&#125;,</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> connect(mapStateToProps, mapDispatchToProps)(TodoList);</span><br></pre></td></tr></table></figure>
+
 
     </div>
 
@@ -383,8 +376,8 @@
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/npm/npm install -4048 错误解决方法/" rel="next" title="npm install -4048">
-                  <i class="fa fa-chevron-left"></i> npm install -4048
+                <a href="/npm/npm 常用命令/" rel="next" title="npm 常用命令">
+                  <i class="fa fa-chevron-left"></i> npm 常用命令
                 </a>
               
             </div>
@@ -442,7 +435,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-概述"><span class="nav-text">1 概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-怎么使用"><span class="nav-text">2 怎么使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-安装"><span class="nav-text">2.1 安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-使用"><span class="nav-text">2.2 使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-1-Provider-组件"><span class="nav-text">2.2.1 Provider 组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-2-connect-方法"><span class="nav-text">2.2.2 connect 方法</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-概述"><span class="nav-text">1 概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-怎么使用"><span class="nav-text">2 怎么使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-安装"><span class="nav-text">2.1 安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-使用"><span class="nav-text">2.2 使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-1-Provider-组件"><span class="nav-text">2.2.1 Provider 组件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-1-1-语法"><span class="nav-text">2.2.1.1 语法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-1-2-示例"><span class="nav-text">2.2.1.2 示例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-2-connect-方法"><span class="nav-text">2.2.2 connect 方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-2-1-语法"><span class="nav-text">2.2.2.1 语法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-2-2-示例"><span class="nav-text">2.2.2.2 示例</span></a></li></ol></li></ol></li></ol></li></ol></div>
         
       </div>
       <!--/noindex-->
@@ -458,7 +451,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">110</span>
+          <span class="site-state-item-count">108</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -484,7 +477,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">75</span>
+        <span class="site-state-item-count">73</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>

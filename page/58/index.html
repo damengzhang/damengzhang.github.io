@@ -206,7 +206,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/web/webpack/webpack 自动生成 html 模板/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/web/react/render Props/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="DaMeng">
@@ -220,7 +220,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/web/webpack/webpack 自动生成 html 模板/" class="post-title-link" itemprop="url">webpack 自动生成 html 模板文件</a>
+            <a href="/web/react/render Props/" class="post-title-link" itemprop="url">Render Props</a>
           
         </h1>
 
@@ -235,7 +235,7 @@
                 
               
 
-              <time title="创建时间：2019-04-27 00:00:00" itemprop="dateCreated datePublished" datetime="2019-04-27T00:00:00+08:00">2019-04-27</time>
+              <time title="创建时间：2019-04-23 19:30:08" itemprop="dateCreated datePublished" datetime="2019-04-23T19:30:08+08:00">2019-04-23</time>
             </span>
           
             <span class="post-meta-item">
@@ -251,7 +251,7 @@
                   ，
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web/webpack/" itemprop="url" rel="index"><span itemprop="name">webpack</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web/react/" itemprop="url" rel="index"><span itemprop="name">react</span></a></span>
 
                 
                 
@@ -270,18 +270,17 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>通过 <code>html-webpack-plugin</code> 插件，可以自动生成 html 文件到 output.path 目录，并将 webpack输出的 bundle 文件自动插入到 html 文件中。</p>
-<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev html-webpack-plugin</span><br></pre></td></tr></table></figure>
+          <h1 id="是什么"><a href="#是什么" class="headerlink" title="是什么"></a>是什么</h1><p>Render Props 就是<strong>函数类型的 Prop</strong>，它的作用是给组件传递渲染逻辑。</p>
+<p>接收了 Render Prop 的组件，在内部会通过执行此函数参数来完成自己的渲染逻辑。</p>
+<p>通过函数<strong>返回渲染组件</strong> 比 <strong>直接传递渲染组件</strong> 更能灵活的给 <strong>渲染组件</strong>传递属性。比如下面示例中，通过函数可以使渲染组件 <code>h1</code> 更灵活的接收到来自 <code>DataProvider</code> 的参数。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//DataProvider 在内部会执行 render 函数来完成自己的渲染逻辑</span></span><br><span class="line"><span class="comment">// render 属性名可以是其他名字，并不必非得叫做 render</span></span><br><span class="line">&lt;DataProvider render=&#123;data =&gt; (       </span><br><span class="line">  &lt;h1&gt;Hello &#123;data.target&#125;&lt;<span class="regexp">/h1&gt;</span></span><br><span class="line"><span class="regexp">)&#125;/</span>&gt;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DataProvider</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">        	<span class="comment">//给渲染组件传递参数 ‘world’</span></span><br><span class="line">        	&#123;<span class="keyword">this</span>.props.render(<span class="string">'World'</span>)&#125;</span><br><span class="line">        &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
 
-<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="入门使用"><a href="#入门使用" class="headerlink" title="入门使用"></a>入门使用</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1、引入 html-webpack-plugin</span></span><br><span class="line"><span class="keyword">var</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">'html-webpack-plugin'</span>);</span><br><span class="line"><span class="keyword">var</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  entry: <span class="string">'index.js'</span>,</span><br><span class="line">  output: &#123;</span><br><span class="line">    path: path.resolve(__dirname, <span class="string">'./dist'</span>),</span><br><span class="line">    filename: <span class="string">'index_bundle.js'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 2、在 plugins 中创建插件实例</span></span><br><span class="line">  plugins: [<span class="keyword">new</span> HtmlWebpackPlugin()]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h1 id="解决什么问题"><a href="#解决什么问题" class="headerlink" title="解决什么问题"></a>解决什么问题</h1><p>可以解决横切关注点（即 组件间逻辑复用问题）。通过 Render Props 能够将组件封装的状态或行为共享给其他组件。</p>
+<h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><p>Render Props 与 React.PureComponent 结合时，有可能使 React.PureCompnent 失去性能优势。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Mouse</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">PureComponent</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 与上面相同的代码......</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MouseTracker</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h1&gt;Move the mouse around!<span class="xml"><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line">        &#123;<span class="comment">/*</span></span><br><span class="line"><span class="comment">          这是不好的！</span></span><br><span class="line"><span class="comment">          每个渲染的 `render` prop的值将会是不同的。</span></span><br><span class="line"><span class="comment">          会使得 React.PureComponent 失去其性能优势</span></span><br><span class="line"><span class="comment">        */</span>&#125;</span><br><span class="line">        &lt;Mouse render=&#123;mouse =&gt; (</span><br><span class="line">          &lt;Cat mouse=&#123;mouse&#125; /&gt;</span><br><span class="line">        )&#125;/&gt;</span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
 
-<p>上面两个步骤会自动在 dist 目录生成 index.html 文件，并将 webpack 生成的 bundle.js 插入到 index.hml 中，如下：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Webpack App<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1"</span>&gt;</span><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"main.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MouseTracker</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 定义为实例方法，</span></span><br><span class="line">  <span class="comment">//`this.renderTheCat` 当我们在渲染中使用它时,它始终指向相同的函数</span></span><br><span class="line">  renderTheCat(mouse) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">Cat</span> <span class="attr">mouse</span>=<span class="string">&#123;mouse&#125;</span> /&gt;</span>;</span></span><br><span class="line"><span class="xml">  &#125;</span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml">  render() &#123;</span></span><br><span class="line"><span class="xml">    return (</span></span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h1&gt;Move the mouse around!&lt;/h1&gt;</span><br><span class="line">        &lt;Mouse render=&#123;this.renderTheCat&#125; /&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="实际使用"><a href="#实际使用" class="headerlink" title="实际使用"></a>实际使用</h2><p>在实际工作场景中，我们很少使用 html-webpack-plugin 默认的 html 模板文件，为了使生成的 html 文件中的内容更符合项目的需要，通常会重新生成一份 html 文件，然后通过插件参数 <code>template</code> 配置成插件使用的 html 模板。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1、引入 html-webpack-plugin</span></span><br><span class="line"><span class="keyword">var</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">'html-webpack-plugin'</span>);</span><br><span class="line"><span class="keyword">var</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  entry: <span class="string">'index.js'</span>,</span><br><span class="line">  output: &#123;</span><br><span class="line">    path: path.resolve(__dirname, <span class="string">'./dist'</span>),</span><br><span class="line">    filename: <span class="string">'index_bundle.js'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 2、在 plugins 中创建插件实例</span></span><br><span class="line">  plugins: [</span><br><span class="line">      <span class="comment">// 3、通过给 HtmlWebpackPlugin 传递对象来配置参数</span></span><br><span class="line">      <span class="keyword">new</span> HtmlWebpackPlugin(&#123;</span><br><span class="line">          filenmame: <span class="string">"index.html"</span>,<span class="comment">// 配置输出 html 的名称</span></span><br><span class="line">          template: <span class="string">"./tpl.html"</span>,<span class="comment">//配置模板 html 路径</span></span><br><span class="line">      &#125;),</span><br><span class="line">  ]</span><br><span class="line">    </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>上面例子只使用了插件的部分功能，更多功能可以在 <a href="https://www.npmjs.com/package/html-webpack-plugin" target="_blank" rel="noopener">https://www.npmjs.com/package/html-webpack-plugin</a> 进行查看。</p>
 
         
       
@@ -305,7 +304,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/57/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/57/">57</a><span class="page-number current">58</span><a class="page-number" href="/page/59/">59</a><span class="space">&hellip;</span><a class="page-number" href="/page/110/">110</a><a class="extend next" rel="next" href="/page/59/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/57/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/57/">57</a><span class="page-number current">58</span><a class="page-number" href="/page/59/">59</a><span class="space">&hellip;</span><a class="page-number" href="/page/108/">108</a><a class="extend next" rel="next" href="/page/59/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -349,7 +348,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">110</span>
+          <span class="site-state-item-count">108</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -375,7 +374,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">75</span>
+        <span class="site-state-item-count">73</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>

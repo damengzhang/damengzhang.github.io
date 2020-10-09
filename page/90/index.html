@@ -206,7 +206,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/web/javascript/Array 常用操作/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/python/python项目环境搭建/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="DaMeng">
@@ -220,7 +220,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/web/javascript/Array 常用操作/" class="post-title-link" itemprop="url">Array 常用操作</a>
+            <a href="/python/python项目环境搭建/" class="post-title-link" itemprop="url">python 项目环境搭建</a>
           
         </h1>
 
@@ -235,7 +235,7 @@
                 
               
 
-              <time title="创建时间：2018-05-15 18:40:38" itemprop="dateCreated datePublished" datetime="2018-05-15T18:40:38+08:00">2018-05-15</time>
+              <time title="创建时间：2018-04-10 19:18:38" itemprop="dateCreated datePublished" datetime="2018-04-10T19:18:38+08:00">2018-04-10</time>
             </span>
           
             <span class="post-meta-item">
@@ -244,14 +244,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web/" itemprop="url" rel="index"><span itemprop="name">web</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web/js/" itemprop="url" rel="index"><span itemprop="name">js</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a></span>
 
                 
                 
@@ -270,40 +263,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="slice"><a href="#slice" class="headerlink" title="slice"></a>slice</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr.slice([begin[, end]])</span><br></pre></td></tr></table></figure>
-
-<p>作用：</p>
-<p>​    获取原数组从 begin（包括） 到 end（不包括） 元素的浅拷贝。不需要原数组。</p>
-<p>返回值：</p>
-<p>​    返回一个新数组，内容为元素组的 begin（包括） 到 end（不包括） 元素的浅拷贝。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> animals = [<span class="string">'ant'</span>, &#123;<span class="attr">a</span>:<span class="number">1</span>&#125;, <span class="string">'camel'</span>, <span class="string">'duck'</span>, <span class="string">'elephant'</span>];</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(animals.slice(<span class="number">2</span>));<span class="comment">// Array ["camel", "duck", "elephant"]</span></span><br><span class="line"><span class="built_in">console</span>.log(animals.slice(<span class="number">2</span>, <span class="number">4</span>));<span class="comment">//Array ["camel", "duck"]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> newArr = animals.slice(<span class="number">1</span>, <span class="number">5</span>); </span><br><span class="line"><span class="built_in">console</span>.log(newArr);<span class="comment">// Array [Object &#123; a: 1 &#125;, "camel", "duck", "elephant"]</span></span><br><span class="line">newArr[<span class="number">0</span>].a = <span class="number">2</span>;</span><br><span class="line"><span class="built_in">console</span>.log(newArr);<span class="comment">// Array [Object &#123; a: 2 &#125;, "camel", "duck", "elephant"]</span></span><br><span class="line"><span class="built_in">console</span>.log(animals);<span class="comment">// Array ["ant", Object &#123; a: 2 &#125;, "camel", "duck", "elephant"]</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="splice"><a href="#splice" class="headerlink" title="splice"></a>splice</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">array.splice(start[, deleteCount[, item1[, item2[, ...]]]])</span><br></pre></td></tr></table></figure>
-
-<p>作用：</p>
-<p>​    添加或修改原数组元素。</p>
-<p>参数：</p>
-<ul>
-<li><p>​    start    </p>
-<p>指定修改的开始位置（从 0 计数）。</p>
-<p>如果超出了数组的长度，则从数组末尾开始添加内容；</p>
-<p>如果是负值，则表示从数组末位开始的第几位（从 -1 计数，-n 是倒数第 n 个元素并且等价于 <code>array.length-n</code>）；</p>
-<p>如果负数的绝对值大于数组的长度，则表示开始位置为第 0 位。</p>
-</li>
-<li><p>deleteCount 可选</p>
-<p>整数，表示要移除的数组元素的个数。</p>
-<p>如果 <code>deleteCount</code> 大于 <code>start</code> 之后的元素的总数，则从 <code>start</code> 后面的元素都将被删除（含第 <code>start</code> 位）。</p>
-<p>如果 <code>deleteCount</code> 被省略了，或者它的值大于等于<code>array.length - start</code>(也就是说，如果它大于或者等于<code>start</code>之后的所有元素的数量)，那么<code>start</code>之后数组的所有元素都会被删除。</p>
-<p>如果 <code>deleteCount</code> 是 0 或者负数，则不移除元素。这种情况下，至少应添加一个新元素。</p>
-</li>
-<li><p>item1, item2, <em>…</em> 可选</p>
-<p>要添加进数组的元素，从<code>start</code> 位置开始。如果不指定，则 <code>splice()</code> 将只删除数组元素。</p>
-</li>
-</ul>
-<p>返回值：</p>
-<p>​    返回由被删除元素组成的数组</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myFish = [<span class="string">"angel"</span>, <span class="string">"clown"</span>, <span class="string">"mandarin"</span>, <span class="string">"sturgeon"</span>];</span><br><span class="line"><span class="keyword">var</span> removed = myFish.splice(<span class="number">2</span>, <span class="number">0</span>, <span class="string">"drum"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 运算后的 myFish: ["angel", "clown", "drum", "mandarin", "sturgeon"]</span></span><br><span class="line"><span class="comment">// 被删除的元素: [], 没有元素被删除</span></span><br></pre></td></tr></table></figure>
-
+          <p>python 项目环境搭建</p>
+<p>1、装所需 python 版本</p>
+<p>2、pycharm 配置 python 解释器路径</p>
+<p>3、配置 pip 镜像地址（pip.ini放到用户home目录下）</p>
+<p>4、pycharm 打开目录从项目根目录打开，requirements.txt 文件会自动被 pycharm 识别</p>
+<p>5、按照 pycharm 的提示对所需依赖进行安装</p>
 
         
       
@@ -327,7 +292,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/89/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/89/">89</a><span class="page-number current">90</span><a class="page-number" href="/page/91/">91</a><span class="space">&hellip;</span><a class="page-number" href="/page/110/">110</a><a class="extend next" rel="next" href="/page/91/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/89/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/89/">89</a><span class="page-number current">90</span><a class="page-number" href="/page/91/">91</a><span class="space">&hellip;</span><a class="page-number" href="/page/108/">108</a><a class="extend next" rel="next" href="/page/91/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -371,7 +336,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">110</span>
+          <span class="site-state-item-count">108</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -397,7 +362,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">75</span>
+        <span class="site-state-item-count">73</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>

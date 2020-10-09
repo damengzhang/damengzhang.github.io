@@ -206,7 +206,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/linux/Linux中的进程管理/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/web/node/node路径/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="DaMeng">
@@ -220,7 +220,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/linux/Linux中的进程管理/" class="post-title-link" itemprop="url">Linux中的进程管理</a>
+            <a href="/web/node/node路径/" class="post-title-link" itemprop="url">node路径操作</a>
           
         </h1>
 
@@ -235,7 +235,7 @@
                 
               
 
-              <time title="创建时间：2018-05-02 00:00:00" itemprop="dateCreated datePublished" datetime="2018-05-02T00:00:00+08:00">2018-05-02</time>
+              <time title="创建时间：2018-04-09 19:40:38" itemprop="dateCreated datePublished" datetime="2018-04-09T19:40:38+08:00">2018-04-09</time>
             </span>
           
             <span class="post-meta-item">
@@ -244,7 +244,14 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web/" itemprop="url" rel="index"><span itemprop="name">web</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web/node/" itemprop="url" rel="index"><span itemprop="name">node</span></a></span>
 
                 
                 
@@ -263,31 +270,18 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="查看"><a href="#查看" class="headerlink" title="查看"></a>查看</h1><h2 id="ps"><a href="#ps" class="headerlink" title="ps"></a>ps</h2><p>使用ps查看某个时间点的进程运行情况。ps auxf  -&gt; 列出类似于进程树的的程序显示</p>
-<h2 id="top"><a href="#top" class="headerlink" title="top"></a>top</h2><p>使用top动态查看进程的变化。top  [-d 数字]  | top [-bnp]</p>
-<p>参数：</p>
-<p>-d：配置界面更新的秒数</p>
-<p>-b：以批处理的方式处理输出  </p>
-<p>-n：与-b搭配，配置执行几次top输出的结果</p>
-<p>-p：指定监控的pid</p>
-<p>在top执行过程中可以使用的命令</p>
-<p>?：显示top中可以输入的按键命令</p>
-<p>P：以CPU的使用资源排序</p>
-<p>M：以MEM的使用资源排序</p>
-<p>N：以PID排序</p>
-<p>T：以使用的CPU时间累积（time+）排序</p>
-<p>k：给某个PID信号</p>
-<p>r：重新配置PID的nice值</p>
-<p>q：离开top</p>
-<h2 id="pstree"><a href="#pstree" class="headerlink" title="pstree"></a>pstree</h2><p>查看进程间关系。pstree  [-A|-U]  -[up]</p>
-<p>参数：</p>
-<p>-A：用ASCII字符来连接进程间关系</p>
-<p>-U：用utf-8字符来连接进程间关系</p>
-<p>-p：列出PID</p>
-<p>-u：列出每个进程所属账号</p>
-<h1 id="管理"><a href="#管理" class="headerlink" title="管理"></a>管理</h1><p>通过信号来管理进程</p>
-<h2 id="kill"><a href="#kill" class="headerlink" title="kill"></a>kill</h2><p>kill -singnal  PID</p>
-<h2 id="killall"><a href="#killall" class="headerlink" title="killall"></a>killall</h2><p>killall  -signal  命令名称</p>
+          <p>node.js 使用函数封装器将每个模块进行封装，并将如下参数传递给模块，使的模块可以在内部直接使用这些参数。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">exports, require, module, __filename, __dirname</span>) </span>&#123;</span><br><span class="line"><span class="comment">// 模块的代码实际上在这里</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h1 id="当前模块所在路径"><a href="#当前模块所在路径" class="headerlink" title="当前模块所在路径"></a>当前模块所在路径</h1><p>__dirname 可以获取到当前模块所在目录。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//从 /Users/mjr 运行 node example.js</span></span><br><span class="line"><span class="built_in">console</span>.log(__dirname);</span><br><span class="line"><span class="comment">// 打印: /Users/mjr</span></span><br><span class="line"><span class="built_in">console</span>.log(path.dirname(__filename));</span><br><span class="line"><span class="comment">// 打印: /Users/mjr</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="当前模块文件名"><a href="#当前模块文件名" class="headerlink" title="当前模块文件名"></a>当前模块文件名</h1><p>__filename 可以获取到当前模块的绝对文件名。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//从 /Users/mjr 运行 node example.js</span></span><br><span class="line"><span class="built_in">console</span>.log(__filename);</span><br><span class="line"><span class="comment">// 打印: /Users/mjr/example.js</span></span><br><span class="line"><span class="built_in">console</span>.log(__dirname);</span><br><span class="line"><span class="comment">// 打印: /Users/mjr</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="拼接路径"><a href="#拼接路径" class="headerlink" title="拼接路径"></a>拼接路径</h1><p>path.join(<code>[...paths]</code>) 方法可以使用平台特定的分隔符，将所给定的参数片段连接在一起。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">consot path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"></span><br><span class="line">path.join(<span class="string">'/foo'</span>, <span class="string">'bar'</span>, <span class="string">'baz/asdf'</span>, <span class="string">'quux'</span>, <span class="string">'..'</span>);</span><br><span class="line"><span class="comment">// 返回: '/foo/bar/baz/asdf'</span></span><br><span class="line"></span><br><span class="line">path.join(<span class="string">'foo'</span>, &#123;&#125;, <span class="string">'bar'</span>);</span><br><span class="line"><span class="comment">// 抛出 'TypeError: Path must be a string. Received &#123;&#125;'</span></span><br></pre></td></tr></table></figure>
+
 
         
       
@@ -311,7 +305,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/90/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/90/">90</a><span class="page-number current">91</span><a class="page-number" href="/page/92/">92</a><span class="space">&hellip;</span><a class="page-number" href="/page/110/">110</a><a class="extend next" rel="next" href="/page/92/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/90/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/90/">90</a><span class="page-number current">91</span><a class="page-number" href="/page/92/">92</a><span class="space">&hellip;</span><a class="page-number" href="/page/108/">108</a><a class="extend next" rel="next" href="/page/92/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -355,7 +349,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">110</span>
+          <span class="site-state-item-count">108</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -381,7 +375,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">75</span>
+        <span class="site-state-item-count">73</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>

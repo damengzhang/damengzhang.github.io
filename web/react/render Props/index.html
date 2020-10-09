@@ -56,18 +56,18 @@
   };
 </script>
 
-  <meta name="description" content="是什么Render Props 就是函数类型的 Prop，它的作用是一个给组件传递渲染逻辑。 接收了 Render Prop 的组件，在内部会通过执行此函数参数来完成自己的渲染逻辑。 通过函数返回渲染组件 比 直接传递渲染组件 更能灵活的给 渲染组件传递属性。比如下面示例中，通过函数可以使渲染组件 h1 更灵活的接收到来自 DataProvider 的参数。 1234567891011121314">
+  <meta name="description" content="是什么Render Props 就是函数类型的 Prop，它的作用是给组件传递渲染逻辑。 接收了 Render Prop 的组件，在内部会通过执行此函数参数来完成自己的渲染逻辑。 通过函数返回渲染组件 比 直接传递渲染组件 更能灵活的给 渲染组件传递属性。比如下面示例中，通过函数可以使渲染组件 h1 更灵活的接收到来自 DataProvider 的参数。 123456789101112131415">
 <meta name="keywords" content="react">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Render Props">
 <meta property="og:url" content="http://yoursite.com/web/react/render Props/index.html">
 <meta property="og:site_name" content="DaMeng">
-<meta property="og:description" content="是什么Render Props 就是函数类型的 Prop，它的作用是一个给组件传递渲染逻辑。 接收了 Render Prop 的组件，在内部会通过执行此函数参数来完成自己的渲染逻辑。 通过函数返回渲染组件 比 直接传递渲染组件 更能灵活的给 渲染组件传递属性。比如下面示例中，通过函数可以使渲染组件 h1 更灵活的接收到来自 DataProvider 的参数。 1234567891011121314">
+<meta property="og:description" content="是什么Render Props 就是函数类型的 Prop，它的作用是给组件传递渲染逻辑。 接收了 Render Prop 的组件，在内部会通过执行此函数参数来完成自己的渲染逻辑。 通过函数返回渲染组件 比 直接传递渲染组件 更能灵活的给 渲染组件传递属性。比如下面示例中，通过函数可以使渲染组件 h1 更灵活的接收到来自 DataProvider 的参数。 123456789101112131415">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-08-22T12:41:50.000Z">
+<meta property="og:updated_time" content="2020-10-08T13:32:48.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Render Props">
-<meta name="twitter:description" content="是什么Render Props 就是函数类型的 Prop，它的作用是一个给组件传递渲染逻辑。 接收了 Render Prop 的组件，在内部会通过执行此函数参数来完成自己的渲染逻辑。 通过函数返回渲染组件 比 直接传递渲染组件 更能灵活的给 渲染组件传递属性。比如下面示例中，通过函数可以使渲染组件 h1 更灵活的接收到来自 DataProvider 的参数。 1234567891011121314">
+<meta name="twitter:description" content="是什么Render Props 就是函数类型的 Prop，它的作用是给组件传递渲染逻辑。 接收了 Render Prop 的组件，在内部会通过执行此函数参数来完成自己的渲染逻辑。 通过函数返回渲染组件 比 直接传递渲染组件 更能灵活的给 渲染组件传递属性。比如下面示例中，通过函数可以使渲染组件 h1 更灵活的接收到来自 DataProvider 的参数。 123456789101112131415">
   <link rel="canonical" href="http://yoursite.com/web/react/render Props/">
 
 
@@ -271,7 +271,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="是什么"><a href="#是什么" class="headerlink" title="是什么"></a>是什么</h1><p>Render Props 就是<strong>函数类型的 Prop</strong>，它的作用是一个给组件传递渲染逻辑。</p>
+        <h1 id="是什么"><a href="#是什么" class="headerlink" title="是什么"></a>是什么</h1><p>Render Props 就是<strong>函数类型的 Prop</strong>，它的作用是给组件传递渲染逻辑。</p>
 <p>接收了 Render Prop 的组件，在内部会通过执行此函数参数来完成自己的渲染逻辑。</p>
 <p>通过函数<strong>返回渲染组件</strong> 比 <strong>直接传递渲染组件</strong> 更能灵活的给 <strong>渲染组件</strong>传递属性。比如下面示例中，通过函数可以使渲染组件 <code>h1</code> 更灵活的接收到来自 <code>DataProvider</code> 的参数。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//DataProvider 在内部会执行 render 函数来完成自己的渲染逻辑</span></span><br><span class="line"><span class="comment">// render 属性名可以是其他名字，并不必非得叫做 render</span></span><br><span class="line">&lt;DataProvider render=&#123;data =&gt; (       </span><br><span class="line">  &lt;h1&gt;Hello &#123;data.target&#125;&lt;<span class="regexp">/h1&gt;</span></span><br><span class="line"><span class="regexp">)&#125;/</span>&gt;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DataProvider</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">        	<span class="comment">//给渲染组件传递参数 ‘world’</span></span><br><span class="line">        	&#123;<span class="keyword">this</span>.props.render(<span class="string">'World'</span>)&#125;</span><br><span class="line">        &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
@@ -382,7 +382,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">110</span>
+          <span class="site-state-item-count">108</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -408,7 +408,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">75</span>
+        <span class="site-state-item-count">73</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>

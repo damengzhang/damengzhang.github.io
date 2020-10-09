@@ -56,18 +56,18 @@
   };
 </script>
 
-  <meta name="description" content="1 作用对于长时间运行的 JS 脚本，使用 web worker 可以不阻塞 UI 线程，进而提升用户体验。 2 使用2.1 上下文worker 运行在另一个全局上下文中，不同于当前的window。 专用 worker 的上下文是 DedicatedWorkerGlobalScope （专用 worker 是指标准worker仅在单一脚本中被使用）。一个专用 worker 仅仅能被生成它的脚本使用">
-<meta name="keywords" content="URL">
+  <meta name="description" content="1 作用对于长时间运行的 JS 脚本，使用 web worker 可以不阻塞 UI 线程，进而提升用户体验。 2 使用2.1 上下文worker 运行在另一个全局上下文中，不同于当前的window。 专用 worker 的上下文是 DedicatedWorkerGlobalScope （专用 worker 是指标准 worker 仅在单一脚本中被使用）。一个专用 worker 仅仅能被生成它的脚本">
+<meta name="keywords" content="worker">
 <meta property="og:type" content="article">
-<meta property="og:title" content="URL 对象">
+<meta property="og:title" content="webworker">
 <meta property="og:url" content="http://yoursite.com/web/javascript/webworker/index.html">
 <meta property="og:site_name" content="DaMeng">
-<meta property="og:description" content="1 作用对于长时间运行的 JS 脚本，使用 web worker 可以不阻塞 UI 线程，进而提升用户体验。 2 使用2.1 上下文worker 运行在另一个全局上下文中，不同于当前的window。 专用 worker 的上下文是 DedicatedWorkerGlobalScope （专用 worker 是指标准worker仅在单一脚本中被使用）。一个专用 worker 仅仅能被生成它的脚本使用">
+<meta property="og:description" content="1 作用对于长时间运行的 JS 脚本，使用 web worker 可以不阻塞 UI 线程，进而提升用户体验。 2 使用2.1 上下文worker 运行在另一个全局上下文中，不同于当前的window。 专用 worker 的上下文是 DedicatedWorkerGlobalScope （专用 worker 是指标准 worker 仅在单一脚本中被使用）。一个专用 worker 仅仅能被生成它的脚本">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-09-14T10:42:20.000Z">
+<meta property="og:updated_time" content="2020-10-09T13:16:36.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="URL 对象">
-<meta name="twitter:description" content="1 作用对于长时间运行的 JS 脚本，使用 web worker 可以不阻塞 UI 线程，进而提升用户体验。 2 使用2.1 上下文worker 运行在另一个全局上下文中，不同于当前的window。 专用 worker 的上下文是 DedicatedWorkerGlobalScope （专用 worker 是指标准worker仅在单一脚本中被使用）。一个专用 worker 仅仅能被生成它的脚本使用">
+<meta name="twitter:title" content="webworker">
+<meta name="twitter:description" content="1 作用对于长时间运行的 JS 脚本，使用 web worker 可以不阻塞 UI 线程，进而提升用户体验。 2 使用2.1 上下文worker 运行在另一个全局上下文中，不同于当前的window。 专用 worker 的上下文是 DedicatedWorkerGlobalScope （专用 worker 是指标准 worker 仅在单一脚本中被使用）。一个专用 worker 仅仅能被生成它的脚本">
   <link rel="canonical" href="http://yoursite.com/web/javascript/webworker/">
 
 
@@ -82,7 +82,7 @@
   };
 </script>
 
-  <title>URL 对象 | DaMeng</title>
+  <title>webworker | DaMeng</title>
   
 
 
@@ -220,7 +220,7 @@
       <meta itemprop="name" content="DaMeng">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">URL 对象
+        <h1 class="post-title" itemprop="name headline">webworker
 
           
         </h1>
@@ -252,7 +252,7 @@
                   ，
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web/js/" itemprop="url" rel="index"><span itemprop="name">js</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a></span>
 
                 
                 
@@ -273,8 +273,8 @@
       
         <h1 id="1-作用"><a href="#1-作用" class="headerlink" title="1 作用"></a>1 作用</h1><p>对于长时间运行的 JS 脚本，使用 web worker 可以不阻塞 UI 线程，进而提升用户体验。</p>
 <h1 id="2-使用"><a href="#2-使用" class="headerlink" title="2 使用"></a>2 使用</h1><h2 id="2-1-上下文"><a href="#2-1-上下文" class="headerlink" title="2.1 上下文"></a>2.1 上下文</h2><p>worker 运行在另一个全局上下文中，不同于当前的<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window" target="_blank" rel="noopener"><code>window</code></a>。</p>
-<p>专用 worker 的上下文是 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/DedicatedWorkerGlobalScope" target="_blank" rel="noopener"><code>DedicatedWorkerGlobalScope</code></a> （专用 worker 是指标准worker仅在单一脚本中被使用）。一个专用 worker 仅仅能被生成它的脚本使用。</p>
-<p>共享 worker 的上下文是<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/SharedWorkerGlobalScope" target="_blank" rel="noopener"><code>SharedWorkerGlobalScope</code></a>对象）。共享 worker 可以同时被多个脚本使用。</p>
+<p>专用 worker 的上下文是 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/DedicatedWorkerGlobalScope" target="_blank" rel="noopener"><code>DedicatedWorkerGlobalScope</code></a> （专用 worker 是指标准 worker 仅在单一脚本中被使用）。一个专用 worker 仅仅能被生成它的脚本使用。</p>
+<p>共享 worker 的上下文是 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/SharedWorkerGlobalScope" target="_blank" rel="noopener"><code>SharedWorkerGlobalScope</code></a>对象。共享 worker 可以同时被多个脚本使用。</p>
 <h2 id="2-2-与-Worker-通信"><a href="#2-2-与-Worker-通信" class="headerlink" title="2.2 与 Worker 通信"></a>2.2 与 Worker 通信</h2><p>Worker 线程和主线程间通过消息机制进行。</p>
 <h3 id="2-2-1-发送消息"><a href="#2-2-1-发送消息" class="headerlink" title="2.2.1 发送消息"></a>2.2.1 发送消息</h3><p>postMessage(arg)</p>
 <h3 id="2-2-2-接收消息"><a href="#2-2-2-接收消息" class="headerlink" title="2.2.2 接收消息"></a>2.2.2 接收消息</h3><p>onmessage(e)</p>
@@ -311,7 +311,6 @@
 
 <h1 id="3-注意"><a href="#3-注意" class="headerlink" title="3 注意"></a>3 注意</h1><ul>
 <li>worker 内部不能直接操作 DOM 节点，不能直接使用 window 对象的方法和属性</li>
-<li></li>
 </ul>
 
     </div>
@@ -328,7 +327,7 @@
           
           <div class="post-tags">
             
-              <a href="/tags/URL/" rel="tag"># URL</a>
+              <a href="/tags/worker/" rel="tag"># worker</a>
             
           </div>
         
@@ -413,7 +412,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">110</span>
+          <span class="site-state-item-count">108</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -439,7 +438,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">75</span>
+        <span class="site-state-item-count">73</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>

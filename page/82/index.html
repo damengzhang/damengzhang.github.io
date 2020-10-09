@@ -206,7 +206,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/web/安全/CSRF/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/web/javascript/js的变量提升/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="DaMeng">
@@ -220,7 +220,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/web/安全/CSRF/" class="post-title-link" itemprop="url">CSRF</a>
+            <a href="/web/javascript/js的变量提升/" class="post-title-link" itemprop="url">js 变量提升</a>
           
         </h1>
 
@@ -235,7 +235,7 @@
                 
               
 
-              <time title="创建时间：2018-11-25 19:40:38" itemprop="dateCreated datePublished" datetime="2018-11-25T19:40:38+08:00">2018-11-25</time>
+              <time title="创建时间：2018-10-13 19:38:08" itemprop="dateCreated datePublished" datetime="2018-10-13T19:38:08+08:00">2018-10-13</time>
             </span>
           
             <span class="post-meta-item">
@@ -251,7 +251,7 @@
                   ，
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web/安全/" itemprop="url" rel="index"><span itemprop="name">安全</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a></span>
 
                 
                 
@@ -270,32 +270,27 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="CSRF-是什么"><a href="#CSRF-是什么" class="headerlink" title="CSRF 是什么"></a>CSRF 是什么</h1><p>CSRF（Cross-site request forgery，跨站请求伪造）也被称作 one-click attack 或 session riding，通常被缩写为 CSRF 或 XSRF。</p>
-<p>CSRF 利用网站对用户浏览器的信任，在用户当前已登录的网站上执行非用户本意的操作。</p>
-<h1 id="CSRF-攻击细节"><a href="#CSRF-攻击细节" class="headerlink" title="CSRF 攻击细节"></a>CSRF 攻击细节</h1><h2 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h2><img src="/web/安全/CSRF/csrf.jpg">
+          <h1 id="变量提升是什么"><a href="#变量提升是什么" class="headerlink" title="变量提升是什么"></a>变量提升是什么</h1><p>js 中的变量提升，其实是对变量的声明进行提升，也就是将变量的声明（不包括赋值）提升到其所在作用域的顶部。</p>
+<h1 id="全局作用域的变量提升"><a href="#全局作用域的变量提升" class="headerlink" title="全局作用域的变量提升"></a><strong>全局作用域的变量提升</strong></h1><ul>
+<li>使用 var 修饰的全局变量会被变量提升</li>
+<li>没有使用 var 修饰的全局变量不会被提升，变量必须在声明后才能使用，否则会报错</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//使用 var 修饰的全局变量会被变量提升</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">F1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(gN1);</span><br><span class="line">&#125;</span><br><span class="line">F1();<span class="comment">//undefined，变量声明被提升，赋值没被提升，故输出为undefined</span></span><br><span class="line"><span class="keyword">var</span> gN1 = <span class="number">1</span>;</span><br><span class="line">F1();<span class="comment">//1</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h2><p>假如一家银行用以运行转账操作的 URL 地址如下： <code>https://bank.example.com/withdraw?account=AccoutName&amp;amount=1000&amp;for=PayeeName</code></p>
-<p>攻击者可以在另一个网站上放置如下代码： <code>&lt;img src=&quot;https://bank.example.com/withdraw?account=Alice&amp;amount=1000&amp;for=Badman&quot; /&gt;</code>。如果有账户名为 Alice 的用户在访问过银行，且登录信息未过期的情况下访问了恶意站点，那么她将会被转走 1000 。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>完成 CSRF 攻击必须的前提条件有：</p>
-<ol>
-<li>用户在 A 网站 Cookie 没失效的情况下访问恶意 B 网站</li>
-<li>A 网站只通过 Cookie 来校验用户认证</li>
-</ol>
-<p>CSRF 攻击者并不能直接获取用户的账户控制权，也不能直接窃取用户的任何信息。他们能做到的，<strong>利用用户已有的认证信息，以用户的名义发送恶意请求</strong>。</p>
-<p>恶意网址 B 有很多种形式，攻击者甚至不需要管理放置恶意网址的网站。例如攻击者可以将恶意地址藏在论坛、博客等任何<a href="https://zh.wikipedia.org/wiki/用戶生成內容" target="_blank" rel="noopener">用户生成内容</a>的网站中。这意味着<strong>如果服务端没有合适的防御措施的话，用户即使访问熟悉的可信网站也有受攻击的危险</strong>。</p>
-<h1 id="CSRF-防御"><a href="#CSRF-防御" class="headerlink" title="CSRF 防御"></a>CSRF 防御</h1><p>将下面方法结合起来对 CSRF 进行防御：</p>
-<ul>
-<li>通过添加 CSP HTTP 头部来设置有效域</li>
-<li>对于修改操作的接口一定要设置成 POST 请求</li>
-<li>对于 POST 请求必须携带 token ，后端接到请求对 token 进行校验<ul>
-<li>前端可以将请求接口封装起来，在接口内部对请求同一携带 token</li>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//没有使用var修饰的全局变量不会被提升，变量必须在声明后才能使用，否则会报错</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">F1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(gN1);</span><br><span class="line">&#125;</span><br><span class="line">F1();<span class="comment">//error： gN1 is not defined</span></span><br><span class="line"> gN1 = <span class="number">1</span>;</span><br><span class="line">F1();<span class="comment">//1</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="局部作用域的变量提升"><a href="#局部作用域的变量提升" class="headerlink" title="局部作用域的变量提升"></a><strong>局部作用域的变量提升</strong></h1><ul>
+<li>局部作用域的变量声明会被提升到作用域顶部</li>
 </ul>
-</li>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//局部作用域的变量声明会被提升</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">F2</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(n1);<span class="comment">//undefined</span></span><br><span class="line">    <span class="keyword">var</span> n1 = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line">F2();</span><br></pre></td></tr></table></figure>
+
+<h1 id="块级作用域的变量提升"><a href="#块级作用域的变量提升" class="headerlink" title="块级作用域的变量提升"></a><strong>块级作用域的变量提升</strong></h1><ul>
+<li>块级作用域不会进行变量提升，变量的使用必须在声明之后，否则会报错</li>
 </ul>
-<p>参考：</p>
-<p><a href="https://zh.wikipedia.org/wiki/跨站请求伪造" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki/%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0</a></p>
-<p><a href="https://www.cnblogs.com/hyddd/archive/2009/04/09/1432744.html" target="_blank" rel="noopener">https://www.cnblogs.com/hyddd/archive/2009/04/09/1432744.html</a></p>
-<p><a href="https://juejin.im/post/6844903689702866952#heading-6" target="_blank" rel="noopener">https://juejin.im/post/6844903689702866952#heading-6</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//块级作用域不会进行变量提示，变量的使用必须在声明之后，否则会报错</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">F3</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(n3);<span class="comment">//error： n3 is not defined</span></span><br><span class="line">    <span class="keyword">let</span> n3 = <span class="number">3</span>;</span><br><span class="line">&#125;</span><br><span class="line">F3();</span><br></pre></td></tr></table></figure>
+
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a><strong>总结</strong></h1><p>1、局部变量、使用 var 声明的全局变量 会被提升</p>
+<p>2、块级变量、没有使用 var 声明的全局变量 不会被提升</p>
 
         
       
@@ -319,7 +314,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/81/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/81/">81</a><span class="page-number current">82</span><a class="page-number" href="/page/83/">83</a><span class="space">&hellip;</span><a class="page-number" href="/page/110/">110</a><a class="extend next" rel="next" href="/page/83/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/81/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/81/">81</a><span class="page-number current">82</span><a class="page-number" href="/page/83/">83</a><span class="space">&hellip;</span><a class="page-number" href="/page/108/">108</a><a class="extend next" rel="next" href="/page/83/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -363,7 +358,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">110</span>
+          <span class="site-state-item-count">108</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -389,7 +384,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">75</span>
+        <span class="site-state-item-count">73</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>

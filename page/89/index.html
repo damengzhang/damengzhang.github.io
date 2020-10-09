@@ -206,7 +206,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/微服务/微服务/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/linux/Linux中的进程管理/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="DaMeng">
@@ -220,7 +220,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/微服务/微服务/" class="post-title-link" itemprop="url">微服务</a>
+            <a href="/linux/Linux中的进程管理/" class="post-title-link" itemprop="url">Linux中的进程管理</a>
           
         </h1>
 
@@ -235,7 +235,7 @@
                 
               
 
-              <time title="创建时间：2018-05-23 19:30:08" itemprop="dateCreated datePublished" datetime="2018-05-23T19:30:08+08:00">2018-05-23</time>
+              <time title="创建时间：2018-05-02 00:00:00" itemprop="dateCreated datePublished" datetime="2018-05-02T00:00:00+08:00">2018-05-02</time>
             </span>
           
             <span class="post-meta-item">
@@ -244,7 +244,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/微服务/" itemprop="url" rel="index"><span itemprop="name">微服务</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
 
                 
                 
@@ -263,12 +263,31 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>微服务特点：</p>
-<ul>
-<li>低耦合</li>
-<li>弱依赖技术</li>
-<li>以业务为单元组织代码</li>
-</ul>
+          <h1 id="查看"><a href="#查看" class="headerlink" title="查看"></a>查看</h1><h2 id="ps"><a href="#ps" class="headerlink" title="ps"></a>ps</h2><p>使用ps查看某个时间点的进程运行情况。ps auxf  -&gt; 列出类似于进程树的的程序显示</p>
+<h2 id="top"><a href="#top" class="headerlink" title="top"></a>top</h2><p>使用top动态查看进程的变化。top  [-d 数字]  | top [-bnp]</p>
+<p>参数：</p>
+<p>-d：配置界面更新的秒数</p>
+<p>-b：以批处理的方式处理输出  </p>
+<p>-n：与-b搭配，配置执行几次top输出的结果</p>
+<p>-p：指定监控的pid</p>
+<p>在top执行过程中可以使用的命令</p>
+<p>?：显示top中可以输入的按键命令</p>
+<p>P：以CPU的使用资源排序</p>
+<p>M：以MEM的使用资源排序</p>
+<p>N：以PID排序</p>
+<p>T：以使用的CPU时间累积（time+）排序</p>
+<p>k：给某个PID信号</p>
+<p>r：重新配置PID的nice值</p>
+<p>q：离开top</p>
+<h2 id="pstree"><a href="#pstree" class="headerlink" title="pstree"></a>pstree</h2><p>查看进程间关系。pstree  [-A|-U]  -[up]</p>
+<p>参数：</p>
+<p>-A：用ASCII字符来连接进程间关系</p>
+<p>-U：用utf-8字符来连接进程间关系</p>
+<p>-p：列出PID</p>
+<p>-u：列出每个进程所属账号</p>
+<h1 id="管理"><a href="#管理" class="headerlink" title="管理"></a>管理</h1><p>通过信号来管理进程</p>
+<h2 id="kill"><a href="#kill" class="headerlink" title="kill"></a>kill</h2><p>kill -singnal  PID</p>
+<h2 id="killall"><a href="#killall" class="headerlink" title="killall"></a>killall</h2><p>killall  -signal  命令名称</p>
 
         
       
@@ -292,7 +311,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/88/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/88/">88</a><span class="page-number current">89</span><a class="page-number" href="/page/90/">90</a><span class="space">&hellip;</span><a class="page-number" href="/page/110/">110</a><a class="extend next" rel="next" href="/page/90/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/88/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/88/">88</a><span class="page-number current">89</span><a class="page-number" href="/page/90/">90</a><span class="space">&hellip;</span><a class="page-number" href="/page/108/">108</a><a class="extend next" rel="next" href="/page/90/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -336,7 +355,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">110</span>
+          <span class="site-state-item-count">108</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -362,7 +381,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">75</span>
+        <span class="site-state-item-count">73</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>

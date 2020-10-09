@@ -206,7 +206,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/web/javascript/this/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/web/webpack/webpack Plugins/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="DaMeng">
@@ -220,7 +220,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/web/javascript/this/" class="post-title-link" itemprop="url">JavaScript 中的 this</a>
+            <a href="/web/webpack/webpack Plugins/" class="post-title-link" itemprop="url">webpack Plugins</a>
           
         </h1>
 
@@ -235,7 +235,7 @@
                 
               
 
-              <time title="创建时间：2019-05-13 19:40:38" itemprop="dateCreated datePublished" datetime="2019-05-13T19:40:38+08:00">2019-05-13</time>
+              <time title="创建时间：2019-05-09 00:00:00" itemprop="dateCreated datePublished" datetime="2019-05-09T00:00:00+08:00">2019-05-09</time>
             </span>
           
             <span class="post-meta-item">
@@ -251,7 +251,7 @@
                   ，
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web/webpack/" itemprop="url" rel="index"><span itemprop="name">webpack</span></a></span>
 
                 
                 
@@ -270,72 +270,20 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>多数情况下函数的调用方式决定了 this 的值（运行时绑定）。</p>
-<p>ES5 使用 bind 方法设置 this 值，使得不用考虑函数如何被调用。</p>
-<h1 id="全局上下文"><a href="#全局上下文" class="headerlink" title="全局上下文"></a>全局上下文</h1><p>在全局执行上下文下，无论是否是严格模式，this 都指向全局对象。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在浏览器中, window 对象同时也是全局对象：</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">this</span> === <span class="built_in">window</span>); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line">a = <span class="number">37</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">window</span>.a); <span class="comment">// 37</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">this</span>.b = <span class="string">"MDN"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">window</span>.b)  <span class="comment">// "MDN"</span></span><br><span class="line"><span class="built_in">console</span>.log(b)</span><br></pre></td></tr></table></figure>
+          <h1 id="是什么"><a href="#是什么" class="headerlink" title="是什么"></a>是什么</h1><p>Plugins 本质上是一个包含 <code>apply</code> 方法的类，<code>apply</code> 会被 webpack compiler 调用。</p>
+<p>在 <code>apply</code> 方法中可以访问到 compiler 对象，进而对其挂上钩子。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> pluginName = <span class="string">'ConsoleLogOnBuildWebpackPlugin'</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ConsoleLogOnBuildWebpackPlugin</span> </span>&#123;</span><br><span class="line">  apply(compiler) &#123;</span><br><span class="line">    compiler.hooks.run.tap(pluginName, compilation =&gt; &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'webpack 构建过程开始！'</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = ConsoleLogOnBuildWebpackPlugin;</span><br></pre></td></tr></table></figure>
 
-<h1 id="函数上下文"><a href="#函数上下文" class="headerlink" title="函数上下文"></a>函数上下文</h1><h2 id="作为函数调用"><a href="#作为函数调用" class="headerlink" title="作为函数调用"></a>作为函数调用</h2><p>在函数内部，this 的值取决于函数被调用的方式。</p>
-<ul>
-<li><p>调用时不设置 this </p>
-<ul>
-<li><p>非严格模式： window</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function f1() &#123;</span><br><span class="line">    return this;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log( f1() );// window 对象</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>严格模式： undefined</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f2</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="meta">    "use strict"</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log( f2() );<span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h2 id="作为方法调用"><a href="#作为方法调用" class="headerlink" title="作为方法调用"></a>作为方法调用</h2><h3 id="类上下文"><a href="#类上下文" class="headerlink" title="类上下文"></a>类上下文</h3><ul>
-<li>类函数中的 this 表示类</li>
-<li>实例函数中的 this 表示类的原型</li>
-<li>派生类调用 super() 后才有 this，相当于 new Base()，Base 为基类</li>
-</ul>
-<h3 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h3><p>构造函数中的 this 为构造函数的返回值，默认返回值为创建的实例对象，但返回值可以被修改。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">C</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.a = <span class="number">37</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> o = <span class="keyword">new</span> C();</span><br><span class="line"><span class="built_in">console</span>.log(o.a); <span class="comment">// logs 37</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">C2</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.a = <span class="number">37</span>;</span><br><span class="line">  <span class="keyword">return</span> &#123;<span class="attr">a</span>:<span class="number">38</span>&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">o = <span class="keyword">new</span> C2();</span><br><span class="line"><span class="built_in">console</span>.log(o.a); <span class="comment">// logs 38</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="类中的-this"><a href="#类中的-this" class="headerlink" title="类中的 this"></a>类中的 this</h3><p>可以通过 bind 将 this 指向实例。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">class Car &#123;</span><br><span class="line">  constructor() &#123;</span><br><span class="line">    // Bind sayBye but not sayHi to show the difference</span><br><span class="line">    this.sayBye = this.sayBye.bind(this);</span><br><span class="line">  &#125;</span><br><span class="line">  sayHi() &#123;</span><br><span class="line">    console.log(`Hello from $&#123;this.name&#125;`);</span><br><span class="line">  &#125;</span><br><span class="line">  sayBye() &#123;</span><br><span class="line">    console.log(`Bye from $&#123;this.name&#125;`);</span><br><span class="line">  &#125;</span><br><span class="line">  get name() &#123;</span><br><span class="line">    return &apos;Car&apos;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Bird &#123;</span><br><span class="line">  get name() &#123;</span><br><span class="line">    return &apos;Bird&apos;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class BirdTest extends Car &#123;</span><br><span class="line">  get name() &#123;</span><br><span class="line">    return &apos;zx&apos;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">let car1 = new Car();</span><br><span class="line">let bird1 = new Bird();</span><br><span class="line"></span><br><span class="line">// The value of &apos;this&apos; in methods depends on their caller</span><br><span class="line">car1.sayHi(); // Hello from Ferrari</span><br><span class="line">bird1.sayHi = car.sayHi;</span><br><span class="line">bird1.sayHi(); // Hello from Tweety，函数借用会使用第一次编译时的 this</span><br><span class="line"></span><br><span class="line">// For bound methods, &apos;this&apos; doesn&apos;t depend on the caller</span><br><span class="line">bird1.sayBye = car.sayBye;</span><br><span class="line">bird1.sayBye();  // Bye from Ferrari</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">let test1 = new BirdTest();</span><br><span class="line">test1.sayHi();</span><br><span class="line">test1.sayBye();</span><br></pre></td></tr></table></figure>
-
-<h3 id="原型链中的-this"><a href="#原型链中的-this" class="headerlink" title="原型链中的 this"></a>原型链中的 this</h3><p>当被当做方法调用时，this 被设置为调用该函数的对象。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> o = &#123;</span><br><span class="line">  f: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; </span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.a + <span class="keyword">this</span>.b; </span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> p = <span class="built_in">Object</span>.create(o);</span><br><span class="line">p.a = <span class="number">1</span>;</span><br><span class="line">p.b = <span class="number">4</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(p.f()); <span class="comment">// 5</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="绑定函数上下文"><a href="#绑定函数上下文" class="headerlink" title="绑定函数上下文"></a>绑定函数上下文</h3><ul>
-<li><p>call</p>
-</li>
-<li><p>apply</p>
-</li>
-<li><p>bind</p>
-<ul>
-<li><p>通过 bind 可以将函数中的 this 永久绑定到第一个参数</p>
-<ul>
-<li><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.a;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> g = f.bind(&#123;<span class="attr">a</span>:<span class="string">"azerty"</span>&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(g()); <span class="comment">// azerty</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> h = g.bind(&#123;<span class="attr">a</span>:<span class="string">'yoo'</span>&#125;); <span class="comment">// bind只生效一次！</span></span><br><span class="line"><span class="built_in">console</span>.log(h()); <span class="comment">// azerty</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> o = &#123;<span class="attr">a</span>:<span class="number">37</span>, <span class="attr">f</span>:f, <span class="attr">g</span>:g, <span class="attr">h</span>:h&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(o.a, o.f(), o.g(), o.h()); <span class="comment">// 37, 37, azerty, azerty</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="DOM-事件处理函数"><a href="#DOM-事件处理函数" class="headerlink" title="DOM 事件处理函数"></a>DOM 事件处理函数</h3><p>使用 <code>addEventListener</code> 添加的事件处理函数， this 指向触发事件的元素，即 currentTarget。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 被调用时，将关联的元素变成蓝色</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bluify</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span> === e.currentTarget); <span class="comment">// 总是 true</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// 当 currentTarget 和 target 是同一个对象时为 true</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span> === e.target);        </span><br><span class="line">  <span class="keyword">this</span>.style.backgroundColor = <span class="string">'#A5D9F3'</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取文档中的所有元素的列表</span></span><br><span class="line"><span class="keyword">var</span> elements = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'*'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 将bluify作为元素的点击监听函数，当元素被点击时，就会变成蓝色</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span> ; i&lt;elements.length ; i++)&#123;</span><br><span class="line">  elements[i].addEventListener(<span class="string">'click'</span>, bluify, <span class="literal">false</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="内联事件处理函数"><a href="#内联事件处理函数" class="headerlink" title="内联事件处理函数"></a>内联事件处理函数</h3><p>当代码被内联 <a href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/Events/Event_handlers" target="_blank" rel="noopener">on-event 处理函数</a> 调用时，它的<code>this</code>指向监听器所在的DOM元素：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;button onclick=<span class="string">"alert(this.tagName.toLowerCase());"</span>&gt;</span><br><span class="line">  Show <span class="keyword">this</span><span class="comment">// button</span></span><br><span class="line">&lt;<span class="regexp">/button&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>没有设置内部函数的 <code>this</code>，所以它指向 global/window 对象（即非严格模式下调用的函数未设置 <code>this</code> 时指向的默认对象）</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;button onclick=<span class="string">"alert((function()&#123;return this&#125;)());"</span>&gt;</span><br><span class="line">  Show inner <span class="keyword">this</span><span class="comment">// window</span></span><br><span class="line">&lt;<span class="regexp">/button&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h2><p>箭头函数中的 this 表示创建时的作用域，而不是运行时的。通过 call apply bind 给箭头函数绑定 this 时，this 会被忽略。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> globalObject = <span class="keyword">this</span>;</span><br><span class="line"><span class="keyword">var</span> foo = <span class="function">(<span class="params">(</span>) =&gt;</span> <span class="keyword">this</span>);</span><br><span class="line"><span class="built_in">console</span>.log(foo() === globalObject); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj = &#123;<span class="attr">foo</span>: foo&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(obj.foo() === globalObject); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 尝试使用call来设定this</span></span><br><span class="line"><span class="built_in">console</span>.log(foo.call(obj) === globalObject); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 尝试使用bind来设定this</span></span><br><span class="line">foo = foo.bind(obj);</span><br><span class="line"><span class="built_in">console</span>.log(foo() === globalObject); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<p>compiler hook 的 tap 方法的第一个参数，应该是驼峰式命名的插件名称。建议为此使用一个常量，以便它可以在所有 hook 中重复使用。</p>
+<h1 id="有什么作用"><a href="#有什么作用" class="headerlink" title="有什么作用"></a>有什么作用</h1><p>plugin 可于执行更广泛的任务，如 打包优化、资源管理、注入环境变量。</p>
+<h1 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h1><ol>
+<li>如果是外部 Plugins，则需要先安装</li>
+<li>然后在 webpack 中 require 进来</li>
+<li>通过 new 创建插件实例，将其添加到 plugins 数组中</li>
+<li>可根据不同目的多次使用同一个插件</li>
+<li>使用对象给插件实例传递参数</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">const HtmlWebpackPlugin = require(&apos;html-webpack-plugin&apos;); // 通过 npm 安装</span><br><span class="line">const webpack = require(&apos;webpack&apos;); // 访问内置的插件</span><br><span class="line">const path = require(&apos;path&apos;);</span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">  entry: &apos;./path/to/my/entry/file.js&apos;,</span><br><span class="line">  output: &#123;</span><br><span class="line">    filename: &apos;my-first-webpack.bundle.js&apos;,</span><br><span class="line">    path: path.resolve(__dirname, &apos;dist&apos;)</span><br><span class="line">  &#125;,</span><br><span class="line">  module: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: /\.(js|jsx)$/,</span><br><span class="line">        use: &apos;babel-loader&apos;</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [</span><br><span class="line">    new webpack.ProgressPlugin(),</span><br><span class="line">    new HtmlWebpackPlugin(&#123;template: &apos;./src/index.html&apos;&#125;)</span><br><span class="line">  ]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
 
         
@@ -360,7 +308,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/50/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/50/">50</a><span class="page-number current">51</span><a class="page-number" href="/page/52/">52</a><span class="space">&hellip;</span><a class="page-number" href="/page/110/">110</a><a class="extend next" rel="next" href="/page/52/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/50/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/50/">50</a><span class="page-number current">51</span><a class="page-number" href="/page/52/">52</a><span class="space">&hellip;</span><a class="page-number" href="/page/108/">108</a><a class="extend next" rel="next" href="/page/52/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -404,7 +352,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">110</span>
+          <span class="site-state-item-count">108</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -430,7 +378,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">75</span>
+        <span class="site-state-item-count">73</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>

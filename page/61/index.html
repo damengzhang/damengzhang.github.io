@@ -206,7 +206,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/web/javascript/es6/Proxy 和 Reflect/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/web/webpack/webpack 打包过程调试/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="DaMeng">
@@ -220,7 +220,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/web/javascript/es6/Proxy 和 Reflect/" class="post-title-link" itemprop="url">Proxy 和 Reflect</a>
+            <a href="/web/webpack/webpack 打包过程调试/" class="post-title-link" itemprop="url">webpack 打包过程调试</a>
           
         </h1>
 
@@ -235,7 +235,7 @@
                 
               
 
-              <time title="创建时间：2019-04-20 19:40:38" itemprop="dateCreated datePublished" datetime="2019-04-20T19:40:38+08:00">2019-04-20</time>
+              <time title="创建时间：2019-04-17 00:00:00" itemprop="dateCreated datePublished" datetime="2019-04-17T00:00:00+08:00">2019-04-17</time>
             </span>
           
             <span class="post-meta-item">
@@ -251,14 +251,7 @@
                   ，
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web/javascript/es6/" itemprop="url" rel="index"><span itemprop="name">es6</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web/webpack/" itemprop="url" rel="index"><span itemprop="name">webpack</span></a></span>
 
                 
                 
@@ -277,92 +270,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="Proxy"><a href="#Proxy" class="headerlink" title="Proxy"></a>Proxy</h1><h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><p>可以通过 Proxy 来代理对象，然后定制该对象的基本操作（如属性查找、赋值、枚举、函数调用等）。</p>
-<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> p = <span class="keyword">new</span> <span class="built_in">Proxy</span>(target, handler)</span><br></pre></td></tr></table></figure>
+          <p>webpack 本质上是 node 应用，所以可以使用 node 调试方法对 webpack 打包过程进行调试：</p>
+<ol>
+<li><p>进入项目目录，在控制台执行如下命令启动调试：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node --inspect-brk .\node_modules\webpack\bin\webpack.js</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在 chrome 地址栏输入 chrome://inspect/#devices </p>
+<img src="/web/webpack/webpack%20打包过程调试/chrome_inspect.png">
 
-<p>参数：</p>
-<ul>
-<li><p>target：被代理的对象，可以是任何类型的对象，包括原生数组，函数，甚至另一个代理。</p>
 </li>
-<li><p>handler：以函数为属性值的对象，key 为操作名称，value 为自定义实现。</p>
-<ul>
-<li><p>支持的 key：</p>
-<ul>
-<li>get：function(target, property, receiver) {//…}<ul>
-<li>属性读取操作的捕捉器。</li>
-</ul>
-</li>
-<li>set(target, prop,value, receiver) {//…}<ul>
-<li>属性设置操作的捕捉器。</li>
-</ul>
-</li>
-<li>has(target, prop) {//…}<ul>
-<li><code>in</code> 操作符的捕捉器。</li>
-</ul>
-</li>
-<li>deleteProperty(target, prop) {//…}<ul>
-<li><code>delete</code> 操作符的捕捉器。</li>
-</ul>
-</li>
-<li>getPrototypeOf(target) { //…}<ul>
-<li><code>Object.getPrototypeOf</code> 方法的捕捉器。</li>
-</ul>
-</li>
-<li>setPrototypeOf(target, newProto) {//…}<ul>
-<li><code>Object.setPrototypeOf</code> 方法的捕捉器。</li>
-</ul>
-</li>
-<li>isExtensible(target) {//…}<ul>
-<li><code>Object.isExtensible</code>方法的捕捉器。</li>
-</ul>
-</li>
-<li>preventExtensions(target) {//…}<ul>
-<li><code>Object.preventExtensions</code>方法的捕捉器。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>getOwnPropertyDescriptor(target, prop) {//…}</p>
-<pre><code>- `Object.getOwnPropertyDescriptor` 方法的捕捉器。</code></pre><ul>
-<li>defineProperty(target, prop, descriptor ) {//…}<ul>
-<li><code>Object.defineProperty</code>方法的捕捉器。</li>
-</ul>
-</li>
-<li>ownKeys(target) {//…}<ul>
-<li><code>Object.getOwnPropertyNames</code> 方法和 <code>Object.getOwnPropertySymbols</code> 方法的捕捉器。</li>
-</ul>
-</li>
-<li>apply(target, thisArg, argumentsList) {//…}<ul>
-<li>函数调用操作的捕捉器。</li>
-</ul>
-</li>
-<li>construct(target, args) {//…}<ul>
-<li><code>new</code> 操作符的捕捉器。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> validator = &#123;</span><br><span class="line">  <span class="keyword">set</span>: function(obj, prop, value) &#123;</span><br><span class="line">    <span class="keyword">if</span> (prop === <span class="string">'age'</span>) &#123;</span><br><span class="line">      <span class="keyword">if</span> (!<span class="built_in">Number</span>.isInteger(value)) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">TypeError</span>(<span class="string">'The age is not an integer'</span>);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span> (value &gt; <span class="number">200</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">RangeError</span>(<span class="string">'The age seems invalid'</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// The default behavior to store the value</span></span><br><span class="line">    obj[prop] = value;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 表示成功</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> person = <span class="keyword">new</span> <span class="built_in">Proxy</span>(&#123;&#125;, validator);</span><br><span class="line"></span><br><span class="line">person.age = <span class="number">100</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(person.age); </span><br><span class="line"><span class="comment">// 100</span></span><br><span class="line"></span><br><span class="line">person.age = <span class="string">'young'</span>; </span><br><span class="line"><span class="comment">// 抛出异常: Uncaught TypeError: The age is not an integer</span></span><br><span class="line"></span><br><span class="line">person.age = <span class="number">300</span>; </span><br><span class="line"><span class="comment">// 抛出异常: Uncaught RangeError: The age seems invalid</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="Reflect"><a href="#Reflect" class="headerlink" title="Reflect"></a>Reflect</h1><p>可以把 Reflect 当做 Object 的升级版，但没有构造函数，不能使用 new 操作符。</p>
-<p>Reflect 所有的属性和方法都是静态的，所有的方法名和 Proxy handle 提供的方法名一致。 </p>
-<h2 id="作用-1"><a href="#作用-1" class="headerlink" title="作用"></a>作用</h2><ul>
-<li><p>可以和 Object 一样操作对象。</p>
-</li>
-<li><p>修改 Object 操作的一些返回值，</p>
-</li>
-<li><p>让 Object 的操作变成函数行为</p>
-</li>
-<li><p>Reflect 和 Proxy 的方法一一对应，Proxy 对象可使用 Reflect 完成默认操作的调用</p>
-</li>
-</ul>
-<h2 id="示例-1"><a href="#示例-1" class="headerlink" title="示例"></a>示例</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> duck = &#123;</span><br><span class="line">  name: <span class="string">'Maurice'</span>,</span><br><span class="line">  color: <span class="string">'white'</span>,</span><br><span class="line">  greeting: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`Quaaaack! My name is <span class="subst">$&#123;<span class="keyword">this</span>.name&#125;</span>`</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Reflect</span>.has(duck, <span class="string">'color'</span>);</span><br><span class="line"><span class="comment">// true</span></span><br><span class="line"><span class="built_in">Reflect</span>.has(duck, <span class="string">'haircut'</span>);</span><br><span class="line"><span class="comment">// false</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Object</span></span><br><span class="line"><span class="keyword">var</span> obj = &#123;&#125;;</span><br><span class="line"><span class="built_in">Reflect</span>.set(obj, <span class="string">"prop"</span>, <span class="string">"value"</span>); <span class="comment">// true</span></span><br><span class="line">obj.prop; <span class="comment">// "value"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Array</span></span><br><span class="line"><span class="keyword">var</span> arr = [<span class="string">"duck"</span>, <span class="string">"duck"</span>, <span class="string">"duck"</span>];</span><br><span class="line"><span class="built_in">Reflect</span>.set(arr, <span class="number">2</span>, <span class="string">"goose"</span>); <span class="comment">// true</span></span><br><span class="line">arr[<span class="number">2</span>]; <span class="comment">// "goose"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// It can truncate an array.</span></span><br><span class="line"><span class="built_in">Reflect</span>.set(arr, <span class="string">"length"</span>, <span class="number">1</span>); <span class="comment">// true</span></span><br><span class="line">arr; <span class="comment">// ["duck"];</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// With just one argument, propertyKey and value are "undefined".</span></span><br><span class="line"><span class="keyword">var</span> obj = &#123;&#125;;</span><br><span class="line"><span class="built_in">Reflect</span>.set(obj); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">Reflect</span>.getOwnPropertyDescriptor(obj, <span class="string">"undefined"</span>);</span><br><span class="line"><span class="comment">// &#123; value: undefined, writable: true, enumerable: true, configurable: true &#125;</span></span><br></pre></td></tr></table></figure>
-
+</ol>
 
         
       
@@ -386,7 +303,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/60/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/60/">60</a><span class="page-number current">61</span><a class="page-number" href="/page/62/">62</a><span class="space">&hellip;</span><a class="page-number" href="/page/110/">110</a><a class="extend next" rel="next" href="/page/62/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/60/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/60/">60</a><span class="page-number current">61</span><a class="page-number" href="/page/62/">62</a><span class="space">&hellip;</span><a class="page-number" href="/page/108/">108</a><a class="extend next" rel="next" href="/page/62/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -430,7 +347,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">110</span>
+          <span class="site-state-item-count">108</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -456,7 +373,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">75</span>
+        <span class="site-state-item-count">73</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>

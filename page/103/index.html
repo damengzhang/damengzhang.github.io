@@ -206,7 +206,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/web/react/react事件处理/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/web/react/react Props/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="DaMeng">
@@ -220,7 +220,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/web/react/react事件处理/" class="post-title-link" itemprop="url">react事件处理</a>
+            <a href="/web/react/react Props/" class="post-title-link" itemprop="url">react Props</a>
           
         </h1>
 
@@ -235,7 +235,7 @@
                 
               
 
-              <time title="创建时间：2018-02-19 19:18:48" itemprop="dateCreated datePublished" datetime="2018-02-19T19:18:48+08:00">2018-02-19</time>
+              <time title="创建时间：2018-02-13 19:30:08" itemprop="dateCreated datePublished" datetime="2018-02-13T19:30:08+08:00">2018-02-13</time>
             </span>
           
             <span class="post-meta-item">
@@ -270,25 +270,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="内容导图"><a href="#内容导图" class="headerlink" title="内容导图"></a>内容导图</h2><img src="/web/react/react事件处理/react_event.PNG">
+          <img src="/web/react/react%20Props/react_props.PNG">
 
-<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>事件处理属性名使用驼峰写法（原生html通用写法为小写）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">     &lt;a  href=&quot;#&quot; onClick=&#123;handleClick&#125; &gt; click me &lt;/a&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; Component &#125; from &quot;react&quot;;</span><br><span class="line">import &#123; PropTypes &#125; from &quot;prop-types&quot;;</span><br><span class="line"></span><br><span class="line">class TodoItem extends Component &#123;</span><br><span class="line">	render() &#123;</span><br><span class="line">		const &#123; index, deleteItem, content &#125; = this.props;</span><br><span class="line">		return (</span><br><span class="line">			&lt;li index=&#123;index&#125; onClick=&#123;() =&gt; deleteItem(index)&#125;&gt;</span><br><span class="line">				&#123;content&#125;</span><br><span class="line">			&lt;/li&gt;</span><br><span class="line">		);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">TodoItem.propType = &#123;</span><br><span class="line">	content: PropTypes.string,</span><br><span class="line">	index: PropTypes.number,</span><br><span class="line">	deleteItem: PropTypes.func,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">export default TodoItem;</span><br></pre></td></tr></table></figure>
 
-<h2 id="事件处理函数体内的this"><a href="#事件处理函数体内的this" class="headerlink" title="事件处理函数体内的this"></a>事件处理函数体内的this</h2><p>js的类方法默认不绑定this，可通过下面两种方法绑定this</p>
-<p>1、在构造函数中绑定</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">class Toggle extends React.Component &#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    super(props);</span><br><span class="line">    this.state = &#123;isToggleOn: true&#125;;</span><br><span class="line"></span><br><span class="line">    // 为了在handleClick中使用 `this`，这个绑定是必不可少的</span><br><span class="line">    this.handleClick = this.handleClick.bind(this);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  handleClick() &#123;</span><br><span class="line">    this.setState(state =&gt; (&#123;</span><br><span class="line">      isToggleOn: !state.isToggleOn</span><br><span class="line">    &#125;));</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;button onClick=&#123;this.handleClick&#125;&gt;</span><br><span class="line">        &#123;this.state.isToggleOn ? &apos;ON&apos; : &apos;OFF&apos;&#125;</span><br><span class="line">      &lt;/button&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;Toggle /&gt;,</span><br><span class="line">  document.getElementById(&apos;root&apos;)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
 
-<p>2、将类方法定义为箭头函数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">handleClick = () =&gt; &#123;//箭头函数会默认绑定this</span><br><span class="line">  console.log(&apos;this is:&apos;, this);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">render() &#123;</span><br><span class="line">  return (</span><br><span class="line">    &lt;button onClick=&#123;this.handleClick&#125;&gt;</span><br><span class="line">      Click me</span><br><span class="line">    &lt;/button&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>3、在回调中使用箭头函数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">handleClick() &#123;</span><br><span class="line">  console.log(&apos;this is:&apos;, this);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">render() &#123;</span><br><span class="line">  // 此语法确保 `handleClick` 内的 `this` 已被绑定。</span><br><span class="line">  // 当回调函数作为 prop 传入子组件时，这些组件可能会进行额外的重新渲染，从而导致性能问题  </span><br><span class="line">  return (</span><br><span class="line">    &lt;button onClick=&#123;(e) =&gt; this.handleClick(e)&#125;&gt;</span><br><span class="line">      Click me</span><br><span class="line">    &lt;/button&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="阻止默认行为"><a href="#阻止默认行为" class="headerlink" title="阻止默认行为"></a>阻止默认行为</h2><p>使用e.preventDefault()来阻止默认行为，而不是return false。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function ActionLink() &#123;</span><br><span class="line">  function handleClick(e) &#123;</span><br><span class="line">    e.preventDefault();</span><br><span class="line">    console.log(&apos;The link was clicked.&apos;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return (</span><br><span class="line">    &lt;a href=&quot;#&quot; onClick=&#123;handleClick&#125;&gt;</span><br><span class="line">      Click me</span><br><span class="line">    &lt;/a&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="给事件处理函数传参"><a href="#给事件处理函数传参" class="headerlink" title="给事件处理函数传参"></a>给事件处理函数传参</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1、使用箭头函数，需要显式传递e</span><br><span class="line">&lt;button onClick=&#123;(e) =&gt; this.deleteRow(id, e)&#125;&gt;Delete Row&lt;/button&gt;</span><br><span class="line"></span><br><span class="line">2、使用bind方式，e会最为最后一个参数默认传进去</span><br><span class="line">&lt;button onClick=&#123;this.deleteRow.bind(this, id)&#125;&gt;Delete Row&lt;/button&gt;</span><br></pre></td></tr></table></figure>
         
       
     </div>
@@ -311,7 +297,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/102/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/102/">102</a><span class="page-number current">103</span><a class="page-number" href="/page/104/">104</a><span class="space">&hellip;</span><a class="page-number" href="/page/110/">110</a><a class="extend next" rel="next" href="/page/104/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/102/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/102/">102</a><span class="page-number current">103</span><a class="page-number" href="/page/104/">104</a><span class="space">&hellip;</span><a class="page-number" href="/page/108/">108</a><a class="extend next" rel="next" href="/page/104/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -355,7 +341,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">110</span>
+          <span class="site-state-item-count">108</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -381,7 +367,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">75</span>
+        <span class="site-state-item-count">73</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>

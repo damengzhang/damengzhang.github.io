@@ -206,7 +206,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/web/react/State Hook/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/web/react/Hook简介/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="DaMeng">
@@ -220,7 +220,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/web/react/State Hook/" class="post-title-link" itemprop="url">State Hook</a>
+            <a href="/web/react/Hook简介/" class="post-title-link" itemprop="url">Hook 简介</a>
           
         </h1>
 
@@ -235,7 +235,7 @@
                 
               
 
-              <time title="创建时间：2019-09-25 19:20:06" itemprop="dateCreated datePublished" datetime="2019-09-25T19:20:06+08:00">2019-09-25</time>
+              <time title="创建时间：2019-09-22 19:20:49" itemprop="dateCreated datePublished" datetime="2019-09-22T19:20:49+08:00">2019-09-22</time>
             </span>
           
             <span class="post-meta-item">
@@ -270,39 +270,34 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="State-Hook-解决什么问题"><a href="#State-Hook-解决什么问题" class="headerlink" title="State Hook 解决什么问题"></a>State Hook 解决什么问题</h2><p><code>state hook</code> 可以用来给 <code>函数组件</code> 添加 <code>state</code>。</p>
-<p>没有 <code>state hook</code> 之前， <code>函数组件</code> 属于 <code>无状态组件</code>，想给 <code>函数组件</code> 添加 state 时，只能将其转换为 class 组件。</p>
-<h2 id="State-Hook-的使用方法"><a href="#State-Hook-的使用方法" class="headerlink" title="State Hook 的使用方法"></a>State Hook 的使用方法</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; useState &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line">[stateName, setStateFun] = useState(initValue);</span><br></pre></td></tr></table></figure>
-
-<p>在函数组件中，通过调用 <code>useState()</code> 函数来定义 state 变量，它与 class 里面的 this.state 提供的功能相同。</p>
-<p><strong>useState 的返回值</strong>：返回一个有两个值的数组。第一个值是 state 变量，第二个值是更新 state 变量的函数。上面示例中，count 就是刚刚定义的 state 变量，setCount 就是用来更新 count 的函数。</p>
-<p><strong>useState 的参数</strong>：用来初始化 state 变量。上面示例中的参数 0，即表示 count 的初始值。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line">定义：</span><br><span class="line">1、引入useState函数</span><br><span class="line">2、调用useState函数</span><br><span class="line">*/</span><br><span class="line">import React, &#123; useState &#125; from &apos;react&apos;;</span><br><span class="line"></span><br><span class="line">function Example() &#123;</span><br><span class="line">  // 声明一个叫 “count” 的 state 变量，和用来更新 count 的函数 setCount</span><br><span class="line">  const [count, setCount] = useState(0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="读取State"><a href="#读取State" class="headerlink" title="读取State"></a>读取State</h3><p>在 class 组件中，读取 state 变量时，通过 this.state，如 this.state.count。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;You clicked &#123;this.state.count&#125; times&lt;/p&gt;</span><br></pre></td></tr></table></figure>
-
-<p>在函数组件中，读取 state 变量时，直接使用即可，如 count。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;You clicked &#123;count&#125; times&lt;/p&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="更新State"><a href="#更新State" class="headerlink" title="更新State"></a>更新State</h3><p>在 class 组件中，需要调用 <code>this.setState()</code> 来更新 state 变量：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//setState 更新 State 时，会使用新值和旧值进行合并  </span></span><br><span class="line">&lt;button onClick=&#123;() =&gt; <span class="keyword">this</span>.setState(&#123; <span class="attr">count</span>: <span class="keyword">this</span>.state.count + <span class="number">1</span> &#125;)&#125;&gt;</span><br><span class="line">    Click me</span><br><span class="line">  &lt;<span class="regexp">/button&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>在函数组件中，使用 <code>useState()</code> 函数返回的 <code>更新函数</code>（如 setCount 函数）来更新对应的 state 变量：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//useState 更新 State 时，会直接用新值替换旧值</span></span><br><span class="line">&lt;button onClick=&#123;() =&gt; setCount(count + <span class="number">1</span>)&#125;&gt;</span><br><span class="line">   Click me</span><br><span class="line"> &lt;<span class="regexp">/button&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"> 1:  import React, &#123; useState &#125; from &apos;react&apos;;</span><br><span class="line"> 2:</span><br><span class="line"> 3:  function Example() &#123;</span><br><span class="line">     //使用useState函数定义state变量</span><br><span class="line"> 4:    const [count, setCount] = useState(0);</span><br><span class="line"> 5:</span><br><span class="line"> 6:    return (</span><br><span class="line"> 7:      &lt;div&gt;</span><br><span class="line">         &#123;/*使用state变量*/&#125;</span><br><span class="line"> 8:        &lt;p&gt;You clicked &#123;count&#125; times&lt;/p&gt;</span><br><span class="line">         </span><br><span class="line">         &#123;//修改state变量&#125;</span><br><span class="line"> 9:        &lt;button onClick=&#123;() =&gt; setCount(count + 1)&#125;&gt;</span><br><span class="line">10:         Click me</span><br><span class="line">11:        &lt;/button&gt;</span><br><span class="line">12:      &lt;/div&gt;</span><br><span class="line">13:    );</span><br><span class="line">14:  &#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>定义多个 state 变量方法</strong>：</p>
+          <h1 id="Hook-是什么"><a href="#Hook-是什么" class="headerlink" title="Hook 是什么"></a>Hook 是什么</h1><p>Hook 是 React 16.8.0 的新特性。</p>
+<p>Hook 是钩子函数，通过使用 Hook 可以在 <code>函数组件</code> 中引入 <code>React state</code> 及 <code>生命周期</code> 等特性，它可以让我们在不编写 class 的情况下使用 state 及其他的 React 特性。</p>
+<h1 id="Hook-可以解决什么问题"><a href="#Hook-可以解决什么问题" class="headerlink" title="Hook 可以解决什么问题"></a>Hook 可以解决什么问题</h1><p>Hook 可以解决如下问题：</p>
 <ul>
-<li><p>多次调用 useState</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function ExampleWithManyStates() &#123;</span><br><span class="line">  // 声明多个 state 变量</span><br><span class="line">  const [age, setAge] = useState(42);</span><br><span class="line">  const [fruit, setFruit] = useState(&apos;banana&apos;);</span><br><span class="line">  const [todos, setTodos] = useState([&#123; text: &apos;学习 Hook&apos; &#125;]);</span><br></pre></td></tr></table></figure>
+<li><p>组件间复用状态逻辑困难</p>
+<p>​    React 之前用 <code>render props</code> 和 <code>高阶组件</code> 解决此问题，但需要重新组织组件结构。现在可以<strong>使用 Hook 在无需修改组件结构的情况下复用状态逻辑</strong>。</p>
 </li>
-<li><p>将多个变量通过对象或数组的方式存入同一个 state 变量</p>
+<li><p>复杂组件越来越难以理解</p>
+<p>​    之前在不同的生命周期中维护的逻辑关联的代码，现在可以使用 <strong>Hook 将组件中逻辑关联的部分拆分成更小的函数（比如设置订阅或请求数据）</strong>。还可以使用 reducer 来管理组件的内部状态，使其更加可预测。</p>
+</li>
+<li><p>避开 class</p>
+<p>​    js 中的 class 和其他语言中的 class 有很大区别，特别是 this 的工作方式，编写 React 组件时，需要额外编写 this 和事件处理器的绑定，而这些代码其实非常冗余。</p>
+<p>​    class 不能很好的压缩，会使得热加载出现不稳定的情况。</p>
+<p>​    <strong>Hook 能够使你避开 class 也能使用更多的 React 特性。</strong></p>
 </li>
 </ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Box</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> [state, setState] = useState(&#123; <span class="attr">left</span>: <span class="number">0</span>, <span class="attr">top</span>: <span class="number">0</span>, <span class="attr">width</span>: <span class="number">100</span>, <span class="attr">height</span>: <span class="number">100</span> &#125;);</span><br><span class="line">  </span><br><span class="line">  useEffect(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">handleWindowMouseMove</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">      <span class="comment">// 展开 「...state」 以确保我们没有 「丢失」 width 和 height</span></span><br><span class="line">      <span class="comment">// useState 更新 State 时，会用新值替换旧值，而不是新旧值合并</span></span><br><span class="line">      setState(<span class="function"><span class="params">state</span> =&gt;</span> (&#123; ...state, <span class="attr">left</span>: e.pageX, <span class="attr">top</span>: e.pageY &#125;));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 注意：这是个简化版的实现</span></span><br><span class="line">    <span class="built_in">window</span>.addEventListener(<span class="string">'mousemove'</span>, handleWindowMouseMove);</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">window</span>.removeEventListener(<span class="string">'mousemove'</span>, handleWindowMouseMove);</span><br><span class="line">  &#125;, []);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<h1 id="Hook-对现有代码的影响"><a href="#Hook-对现有代码的影响" class="headerlink" title="Hook 对现有代码的影响"></a>Hook 对现有代码的影响</h1><ul>
+<li>可选功能<ul>
+<li>无需重写现有代码即可使用 Hook</li>
+<li>不是非得用 Hook 不可，如果不想也可以不用</li>
+</ul>
+</li>
+<li>100% 向后兼容</li>
+<li>可用版本<ul>
+<li>从 React 16.8.0 版本之后可以使用 Hook</li>
+</ul>
+</li>
+</ul>
 
         
       
@@ -326,7 +321,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/32/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/32/">32</a><span class="page-number current">33</span><a class="page-number" href="/page/34/">34</a><span class="space">&hellip;</span><a class="page-number" href="/page/110/">110</a><a class="extend next" rel="next" href="/page/34/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/32/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/32/">32</a><span class="page-number current">33</span><a class="page-number" href="/page/34/">34</a><span class="space">&hellip;</span><a class="page-number" href="/page/108/">108</a><a class="extend next" rel="next" href="/page/34/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -370,7 +365,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">110</span>
+          <span class="site-state-item-count">108</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -396,7 +391,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">75</span>
+        <span class="site-state-item-count">73</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>

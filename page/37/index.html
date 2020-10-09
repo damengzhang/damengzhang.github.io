@@ -206,7 +206,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/python/python的相对于js的另类语法/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/web/javascript/es6/promise详解/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="DaMeng">
@@ -220,7 +220,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/python/python的相对于js的另类语法/" class="post-title-link" itemprop="url">python不同于其他编程语言的语法记录</a>
+            <a href="/web/javascript/es6/promise详解/" class="post-title-link" itemprop="url">Promise 详解</a>
           
         </h1>
 
@@ -235,7 +235,7 @@
                 
               
 
-              <time title="创建时间：2019-07-23 00:00:00" itemprop="dateCreated datePublished" datetime="2019-07-23T00:00:00+08:00">2019-07-23</time>
+              <time title="创建时间：2019-07-19 19:40:38" itemprop="dateCreated datePublished" datetime="2019-07-19T19:40:38+08:00">2019-07-19</time>
             </span>
           
             <span class="post-meta-item">
@@ -244,7 +244,21 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web/" itemprop="url" rel="index"><span itemprop="name">web</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web/javascript/es6/" itemprop="url" rel="index"><span itemprop="name">es6</span></a></span>
 
                 
                 
@@ -263,17 +277,78 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>各种编程语言有很多类似的语法，比如标识符的命名规范、循环、判断等等，下面列出 python 相对于其他编程语言特殊的一些基础语法。</p>
-<h2 id="1、关键字-in-的用法"><a href="#1、关键字-in-的用法" class="headerlink" title="1、关键字 in 的用法"></a>1、关键字 in 的用法</h2><p>in通常用来判断 key 是否存在于字典的键，但是 python 中 in 还可以用于判断字符串是否包含某个子串</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'cd'</span> <span class="keyword">in</span> <span class="string">'abcd'</span> </span><br><span class="line"><span class="comment">#返回值为true,表示后者包含前者</span></span><br></pre></td></tr></table></figure>
+          <h1 id="1-Promise-是什么"><a href="#1-Promise-是什么" class="headerlink" title="1 Promise 是什么"></a>1 Promise 是什么</h1><p>Promise 可以被理解为对象（或值）的代理，被代理的对象在被创建时状态是未知的，当被代理对象执行完成时，可以通过设置 Promise 的状态来触发相应的回调函数。</p>
+<p>Promise 有下面三种状态：</p>
+<ul>
+<li>pending：初始状态，既不是成功，也不是失败</li>
+<li>fulfiled：操作成功</li>
+<li>rejected：操作失败</li>
+</ul>
+<p>下面例子中，通过 Promise 的构造函数参数来配置异步操作，通过 then 的回调来配置成功、失败回调函数。当异步操作完成后，根据其执行结果，通过调用 resolve 或 reject 来设置 Promise 的对应状态，进而触发相应的回调函数。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>( <span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 做一些异步操作，根据执行结果调用下面两者之一:</span></span><br><span class="line">  <span class="comment">//</span></span><br><span class="line">  <span class="comment">//   resolve(someValue); //执行成功时，调用 resolve 来触发 fulfilled 状态</span></span><br><span class="line">  <span class="comment">// ?或</span></span><br><span class="line">  <span class="comment">//   reject("failure reason"); //执行失败时，调用 reject 来触发 rejected 状态</span></span><br><span class="line">  <span class="comment">//   当操作抛出异常时，会触发 promise 的 reject 状态  </span></span><br><span class="line"> </span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span> <span class="title">resolveCall</span>(<span class="params">result</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//当构造函数中调用 resolve 时，promise 状态变为 fulfiled， 进而触发 resolveCall 回调</span></span><br><span class="line">        &#125;), <span class="function"><span class="keyword">function</span> <span class="title">rejectCall</span>(<span class="params">result</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//当构造函数中调用 reject 时，promise 状态变为 rejected，进而会触发 rejectCall 回调</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
-<h2 id="2、代码块的表示"><a href="#2、代码块的表示" class="headerlink" title="2、代码块的表示"></a>2、代码块的表示</h2><p>通常代码块用大括号 {} 包裹，python 用缩进幅度来表示所在的代码块</p>
-<h2 id="3、列表-字符串截取"><a href="#3、列表-字符串截取" class="headerlink" title="3、列表/字符串截取"></a>3、列表/字符串截取</h2><p>list[start:end] 表示截取下标范围 [ start, end ) 的元素</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#list[start:end:step]表示在[start,end)的范围中，且每隔step个提取元素</span></span><br><span class="line">a=[<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>,<span class="string">'e'</span>,<span class="string">'f'</span>,<span class="string">'g'</span>];</span><br><span class="line">print( a[<span class="number">1</span>:<span class="number">5</span>:<span class="number">2</span>] )</span><br><span class="line"></span><br><span class="line"><span class="comment">#输出为['c', 'e']</span></span><br></pre></td></tr></table></figure>
+<h1 id="2-Promise-的作用"><a href="#2-Promise-的作用" class="headerlink" title="2 Promise 的作用"></a>2 Promise 的作用</h1><p>Promise 可以将异步操作和其回调函数按照<strong>同步的方式进行书写</strong>，从而解决多层异步调用产生的<strong>回调地狱</strong>问题。</p>
+<h1 id="3-Promise-使用方法"><a href="#3-Promise-使用方法" class="headerlink" title="3 Promise 使用方法"></a>3 Promise 使用方法</h1><p>下面所有方法的返回值都是<strong>新的 Promise 对象</strong>。</p>
+<h2 id="3-1-创建-Promise"><a href="#3-1-创建-Promise" class="headerlink" title="3.1 创建 Promise"></a>3.1 创建 Promise</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>)</span>&#123;...&#125; <span class="comment">/*executor*/</span>)</span><br></pre></td></tr></table></figure>
 
-<h2 id="4、-号用来表示重复"><a href="#4、-号用来表示重复" class="headerlink" title="4、* 号用来表示重复"></a>4、* 号用来表示重复</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">print ([&apos;a&apos;]*4)</span><br><span class="line"></span><br><span class="line">#输出为 [&apos;a&apos;, &apos;a&apos;, &apos;a&apos;, &apos;a&apos;]</span><br></pre></td></tr></table></figure>
+<p>参数</p>
+<p>​    executor</p>
+<p>executor 回调有两个参数 <code>resolve</code> 和 <code>reject</code> ，这两个参数是函数类型。创建 <code>Promise</code> 时 <code>executor</code>会被立即执行。当 <code>resolve</code> 或 <code>reject</code> 函数被调用时，表示需要将 Promise 对象的状态设置为 fullfilled 或 rejected，并触发对应状态的回调函数的执行。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> myFirstPromise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// do something asynchronous which eventually calls either:</span></span><br><span class="line">  <span class="comment">//</span></span><br><span class="line">  <span class="comment">//   resolve(someValue)        // fulfilled</span></span><br><span class="line">  <span class="comment">// or</span></span><br><span class="line">  <span class="comment">//   reject("failure reason")  // rejected</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
+<h2 id="3-2-类方法"><a href="#3-2-类方法" class="headerlink" title="3.2 类方法"></a>3.2 类方法</h2><h3 id="Promise-all-iterable"><a href="#Promise-all-iterable" class="headerlink" title="Promise.all(iterable)"></a>Promise.all(iterable)</h3><p>参数：interable 是多个 Promsie 对象的集合    </p>
+<p>作用：用于<strong>并行运行</strong>多个 Promsie 对象。</p>
+<p>特点：</p>
+<p>​        一旦有一个子 Promsie 参数失败，会触发父 Promsie 对象的失败状态，并将失败信息传递给父 Promsie 的失败回调函数。 </p>
+<p>​        当所有子 Promsie 参数都成功时，会触发父 Promsie 对象的成功状态，并将所有子 Promsie 参数的返回值按照顺序，以数组的形式传递给父 promise 的成功回调函数。</p>
+<h3 id="Promise-allSettled-iterable"><a href="#Promise-allSettled-iterable" class="headerlink" title="Promise.allSettled(iterable)"></a>Promise.allSettled(iterable)</h3><p>参数：interable 是多个 Promsie 对象的集合    </p>
+<p>作用：用于<strong>并行运行</strong>多个 Promsie 对象。</p>
+<p>特点：</p>
+<p>​        当所有子 Promsie 参数都完成（无论成功还是失败）时，会触发父 Promsie 对象完成状态，并将所有子 Promsie 参数的返回值按照顺序，以数组的形式返回。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> promise1 = <span class="built_in">Promise</span>.resolve(<span class="number">3</span>);</span><br><span class="line"><span class="keyword">const</span> promise2 = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> setTimeout(reject, <span class="number">100</span>, <span class="string">'foo'</span>));</span><br><span class="line"><span class="keyword">const</span> promises = [promise1, promise2];</span><br><span class="line"></span><br><span class="line"><span class="built_in">Promise</span>.allSettled(promises).</span><br><span class="line">  then(<span class="function">(<span class="params">results</span>) =&gt;</span> results.forEach(<span class="function">(<span class="params">result</span>) =&gt;</span> <span class="built_in">console</span>.log(result.status)));</span><br><span class="line"></span><br><span class="line"><span class="comment">// expected output:</span></span><br><span class="line"><span class="comment">// "fulfilled"</span></span><br><span class="line"><span class="comment">// "rejected"</span></span><br></pre></td></tr></table></figure>
 
+<h3 id="Promise-race-iterable"><a href="#Promise-race-iterable" class="headerlink" title="Promise.race(iterable)"></a>Promise.race(iterable)</h3><p>参数：interable 是多个 Promsie 对象的集合    </p>
+<p>作用：用于<strong>并行运行</strong> 多个 Promsie 对象。</p>
+<p>特点：</p>
+<p>父 Promsie  的状态会和最快产生状态的子 Promsie 保持一致，并将最快子 Promsie 的返回值作为父 Promsie 相应状态回调的参数。</p>
+<h3 id="Promise-reject-reason"><a href="#Promise-reject-reason" class="headerlink" title="Promise.reject(reason)"></a>Promise.reject(reason)</h3><p>作用：创建一个状态为失败的 Promise 对象，并将 reason 参数传递给对应的处理方法</p>
+<h3 id="Promise-resolve-value"><a href="#Promise-resolve-value" class="headerlink" title="Promise.resolve(value)"></a>Promise.resolve(value)</h3><p>作用：创建一个状态由给定 value 决定的 Promise 对象。</p>
+<p>特点：</p>
+<p>如果 value 是 thenable (即，带有then方法的对象)，返回的 Promise 对象的最终状态由then方法执行决定；否则的话(value 为空、基本类型或者不带 then 方法的对象)，返回的 Promise 对象状态为 fulfilled，并且将该value 传递给对应的 then 方法。</p>
+<p>通常而言，如果你不知道一个值是否是 Promise 对象，使用 Promise.resolve(value) 来返回一个 Promise 对象，这样就能将 value 作为 Promise 对象来使用。</p>
+<h2 id="3-3-实例方法"><a href="#3-3-实例方法" class="headerlink" title="3.3 实例方法"></a>3.3 实例方法</h2><p>示例：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>( <span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line"> <span class="comment">//异步操作   </span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">promise.then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;.catch(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;).finally(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="Promise-prototype-then-onFulfilled-onRejected"><a href="#Promise-prototype-then-onFulfilled-onRejected" class="headerlink" title="Promise.prototype.then(onFulfilled, onRejected)"></a>Promise.prototype.then(onFulfilled, onRejected)</h3><p>给 Promise 对象添加 fulfiled 和 rejected 状态的回调。</p>
+<h3 id="Promise-prototype-catch-onRejected"><a href="#Promise-prototype-catch-onRejected" class="headerlink" title="Promise.prototype.catch(onRejected)"></a>Promise.prototype.catch(onRejected)</h3><p>给 Promise 对象添加 rejected 状态的回调。</p>
+<h3 id="Promise-prototype-finally-onFinally"><a href="#Promise-prototype-finally-onFinally" class="headerlink" title="Promise.prototype.finally(onFinally)"></a>Promise.prototype.finally(onFinally)</h3><p>给 Promise 对象添加一个一定会执行的回调。无论当前 Promise 的状态是完成(fulfilled)还是失败(rejected)</p>
+<h1 id="4-注意"><a href="#4-注意" class="headerlink" title="4 注意"></a>4 注意</h1><h2 id="4-1-回调执行时序"><a href="#4-1-回调执行时序" class="headerlink" title="4.1 回调执行时序"></a>4.1 回调执行时序</h2><p>1、Promise 被创建时，配置给 Promise 构造函数的回调会被立即执行。</p>
+<p>2、当多次添加 then 回调时，这些回调会按照被插入顺序独立执行。 配置给 Promise.then 的回调会被放入<strong>微队列</strong>，本轮事件循环运行完成之前这些回调都不会被执行。</p>
+<h2 id="4-2-链式调用"><a href="#4-2-链式调用" class="headerlink" title="4.2 链式调用"></a>4.2 链式调用</h2><p>Promise 的链式调用，可以解决按顺序执行多个异步调用的诉求。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> promise = doSomething();</span><br><span class="line"><span class="keyword">const</span> promise2 = promise.then(successCallback, failureCallback);</span><br></pre></td></tr></table></figure>
+
+<p>promise2 代表 doSomething 、successCallback/failureCallback 已完成。</p>
+<p>任何 promise2 新增的回调，都会在doSomething 、successCallback/failureCallback 之后执行。如果 successCallback/failureCallback 返回了新的 Promise 对象，则 promise2 会在 新 Promise 对象之后执行。</p>
+<p>每一个 promise 的返回值，都是下一个promsie 回调函数的参数。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">    resolve(<span class="number">1</span>);</span><br><span class="line">&#125;)</span><br><span class="line">    .then(<span class="function"><span class="keyword">function</span>(<span class="params">result</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(result);<span class="comment">// 1</span></span><br><span class="line">    &#125;)</span><br><span class="line">    .catch(<span class="function"><span class="keyword">function</span>(<span class="params">result</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(result);</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-3-组合"><a href="#4-3-组合" class="headerlink" title="4.3 组合"></a>4.3 组合</h2><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/all" target="_blank" rel="noopener"><code>Promise.all()</code></a> 和 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/race" target="_blank" rel="noopener"><code>Promise.race()</code></a> 是并行运行异步操作的两个组合式工具。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span>.all([func1(), func2(), func3()])</span><br><span class="line">.then(<span class="function">(<span class="params">[result1, result2, result3]</span>) =&gt;</span> &#123; <span class="comment">/* use result1, result2 and result3 */</span> &#125;);</span><br></pre></td></tr></table></figure>
+
+<p>也可以使用 JavaScript 写法实现时序组合：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">func1 = <span class="function"><span class="keyword">function</span>(<span class="params">lastValue</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> lastValue + <span class="string">" fun1"</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">func2 = <span class="function"><span class="keyword">function</span>(<span class="params">lastValue</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> lastValue + <span class="string">" fun2"</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">func3 = <span class="function"><span class="keyword">function</span>(<span class="params">lastValue</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> lastValue + <span class="string">" fun3"</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">[func1, func2, func3]</span><br><span class="line">    .reduce(<span class="function">(<span class="params">totalValue, curArrItem</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> totalValue.then(curArrItem);</span><br><span class="line">    &#125;, <span class="built_in">Promise</span>.resolve(<span class="string">"start"</span>))</span><br><span class="line">    .then(<span class="function"><span class="params">result3</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"results:"</span>, result3);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//上面代码实现，相当于一个 Promise 链，如：</span></span><br><span class="line"><span class="built_in">Promise</span>.resolve().then(func1).then(func2).then(func3);</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-4-嵌套"><a href="#4-4-嵌套" class="headerlink" title="4.4 嵌套"></a>4.4 嵌套</h2><p>最好不好嵌套 Promise，容易出错。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">doSomethingCritical()</span><br><span class="line">    .then(<span class="function"><span class="params">result</span> =&gt;</span></span><br><span class="line">        doSomethingOptional()</span><br><span class="line">            .then(<span class="function"><span class="params">optionalResult</span> =&gt;</span> doSomethingExtraNice(optionalResult))</span><br><span class="line">            .catch(<span class="function"><span class="params">e</span> =&gt;</span> &#123;</span><br><span class="line">                <span class="built_in">console</span>.log(e.message);</span><br><span class="line">            &#125;)</span><br><span class="line">    ) <span class="comment">// 即使有异常也会忽略，继续运行;(最后会输出)</span></span><br><span class="line">    .then(<span class="function"><span class="params">()</span> =&gt;</span> moreCriticalStuff())</span><br><span class="line">    .catch(<span class="function"><span class="params">e</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="string">"Critical failure: "</span> + e.message)); <span class="comment">// 没有输出</span></span><br></pre></td></tr></table></figure>
+
+<p>这个内部的 catch 语句仅能捕获到 <code>doSomethingOptional()</code> 和 <code>doSomethingExtraNice()</code> 的失败，之后会继续<code>moreCriticalStuff()</code> 的运行。</p>
+<h2 id="4-5-异常"><a href="#4-5-异常" class="headerlink" title="4.5 异常"></a>4.5 异常</h2><p>当有异常时，Promise 会中断，然后执行离的最近的 catch 或 rejectCallBack 回调来处理异常，当异常处理完成后，如果后面还有 then，则继续执行后面的 then 回调。</p>
+<h2 id="4-6-Promise-拒绝事件"><a href="#4-6-Promise-拒绝事件" class="headerlink" title="4.6 Promise 拒绝事件"></a>4.6 Promise 拒绝事件</h2><p>当 Promise 触发 rejected 状态时，会有下面事件之一被派发到全局作用域（通常而言，就是<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window" target="_blank" rel="noopener"><code>window</code></a>；如果是在 web worker 中使用的话，就是 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Worker" target="_blank" rel="noopener"><code>Worker</code></a> 或者其他 worker-based 接口）：</p>
+<p><code>rejectionhandled</code></p>
+<p>当 Promise 被拒绝、并且在 <code>reject</code> 函数处理该 rejection 之后会派发此事件</p>
+<p><code>unhandledrejection</code></p>
+<p>当 Promise 被拒绝，但没有提供 <code>reject</code> 函数来处理该 rejection 时，会派发此事件。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">"unhandledrejection"</span>, event =&gt; &#123;</span><br><span class="line">  <span class="comment">/* 你可以在这里添加一些代码，以便检查</span></span><br><span class="line"><span class="comment">     event.promise 中的 promise 和</span></span><br><span class="line"><span class="comment">     event.reason 中的 rejection 原因 */</span></span><br><span class="line"></span><br><span class="line">  event.preventDefault();<span class="comment">//告诉 JavaScript 引擎当 promise 被拒绝时不要执行默认操作，默认操作一般会包含把错误打印到控制台</span></span><br><span class="line">&#125;, <span class="literal">false</span>);</span><br></pre></td></tr></table></figure>
         
       
     </div>
@@ -296,7 +371,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/36/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/36/">36</a><span class="page-number current">37</span><a class="page-number" href="/page/38/">38</a><span class="space">&hellip;</span><a class="page-number" href="/page/110/">110</a><a class="extend next" rel="next" href="/page/38/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/36/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/36/">36</a><span class="page-number current">37</span><a class="page-number" href="/page/38/">38</a><span class="space">&hellip;</span><a class="page-number" href="/page/108/">108</a><a class="extend next" rel="next" href="/page/38/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -340,7 +415,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">110</span>
+          <span class="site-state-item-count">108</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -366,7 +441,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">75</span>
+        <span class="site-state-item-count">73</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>

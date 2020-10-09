@@ -206,7 +206,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/web/javascript/闭包/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/web/javascript/作用域 作用域链/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="DaMeng">
@@ -220,7 +220,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/web/javascript/闭包/" class="post-title-link" itemprop="url">闭包</a>
+            <a href="/web/javascript/作用域 作用域链/" class="post-title-link" itemprop="url">作用域 作用域链</a>
           
         </h1>
 
@@ -235,7 +235,7 @@
                 
               
 
-              <time title="创建时间：2019-06-10 19:18:38" itemprop="dateCreated datePublished" datetime="2019-06-10T19:18:38+08:00">2019-06-10</time>
+              <time title="创建时间：2019-06-08 19:18:38" itemprop="dateCreated datePublished" datetime="2019-06-08T19:18:38+08:00">2019-06-08</time>
             </span>
           
             <span class="post-meta-item">
@@ -270,59 +270,47 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="1-什么是闭包"><a href="#1-什么是闭包" class="headerlink" title="1 什么是闭包"></a>1 什么是闭包</h1><p>关于什么是闭包有下面两种定义方式：</p>
-<ol>
-<li>有能力引用外部变量的函数叫做闭包，因为 js 的函数都具有此能力，故 js 的所有函数都可称作做闭包</li>
-<li>引用了外部变量的函数叫做闭包</li>
-</ol>
-<p>个人更倾向于第二种定义方式，有下面两个原因：</p>
-<ol>
-<li>第二种定义会使得理解 js 中的闭包相关问题时更顺畅</li>
-<li>只有当 js 函数引用了外部变量时，其作用域链 [[scope]] 才会包含一个叫做 Closure 的对象（Closure 对象中存储了被引用的外部变量，稍后会有图示）。</li>
-</ol>
-<p>在下面示例中，B1 就是一个闭包（因为 B1 引用了外部函数 A 的变量），可以看到 B1 的作用域链包含了一个 Closure 成员。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">A</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> aVar = <span class="string">'aVar'</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="title">B1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(aVar);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> B1Alias = A();</span><br><span class="line"><span class="built_in">console</span>.dir(B1Alias);</span><br></pre></td></tr></table></figure>
-
-<img src="/web/javascript/闭包/6.png">
-
+          <h1 id="1-作用域（Scope）"><a href="#1-作用域（Scope）" class="headerlink" title="1 作用域（Scope）"></a>1 作用域（Scope）</h1><h2 id="1-1-作用域的定义"><a href="#1-1-作用域的定义" class="headerlink" title="1.1 作用域的定义"></a>1.1 作用域的定义</h2><p><strong><code>作用域</code></strong>指的是变量可被访问的有效<strong>范围</strong>。</p>
+<h2 id="1-2-作用域的分类"><a href="#1-2-作用域的分类" class="headerlink" title="1.2 作用域的分类"></a>1.2 作用域的分类</h2><p>对于 js 来说，作用域有下面三类：</p>
 <ul>
-<li><p>当 B1 没有被外部引用时，函数 A 执行完后，A 的局部变量和 B1 会被释放。</p>
+<li><p>全局作用域 </p>
+<p>​    变量在全局范围有效。</p>
 </li>
-<li><p>当 B1 被外部变量（B1Alias）引用时，即使函数 A 已经执行完成， B1Alias 依旧会将 A 的变量（aVar）保留下来。<strong>而函数 A 执行完，其内部的变量却没有被释放，这就是闭包被关注的根本原因</strong>。</p>
+<li><p>局部作用域（又叫函数作用域）</p>
+<p>​    变量在声明它的函数体中，及在这个函数体嵌套的任意函数体内有效。</p>
+</li>
+<li><p>块作用域（es6 新增的语法）</p>
+<p>​    变量在语句块内有效。</p>
 </li>
 </ul>
-<h1 id="2-闭包的用途"><a href="#2-闭包的用途" class="headerlink" title="2 闭包的用途"></a>2 闭包的用途</h1><h2 id="2-1-封装私有变量、方法"><a href="#2-1-封装私有变量、方法" class="headerlink" title="2.1 封装私有变量、方法"></a>2.1 封装私有变量、方法</h2><p>js 中可以使用函数来封装模块，其实就是利用了闭包的特性。下面代码就使用函数封装了内部的私有变量 privateCounter 和私有方法 changeBy。外部只能通过 makeCounter 返回的公共方法操作私有变量。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> makeCounter = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> privateCounter = <span class="number">0</span>;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">changeBy</span>(<span class="params">val</span>) </span>&#123;</span><br><span class="line">    privateCounter += val;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    increment: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      changeBy(<span class="number">1</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">    decrement: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      changeBy(<span class="number">-1</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">    value: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> privateCounter;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;  </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> Counter1 = makeCounter();</span><br><span class="line"><span class="keyword">var</span> Counter2 = makeCounter();</span><br><span class="line"><span class="built_in">console</span>.log(Counter1.value()); <span class="comment">/* logs 0 */</span></span><br><span class="line">Counter1.increment();</span><br><span class="line">Counter1.increment();</span><br><span class="line"><span class="built_in">console</span>.log(Counter1.value()); <span class="comment">/* logs 2 */</span></span><br><span class="line">Counter1.decrement();</span><br><span class="line"><span class="built_in">console</span>.log(Counter1.value()); <span class="comment">/* logs 1 */</span></span><br><span class="line"><span class="built_in">console</span>.log(Counter2.value()); <span class="comment">/* logs 0 */</span></span><br></pre></td></tr></table></figure>
+<h1 id="2-变量对象-Variable-Object"><a href="#2-变量对象-Variable-Object" class="headerlink" title="2 变量对象 ( Variable Object )"></a>2 变量对象 ( Variable Object )</h1><p><strong><code>变量对象</code></strong>，顾名思义就是保存变量的对象，只要是保存变量的对象，都可以称为<strong><code>变量对象</code></strong>。winows 对象、活动对象、闭包等都是保存变量的对象，都属于<strong><code>变量对象</code></strong>。</p>
+<h1 id="3-活动对象（Activation-Object）"><a href="#3-活动对象（Activation-Object）" class="headerlink" title="3 活动对象（Activation Object）"></a>3 活动对象（Activation Object）</h1><p>活动对象是在函数执行时产生的变量对象，活动对象保存了函数的局部变量、window对象。</p>
+<h1 id="4-作用域链-scopes"><a href="#4-作用域链-scopes" class="headerlink" title="4 作用域链 [[scopes]]"></a>4 作用域链 [[scopes]]</h1><p><strong><code>作用域链</code></strong>是函数的一个内部属性 [[scopes]]，是由函数可访问的所有<strong><code>外部作用域对象</code></strong>组成的<strong>数组</strong>。[[scopes]] 属性不能通过程序读取，只能由 js 引擎读取。js 通过<strong><code>作用域链</code></strong>实现了静态作用域（指作用域由定义时而非运行时决定）。</p>
+<p><strong><code>作用域链</code></strong>将可以将不同函数关联起来，并保证了函数解析变量的顺序。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">A</span>(<span class="params">aArg</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> aVar = <span class="string">'aVar'</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.dir(A) ;<span class="comment">//函数被创建时，会包含一个[[scope]]内部属性，用来保存作用域链</span></span><br></pre></td></tr></table></figure>
 
-<h1 id="3-闭包中常见的问题"><a href="#3-闭包中常见的问题" class="headerlink" title="3 闭包中常见的问题"></a>3 闭包中常见的问题</h1><p>在使用闭包时，很容易出现一些意料之外的执行结果，并且影响性能，容易造成内存泄露，所以应该尽量少使用闭包。</p>
-<h2 id="3-1-在循环中创建闭包"><a href="#3-1-在循环中创建闭包" class="headerlink" title="3.1 在循环中创建闭包"></a>3.1 在循环中创建闭包</h2><p>在循环中创建闭包时，如果将循环代码直接用于闭包，则会使所有闭包指向同一个变量。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">constFuns</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> funs = [];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">        funs[i] = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> i;<span class="comment">//访问外部函数的变量，使其成为一个闭包</span></span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> funs;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> funs = constFuns();</span><br><span class="line"><span class="built_in">console</span>.dir(funs[<span class="number">5</span>]()); <span class="comment">//期望输出5 结果输出10</span></span><br><span class="line"><span class="built_in">console</span>.dir(funs）;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">上面代码中，因为 funs 数组中的所有闭包函数在同一个外部函数中定义，所以这些闭包的 Closure 属性共享相同的变量 i，而这个变量 i 是对外部函数变量 i 的引用，而不是复制，当外部函数执行完成时，变量 i 的值变成了 10，导致所有闭包内的变量 i 都变成了 10。</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<p>上面代码 chrome 输出截图：</p>
+<img src="/web/javascript/作用域%20作用域链/2.png">
 
-<img src="/web/javascript/闭包/7.png">
+<p>firefox 输出截图：</p>
+<img src="/web/javascript/作用域%20作用域链/3.png">
 
-<p>解决上面问题的方法：</p>
-<p>1、使用 es6 的 let 语法，从而防止产生闭包</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//使用let填坑</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">constFuns</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> funs = [];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">        <span class="comment">//使用了外部函数的变量时，才会使嵌套函数成为闭包。</span></span><br><span class="line">        <span class="comment">//let 不会进行变量提升，也就是说 i 不是外部函数 constFuns 的变量，故循环里面的匿名函数并不是闭包</span></span><br><span class="line">        funs[i] = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> i;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> funs;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> funs = constFuns();</span><br><span class="line"><span class="built_in">console</span>.dir(funs[<span class="number">5</span>]());</span><br><span class="line"><span class="built_in">console</span>.dir(funs);</span><br></pre></td></tr></table></figure>
+<p>firefox 并没有输出 [[scopes]] 属性，chrome 虽然输出了，但却无法访问 [[scopes]] 属性。</p>
+<h1 id="5-执行上下文（或叫执行环境）"><a href="#5-执行上下文（或叫执行环境）" class="headerlink" title="5 执行上下文（或叫执行环境）"></a>5 执行上下文（或叫执行环境）</h1><p><strong>执行上下文</strong>是函数执行时创建的一个内部对象，定义了函数执行时的环境。</p>
+<p>函数每次执行时，都会创建对应的<strong>执行上下文</strong>，多次调用函数，将会创建多个<strong>执行上下文</strong>。当函数执行完毕，<strong>执行上下文</strong>将被销毁。</p>
+<p><strong>执行上下文</strong>是使用函数自身的作用域 [[scopes]] 属性来进行初始化的，并将活动对象（由函数的局部变量组成）追加为其第一个元素。</p>
+<h1 id="5-总结"><a href="#5-总结" class="headerlink" title="5 总结"></a>5 总结</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> B1Alias;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">A</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> aVar = <span class="string">'aVar'</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">B1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> bVar=<span class="string">'test'</span>;</span><br><span class="line">        <span class="built_in">console</span>.log(bVar);</span><br><span class="line">        <span class="built_in">console</span>.log(aVar);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    B1Alias = B1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">A();</span><br><span class="line">B1Alias();</span><br><span class="line"><span class="built_in">console</span>.dir(B1Alias);</span><br></pre></td></tr></table></figure>
 
-<img src="/web/javascript/闭包/8.png">
+<img src="/web/javascript/作用域%20作用域链/scopeSum.png">
 
-<p>可以看到，匿名函数的作用域链中，并没有包含 Closure 成员，而是包含了并不共享的 Block 成员。从而避免了 Closure 共享所带来的问题。</p>
-<p>2、使用更多的闭包</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">constFuns</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> funs = [];</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">inner</span>(<span class="params">i</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> i;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">        funs[i] = inner(i);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> funs;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> funs = constFuns();</span><br><span class="line"><span class="built_in">console</span>.log(funs[<span class="number">5</span>]());</span><br><span class="line"><span class="built_in">console</span>.dir(funs);</span><br></pre></td></tr></table></figure>
+<p>通过上面的示例和调试截图来总结下，将各个概念关联起来：</p>
+<p>每个函数被初始化时，会包含一个数组类型的属性  [[Scopes]] （即作用域链），[[Scopes]] 的内容是由此函数可以访问的<strong>外部作用域对象</strong>组成的。</p>
+<p>每次函数执行时，都会创建对应的执行上下文，会使用函数的 [[Scopes]] 来初始化执行上下文，并将<strong>活动对象</strong>（由函数的局部变量组成）追加到<strong>执行上下文</strong>的第一个元素。</p>
+<p><strong>作用域</strong>是一个范围，当把这个范围关联到某个对象时，可以把这个对象叫做<strong>作用域对象</strong>，如 windows 对象、活动对象、执行上下文 都可以称为<strong>作用域对象</strong>。</p>
+<p>保存变量的对象称为<strong>变量对象</strong>，也就是说变量对象包括了<strong>作用域对象</strong>，但并不止作用域对象。</p>
+<p>参考：</p>
+<p><a href="https://juejin.im/post/5b481cc9e51d45192562850f" target="_blank" rel="noopener">https://juejin.im/post/5b481cc9e51d45192562850f</a></p>
 
-<img src="/web/javascript/闭包/9.png">
-
-<h2 id="3-2-影响性能"><a href="#3-2-影响性能" class="headerlink" title="3.2 影响性能"></a>3.2 影响性能</h2><p>闭包会对降低程序的处理速度、增加对内存的使用。</p>
-<h2 id="3-3-内存泄露"><a href="#3-3-内存泄露" class="headerlink" title="3.3 内存泄露"></a>3.3 内存泄露</h2><p>代码中有循环引用时，容易操作内存泄露。</p>
-<h1 id="4-注意"><a href="#4-注意" class="headerlink" title="4 注意"></a>4 注意</h1><h2 id="4-1-嵌套函数没有使用父函数的变量时，不会产生闭包属性"><a href="#4-1-嵌套函数没有使用父函数的变量时，不会产生闭包属性" class="headerlink" title="4.1 嵌套函数没有使用父函数的变量时，不会产生闭包属性"></a>4.1 嵌套函数没有使用父函数的变量时，不会产生闭包属性</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">A</span>(<span class="params">aArg</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> aVar = <span class="string">'aVar'</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//下面两个嵌套函数都没有使用父函数的变量</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">B1</span>(<span class="params">b1Arg</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> b1Var = <span class="string">'b1Var'</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">B2</span>(<span class="params">b2Arg</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> b2Var = <span class="string">'b2Var'</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">console</span>.dir(B1);</span><br><span class="line">    <span class="built_in">console</span>.dir(B2);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">A();</span><br></pre></td></tr></table></figure>
-
-<p>输出：</p>
-<img src="/web/javascript/闭包/4.png">
-
-<h2 id="4-2-嵌套函数在引用父函数的变量后，会产生闭包属性，并且同一外部函数内的嵌套函数共享同一个作用域链（即都会产生闭包属性）。"><a href="#4-2-嵌套函数在引用父函数的变量后，会产生闭包属性，并且同一外部函数内的嵌套函数共享同一个作用域链（即都会产生闭包属性）。" class="headerlink" title="4.2 嵌套函数在引用父函数的变量后，会产生闭包属性，并且同一外部函数内的嵌套函数共享同一个作用域链（即都会产生闭包属性）。"></a>4.2 嵌套函数在引用父函数的变量后，会产生闭包属性，并且同一外部函数内的嵌套函数共享同一个作用域链（即都会产生闭包属性）。</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">A</span>(<span class="params">aArg</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> aVar = <span class="string">'aVar'</span>;</span><br><span class="line"></span><br><span class="line">     <span class="comment">/*嵌套函数 B2 引用父函数的变量  </span></span><br><span class="line"><span class="comment">      嵌套函数 B1 没有引用父函数的变量</span></span><br><span class="line"><span class="comment">      更深一级的嵌套函数 C1 没有引用任何父函数的变量</span></span><br><span class="line"><span class="comment">      </span></span><br><span class="line"><span class="comment">      结果：B2 对父函数变量的引用，使其产生了 Closure 属性，并且使平级的 B1 、内部的 C1 都产生了 Closure 属性</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">B1</span>(<span class="params">b1Arg</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> b1Var = <span class="string">'b1Var'</span>;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">C1</span>(<span class="params">c1Arg</span>)</span>&#123;</span><br><span class="line">            <span class="keyword">var</span> c1Var = <span class="string">'c1Var'</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">console</span>.dir(C1);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">B2</span>(<span class="params">b2Arg</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> b2Var = <span class="string">'b2Var'</span>;</span><br><span class="line">        <span class="built_in">console</span>.log(aVar);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">console</span>.dir(B1);</span><br><span class="line">    <span class="built_in">console</span>.dir(B2);</span><br><span class="line">    B1();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">A();</span><br></pre></td></tr></table></figure>
-
-<p>chrome 输出：</p>
-<img src="/web/javascript/闭包/5.png">
         
       
     </div>
@@ -345,7 +333,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/42/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/42/">42</a><span class="page-number current">43</span><a class="page-number" href="/page/44/">44</a><span class="space">&hellip;</span><a class="page-number" href="/page/110/">110</a><a class="extend next" rel="next" href="/page/44/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/42/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/42/">42</a><span class="page-number current">43</span><a class="page-number" href="/page/44/">44</a><span class="space">&hellip;</span><a class="page-number" href="/page/108/">108</a><a class="extend next" rel="next" href="/page/44/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -389,7 +377,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">110</span>
+          <span class="site-state-item-count">108</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -415,7 +403,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">75</span>
+        <span class="site-state-item-count">73</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>

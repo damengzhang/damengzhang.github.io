@@ -206,7 +206,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/web/webpack/webpack入门/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/web/jquery/$ajax配置headers方式/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="DaMeng">
@@ -220,7 +220,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/web/webpack/webpack入门/" class="post-title-link" itemprop="url">webpack 入门</a>
+            <a href="/web/jquery/$ajax配置headers方式/" class="post-title-link" itemprop="url">$.ajax 配置 headers 方法</a>
           
         </h1>
 
@@ -235,7 +235,7 @@
                 
               
 
-              <time title="创建时间：2019-03-17 00:00:00" itemprop="dateCreated datePublished" datetime="2019-03-17T00:00:00+08:00">2019-03-17</time>
+              <time title="创建时间：2019-03-15 19:40:38" itemprop="dateCreated datePublished" datetime="2019-03-15T19:40:38+08:00">2019-03-15</time>
             </span>
           
             <span class="post-meta-item">
@@ -251,7 +251,7 @@
                   ，
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web/webpack/" itemprop="url" rel="index"><span itemprop="name">webpack</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web/jquery/" itemprop="url" rel="index"><span itemprop="name">jquery</span></a></span>
 
                 
                 
@@ -270,46 +270,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><p>webpack 是前端模块化打包工具。</p>
-<p>对于webpack 来说，万物（js|img|css|sass|less..）皆模块，webpack 会根据模块依赖关系进行静态分析，将所有模块打包生成对应的静态资源（bundle）。</p>
-<h1 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h1><p>1、通过模块化解决了全局污染、命名冲突、依赖管理混乱问题</p>
-<p>2、兼容 AMD CMD</p>
-<p>3、适合大型项目</p>
-<p>4、与 react、vue 有很好的契合度</p>
-<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>1、node（通过 node 官网下载安装）</p>
-<p>2、通过 npm 命令初始化项目</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm init -y</span><br></pre></td></tr></table></figure>
+          <h2 id="setting-参数"><a href="#setting-参数" class="headerlink" title="setting 参数"></a>setting 参数</h2><p>可以通过 headers 参数：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">    headers: &#123;</span><br><span class="line">        Accept: <span class="string">"application/json; charset=utf-8"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    type: <span class="string">"POST"</span>,</span><br><span class="line">    success: <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">    	<span class="comment">//...	</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>3、安装 webpack 和 webpack-cli</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install webpack webpack-cli -D</span><br></pre></td></tr></table></figure>
+<h2 id="beforeSend-方法"><a href="#beforeSend-方法" class="headerlink" title="beforeSend 方法"></a>beforeSend 方法</h2><p>可以通过 beforeSend 参数：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">    type: <span class="string">"POST"</span>,</span><br><span class="line">    url: urlPath,</span><br><span class="line">    beforeSend: <span class="function"><span class="keyword">function</span>(<span class="params">request</span>) </span>&#123;</span><br><span class="line">        request.setRequestHeader(<span class="string">"tag"</span>, <span class="string">'value'</span>);</span><br><span class="line">    &#125;，</span><br><span class="line">    success: <span class="function"><span class="keyword">function</span>(<span class="params">result</span>) </span>&#123;</span><br><span class="line">      <span class="comment">//.....</span></span><br><span class="line">    &#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
 
-<h1 id="组成"><a href="#组成" class="headerlink" title="组成"></a>组成</h1><h2 id="entry"><a href="#entry" class="headerlink" title="entry"></a>entry</h2><p>通过 entry 来配置 webpack 的入口文件，webpack 从 entry 开始分析模块间的依赖关系。</p>
-<p>webpack 将存在依赖关系的模块，打包为 trunk（代码分片）。</p>
-<p>由 trunk 最终产生的打包产物叫做bundle。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  entry: <span class="string">'./path/to/my/entry/file.js'</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<h2 id="output"><a href="#output" class="headerlink" title="output"></a>output</h2><p>通过 output 来配置 webpack 的输出文件夹和输出文件名称。默认输出到文件夹 <code>./dist</code>，默认输出的文件为 <code>./dist/main.js</code>。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  entry: <span class="string">'./path/to/my/entry/file.js'</span>,</span><br><span class="line">  output: &#123;</span><br><span class="line">      <span class="comment">/*path 和 filename配置共同决定了bundles的输出地址*/</span></span><br><span class="line">      <span class="comment">//__dirname 为当前 webpack.config.js 所在文件夹名称</span></span><br><span class="line">    path: path.resolve(__dirname, <span class="string">'dist'</span>),</span><br><span class="line">    filename: <span class="string">'my-first-webpack.bundle.js'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<h2 id="loader"><a href="#loader" class="headerlink" title="loader"></a>loader</h2><p>webpack 只能识别 js 和 json 文件，可以通过 loader 将 webpack 不认识的资源转换为 webpack 可以识别的。</p>
-<p>使用 loader 时，需要先安装，然后配置到 module.rules 中。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  output: &#123;</span><br><span class="line">    filename: <span class="string">'my-first-webpack.bundle.js'</span></span><br><span class="line">  &#125;,</span><br><span class="line">    <span class="comment">//loader 需要定义在module.rules 中</span></span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123; </span><br><span class="line">          <span class="comment">//test 用于指定需要转换的文件</span></span><br><span class="line">        test: <span class="regexp">/\.txt$/</span>, </span><br><span class="line">          <span class="comment">//use 用于指定使用哪个 loader 转换 test 指定的文件</span></span><br><span class="line">        use: <span class="string">'raw-loader'</span> </span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<h2 id="plugins"><a href="#plugins" class="headerlink" title="plugins"></a>plugins</h2><p>plugin 可于执行更广泛的任务，如 打包优化、资源管理、注入环境变量。</p>
-<p><strong>使用方法</strong>：</p>
-<ol>
-<li>外部插件需要使用 npm 安装</li>
-<li>使用 require 来引用 </li>
-<li>通过 new 创建插件实例，将其添加到 plugins 数组中</li>
-<li>可根据不同目的多次使用同一个插件</li>
-<li>使用对象给插件实例传递参数</li>
-</ol>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">'html-webpack-plugin'</span>); <span class="comment">// 通过 npm 安装</span></span><br><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>); <span class="comment">// 用于访问内置插件</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123; <span class="attr">test</span>: <span class="regexp">/\.txt$/</span>, <span class="attr">use</span>: <span class="string">'raw-loader'</span> &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="keyword">new</span> HtmlWebpackPlugin(&#123;<span class="attr">template</span>: <span class="string">'./src/index.html'</span>&#125;)</span><br><span class="line">  ]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<h2 id="mode"><a href="#mode" class="headerlink" title="mode"></a>mode</h2><p>可以设置为 development、productions、none 中的一个，webpack 会根据不同的配置进行不同的默认优化。默认值为 production。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">  mode: &apos;production&apos;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<h1 id="浏览器兼容性"><a href="#浏览器兼容性" class="headerlink" title="浏览器兼容性"></a>浏览器兼容性</h1><p>webpack 默认支持 es5 标准（不支持 ie8 及以下）。如果想要支持旧版本浏览器，在使用这些表达式之前，需要 <a href="https://webpack.docschina.org/guides/shimming/" target="_blank" rel="noopener">提前加载 polyfill</a>。</p>
 
         
       
@@ -333,7 +299,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/72/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/72/">72</a><span class="page-number current">73</span><a class="page-number" href="/page/74/">74</a><span class="space">&hellip;</span><a class="page-number" href="/page/110/">110</a><a class="extend next" rel="next" href="/page/74/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/72/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/72/">72</a><span class="page-number current">73</span><a class="page-number" href="/page/74/">74</a><span class="space">&hellip;</span><a class="page-number" href="/page/108/">108</a><a class="extend next" rel="next" href="/page/74/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -377,7 +343,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">110</span>
+          <span class="site-state-item-count">108</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -403,7 +369,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">75</span>
+        <span class="site-state-item-count">73</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>

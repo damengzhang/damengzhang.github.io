@@ -206,7 +206,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/web/javascript/作用域 作用域链/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/web/eslint/eslint配置/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="DaMeng">
@@ -220,7 +220,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/web/javascript/作用域 作用域链/" class="post-title-link" itemprop="url">作用域 作用域链</a>
+            <a href="/web/eslint/eslint配置/" class="post-title-link" itemprop="url">ESLint使用</a>
           
         </h1>
 
@@ -235,7 +235,7 @@
                 
               
 
-              <time title="创建时间：2019-06-08 19:18:38" itemprop="dateCreated datePublished" datetime="2019-06-08T19:18:38+08:00">2019-06-08</time>
+              <time title="创建时间：2019-06-06 18:25:13" itemprop="dateCreated datePublished" datetime="2019-06-06T18:25:13+08:00">2019-06-06</time>
             </span>
           
             <span class="post-meta-item">
@@ -251,7 +251,7 @@
                   ，
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web/eslint/" itemprop="url" rel="index"><span itemprop="name">eslint</span></a></span>
 
                 
                 
@@ -270,46 +270,116 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="1-作用域（Scope）"><a href="#1-作用域（Scope）" class="headerlink" title="1 作用域（Scope）"></a>1 作用域（Scope）</h1><h2 id="1-1-作用域的定义"><a href="#1-1-作用域的定义" class="headerlink" title="1.1 作用域的定义"></a>1.1 作用域的定义</h2><p><strong><code>作用域</code></strong>指的是变量可被访问的有效<strong>范围</strong>。</p>
-<h2 id="1-2-作用域的分类"><a href="#1-2-作用域的分类" class="headerlink" title="1.2 作用域的分类"></a>1.2 作用域的分类</h2><p>对于 js 来说，作用域有下面三类：</p>
+          <h2 id="1-lint-简介"><a href="#1-lint-简介" class="headerlink" title="1 lint 简介"></a>1 lint 简介</h2><p>lint 最早用于 c 语言，用来检查代码。目前作为通用术语，用来表示代码检查工具。</p>
+<p>JS 经历的主流 lint 工具如下：</p>
+<p>1、JSLint</p>
+<p>2、JSHint</p>
+<p>3、Eslint</p>
+<h2 id="2-ESlint-配置"><a href="#2-ESlint-配置" class="headerlink" title="2 ESlint 配置"></a>2 ESlint 配置</h2><h3 id="2-1-初始化项目"><a href="#2-1-初始化项目" class="headerlink" title="2.1 初始化项目"></a>2.1 初始化项目</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//在新建好的文件夹下，执行如下命令，得到 package.json</span><br><span class="line">npm init -y</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2-安装-amp-初始化-ESLint"><a href="#2-2-安装-amp-初始化-ESLint" class="headerlink" title="2.2 安装&amp;初始化 ESLint"></a>2.2 安装&amp;初始化 ESLint</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//方式一：全局安装 &amp; 初始化  </span></span><br><span class="line">npm install eslint -g   <span class="comment">//安装</span></span><br><span class="line">eslint --init           <span class="comment">//初始化</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//方式二：本地安装 &amp; 初始化   ====》推荐方式</span></span><br><span class="line"><span class="comment">//安装</span></span><br><span class="line">npm insall eslint       </span><br><span class="line"><span class="comment">//初始化</span></span><br><span class="line">.\node_modules\.bin\eslint --init   <span class="comment">//window平台</span></span><br><span class="line">./node_modules/.bin/eslint --init  <span class="comment">//linux平台</span></span><br></pre></td></tr></table></figure>
+
+<img src="/web/eslint/eslint配置/eslint_init.PNG">
+
+<p>根据项目实际情况选择，完成后可得到规则配置文件 .eslintrc.js  或 .eslintrc.ymal 或 eslintrc.json，下面是对 .eslintrc.js 文件的内容解析：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    <span class="comment">//通过定义 env 来预定义对应的全局变量</span></span><br><span class="line">    <span class="comment">//可选 env 的配置值如下：</span></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">        browser - 浏览器环境中的全局变量。</span></span><br><span class="line"><span class="comment">        node - Node.js 全局变量和 Node.js 作用域。</span></span><br><span class="line"><span class="comment">        commonjs - CommonJS 全局变量和 CommonJS 作用域 (用于 Browserify/WebPack 打包的只在浏览器中运行的代码)。</span></span><br><span class="line"><span class="comment">        shared-node-browser - Node.js 和 Browser 通用全局变量。</span></span><br><span class="line"><span class="comment">        es6 - 启用除了 modules 以外的所有 ECMAScript 6 特性（该选项会自动设置 ecmaVersion 解析器选项为 6）。</span></span><br><span class="line"><span class="comment">        worker - Web Workers 全局变量。</span></span><br><span class="line"><span class="comment">        amd - 将 require() 和 define() 定义为像 amd 一样的全局变量。</span></span><br><span class="line"><span class="comment">        mocha - 添加所有的 Mocha 测试全局变量。</span></span><br><span class="line"><span class="comment">        jasmine - 添加所有的 Jasmine 版本 1.3 和 2.0 的测试全局变量。</span></span><br><span class="line"><span class="comment">        jest - Jest 全局变量。</span></span><br><span class="line"><span class="comment">        phantomjs - PhantomJS 全局变量。</span></span><br><span class="line"><span class="comment">        protractor - Protractor 全局变量。</span></span><br><span class="line"><span class="comment">        qunit - QUnit 全局变量。</span></span><br><span class="line"><span class="comment">        jquery - jQuery 全局变量。</span></span><br><span class="line"><span class="comment">        prototypejs - Prototype.js 全局变量。</span></span><br><span class="line"><span class="comment">        shelljs - ShellJS 全局变量。</span></span><br><span class="line"><span class="comment">        meteor - Meteor 全局变量。</span></span><br><span class="line"><span class="comment">        mongo - MongoDB 全局变量。</span></span><br><span class="line"><span class="comment">        applescript - AppleScript 全局变量。</span></span><br><span class="line"><span class="comment">        nashorn - Java 8 Nashorn 全局变量。</span></span><br><span class="line"><span class="comment">        serviceworker - Service Worker 全局变量。</span></span><br><span class="line"><span class="comment">        atomtest - Atom 测试全局变量。</span></span><br><span class="line"><span class="comment">        embertest - Ember 测试全局变量。</span></span><br><span class="line"><span class="comment">        webextensions - WebExtensions 全局变量。</span></span><br><span class="line"><span class="comment">        greasemonkey - GreaseMonkey 全局变量。</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="string">"env"</span>: &#123;</span><br><span class="line">        <span class="string">"browser"</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="string">"es6"</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="string">"node"</span>: <span class="literal">true</span></span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    <span class="comment">//extend 属性值</span></span><br><span class="line">    <span class="comment">//eslint:all 表示启用当前安装的 ESLint 中所有的核心规则，慎用，因为会随 eslint 的版本变动而更新</span></span><br><span class="line">    <span class="comment">//可以配置文件的绝对/相对路径，相对路径相对于当前配置文件（除非当前配置在home路径或非 eslint 安装目录的父级目录）。</span></span><br><span class="line">    <span class="comment">// "./node_modules/coding-standard/.eslintrc-es6"</span></span><br><span class="line">    <span class="string">"extends"</span>: [</span><br><span class="line">        <span class="comment">//eslint:recommended 表示所有在 https://eslint.bootcss.com/docs/rules/ 被标记为对号的规则将会默认开启</span></span><br><span class="line">        <span class="string">"eslint:recommended"</span>,</span><br><span class="line">        <span class="string">"plugin:react/recommended"</span>，</span><br><span class="line">        <span class="string">"airbnb"</span></span><br><span class="line">    ],</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//使用 globals 选项配置全局变量</span></span><br><span class="line">    <span class="comment">//注意：要启用 no-global-assign 规则来禁止对只读的全局变量进行修改</span></span><br><span class="line">    <span class="string">"globals"</span>: &#123;</span><br><span class="line">        <span class="string">"Atomics"</span>: <span class="literal">false</span>, <span class="comment">//false表示该变量只读</span></span><br><span class="line">        <span class="string">"SharedArrayBuffer"</span>: <span class="literal">false</span> </span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">//默认值 esprima，不解析非 es5 语法</span></span><br><span class="line">    <span class="string">"parser"</span>: <span class="string">"babel-eslint"</span>,<span class="comment">//让 eslint 支持 babel 语法</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//默认情况下，ESLint 支持 ECMAScript 5 语法</span></span><br><span class="line">    <span class="comment">//配置parserOptions来 启用对 ECMAScript 其它版本和 JSX 的支持</span></span><br><span class="line">    <span class="string">"parserOptions"</span>: &#123;</span><br><span class="line">        <span class="string">"ecmaFeatures"</span>: &#123;<span class="comment">//ecmaFeatures配置想额外使用的语言特性</span></span><br><span class="line">            <span class="comment">//对JSX 语法的支持不用于对 React 的支持,想要支持React，推荐使用 eslint-plugin-reac</span></span><br><span class="line">            <span class="string">"jsx"</span>: <span class="literal">true</span></span><br><span class="line">        &#125;,</span><br><span class="line"></span><br><span class="line">        <span class="comment">//ecmaVersion来配置ecma对应版本语法的支持;</span></span><br><span class="line">        <span class="comment">//要额外支持新的 ES6 全局变量，使用 &#123; "env":&#123; "es6": true &#125; &#125;;</span></span><br><span class="line">        <span class="string">"ecmaVersion"</span>: <span class="number">2018</span>,</span><br><span class="line"></span><br><span class="line">        <span class="comment">//sourceType默认值为"script"</span></span><br><span class="line">        <span class="string">"sourceType"</span>: <span class="string">"module"</span></span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    <span class="comment">//parser选项配置解析器 默认值为esprima，可选值还有eslint-babel, @typescript-eslint/parser</span></span><br><span class="line">    <span class="string">"parser"</span>: <span class="string">"eslint-babel"</span>,</span><br><span class="line"></span><br><span class="line">    <span class="comment">//plugins 选项配置第三方插件，插件安装后才能使用</span></span><br><span class="line">    <span class="comment">//全局安装的 eslint 只能使用全局安装的插件</span></span><br><span class="line">    <span class="string">"plugins"</span>: [</span><br><span class="line">        <span class="string">"react"</span></span><br><span class="line">    ],</span><br><span class="line"></span><br><span class="line">    <span class="comment">//使用rules选项配置项目要使用的规则</span></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">        "off" or 0 - 关闭规则</span></span><br><span class="line"><span class="comment">        "warn" or 1 - 开启规则 提示信息为告警级别</span></span><br><span class="line"><span class="comment">        "error" or 2 - 开启规则 提示信息为报错级别</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="string">"rules"</span>: &#123;</span><br><span class="line">        quotes: [<span class="string">"error"</span>, <span class="string">"double"</span>],<span class="comment">//当规则有其他选项时，可使用数组来指定规则的值</span></span><br><span class="line">        <span class="string">"plugin1/rule1"</span>: <span class="string">"error"</span> <span class="comment">//使用插件中的规则时，需要使用 插件名/规则ID 的形式</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-3-配置ESLint规则"><a href="#2-3-配置ESLint规则" class="headerlink" title="2.3 配置ESLint规则"></a>2.3 配置ESLint规则</h3><h3 id="2-3-1-配置方式"><a href="#2-3-1-配置方式" class="headerlink" title="2.3.1 配置方式"></a>2.3.1 配置方式</h3><p>主要有两种方式类配置ESLint：</p>
 <ul>
-<li><p>全局作用域 </p>
-<p>​    变量在全局范围有效。</p>
-</li>
-<li><p>局部作用域（又叫函数作用域）</p>
-<p>​    变量在声明它的函数体中，及在这个函数体嵌套的任意函数体内有效。</p>
-</li>
-<li><p>块作用域（es6 新增的语法）</p>
-<p>​    变量在语句块内有效。</p>
+<li>注释</li>
+<li>配置文件</li>
+</ul>
+<h4 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h4><p>通过在源码文件中添加注释来配置lint规则，此方法通常用于临时临时禁止某些严格的lint警告</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//放在文件顶部整个文件都不会有警告了</span><br><span class="line">/* eslint-disable */</span><br></pre></td></tr></table></figure>
+
+<h4 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h4><h5 id="配置文件类型"><a href="#配置文件类型" class="headerlink" title="配置文件类型"></a>配置文件类型</h5><p>文件类型及优先级排序如下：</p>
+<ol>
+<li><code>.eslintrc.js</code></li>
+<li><code>.eslintrc.yaml</code></li>
+<li><code>.eslintrc.yml</code></li>
+<li><code>.eslintrc.json</code></li>
+<li><code>.eslintrc</code>（弃用）</li>
+<li><code>package.json</code> //在 <code>package.json</code> 里创建<code>eslintConfig</code>属性，在此属性中进行配置</li>
+</ol>
+<h5 id="配置文件使用方式"><a href="#配置文件使用方式" class="headerlink" title="配置文件使用方式"></a>配置文件使用方式</h5><p>配置文件有两种使用方式，无论哪种方式配置文件都会覆盖默认设置。</p>
+<ul>
+<li><h6 id="eslintrc-和-package-json"><a href="#eslintrc-和-package-json" class="headerlink" title=".eslintrc.* 和 package.json"></a>.eslintrc.* 和 package.json</h6><p>​    使用 <code>.eslintrc.*</code> 和 <code>package.json</code> 文件，eslint 将自动从被检测目录开始寻找（可通过配置<code>root:true</code>来阻止 eslint），直到系统根目录，当想对项目的不同部分分别进行配置时，这种方式很有用。</p>
+<p> 此方式需要注意：</p>
+<ul>
+<li><p><code>.eslintrc.*</code> 文件可以进行层叠配置。</p>
+<p>eslint 会将被检测文件目录层次结构中的 eslint 配置文件规则进行组合，离被检测文件最近的规则优先级最高。如检测下面代码结构中的 test.js 文件时，<code>your-project/tests/.eslintrc</code>文件优先级要高于<code>your-project/.eslintrc</code> 文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">your-project</span><br><span class="line">├── .eslintrc</span><br><span class="line">├── lib</span><br><span class="line">│ └── source.js</span><br><span class="line">└─┬ tests</span><br><span class="line">  ├── .eslintrc</span><br><span class="line">  └── test.js</span><br></pre></td></tr></table></figure>
+
+
+
 </li>
 </ul>
-<h1 id="2-变量对象-Variable-Object"><a href="#2-变量对象-Variable-Object" class="headerlink" title="2 变量对象 ( Variable Object )"></a>2 变量对象 ( Variable Object )</h1><p><strong><code>变量对象</code></strong>，顾名思义就是保存变量的对象，只要是保存变量的对象，都可以称为<strong><code>变量对象</code></strong>。winows 对象、活动对象、闭包等都是保存变量的对象，都属于<strong><code>变量对象</code></strong>。</p>
-<h1 id="3-活动对象（Activation-Object）"><a href="#3-活动对象（Activation-Object）" class="headerlink" title="3 活动对象（Activation Object）"></a>3 活动对象（Activation Object）</h1><p>活动对象是在函数执行时产生的变量对象，活动对象保存了函数的局部变量、window对象。</p>
-<h1 id="4-作用域链-scopes"><a href="#4-作用域链-scopes" class="headerlink" title="4 作用域链 [[scopes]]"></a>4 作用域链 [[scopes]]</h1><p><strong><code>作用域链</code></strong>是函数的一个内部属性 [[scopes]]，是由函数可访问的所有<strong><code>外部作用域对象</code></strong>组成的<strong>数组</strong>。[[scopes]] 属性不能通过程序读取，只能由 js 引擎读取。js 通过<strong><code>作用域链</code></strong>实现了静态作用域（指作用域由定义时而非运行时决定）。</p>
-<p><strong><code>作用域链</code></strong>将可以将不同函数关联起来，并保证了函数解析变量的顺序。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">A</span>(<span class="params">aArg</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> aVar = <span class="string">'aVar'</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.dir(A) ;<span class="comment">//函数被创建时，会包含一个[[scope]]内部属性，用来保存作用域链</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li>同一目录下 <code>.eslintrc</code> 和 <code>package.json</code> 同时存在时，<code>.eslintrc</code> 优先级高会被使用，<code>package.json</code> 文件将不会被使用。</li>
+</ul>
+<ul>
+<li><h6 id="命令行参数-c"><a href="#命令行参数-c" class="headerlink" title="命令行参数 -c"></a>命令行参数 -c</h6><p>使用 <code>-c</code> 参数，来传递配置文件。想要 eslint 忽略任何 <code>.eslintrc.*</code> 文件，需使用 <code>--no-eslintrc</code> 的同时，加上 <code>-c</code> 标记。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eslint -c myconfig.json myfiletotest.js</span><br></pre></td></tr></table></figure>
 
-<p>上面代码 chrome 输出截图：</p>
-<img src="/web/javascript/作用域%20作用域链/2.png">
+</li>
+</ul>
+<h5 id="配置规则优先级总结"><a href="#配置规则优先级总结" class="headerlink" title="配置规则优先级总结"></a>配置规则优先级总结</h5><ul>
+<li><p>优先级从高到底：</p>
+<ul>
+<li>行内配置<ol>
+<li><code>/*eslint-disable*/</code> 和 <code>/*eslint-enable*/</code></li>
+<li>``/<em>global</em>/`</li>
+<li><code>/*eslint*/</code></li>
+<li>``/<em>eslint-env</em>/`</li>
+</ol>
+</li>
+<li>命令行选项（或 CLIEngine 等价物）：<ol>
+<li><code>--global</code></li>
+<li>``–rule`</li>
+<li><code>--env</code></li>
+<li><code>-c</code>、<code>--config</code></li>
+</ol>
+</li>
+<li>项目级配置：<ol>
+<li>与要检测的文件在同一目录下的 <code>.eslintrc.*</code> 或 <code>package.json</code> 文件</li>
+<li>继续在父级目录寻找 <code>.eslintrc</code> 或 <code>package.json</code> 文件，直到根目录（包括根目录）或直到发现一个包含 <code>&quot;root&quot;: true</code> 的配置文件。</li>
+</ol>
+</li>
+<li>如果不是上面类型中的任何一种情况，则退回到 <code>~/.eslintrc</code> 中自定义的默认配置。</li>
+</ul>
+</li>
+<li><p>具体规则说明：</p>
+<p><a href="https://eslint.bootcss.com/docs/rules/" target="_blank" rel="noopener">https://eslint.bootcss.com/docs/rules/</a></p>
+</li>
+</ul>
+<h3 id="2-4-配置忽略文件"><a href="#2-4-配置忽略文件" class="headerlink" title="2.4 配置忽略文件"></a>2.4 配置忽略文件</h3><ul>
+<li>.eslintignore</li>
+<li>–ignore-path</li>
+<li>package.json</li>
+</ul>
+<h5 id="eslintignore"><a href="#eslintignore" class="headerlink" title=".eslintignore"></a>.eslintignore</h5><p>在项目根目录，创建<code>.eslintignore</code>文件，在文件中指定需要忽略的文件和目录。每一行都是一个 glob 模式表明哪些路径应该忽略检测。</p>
+<p>Globs 匹配使用 <a href="https://github.com/kaelzhang/node-ignore" target="_blank" rel="noopener">node-ignore</a>，所以大量可用的特性有：</p>
+<ul>
+<li>注释以 <code>#</code> 开头</li>
+<li>路径是相对于 <code>.eslintignore</code> 的位置或当前工作目录。这也会影响通过 <code>--ignore-pattern</code>传递的路径。</li>
+<li>忽略模式同 <code>.gitignore</code> <a href="https://git-scm.com/docs/gitignore" target="_blank" rel="noopener">规范</a></li>
+<li>以 <code>!</code> 开头的行是否定模式，它将会重新包含一个之前被忽略的模式。</li>
+</ul>
+<p>除了 <code>.eslintignore</code> 文件中的模式，eslint总是忽略 <code>/node_modules/*</code> 和 <code>/bower_components/*</code> 中的文件。</p>
+<h5 id="–ignore-path"><a href="#–ignore-path" class="headerlink" title="–ignore-path"></a>–ignore-path</h5><p>在命令行使用 <code>--ignore-path</code> 选项指定忽略项所在配置文件。指定 <code>--ignore-path</code> 意味着任何现有的 <code>.eslintignore</code> 文件将不被使用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eslint --ignore-path .jshintignore file.js</span><br></pre></td></tr></table></figure>
 
-<p>firefox 输出截图：</p>
-<img src="/web/javascript/作用域%20作用域链/3.png">
+<h5 id="package-json"><a href="#package-json" class="headerlink" title="package.json"></a>package.json</h5><p>如果没有发现 <code>.eslintignore</code> 文件，也没有指定替代文件，ESLint 将在 package.json 文件中查找 <code>eslintIgnore</code> 键。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;name&quot;: &quot;mypackage&quot;,</span><br><span class="line">  &quot;version&quot;: &quot;0.0.1&quot;,</span><br><span class="line">  &quot;eslintConfig&quot;: &#123;</span><br><span class="line">      &quot;env&quot;: &#123;</span><br><span class="line">          &quot;browser&quot;: true,</span><br><span class="line">          &quot;node&quot;: true</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;eslintIgnore&quot;: [&quot;hello.js&quot;, &quot;world.js&quot;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>firefox 并没有输出 [[scopes]] 属性，chrome 虽然输出了，但却无法访问 [[scopes]] 属性。</p>
-<h1 id="5-执行上下文（或叫执行环境）"><a href="#5-执行上下文（或叫执行环境）" class="headerlink" title="5 执行上下文（或叫执行环境）"></a>5 执行上下文（或叫执行环境）</h1><p><strong>执行上下文</strong>是函数执行时创建的一个内部对象，定义了函数执行时的环境。</p>
-<p>函数每次执行时，都会创建对应的<strong>执行上下文</strong>，多次调用函数，将会创建多个<strong>执行上下文</strong>。当函数执行完毕，<strong>执行上下文</strong>将被销毁。</p>
-<p><strong>执行上下文</strong>是使用函数自身的作用域 [[scopes]] 属性来进行初始化的，并将活动对象（由函数的局部变量组成）追加为其第一个元素。</p>
-<h1 id="5-总结"><a href="#5-总结" class="headerlink" title="5 总结"></a>5 总结</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> B1Alias;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">A</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> aVar = <span class="string">'aVar'</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">B1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> bVar=<span class="string">'test'</span>;</span><br><span class="line">        <span class="built_in">console</span>.log(bVar);</span><br><span class="line">        <span class="built_in">console</span>.log(aVar);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    B1Alias = B1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">A();</span><br><span class="line">B1Alias();</span><br><span class="line"><span class="built_in">console</span>.dir(B1Alias);</span><br></pre></td></tr></table></figure>
+<h3 id="2-5-命令行说明"><a href="#2-5-命令行说明" class="headerlink" title="2.5 命令行说明"></a>2.5 命令行说明</h3><p>命令行选项可以通过<code>.\node_modules\.bin\eslint -h</code>  查看，得到如下信息：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">eslint [options] file.js [file.js] [dir]</span><br><span class="line"></span><br><span class="line">Basic configuration:</span><br><span class="line"><span class="comment">//禁用 .eslintrc.* 和 package.json 文件中的配置</span></span><br><span class="line">  --no-eslintrc                  Disable use <span class="keyword">of</span> configuration <span class="keyword">from</span> .eslintrc.*</span><br><span class="line"><span class="comment">//指定一个其他的配置文件      </span></span><br><span class="line">  -c, --config path::<span class="built_in">String</span>      Use <span class="keyword">this</span> configuration, overriding .eslintrc.* config options <span class="keyword">if</span> present</span><br><span class="line"><span class="comment">//--ext 只有在参数为目录时，才生效  </span></span><br><span class="line">  --env [<span class="built_in">String</span>]                 Specify environments</span><br><span class="line">  --ext [<span class="built_in">String</span>]                 Specify JavaScript file extensions - <span class="keyword">default</span>: .js</span><br><span class="line">  --global [<span class="built_in">String</span>]              Define global variables</span><br><span class="line">  --parser <span class="built_in">String</span>                Specify the parser to be used</span><br><span class="line">  --parser-options <span class="built_in">Object</span>        Specify parser options</span><br><span class="line">  --resolve-plugins-relative-to path::<span class="built_in">String</span>  A folder where plugins should be resolved <span class="keyword">from</span>, CWD by <span class="keyword">default</span></span><br><span class="line"></span><br><span class="line">Specifying rules and plugins:</span><br><span class="line">  --rulesdir [path::<span class="built_in">String</span>]      Use additional rules <span class="keyword">from</span> <span class="keyword">this</span> directory</span><br><span class="line">  --plugin [<span class="built_in">String</span>]              Specify plugins</span><br><span class="line">  --rule <span class="built_in">Object</span>                  Specify rules</span><br><span class="line"></span><br><span class="line">Fixing problems:</span><br><span class="line">  --fix                          Automatically fix problems</span><br><span class="line">  --fix-dry-run                  Automatically fix problems without saving the changes to the file system</span><br><span class="line">  --fix-type <span class="built_in">Array</span>               Specify the types <span class="keyword">of</span> fixes to apply (problem, suggestion, layout)</span><br><span class="line"></span><br><span class="line">Ignoring files:</span><br><span class="line">  --ignore-path path::<span class="built_in">String</span>     Specify path <span class="keyword">of</span> ignore file</span><br><span class="line">  --no-ignore                    Disable use <span class="keyword">of</span> ignore files and patterns</span><br><span class="line">  --ignore-pattern [<span class="built_in">String</span>]      Pattern <span class="keyword">of</span> files to ignore (<span class="keyword">in</span> addition to those <span class="keyword">in</span> .eslintignore)</span><br><span class="line"></span><br><span class="line">Using stdin:</span><br><span class="line">  --stdin                        Lint code provided on &lt;STDIN&gt; - <span class="keyword">default</span>: <span class="literal">false</span></span><br><span class="line">  --stdin-filename <span class="built_in">String</span>        Specify filename to process STDIN <span class="keyword">as</span></span><br><span class="line"></span><br><span class="line">Handling warnings:</span><br><span class="line">  --quiet                        Report errors only - <span class="keyword">default</span>: <span class="literal">false</span></span><br><span class="line">  --max-warnings Int             <span class="built_in">Number</span> <span class="keyword">of</span> warnings to trigger nonzero exit code - <span class="keyword">default</span>: <span class="number">-1</span></span><br><span class="line"></span><br><span class="line">Output:</span><br><span class="line">  -o, --output-file path::<span class="built_in">String</span>  Specify file to write report to</span><br><span class="line">  -f, --format <span class="built_in">String</span>            Use a specific output format - <span class="keyword">default</span>: stylish</span><br><span class="line">  --color, --no-color            Force enabling/disabling <span class="keyword">of</span> color</span><br><span class="line"></span><br><span class="line">Inline configuration comments:</span><br><span class="line">  --no-inline-config             Prevent comments <span class="keyword">from</span> changing config or rules</span><br><span class="line">  --report-unused-disable-directives  Adds reported errors <span class="keyword">for</span> unused eslint-disable directives</span><br><span class="line"></span><br><span class="line">Caching:</span><br><span class="line">  --cache                        Only check changed files - <span class="keyword">default</span>: <span class="literal">false</span></span><br><span class="line">  --cache-file path::<span class="built_in">String</span>      Path to the cache file. Deprecated: use --cache-location - <span class="keyword">default</span>: .eslintcache</span><br><span class="line">  --cache-location path::<span class="built_in">String</span>  Path to the cache file or directory</span><br><span class="line"></span><br><span class="line">Miscellaneous:</span><br><span class="line">  --init                         Run config initialization wizard - <span class="keyword">default</span>: <span class="literal">false</span></span><br><span class="line">  --env-info                     Output execution environment information - <span class="keyword">default</span>: <span class="literal">false</span></span><br><span class="line">  --debug                        Output debugging information</span><br><span class="line">  -h, --help                     Show help</span><br><span class="line">  -v, --version                  Output the version number</span><br><span class="line">  --print-config path::<span class="built_in">String</span>    Print the configuration <span class="keyword">for</span> the given file</span><br></pre></td></tr></table></figure>
 
-<img src="/web/javascript/作用域%20作用域链/scopeSum.png">
-
-<p>通过上面的示例和调试截图来总结下，将各个概念关联起来：</p>
-<p>每个函数被初始化时，会包含一个数组类型的属性  [[Scopes]] （即作用域链），[[Scopes]] 的内容是由此函数可以访问的<strong>外部作用域对象</strong>组成的。</p>
-<p>每次函数执行时，都会创建对应的执行上下文，会使用函数的 [[Scopes]] 来初始化执行上下文，并将<strong>活动对象</strong>（由函数的局部变量组成）追加到<strong>执行上下文</strong>的第一个元素。</p>
-<p><strong>作用域</strong>是一个范围，当把这个范围关联到某个对象时，可以把这个对象叫做<strong>作用域对象</strong>，如 windows 对象、活动对象、执行上下文 都可以称为<strong>作用域对象</strong>。</p>
-<p>保存变量的对象称为<strong>变量对象</strong>，也就是说变量对象包括了<strong>作用域对象</strong>，但并不止作用域对象。</p>
-<p>参考：</p>
-<p><a href="https://juejin.im/post/5b481cc9e51d45192562850f" target="_blank" rel="noopener">https://juejin.im/post/5b481cc9e51d45192562850f</a></p>
+<p>参考链接：</p>
+<p><a href="https://eslint.bootcss.com/docs/" target="_blank" rel="noopener">https://eslint.bootcss.com/docs/</a></p>
+<p><a href="https://eslint.org/docs/user-guide/configuring" target="_blank" rel="noopener">https://eslint.org/docs/user-guide/configuring</a></p>
 
         
       
@@ -333,7 +403,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/43/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/43/">43</a><span class="page-number current">44</span><a class="page-number" href="/page/45/">45</a><span class="space">&hellip;</span><a class="page-number" href="/page/110/">110</a><a class="extend next" rel="next" href="/page/45/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/43/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/43/">43</a><span class="page-number current">44</span><a class="page-number" href="/page/45/">45</a><span class="space">&hellip;</span><a class="page-number" href="/page/108/">108</a><a class="extend next" rel="next" href="/page/45/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -377,7 +447,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">110</span>
+          <span class="site-state-item-count">108</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -403,7 +473,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">75</span>
+        <span class="site-state-item-count">73</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>

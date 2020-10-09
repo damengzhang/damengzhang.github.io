@@ -65,7 +65,7 @@
 <meta property="og:description" content="1 事件循环事件循环是 JS 主线程处理异步任务的过程，包含如下元素：  堆 调用栈（也叫执行栈） 消息队列（也叫任务队列、宏任务队列、callback queue） 微队列  1.1 事件循环视图  1.2 事件循环伪代码123while (queue.waitForMessage()) &amp;#123;//queue 为消息队列  queue.processNextMessage();&amp;#125;">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/web/javascript/JS%20事件循环/eventLoop.PNG">
-<meta property="og:updated_time" content="2020-09-14T10:38:50.000Z">
+<meta property="og:updated_time" content="2020-09-26T13:25:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS 事件循环">
 <meta name="twitter:description" content="1 事件循环事件循环是 JS 主线程处理异步任务的过程，包含如下元素：  堆 调用栈（也叫执行栈） 消息队列（也叫任务队列、宏任务队列、callback queue） 微队列  1.1 事件循环视图  1.2 事件循环伪代码123while (queue.waitForMessage()) &amp;#123;//queue 为消息队列  queue.processNextMessage();&amp;#125;">
@@ -254,7 +254,7 @@
                   ，
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web/js/" itemprop="url" rel="index"><span itemprop="name">js</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a></span>
 
                 
                 
@@ -313,10 +313,20 @@
 </li>
 <li><p>process.nextTick</p>
 </li>
-<li><p>Object.observe</p>
+<li><p>Object.observe（已废弃）</p>
 </li>
 <li><p>MutationObserver</p>
+<ul>
+<li><p>监控 DOM 树的更改</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 选择需要观察变动的节点</span></span><br><span class="line"><span class="keyword">const</span> targetNode = <span class="built_in">document</span>.getElementById(<span class="string">'some-id'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 观察器的配置（需要观察什么变动）</span></span><br><span class="line"><span class="keyword">const</span> config = &#123; <span class="attr">attributes</span>: <span class="literal">true</span>, <span class="attr">childList</span>: <span class="literal">true</span>, <span class="attr">subtree</span>: <span class="literal">true</span> &#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 当观察到变动时执行的回调函数</span></span><br><span class="line"><span class="keyword">const</span> callback = <span class="function"><span class="keyword">function</span>(<span class="params">mutationsList, observer</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// Use traditional 'for loops' for IE 11</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> mutation <span class="keyword">of</span> mutationsList) &#123;</span><br><span class="line">        <span class="keyword">if</span> (mutation.type === <span class="string">'childList'</span>) &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'A child node has been added or removed.'</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (mutation.type === <span class="string">'attributes'</span>) &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'The '</span> + mutation.attributeName + <span class="string">' attribute was modified.'</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建一个观察器实例并传入回调函数</span></span><br><span class="line"><span class="keyword">const</span> observer = <span class="keyword">new</span> MutationObserver(callback);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 以上述配置开始观察目标节点</span></span><br><span class="line">observer.observe(targetNode, config);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 之后，可停止观察</span></span><br><span class="line">observer.disconnect();</span><br></pre></td></tr></table></figure>
+
+
+
 </li>
+</ul>
+</li>
+</ul>
+<ul>
 <li><p>queueMicrotask</p>
 <ul>
 <li><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">queueMicrotask(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">/* 微任务中将运行的代码 */</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
@@ -333,19 +343,10 @@
 </li>
 </ul>
 <h1 id="6-执行顺序"><a href="#6-执行顺序" class="headerlink" title="6 执行顺序"></a>6 执行顺序</h1><p>JS 主线程执行过程：</p>
-<ol>
-<li><p>同步脚本</p>
-</li>
-<li><p>执行微任务队列，直到微任务队列为空</p>
-</li>
-<li><p>当微任务队列中的任务全部执行完成后，从消息队列中取下一个任务开始执行</p>
-</li>
-<li><p>当前任务完成后，执行浏览器渲染</p>
-</li>
-<li><p>浏览器渲染完成后，继续步骤 2</p>
-</li>
-</ol>
-<p>当前 task &gt; microtask（直到队列为空才进行下一步） &gt; 渲染绘制 -&gt; 下个 task</p>
+<p>当前 task（第一次为主代码块） &gt; microtask（直到队列为空才进行下一步） &gt; 渲染绘制 -&gt; 下个 task</p>
+<p>示例：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="number">4</span>)</span><br><span class="line">    &#125;, <span class="number">0</span>);</span><br><span class="line">    </span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> <span class="title">executor</span>(<span class="params">resolve</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span>( <span class="keyword">var</span> i=<span class="number">0</span> ; i&lt;<span class="number">10000</span> ; i++ ) &#123;</span><br><span class="line">        i == <span class="number">9999</span> &amp;&amp; resolve();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">2</span>);</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">5</span>);</span><br><span class="line">&#125;);</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">3</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//输出顺序为：</span></span><br><span class="line"><span class="number">1</span> </span><br><span class="line"><span class="number">2</span> </span><br><span class="line"><span class="number">3</span> </span><br><span class="line"><span class="number">5</span> </span><br><span class="line"><span class="literal">undefined</span></span><br><span class="line"><span class="number">4</span></span><br></pre></td></tr></table></figure>
+
 <p>参考资料：</p>
 <p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/EventLoop" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/EventLoop</a></p>
 
@@ -373,8 +374,8 @@
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/web/webpack/webpack 中 imports-loader exports-loader expose-loader 区别/" rel="next" title="webpack 中 imports-loader exports-loader expose-loader 区别">
-                  <i class="fa fa-chevron-left"></i> webpack 中 imports-loader exports-loader expose-loader 区别
+                <a href="/web/webpack/webpack 中 noParse extertals ignorePlugin 区别/" rel="next" title="Webpack 中 noParse extertals IgnorePlugin 区别">
+                  <i class="fa fa-chevron-left"></i> Webpack 中 noParse extertals IgnorePlugin 区别
                 </a>
               
             </div>
@@ -383,8 +384,8 @@
 
             <div class="post-nav-prev post-nav-item">
               
-                <a href="/web/webpack/webpack 中 noParse extertals ignorePlugin 区别/" rel="prev" title="Webpack 中 noParse extertals IgnorePlugin 区别">
-                  Webpack 中 noParse extertals IgnorePlugin 区别 <i class="fa fa-chevron-right"></i>
+                <a href="/web/webpack/Shimming 预置依赖/" rel="prev" title="Shimming 预置依赖">
+                  Shimming 预置依赖 <i class="fa fa-chevron-right"></i>
                 </a>
               
             </div>
@@ -448,7 +449,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">110</span>
+          <span class="site-state-item-count">108</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -474,7 +475,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">75</span>
+        <span class="site-state-item-count">73</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>

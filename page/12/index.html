@@ -402,7 +402,7 @@
 <h1 id="3-卸载"><a href="#3-卸载" class="headerlink" title="3 卸载"></a>3 卸载</h1><h2 id="3-1-componentWillUnmount"><a href="#3-1-componentWillUnmount" class="headerlink" title="3.1 componentWillUnmount"></a>3.1 componentWillUnmount</h2><p>此函数在组件卸载销毁之前调用。</p>
 <h3 id="3-1-1-作用"><a href="#3-1-1-作用" class="headerlink" title="3.1.1 作用"></a>3.1.1 作用</h3><p>在此方法中执行清理操作，如清除 timer、取消请求、取消监听等。</p>
 <h1 id="4-错误处理"><a href="#4-错误处理" class="headerlink" title="4 错误处理"></a>4 错误处理</h1><p>当渲染过程、生命周期或子组件的构造函数中抛出错误时，会调用如下方法：</p>
-<h2 id="4-1-static-getDeraivedStateFromError"><a href="#4-1-static-getDeraivedStateFromError" class="headerlink" title="4.1 static getDeraivedStateFromError()"></a>4.1 static getDeraivedStateFromError()</h2><p>此生命周期会在后代组件抛出错误后被调用。 它将抛出的错误作为参数，并返回一个值以更新 state</p>
+<h2 id="4-1-static-getDerivedStateFromError"><a href="#4-1-static-getDerivedStateFromError" class="headerlink" title="4.1 static getDerivedStateFromError()"></a>4.1 static getDerivedStateFromError()</h2><p>此生命周期会在后代组件抛出错误后被调用。 它将抛出的错误作为参数，并返回一个值以更新 state</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">class ErrorBoundary extends React.Component &#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    super(props);</span><br><span class="line">    this.state = &#123; hasError: false &#125;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  static getDerivedStateFromError(error) &#123;</span><br><span class="line">    // 更新 state 使下一次渲染可以显降级 UI</span><br><span class="line">    return &#123; hasError: true &#125;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    if (this.state.hasError) &#123;</span><br><span class="line">      // 你可以渲染任何自定义的降级  UI</span><br><span class="line">      return &lt;h1&gt;Something went wrong.&lt;/h1&gt;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return this.props.children; </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="4-2-componentDidCatch"><a href="#4-2-componentDidCatch" class="headerlink" title="4.2 componentDidCatch()"></a>4.2 componentDidCatch()</h2><p>此生命周期在后代组件抛出错误后被调用。 它接收两个参数：</p>
@@ -435,7 +435,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/11/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/110/">110</a><a class="extend next" rel="next" href="/page/13/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/11/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/108/">108</a><a class="extend next" rel="next" href="/page/13/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -479,7 +479,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">110</span>
+          <span class="site-state-item-count">108</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -505,7 +505,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">75</span>
+        <span class="site-state-item-count">73</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>

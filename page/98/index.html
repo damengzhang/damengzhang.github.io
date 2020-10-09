@@ -206,7 +206,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/web/react/react组合/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/web/react/react列表和key/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="DaMeng">
@@ -220,7 +220,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/web/react/react组合/" class="post-title-link" itemprop="url">react组合</a>
+            <a href="/web/react/react列表和key/" class="post-title-link" itemprop="url">react列表和key</a>
           
         </h1>
 
@@ -235,7 +235,7 @@
                 
               
 
-              <time title="创建时间：2018-03-13 20:18:48" itemprop="dateCreated datePublished" datetime="2018-03-13T20:18:48+08:00">2018-03-13</time>
+              <time title="创建时间：2018-03-11 18:08:28" itemprop="dateCreated datePublished" datetime="2018-03-11T18:08:28+08:00">2018-03-11</time>
             </span>
           
             <span class="post-meta-item">
@@ -270,11 +270,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>react的容器组件可以通过props.children来获取器内部的子组件</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">FancyBorder</span>(<span class="params">props</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;div className=&#123;<span class="string">'FancyBorder FancyBorder-'</span> + props.color&#125;&gt;</span><br><span class="line">      &#123;props.children&#125;<span class="comment">//获取其子组件</span></span><br><span class="line">    &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  );</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">function WelcomeDialog() &#123;</span></span><br><span class="line"><span class="regexp">  return (</span></span><br><span class="line"><span class="regexp">    &lt;FancyBorder color="blue"&gt;</span></span><br><span class="line"><span class="regexp">      &lt;h1 className="Dialog-title"&gt;</span></span><br><span class="line"><span class="regexp">        Welcome</span></span><br><span class="line"><span class="regexp">      &lt;/</span>h1&gt;</span><br><span class="line">      &lt;p className=<span class="string">"Dialog-message"</span>&gt;</span><br><span class="line">        Thank you <span class="keyword">for</span> visiting our spacecraft!</span><br><span class="line">      &lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>FancyBorder&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <img src="/web/react/react列表和key/list_key.PNG">
 
-<p>也可以将子组件通过容器的prop自定义属性进行传递，然后容器自行在内部组织子组件的位置</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SplitPane</span>(<span class="params">props</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;div className=<span class="string">"SplitPane"</span>&gt;</span><br><span class="line">      &lt;div className=<span class="string">"SplitPane-left"</span>&gt;</span><br><span class="line">        &#123;props.left&#125;</span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">      &lt;div className="SplitPane-right"&gt;</span></span><br><span class="line"><span class="regexp">        &#123;props.right&#125;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>div&gt;</span><br><span class="line">    &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  );</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">function App() &#123;</span></span><br><span class="line"><span class="regexp">  return (</span></span><br><span class="line"><span class="regexp">    &lt;SplitPane</span></span><br><span class="line"><span class="regexp">      left=&#123;</span></span><br><span class="line"><span class="regexp">        &lt;Contacts /</span>&gt;</span><br><span class="line">      &#125;</span><br><span class="line">      right=&#123;</span><br><span class="line">        &lt;Chat /&gt;</span><br><span class="line">      &#125; /&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function ListItem(props)&#123;</span><br><span class="line">    return &lt;li&gt;&#123;props.num&#125;&lt;/li&gt; ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function NumList(props)&#123;</span><br><span class="line">    const nums = props.nums;</span><br><span class="line">    const listItems = nums.map(function(num)&#123;</span><br><span class="line">        //重要：map中配置key属性</span><br><span class="line">        return &lt;ListItem key=&#123;num.toString()&#125; num=&#123;num&#125; &gt;&lt;/ListItem&gt;</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    return &lt;ul&gt;&#123;listItems&#125;&lt;/ul&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
         
@@ -299,7 +297,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/97/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/97/">97</a><span class="page-number current">98</span><a class="page-number" href="/page/99/">99</a><span class="space">&hellip;</span><a class="page-number" href="/page/110/">110</a><a class="extend next" rel="next" href="/page/99/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/97/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/97/">97</a><span class="page-number current">98</span><a class="page-number" href="/page/99/">99</a><span class="space">&hellip;</span><a class="page-number" href="/page/108/">108</a><a class="extend next" rel="next" href="/page/99/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -343,7 +341,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">110</span>
+          <span class="site-state-item-count">108</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -369,7 +367,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">75</span>
+        <span class="site-state-item-count">73</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>

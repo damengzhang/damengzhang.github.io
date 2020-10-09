@@ -64,7 +64,7 @@
 <meta property="og:site_name" content="DaMeng">
 <meta property="og:description" content="slice1arr.slice([begin[, end]])  作用： ​    获取原数组从 begin（包括） 到 end（不包括） 元素的浅拷贝。不需要原数组。 返回值： ​    返回一个新数组，内容为元素组的 begin（包括） 到 end（不包括） 元素的浅拷贝。 12345678910const animals = [&apos;ant&apos;, &amp;#123;a:1&amp;#125;, &apos;camel&apos;,">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-08-01T10:27:02.000Z">
+<meta property="og:updated_time" content="2020-09-26T10:39:10.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Array 常用操作">
 <meta name="twitter:description" content="slice1arr.slice([begin[, end]])  作用： ​    获取原数组从 begin（包括） 到 end（不包括） 元素的浅拷贝。不需要原数组。 返回值： ​    返回一个新数组，内容为元素组的 begin（包括） 到 end（不包括） 元素的浅拷贝。 12345678910const animals = [&apos;ant&apos;, &amp;#123;a:1&amp;#125;, &apos;camel&apos;,">
@@ -252,7 +252,7 @@
                   ，
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web/js/" itemprop="url" rel="index"><span itemprop="name">js</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a></span>
 
                 
                 
@@ -305,6 +305,96 @@
 <p>​    返回由被删除元素组成的数组</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myFish = [<span class="string">"angel"</span>, <span class="string">"clown"</span>, <span class="string">"mandarin"</span>, <span class="string">"sturgeon"</span>];</span><br><span class="line"><span class="keyword">var</span> removed = myFish.splice(<span class="number">2</span>, <span class="number">0</span>, <span class="string">"drum"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 运算后的 myFish: ["angel", "clown", "drum", "mandarin", "sturgeon"]</span></span><br><span class="line"><span class="comment">// 被删除的元素: [], 没有元素被删除</span></span><br></pre></td></tr></table></figure>
 
+<h1 id="reduce"><a href="#reduce" class="headerlink" title="reduce"></a>reduce</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr.reduce( reducerFn(accumulator, currentValue[, index[, array]])  [, initialValue] )</span><br></pre></td></tr></table></figure>
+
+<p>作用：</p>
+<p>​    对数组中的每个元素执行一个由您提供的<strong>reducer</strong>函数(升序执行)，将其结果汇总为单个返回值。</p>
+<p>参数：</p>
+<ul>
+<li><p>reducerFn </p>
+<ul>
+<li><p>参数：</p>
+<ul>
+<li><p>accumulator</p>
+<p>上一次调用回调时返回的累积值，或 <code>initialValue</code></p>
+</li>
+<li><p>currentValue</p>
+<p>当前数组元素</p>
+</li>
+<li><p>index</p>
+<p>当前数组元素索引。</p>
+<p>如果没有提供 <code>initialValue</code>，index 从索引 1 开始，跳过第一个索引。如果提供 <code>initialValue</code>，从索引 0 开始。</p>
+</li>
+<li><p>array</p>
+<p>源数组</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>initailValue</p>
+<ul>
+<li>第一次调用 <code>callback</code>函数时的第一个参数的值。 如果没有提供初始值，则将使用数组中的第一个元素。 在没有初始值的空数组上调用 reducerFn 将报错。</li>
+</ul>
+</li>
+</ul>
+<p>返回值：</p>
+<p>​    所有数组元素依次执行完 reducerFn 后的累积结果。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>].reduce(<span class="function">(<span class="params">accumulator, currentValue, currentIndex, array</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> accumulator + currentValue</span><br><span class="line">&#125;, <span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+
+<p>每次调用的参数和返回值如下表：</p>
+<table>
+<thead>
+<tr>
+<th align="left"><code>callback</code></th>
+<th align="left"><code>accumulator</code></th>
+<th align="left"><code>currentValue</code></th>
+<th align="left"><code>currentIndex</code></th>
+<th align="left"><code>array</code></th>
+<th align="left">return value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">first call</td>
+<td align="left"><code>10</code></td>
+<td align="left"><code>0</code></td>
+<td align="left"><code>0</code></td>
+<td align="left"><code>[0, 1, 2, 3, 4]</code></td>
+<td align="left"><code>10</code></td>
+</tr>
+<tr>
+<td align="left">second call</td>
+<td align="left"><code>10</code></td>
+<td align="left"><code>1</code></td>
+<td align="left"><code>1</code></td>
+<td align="left"><code>[0, 1, 2, 3, 4]</code></td>
+<td align="left"><code>11</code></td>
+</tr>
+<tr>
+<td align="left">third call</td>
+<td align="left"><code>11</code></td>
+<td align="left"><code>2</code></td>
+<td align="left"><code>2</code></td>
+<td align="left"><code>[0, 1, 2, 3, 4]</code></td>
+<td align="left"><code>13</code></td>
+</tr>
+<tr>
+<td align="left">fourth call</td>
+<td align="left"><code>13</code></td>
+<td align="left"><code>3</code></td>
+<td align="left"><code>3</code></td>
+<td align="left"><code>[0, 1, 2, 3, 4]</code></td>
+<td align="left"><code>16</code></td>
+</tr>
+<tr>
+<td align="left">fifth call</td>
+<td align="left"><code>16</code></td>
+<td align="left"><code>4</code></td>
+<td align="left"><code>4</code></td>
+<td align="left"><code>[0, 1, 2, 3, 4]</code></td>
+<td align="left"><code>20</code></td>
+</tr>
+</tbody></table>
 
     </div>
 
@@ -389,7 +479,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#slice"><span class="nav-text">slice</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#splice"><span class="nav-text">splice</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#slice"><span class="nav-text">slice</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#splice"><span class="nav-text">splice</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#reduce"><span class="nav-text">reduce</span></a></li></ol></div>
         
       </div>
       <!--/noindex-->
@@ -405,7 +495,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">110</span>
+          <span class="site-state-item-count">108</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -431,7 +521,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">75</span>
+        <span class="site-state-item-count">73</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>

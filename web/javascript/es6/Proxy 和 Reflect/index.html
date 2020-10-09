@@ -64,7 +64,7 @@
 <meta property="og:site_name" content="DaMeng">
 <meta property="og:description" content="Proxy作用可以通过 Proxy 来代理对象，然后定制该对象的基本操作（如属性查找、赋值、枚举、函数调用等）。 语法1const p = new Proxy(target, handler)  参数：  target：被代理的对象，可以是任何类型的对象，包括原生数组，函数，甚至另一个代理。  handler：以函数为属性值的对象，key 为操作名称，value 为自定义实现。  支持的 key：">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-09-14T10:56:02.000Z">
+<meta property="og:updated_time" content="2020-09-26T06:36:10.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Proxy 和 Reflect">
 <meta name="twitter:description" content="Proxy作用可以通过 Proxy 来代理对象，然后定制该对象的基本操作（如属性查找、赋值、枚举、函数调用等）。 语法1const p = new Proxy(target, handler)  参数：  target：被代理的对象，可以是任何类型的对象，包括原生数组，函数，甚至另一个代理。  handler：以函数为属性值的对象，key 为操作名称，value 为自定义实现。  支持的 key：">
@@ -321,26 +321,20 @@
 <li><code>Object.preventExtensions</code>方法的捕捉器。</li>
 </ul>
 </li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>getOwnPropertyDescriptor(target, prop) {//…}</p>
-<pre><code>- `Object.getOwnPropertyDescriptor` 方法的捕捉器。</code></pre><ul>
-<li>defineProperty(target, prop, descriptor ) {//…}<ul>
+<li>getOwnPropertyDescriptor(target, prop) {//…}<ul>
+<li><code>Object.getOwnPropertyDescriptor</code> 方法的捕捉器。<ul>
+<li>defineProperty(target, prop, descriptor ) {//…}</li>
 <li><code>Object.defineProperty</code>方法的捕捉器。</li>
-</ul>
-</li>
-<li>ownKeys(target) {//…}<ul>
+<li>ownKeys(target) {//…}</li>
 <li><code>Object.getOwnPropertyNames</code> 方法和 <code>Object.getOwnPropertySymbols</code> 方法的捕捉器。</li>
-</ul>
-</li>
-<li>apply(target, thisArg, argumentsList) {//…}<ul>
+<li>apply(target, thisArg, argumentsList) {//…}</li>
 <li>函数调用操作的捕捉器。</li>
+<li>construct(target, args) {//…}</li>
+<li><code>new</code> 操作符的捕捉器。</li>
 </ul>
 </li>
-<li>construct(target, args) {//…}<ul>
-<li><code>new</code> 操作符的捕捉器。</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -466,7 +460,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">110</span>
+          <span class="site-state-item-count">108</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -492,7 +486,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">75</span>
+        <span class="site-state-item-count">73</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>

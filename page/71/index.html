@@ -284,7 +284,7 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install webpack webpack-cli -D</span><br></pre></td></tr></table></figure>
 
 <h1 id="组成"><a href="#组成" class="headerlink" title="组成"></a>组成</h1><h2 id="entry"><a href="#entry" class="headerlink" title="entry"></a>entry</h2><p>通过 entry 来配置 webpack 的入口文件，webpack 从 entry 开始分析模块间的依赖关系。</p>
-<p>webpack 将存在依赖关系的模块，打包为 trunk（代码分片）。</p>
+<p>webpack 将存在依赖关系的模块，打包为 trunk（代码分片），trunk 为代码在打包过程中的中间状态。</p>
 <p>由 trunk 最终产生的打包产物叫做bundle。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  entry: <span class="string">'./path/to/my/entry/file.js'</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
@@ -310,6 +310,8 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">  mode: &apos;production&apos;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
 <h1 id="浏览器兼容性"><a href="#浏览器兼容性" class="headerlink" title="浏览器兼容性"></a>浏览器兼容性</h1><p>webpack 默认支持 es5 标准（不支持 ie8 及以下）。如果想要支持旧版本浏览器，在使用这些表达式之前，需要 <a href="https://webpack.docschina.org/guides/shimming/" target="_blank" rel="noopener">提前加载 polyfill</a>。</p>
+<p>参考：</p>
+<p><a href="https://www.cnblogs.com/skychx/p/webpack-module-chunk-bundle.html" target="_blank" rel="noopener">https://www.cnblogs.com/skychx/p/webpack-module-chunk-bundle.html</a></p>
 
         
       

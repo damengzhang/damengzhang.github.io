@@ -206,7 +206,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/web/ts/TypeScript声明文件/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/web/javascript/FormData/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="DaMeng">
@@ -220,7 +220,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/web/ts/TypeScript声明文件/" class="post-title-link" itemprop="url">TypeScript 声明文件</a>
+            <a href="/web/javascript/FormData/" class="post-title-link" itemprop="url">FormData</a>
           
         </h1>
 
@@ -235,7 +235,7 @@
                 
               
 
-              <time title="创建时间：2019-04-10 19:18:38" itemprop="dateCreated datePublished" datetime="2019-04-10T19:18:38+08:00">2019-04-10</time>
+              <time title="创建时间：2019-03-25 19:40:38" itemprop="dateCreated datePublished" datetime="2019-03-25T19:40:38+08:00">2019-03-25</time>
             </span>
           
             <span class="post-meta-item">
@@ -251,7 +251,7 @@
                   ，
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web/typescript/" itemprop="url" rel="index"><span itemprop="name">typescript</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a></span>
 
                 
                 
@@ -270,26 +270,168 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="声明文件是什么"><a href="#声明文件是什么" class="headerlink" title="声明文件是什么"></a>声明文件是什么</h2><p>声明文件是描述 js 库和模块信息的文件。将第三方 js 库的函数和方法体去掉后，只保留导出类型声明，即声明文件的内容。</p>
-<h2 id="声明文件的作用"><a href="#声明文件的作用" class="headerlink" title="声明文件的作用"></a>声明文件的作用</h2><p>TypeScript 会使用声明文件来进行类型校验，使用声明文件是为了借用 TypeScript 的类型检查。</p>
-<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><ul>
-<li><p>声明文件以 .d.s 为后缀</p>
-</li>
-<li><p>声明文件或模块的语法格式为：</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">declare</span> <span class="keyword">module</span> Module_Name &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>TypeScript 引入声明文件语法格式：</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// &lt;reference path = " runoob.d.ts" /&gt;</span></span><br></pre></td></tr></table></figure>
+          <h1 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h1><p>可以用来构造表单数据，然后作为 data 发送给服务器。</p>
+<h1 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h1><h2 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> formData = <span class="keyword">new</span> FormData(form)</span><br></pre></td></tr></table></figure>
 
+<ul>
+<li><p>参数</p>
+<ul>
+<li><p>form（可选）</p>
+<p>当指定 form 时，会使用 form 中的表单值（包括 form 中的文件内容）初始化 formData。</p>
 </li>
 </ul>
-<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><h3 id="CalcThirdPartyJsLib-js-文件代码"><a href="#CalcThirdPartyJsLib-js-文件代码" class="headerlink" title="CalcThirdPartyJsLib.js 文件代码"></a>CalcThirdPartyJsLib.js 文件代码</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Runoob;  </span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">Runoob</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> Calc = (<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; </span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">Calc</span>(<span class="params"></span>) </span>&#123; </span><br><span class="line">        &#125; </span><br><span class="line">    &#125;)</span><br><span class="line">    Calc.prototype.doSum = <span class="function"><span class="keyword">function</span> (<span class="params">limit</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> sum = <span class="number">0</span>; </span><br><span class="line"> </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt;= limit; i++) &#123; </span><br><span class="line">            sum = sum + i; </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sum; </span><br><span class="line">    &#125;</span><br><span class="line">    Runoob.Calc = Calc; </span><br><span class="line">    <span class="keyword">return</span> Calc; </span><br><span class="line">&#125;)(Runoob || (Runoob = &#123;&#125;)); </span><br><span class="line"><span class="keyword">var</span> test = <span class="keyword">new</span> Runoob.Calc();</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//所有的 form 元素都需要有 name 属性，否则无法访问到值。</span></span><br><span class="line"><span class="keyword">var</span> myForm = <span class="built_in">document</span>.getElementById(<span class="string">'myForm'</span>);</span><br><span class="line">formData = <span class="keyword">new</span> FormData(myForm);</span><br></pre></td></tr></table></figure>
 
-<h3 id="Calc-d-ts-文件代码"><a href="#Calc-d-ts-文件代码" class="headerlink" title="Calc.d.ts 文件代码"></a>Calc.d.ts 文件代码</h3><p>如果想在 TypeScript 中引用上面的代码，则需要创建声明文件 Calc.d.ts，代码如下：</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">declare</span> <span class="keyword">module</span> Runoob &#123; </span><br><span class="line">   <span class="keyword">export</span> <span class="keyword">class</span> Calc &#123; </span><br><span class="line">      doSum(limit:<span class="built_in">number</span>) : <span class="built_in">number</span>; </span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> formData = <span class="keyword">new</span> FormData(); <span class="comment">// 当前为空</span></span><br><span class="line">formData.append(<span class="string">'username'</span>, <span class="string">'Chris'</span>);</span><br></pre></td></tr></table></figure>
 
-<h3 id="CalcTest-ts-文件代码"><a href="#CalcTest-ts-文件代码" class="headerlink" title="CalcTest.ts 文件代码"></a>CalcTest.ts 文件代码</h3><p>把声明文件加入到 TypeScript 中</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// &lt;reference path = "Calc.d.ts" /&gt; </span></span><br><span class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> Runoob.Calc(); </span><br><span class="line"><span class="comment">// obj.doSum("Hello"); // 编译错误</span></span><br><span class="line"><span class="built_in">console</span>.log(obj.doSum(<span class="number">10</span>));</span><br></pre></td></tr></table></figure>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><h3 id="append"><a href="#append" class="headerlink" title="append"></a>append</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">FormData.append(name, value);</span><br><span class="line">FormData.append(name, value, filename);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>参数<ul>
+<li>name：表单元素的 name 属性值</li>
+<li>value：表单元素的 value 属性值，可以是 字符串 或 Blob 类型</li>
+<li>filename（可选）：传递给服务器的文件名称。<ul>
+<li>当第二个参数为 Blob 类型时，filename 默认值为 blob</li>
+<li>当第二个参数为 File 对象时，filename 默认值为该文件名称</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>返回值<ul>
+<li>空</li>
+</ul>
+</li>
+<li>功能<ul>
+<li>添加新值到 <code>FormData</code> 对象集合的后面，即使新值 key 已存在。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">formData.append(<span class="string">'username'</span>, <span class="string">'Chris'</span>);</span><br><span class="line">formData.append(<span class="string">'userpic'</span>, myFileInput.files[<span class="number">0</span>], <span class="string">'chris.jpg'</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="delete"><a href="#delete" class="headerlink" title="delete"></a>delete</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FormData.delete(name);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>参数<ul>
+<li>name：要删除的键（Key）。</li>
+</ul>
+</li>
+<li>返回值<ul>
+<li>空</li>
+</ul>
+</li>
+<li>功能<ul>
+<li>从 FormData 中删除指定键和对应的值</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">formData.delete(<span class="string">'username'</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="entries"><a href="#entries" class="headerlink" title="entries"></a>entries</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FormData.entries();</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>返回值<ul>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Iteration_protocols" target="_blank" rel="noopener"><code>iterator</code></a> 对象</li>
+</ul>
+</li>
+<li>功能<ul>
+<li>返回一个 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Iteration_protocols" target="_blank" rel="noopener"><code>iterator</code></a> 对象 ，此对象可以遍历访问 FormData中 的键值对</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> pair <span class="keyword">of</span> formData.entries()) &#123;</span><br><span class="line">   <span class="built_in">console</span>.log(pair[<span class="number">0</span>]+ <span class="string">', '</span>+ pair[<span class="number">1</span>]); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="get"><a href="#get" class="headerlink" title="get"></a>get</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FormData.get(name);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>参数<ul>
+<li>name：将要获取值的键名。</li>
+</ul>
+</li>
+<li>返回值<br>- </li>
+<li>功能<ul>
+<li>返回 FormData 对象中和指定的键关联的第一个值。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">formData.append(<span class="string">'username'</span>, <span class="string">'Chris'</span>);</span><br><span class="line">formData.append(<span class="string">'username'</span>, <span class="string">'Bob'</span>);</span><br><span class="line"></span><br><span class="line">formData.get(<span class="string">'username'</span>); <span class="comment">// Returns "Chris"</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="getAll"><a href="#getAll" class="headerlink" title="getAll"></a>getAll</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FormData.getAll(name);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>参数<ul>
+<li>要获取值的 key</li>
+</ul>
+</li>
+<li>返回值<ul>
+<li>包含由 key 所对应值组成的数组</li>
+</ul>
+</li>
+<li>功能<ul>
+<li>返回该 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/FormData" target="_blank" rel="noopener"><code>FormData</code></a> 对象指定 key 的所有值</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">formData.append(<span class="string">'username'</span>, <span class="string">'Chris'</span>);</span><br><span class="line">formData.append(<span class="string">'username'</span>, <span class="string">'Bob'</span>);</span><br><span class="line"></span><br><span class="line">formData.getAll(<span class="string">'username'</span>); <span class="comment">// Returns ["Chris", "Bob"]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="has"><a href="#has" class="headerlink" title="has"></a>has</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FormData.has(name);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>参数<ul>
+<li>name：要查询的 key</li>
+</ul>
+</li>
+<li>返回值<ul>
+<li>查询结果</li>
+</ul>
+</li>
+<li>功能<ul>
+<li>查询 FormData 对象是否存在某个key</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">formData.has(<span class="string">'username'</span>); <span class="comment">// Returns false</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="keys"><a href="#keys" class="headerlink" title="keys"></a>keys</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FormData.keys();</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>返回值<ul>
+<li>formData  包含的所有 key 的迭代器</li>
+</ul>
+</li>
+<li>功能<ul>
+<li>返回一个迭代器（<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Iteration_protocols" target="_blank" rel="noopener"><code>iterator</code></a>），用来遍历了该 formData  包含的所有key</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">formData.append(<span class="string">'key1'</span>, <span class="string">'value1'</span>);</span><br><span class="line">formData.append(<span class="string">'key2'</span>, <span class="string">'value2'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出所有的 key</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">of</span> formData.keys()) &#123;</span><br><span class="line">   <span class="built_in">console</span>.log(key); </span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//输出：</span></span><br><span class="line"><span class="comment">//key1</span></span><br><span class="line"><span class="comment">//key2</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="set"><a href="#set" class="headerlink" title="set"></a>set</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">FormData.set(name, value);</span><br><span class="line">FormData.set(name, value, filename);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>参数</p>
+<ul>
+<li>同 FormData.append</li>
+</ul>
+</li>
+<li><p>功能</p>
+<ul>
+<li>对 FormData 对象里的某个 key 设置一个新的值，如果该 key 不存在，则添加。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">formData.set(<span class="string">'username'</span>, <span class="string">'Chris'</span>);</span><br><span class="line">formData.set(<span class="string">'userpic'</span>, myFileInput.files[<span class="number">0</span>], <span class="string">'chris.jpg'</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="value"><a href="#value" class="headerlink" title="value"></a>value</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FormData.values();</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>功能<ul>
+<li>返回一个允许遍历该对象中所有值的迭代器</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">formData.append(<span class="string">'key1'</span>, <span class="string">'value1'</span>);</span><br><span class="line">formData.append(<span class="string">'key2'</span>, <span class="string">'value2'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//显示值</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> value <span class="keyword">of</span> formData.values()) &#123;</span><br><span class="line">   <span class="built_in">console</span>.log(value); </span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//输出：</span></span><br><span class="line"><span class="comment">//value1</span></span><br><span class="line"><span class="comment">//value2</span></span><br></pre></td></tr></table></figure>
 
 
         
@@ -314,7 +456,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/63/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/63/">63</a><span class="page-number current">64</span><a class="page-number" href="/page/65/">65</a><span class="space">&hellip;</span><a class="page-number" href="/page/108/">108</a><a class="extend next" rel="next" href="/page/65/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/63/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/63/">63</a><span class="page-number current">64</span><a class="page-number" href="/page/65/">65</a><span class="space">&hellip;</span><a class="page-number" href="/page/104/">104</a><a class="extend next" rel="next" href="/page/65/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -358,7 +500,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">108</span>
+          <span class="site-state-item-count">104</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -371,7 +513,7 @@
             <a href="/categories/">
           
         
-        <span class="site-state-item-count">32</span>
+        <span class="site-state-item-count">30</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -384,7 +526,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">73</span>
+        <span class="site-state-item-count">72</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>

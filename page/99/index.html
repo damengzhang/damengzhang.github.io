@@ -206,7 +206,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/linux/linux中的工作管理/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/web/react/react Props/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="DaMeng">
@@ -220,7 +220,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/linux/linux中的工作管理/" class="post-title-link" itemprop="url">linux中的工作管理</a>
+            <a href="/web/react/react Props/" class="post-title-link" itemprop="url">react Props</a>
           
         </h1>
 
@@ -235,7 +235,7 @@
                 
               
 
-              <time title="创建时间：2018-03-05 00:00:00" itemprop="dateCreated datePublished" datetime="2018-03-05T00:00:00+08:00">2018-03-05</time>
+              <time title="创建时间：2018-02-13 19:30:08" itemprop="dateCreated datePublished" datetime="2018-02-13T19:30:08+08:00">2018-02-13</time>
             </span>
           
             <span class="post-meta-item">
@@ -244,7 +244,14 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web/" itemprop="url" rel="index"><span itemprop="name">web</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web/react/" itemprop="url" rel="index"><span itemprop="name">react</span></a></span>
 
                 
                 
@@ -263,23 +270,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>工作管理（job controll），在 bash下（登录系统取得的 bash shell），对自身的多个工作的管理</p>
-<ul>
-<li><p>将命令扔到后台执行:  &amp;</p>
-<ul>
-<li>此时会得到job number和pid</li>
-<li>需要处理后台工作的输出信息，防止影响前台操作</li>
-</ul>
-</li>
-<li><p>查看目前的后台工作状态：jobs</p>
-</li>
-<li><p>将目前的工作丢到后台中暂停:    ctrl + z</p>
-</li>
-<li><p>将后台暂停的工作变成运行状态： bg %jobnumber</p>
-</li>
-<li><p>将后台工作拿到前台来处理:  fg  %jobnumber</p>
-</li>
-</ul>
+          <img src="/web/react/react%20Props/react_props.PNG">
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; Component &#125; from &quot;react&quot;;</span><br><span class="line">import &#123; PropTypes &#125; from &quot;prop-types&quot;;</span><br><span class="line"></span><br><span class="line">class TodoItem extends Component &#123;</span><br><span class="line">	render() &#123;</span><br><span class="line">		const &#123; index, deleteItem, content &#125; = this.props;</span><br><span class="line">		return (</span><br><span class="line">			&lt;li index=&#123;index&#125; onClick=&#123;() =&gt; deleteItem(index)&#125;&gt;</span><br><span class="line">				&#123;content&#125;</span><br><span class="line">			&lt;/li&gt;</span><br><span class="line">		);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">TodoItem.propType = &#123;</span><br><span class="line">	content: PropTypes.string,</span><br><span class="line">	index: PropTypes.number,</span><br><span class="line">	deleteItem: PropTypes.func,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">export default TodoItem;</span><br></pre></td></tr></table></figure>
+
 
         
       
@@ -303,7 +297,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/98/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/98/">98</a><span class="page-number current">99</span><a class="page-number" href="/page/100/">100</a><span class="space">&hellip;</span><a class="page-number" href="/page/108/">108</a><a class="extend next" rel="next" href="/page/100/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/98/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/98/">98</a><span class="page-number current">99</span><a class="page-number" href="/page/100/">100</a><span class="space">&hellip;</span><a class="page-number" href="/page/104/">104</a><a class="extend next" rel="next" href="/page/100/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -347,7 +341,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">108</span>
+          <span class="site-state-item-count">104</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -360,7 +354,7 @@
             <a href="/categories/">
           
         
-        <span class="site-state-item-count">32</span>
+        <span class="site-state-item-count">30</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -373,7 +367,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">73</span>
+        <span class="site-state-item-count">72</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>

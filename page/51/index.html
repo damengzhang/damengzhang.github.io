@@ -206,7 +206,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/web/webpack/webpack Plugins/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/web/javascript/js 的垃圾回收机制/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="DaMeng">
@@ -220,7 +220,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/web/webpack/webpack Plugins/" class="post-title-link" itemprop="url">webpack Plugins</a>
+            <a href="/web/javascript/js 的垃圾回收机制/" class="post-title-link" itemprop="url">js 的垃圾回收机制</a>
           
         </h1>
 
@@ -235,7 +235,7 @@
                 
               
 
-              <time title="创建时间：2019-05-09 00:00:00" itemprop="dateCreated datePublished" datetime="2019-05-09T00:00:00+08:00">2019-05-09</time>
+              <time title="创建时间：2019-05-06 19:40:38" itemprop="dateCreated datePublished" datetime="2019-05-06T19:40:38+08:00">2019-05-06</time>
             </span>
           
             <span class="post-meta-item">
@@ -251,7 +251,7 @@
                   ，
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web/webpack/" itemprop="url" rel="index"><span itemprop="name">webpack</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a></span>
 
                 
                 
@@ -270,21 +270,33 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="是什么"><a href="#是什么" class="headerlink" title="是什么"></a>是什么</h1><p>Plugins 本质上是一个包含 <code>apply</code> 方法的类，<code>apply</code> 会被 webpack compiler 调用。</p>
-<p>在 <code>apply</code> 方法中可以访问到 compiler 对象，进而对其挂上钩子。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> pluginName = <span class="string">'ConsoleLogOnBuildWebpackPlugin'</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ConsoleLogOnBuildWebpackPlugin</span> </span>&#123;</span><br><span class="line">  apply(compiler) &#123;</span><br><span class="line">    compiler.hooks.run.tap(pluginName, compilation =&gt; &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'webpack 构建过程开始！'</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = ConsoleLogOnBuildWebpackPlugin;</span><br></pre></td></tr></table></figure>
+          <p>js 的垃圾回收器用来跟踪内存的分配和使用，会定时把分配后不再使用的内存释放掉。</p>
+<p>js 垃圾回收器判断内存是否不再使用时，使用了 <code>引用计数</code> 和 <code>标记-清除</code> 两种机制。自 2012 年起，所有现代浏览器都使用了标记-清除垃圾回收算法。</p>
+<ul>
+<li><p>引用计数</p>
+<ul>
+<li><p>当对象没有被其他对象使用时，将会被回收机制回收。</p>
+</li>
+<li><p>缺点：无法处理循环引用的场景，进而造成内存泄露。</p>
+<ul>
+<li><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> o = &#123;&#125;;</span><br><span class="line">  <span class="keyword">var</span> o2 = &#123;&#125;;</span><br><span class="line">  o.a = o2; <span class="comment">// o 引用 o2</span></span><br><span class="line">  o2.a = o; <span class="comment">// o2 引用 o</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="string">"azerty"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">f();</span><br></pre></td></tr></table></figure>
 
-<p>compiler hook 的 tap 方法的第一个参数，应该是驼峰式命名的插件名称。建议为此使用一个常量，以便它可以在所有 hook 中重复使用。</p>
-<h1 id="有什么作用"><a href="#有什么作用" class="headerlink" title="有什么作用"></a>有什么作用</h1><p>plugin 可于执行更广泛的任务，如 打包优化、资源管理、注入环境变量。</p>
-<h1 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h1><ol>
-<li>如果是外部 Plugins，则需要先安装</li>
-<li>然后在 webpack 中 require 进来</li>
-<li>通过 new 创建插件实例，将其添加到 plugins 数组中</li>
-<li>可根据不同目的多次使用同一个插件</li>
-<li>使用对象给插件实例传递参数</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">const HtmlWebpackPlugin = require(&apos;html-webpack-plugin&apos;); // 通过 npm 安装</span><br><span class="line">const webpack = require(&apos;webpack&apos;); // 访问内置的插件</span><br><span class="line">const path = require(&apos;path&apos;);</span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">  entry: &apos;./path/to/my/entry/file.js&apos;,</span><br><span class="line">  output: &#123;</span><br><span class="line">    filename: &apos;my-first-webpack.bundle.js&apos;,</span><br><span class="line">    path: path.resolve(__dirname, &apos;dist&apos;)</span><br><span class="line">  &#125;,</span><br><span class="line">  module: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: /\.(js|jsx)$/,</span><br><span class="line">        use: &apos;babel-loader&apos;</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [</span><br><span class="line">    new webpack.ProgressPlugin(),</span><br><span class="line">    new HtmlWebpackPlugin(&#123;template: &apos;./src/index.html&apos;&#125;)</span><br><span class="line">  ]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
+
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>标记-清除</p>
+<ul>
+<li>当对象从根对象（全局对象）出发再无法获取到时，将会被回收机制回收。</li>
+<li>缺点：无法从根对象查询到的对象将无法被清除。但是实际开发中很少遇到此种情况。</li>
+</ul>
+</li>
+</ul>
 
         
       
@@ -308,7 +320,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/50/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/50/">50</a><span class="page-number current">51</span><a class="page-number" href="/page/52/">52</a><span class="space">&hellip;</span><a class="page-number" href="/page/108/">108</a><a class="extend next" rel="next" href="/page/52/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/50/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/50/">50</a><span class="page-number current">51</span><a class="page-number" href="/page/52/">52</a><span class="space">&hellip;</span><a class="page-number" href="/page/104/">104</a><a class="extend next" rel="next" href="/page/52/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -352,7 +364,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">108</span>
+          <span class="site-state-item-count">104</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -365,7 +377,7 @@
             <a href="/categories/">
           
         
-        <span class="site-state-item-count">32</span>
+        <span class="site-state-item-count">30</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -378,7 +390,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">73</span>
+        <span class="site-state-item-count">72</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>

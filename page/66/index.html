@@ -206,7 +206,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/web/javascript/FormData/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/web/javascript/es6/箭头函数/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="DaMeng">
@@ -220,7 +220,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/web/javascript/FormData/" class="post-title-link" itemprop="url">FormData</a>
+            <a href="/web/javascript/es6/箭头函数/" class="post-title-link" itemprop="url">箭头函数</a>
           
         </h1>
 
@@ -235,7 +235,7 @@
                 
               
 
-              <time title="创建时间：2019-03-25 19:40:38" itemprop="dateCreated datePublished" datetime="2019-03-25T19:40:38+08:00">2019-03-25</time>
+              <time title="创建时间：2019-03-20 19:40:38" itemprop="dateCreated datePublished" datetime="2019-03-20T19:40:38+08:00">2019-03-20</time>
             </span>
           
             <span class="post-meta-item">
@@ -255,6 +255,13 @@
 
                 
                 
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web/javascript/es6/" itemprop="url" rel="index"><span itemprop="name">es6</span></a></span>
+
+                
+                
               
             </span>
           
@@ -270,168 +277,36 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h1><p>可以用来构造表单数据，然后作为 data 发送给服务器。</p>
-<h1 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h1><h2 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> formData = <span class="keyword">new</span> FormData(form)</span><br></pre></td></tr></table></figure>
+          <h1 id="1-作用"><a href="#1-作用" class="headerlink" title="1 作用"></a>1 作用</h1><p>可以用于需要匿名函数的地方，能够简化函数书写。</p>
+<h1 id="2-语法"><a href="#2-语法" class="headerlink" title="2 语法"></a>2 语法</h1><h2 id="2-1-基本语法"><a href="#2-1-基本语法" class="headerlink" title="2.1 基本语法"></a>2.1 基本语法</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">(param1, param2, …, paramN) =&gt; &#123; statements &#125; </span><br><span class="line">(param1, param2, …, paramN) =&gt; expression</span><br><span class="line"><span class="comment">//相当于：(param1, param2, …, paramN) =&gt;&#123; return expression; &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 当只有一个参数时，圆括号是可选的：</span></span><br><span class="line">(singleParam) =&gt; &#123; statements &#125;</span><br><span class="line">singleParam =&gt; &#123; statements &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 没有参数的函数应该写成一对圆括号。</span></span><br><span class="line">() =&gt; &#123; statements &#125;</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li><p>参数</p>
-<ul>
-<li><p>form（可选）</p>
-<p>当指定 form 时，会使用 form 中的表单值（包括 form 中的文件内容）初始化 formData。</p>
-</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//所有的 form 元素都需要有 name 属性，否则无法访问到值。</span></span><br><span class="line"><span class="keyword">var</span> myForm = <span class="built_in">document</span>.getElementById(<span class="string">'myForm'</span>);</span><br><span class="line">formData = <span class="keyword">new</span> FormData(myForm);</span><br></pre></td></tr></table></figure>
+<p>当函数体放在 {} 中时，必须有明确的 return 语句，否则返回值为 undefined。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> func = <span class="function"><span class="params">x</span> =&gt;</span> x * x;                  </span><br><span class="line"><span class="comment">// 简写函数 省略return</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> func = <span class="function">(<span class="params">x, y</span>) =&gt;</span> &#123; <span class="keyword">return</span> x + y; &#125;; </span><br><span class="line"><span class="comment">//常规编写 明确的返回值</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> func = <span class="function">(<span class="params">x, y</span>) =&gt;</span> &#123; x + y; &#125;;<span class="comment">// func(1,2) 返回值为 undefined </span></span><br><span class="line"><span class="comment">//常规编写 没有的返回值</span></span><br></pre></td></tr></table></figure>
 
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> formData = <span class="keyword">new</span> FormData(); <span class="comment">// 当前为空</span></span><br><span class="line">formData.append(<span class="string">'username'</span>, <span class="string">'Chris'</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="2-2-高级语法"><a href="#2-2-高级语法" class="headerlink" title="2.2 高级语法"></a>2.2 高级语法</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//返回对象字面量表达式时函数体需要加括号：</span></span><br><span class="line">params =&gt; (&#123;<span class="attr">foo</span>: bar&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//支持剩余参数和默认参数</span></span><br><span class="line">(param1, param2, ...rest) =&gt; &#123; statements &#125;</span><br><span class="line">(param1 = defaultValue1, param2, …, paramN = defaultValueN) =&gt; &#123; </span><br><span class="line">statements &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//同样支持参数列表解构</span></span><br><span class="line"><span class="keyword">let</span> f = <span class="function">(<span class="params">[a, b] = [<span class="number">1</span>, <span class="number">2</span>], &#123;x: c&#125; = &#123;x: a + b&#125;</span>) =&gt;</span> a + b + c;</span><br><span class="line">f();  <span class="comment">// 6</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><h3 id="append"><a href="#append" class="headerlink" title="append"></a>append</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">FormData.append(name, value);</span><br><span class="line">FormData.append(name, value, filename);</span><br></pre></td></tr></table></figure>
+<p>返回对象字面量时，需要用圆括号括起来。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> func = <span class="function"><span class="params">()</span> =&gt;</span> &#123; <span class="attr">foo</span>: <span class="number">1</span> &#125;;               </span><br><span class="line"><span class="comment">// Calling func() returns undefined!</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> func = <span class="function"><span class="params">()</span> =&gt;</span> (&#123;<span class="attr">foo</span>: <span class="number">1</span>&#125;);</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>参数<ul>
-<li>name：表单元素的 name 属性值</li>
-<li>value：表单元素的 value 属性值，可以是 字符串 或 Blob 类型</li>
-<li>filename（可选）：传递给服务器的文件名称。<ul>
-<li>当第二个参数为 Blob 类型时，filename 默认值为 blob</li>
-<li>当第二个参数为 File 对象时，filename 默认值为该文件名称</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>返回值<ul>
-<li>空</li>
-</ul>
-</li>
-<li>功能<ul>
-<li>添加新值到 <code>FormData</code> 对象集合的后面，即使新值 key 已存在。</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">formData.append(<span class="string">'username'</span>, <span class="string">'Chris'</span>);</span><br><span class="line">formData.append(<span class="string">'userpic'</span>, myFileInput.files[<span class="number">0</span>], <span class="string">'chris.jpg'</span>);</span><br></pre></td></tr></table></figure>
+<h1 id="3-特点"><a href="#3-特点" class="headerlink" title="3 特点"></a>3 特点</h1><h2 id="3-1-this"><a href="#3-1-this" class="headerlink" title="3.1 this"></a>3.1 this</h2><h3 id="3-1-1-没有自己的-this"><a href="#3-1-1-没有自己的-this" class="headerlink" title="3.1.1 没有自己的 this"></a>3.1.1 没有自己的 this</h3><p>箭头函数不会创建自己的 this，它的 this 由箭头函数被创建时的上一层作用域链决定。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.age = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  setInterval(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">this</span>.age++; <span class="comment">// |this| 正确地指向 p 实例，函数被创建时的上一层作用域 Persion 的实例</span></span><br><span class="line">  &#125;, <span class="number">1000</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> p = <span class="keyword">new</span> Person();</span><br></pre></td></tr></table></figure>
 
-<h3 id="delete"><a href="#delete" class="headerlink" title="delete"></a>delete</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FormData.delete(name);</span><br></pre></td></tr></table></figure>
+<p>作为对象的方法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">'use strict'</span>;</span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  i: <span class="number">10</span>,</span><br><span class="line">  b: <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="keyword">this</span>.i, <span class="keyword">this</span>),<span class="comment">// 上层作用域为 window</span></span><br><span class="line">  c: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log( <span class="keyword">this</span>.i, <span class="keyword">this</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">obj.b(); </span><br><span class="line"><span class="comment">// undefined, Window&#123;...&#125;</span></span><br><span class="line">obj.c(); </span><br><span class="line"><span class="comment">// 10, Object &#123;...&#125;</span></span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>参数<ul>
-<li>name：要删除的键（Key）。</li>
-</ul>
-</li>
-<li>返回值<ul>
-<li>空</li>
-</ul>
-</li>
-<li>功能<ul>
-<li>从 FormData 中删除指定键和对应的值</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">formData.delete(<span class="string">'username'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="3-1-2-通过-call-apply-bind-绑定"><a href="#3-1-2-通过-call-apply-bind-绑定" class="headerlink" title="3.1.2 通过 call apply bind 绑定"></a>3.1.2 通过 call apply bind 绑定</h3><p>通过 call apply bind 绑定箭头函数时，第一个参数会被忽略（即无法绑定 this），其他参数会被正常接收。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> adder = &#123;</span><br><span class="line">  base : <span class="number">1</span>,</span><br><span class="line">    </span><br><span class="line">  add : <span class="function"><span class="keyword">function</span>(<span class="params">a</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> f = <span class="function"><span class="params">v</span> =&gt;</span> v + <span class="keyword">this</span>.base;</span><br><span class="line">    <span class="keyword">return</span> f(a);</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  addThruCall: <span class="function"><span class="keyword">function</span>(<span class="params">a</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> f = <span class="function"><span class="params">v</span> =&gt;</span> v + <span class="keyword">this</span>.base;</span><br><span class="line">    <span class="keyword">var</span> b = &#123;</span><br><span class="line">      base : <span class="number">2</span></span><br><span class="line">    &#125;;</span><br><span class="line">            </span><br><span class="line">    <span class="keyword">return</span> f.call(b, a);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(adder.add(<span class="number">1</span>));         <span class="comment">// 输出 2</span></span><br><span class="line"><span class="built_in">console</span>.log(adder.addThruCall(<span class="number">1</span>)); <span class="comment">// 仍然输出 2</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="entries"><a href="#entries" class="headerlink" title="entries"></a>entries</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FormData.entries();</span><br></pre></td></tr></table></figure>
+<h2 id="3-2-arguments-参数"><a href="#3-2-arguments-参数" class="headerlink" title="3.2 arguments 参数"></a>3.2 arguments 参数</h2><p>箭头函数不绑定 arguments，只是引用了外层作用域内的 arguments。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="built_in">arguments</span> = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="keyword">var</span> arr = <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">arguments</span>[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">arr(); <span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> f = <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">arguments</span>[<span class="number">0</span>] + n; <span class="comment">// 隐式绑定 foo 函数的 arguments 对象. arguments[0] 是 n,即传给foo函数的第一个参数</span></span><br><span class="line">  <span class="keyword">return</span> f();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foo(<span class="number">1</span>); <span class="comment">// 2</span></span><br><span class="line">foo(<span class="number">2</span>); <span class="comment">// 4</span></span><br><span class="line">foo(<span class="number">3</span>); <span class="comment">// 6</span></span><br><span class="line">foo(<span class="number">3</span>,<span class="number">2</span>);<span class="comment">//6</span></span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>返回值<ul>
-<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Iteration_protocols" target="_blank" rel="noopener"><code>iterator</code></a> 对象</li>
-</ul>
-</li>
-<li>功能<ul>
-<li>返回一个 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Iteration_protocols" target="_blank" rel="noopener"><code>iterator</code></a> 对象 ，此对象可以遍历访问 FormData中 的键值对</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> pair <span class="keyword">of</span> formData.entries()) &#123;</span><br><span class="line">   <span class="built_in">console</span>.log(pair[<span class="number">0</span>]+ <span class="string">', '</span>+ pair[<span class="number">1</span>]); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-3-new-操作符"><a href="#3-3-new-操作符" class="headerlink" title="3.3 new 操作符"></a>3.3 new 操作符</h2><p>箭头函数不用用作构造函数，使用 new 操作符会报错。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Foo = <span class="function"><span class="params">()</span> =&gt;</span> &#123;&#125;;</span><br><span class="line"><span class="keyword">var</span> foo = <span class="keyword">new</span> Foo(); <span class="comment">// TypeError: Foo is not a constructor</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="get"><a href="#get" class="headerlink" title="get"></a>get</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FormData.get(name);</span><br></pre></td></tr></table></figure>
+<h2 id="3-4-prototype-属性"><a href="#3-4-prototype-属性" class="headerlink" title="3.4 prototype 属性"></a>3.4 prototype 属性</h2><p>箭头函数没有 prototype 属性。 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var Foo = () =&gt; &#123;&#125;;</span><br><span class="line">console.log(Foo.prototype); // undefined</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>参数<ul>
-<li>name：将要获取值的键名。</li>
-</ul>
-</li>
-<li>返回值<br>- </li>
-<li>功能<ul>
-<li>返回 FormData 对象中和指定的键关联的第一个值。</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">formData.append(<span class="string">'username'</span>, <span class="string">'Chris'</span>);</span><br><span class="line">formData.append(<span class="string">'username'</span>, <span class="string">'Bob'</span>);</span><br><span class="line"></span><br><span class="line">formData.get(<span class="string">'username'</span>); <span class="comment">// Returns "Chris"</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="getAll"><a href="#getAll" class="headerlink" title="getAll"></a>getAll</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FormData.getAll(name);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>参数<ul>
-<li>要获取值的 key</li>
-</ul>
-</li>
-<li>返回值<ul>
-<li>包含由 key 所对应值组成的数组</li>
-</ul>
-</li>
-<li>功能<ul>
-<li>返回该 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/FormData" target="_blank" rel="noopener"><code>FormData</code></a> 对象指定 key 的所有值</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">formData.append(<span class="string">'username'</span>, <span class="string">'Chris'</span>);</span><br><span class="line">formData.append(<span class="string">'username'</span>, <span class="string">'Bob'</span>);</span><br><span class="line"></span><br><span class="line">formData.getAll(<span class="string">'username'</span>); <span class="comment">// Returns ["Chris", "Bob"]</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="has"><a href="#has" class="headerlink" title="has"></a>has</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FormData.has(name);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>参数<ul>
-<li>name：要查询的 key</li>
-</ul>
-</li>
-<li>返回值<ul>
-<li>查询结果</li>
-</ul>
-</li>
-<li>功能<ul>
-<li>查询 FormData 对象是否存在某个key</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">formData.has(<span class="string">'username'</span>); <span class="comment">// Returns false</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="keys"><a href="#keys" class="headerlink" title="keys"></a>keys</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FormData.keys();</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>返回值<ul>
-<li>formData  包含的所有 key 的迭代器</li>
-</ul>
-</li>
-<li>功能<ul>
-<li>返回一个迭代器（<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Iteration_protocols" target="_blank" rel="noopener"><code>iterator</code></a>），用来遍历了该 formData  包含的所有key</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">formData.append(<span class="string">'key1'</span>, <span class="string">'value1'</span>);</span><br><span class="line">formData.append(<span class="string">'key2'</span>, <span class="string">'value2'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出所有的 key</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">of</span> formData.keys()) &#123;</span><br><span class="line">   <span class="built_in">console</span>.log(key); </span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//输出：</span></span><br><span class="line"><span class="comment">//key1</span></span><br><span class="line"><span class="comment">//key2</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="set"><a href="#set" class="headerlink" title="set"></a>set</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">FormData.set(name, value);</span><br><span class="line">FormData.set(name, value, filename);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>参数</p>
-<ul>
-<li>同 FormData.append</li>
-</ul>
-</li>
-<li><p>功能</p>
-<ul>
-<li>对 FormData 对象里的某个 key 设置一个新的值，如果该 key 不存在，则添加。</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">formData.set(<span class="string">'username'</span>, <span class="string">'Chris'</span>);</span><br><span class="line">formData.set(<span class="string">'userpic'</span>, myFileInput.files[<span class="number">0</span>], <span class="string">'chris.jpg'</span>);</span><br></pre></td></tr></table></figure>
-
-<h3 id="value"><a href="#value" class="headerlink" title="value"></a>value</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FormData.values();</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>功能<ul>
-<li>返回一个允许遍历该对象中所有值的迭代器</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">formData.append(<span class="string">'key1'</span>, <span class="string">'value1'</span>);</span><br><span class="line">formData.append(<span class="string">'key2'</span>, <span class="string">'value2'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//显示值</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> value <span class="keyword">of</span> formData.values()) &#123;</span><br><span class="line">   <span class="built_in">console</span>.log(value); </span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//输出：</span></span><br><span class="line"><span class="comment">//value1</span></span><br><span class="line"><span class="comment">//value2</span></span><br></pre></td></tr></table></figure>
+<h2 id="3-5-运算符优先级"><a href="#3-5-运算符优先级" class="headerlink" title="3.5 运算符优先级"></a>3.5 运算符优先级</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> callback;</span><br><span class="line"></span><br><span class="line">callback = callback || <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;; <span class="comment">// ok</span></span><br><span class="line"></span><br><span class="line">callback = callback || <span class="function"><span class="params">()</span> =&gt;</span> &#123;&#125;;      </span><br><span class="line"><span class="comment">// SyntaxError: invalid arrow-function arguments</span></span><br><span class="line"></span><br><span class="line">callback = callback || <span class="function">(<span class="params">(</span>) =&gt;</span> &#123;&#125;);    <span class="comment">// ok</span></span><br></pre></td></tr></table></figure>
 
 
         
@@ -456,7 +331,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/65/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/65/">65</a><span class="page-number current">66</span><a class="page-number" href="/page/67/">67</a><span class="space">&hellip;</span><a class="page-number" href="/page/108/">108</a><a class="extend next" rel="next" href="/page/67/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/65/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/65/">65</a><span class="page-number current">66</span><a class="page-number" href="/page/67/">67</a><span class="space">&hellip;</span><a class="page-number" href="/page/104/">104</a><a class="extend next" rel="next" href="/page/67/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -500,7 +375,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">108</span>
+          <span class="site-state-item-count">104</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -513,7 +388,7 @@
             <a href="/categories/">
           
         
-        <span class="site-state-item-count">32</span>
+        <span class="site-state-item-count">30</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -526,7 +401,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">73</span>
+        <span class="site-state-item-count">72</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>

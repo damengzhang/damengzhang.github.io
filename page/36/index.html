@@ -206,7 +206,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/python/python中文编码/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/web/http/HTTP2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="DaMeng">
@@ -220,7 +220,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/python/python中文编码/" class="post-title-link" itemprop="url">python 中文编码</a>
+            <a href="/web/http/HTTP2/" class="post-title-link" itemprop="url">HTTP2</a>
           
         </h1>
 
@@ -235,7 +235,7 @@
                 
               
 
-              <time title="创建时间：2019-07-23 00:00:00" itemprop="dateCreated datePublished" datetime="2019-07-23T00:00:00+08:00">2019-07-23</time>
+              <time title="创建时间：2019-07-15 19:40:38" itemprop="dateCreated datePublished" datetime="2019-07-15T19:40:38+08:00">2019-07-15</time>
             </span>
           
             <span class="post-meta-item">
@@ -244,7 +244,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/http/" itemprop="url" rel="index"><span itemprop="name">http</span></a></span>
 
                 
                 
@@ -263,19 +263,47 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>代码中包含中文，就需要在头部指定编码。</p>
-<p>在文件开头加入 <strong># -*- coding: UTF-8 -*-</strong> 或者 <strong># coding=utf-8</strong>，确保读取中文时不会报错。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"><span class="comment"># -*- coding: UTF-8 -*-</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">print</span> <span class="string">"你好，世界"</span>;</span><br></pre></td></tr></table></figure>
-
-<p>注意：</p>
+          <h1 id="HTTP-1-1-特点"><a href="#HTTP-1-1-特点" class="headerlink" title="HTTP/1.1 特点"></a>HTTP/1.1 特点</h1><ul>
+<li>TCP 连接数限制<ul>
+<li>浏览器和同一域的并行连接数有最大限制（不同浏览器限制不一样）</li>
+</ul>
+</li>
+<li>Head-Of-Line Blocking（HOLB）<ul>
+<li>同一个连接上的多个请求，前面的请求会阻塞后面的请求</li>
+</ul>
+</li>
+<li>协议开销大<ul>
+<li>Header 内容多</li>
+</ul>
+</li>
+<li>明文传输，不安全</li>
+</ul>
+<h1 id="HTTP-2-特点"><a href="#HTTP-2-特点" class="headerlink" title="HTTP/2 特点"></a>HTTP/2 特点</h1><ul>
+<li><p>二进制传输，解析更高效</p>
+</li>
+<li><p>HTTP/2 采用二进制格式传输数据，HTTP/1.x 使用文本格式</p>
+</li>
+<li><p>多路复用</p>
 <ul>
-<li><p>#coding=utf-8 的等号两边不要有空格</p>
+<li>同域名下的所有通信在单个连接上完成</li>
+<li>数据流以消息的形式发送，消息由一个或多个帧组成，帧之间可以乱序发送，帧首部的流标记用于支持帧重装</li>
+</ul>
 </li>
-<li><p>python3.x 源码默认使用 utf-8 编码，故能正常解析中文</p>
+<li><p>Header 压缩</p>
+<ul>
+<li>HTTP/2 在客户端和服务器端使用 “首部表”跟踪和存储之前发送的头部键值对。</li>
+<li>首部表在连接状态时始终存在，请求和响应只发送更新部分的头部，不发送以存在部分</li>
+</ul>
 </li>
-<li><p>应将编辑器的存储格式配置为 UTF-8</p>
+<li><p>Server Push</p>
+<ul>
+<li>服务器可以将客户端需要的内容预先推送过去，也叫 “cache push”，</li>
+<li>浏览器有权选择是否接受，如推送的资源已经被浏览器缓存过，浏览器可以通过发送 RST_STREAM 帧来拒收</li>
+</ul>
 </li>
 </ul>
+<p>参考：</p>
+<p><a href="https://blog.fundebug.com/2019/03/07/understand-http2-and-http3/" target="_blank" rel="noopener">https://blog.fundebug.com/2019/03/07/understand-http2-and-http3/</a></p>
 
         
       
@@ -299,7 +327,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/35/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/35/">35</a><span class="page-number current">36</span><a class="page-number" href="/page/37/">37</a><span class="space">&hellip;</span><a class="page-number" href="/page/108/">108</a><a class="extend next" rel="next" href="/page/37/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/35/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/35/">35</a><span class="page-number current">36</span><a class="page-number" href="/page/37/">37</a><span class="space">&hellip;</span><a class="page-number" href="/page/104/">104</a><a class="extend next" rel="next" href="/page/37/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -343,7 +371,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">108</span>
+          <span class="site-state-item-count">104</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -356,7 +384,7 @@
             <a href="/categories/">
           
         
-        <span class="site-state-item-count">32</span>
+        <span class="site-state-item-count">30</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -369,7 +397,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">73</span>
+        <span class="site-state-item-count">72</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>

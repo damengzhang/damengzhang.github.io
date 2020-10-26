@@ -206,7 +206,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/web/react/render Props/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/web/react/高阶组件/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="DaMeng">
@@ -220,7 +220,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/web/react/render Props/" class="post-title-link" itemprop="url">Render Props</a>
+            <a href="/web/react/高阶组件/" class="post-title-link" itemprop="url">react 高阶组件</a>
           
         </h1>
 
@@ -235,7 +235,7 @@
                 
               
 
-              <time title="创建时间：2019-04-23 19:30:08" itemprop="dateCreated datePublished" datetime="2019-04-23T19:30:08+08:00">2019-04-23</time>
+              <time title="创建时间：2019-04-19 18:06:50" itemprop="dateCreated datePublished" datetime="2019-04-19T18:06:50+08:00">2019-04-19</time>
             </span>
           
             <span class="post-meta-item">
@@ -270,17 +270,24 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="是什么"><a href="#是什么" class="headerlink" title="是什么"></a>是什么</h1><p>Render Props 就是<strong>函数类型的 Prop</strong>，它的作用是给组件传递渲染逻辑。</p>
-<p>接收了 Render Prop 的组件，在内部会通过执行此函数参数来完成自己的渲染逻辑。</p>
-<p>通过函数<strong>返回渲染组件</strong> 比 <strong>直接传递渲染组件</strong> 更能灵活的给 <strong>渲染组件</strong>传递属性。比如下面示例中，通过函数可以使渲染组件 <code>h1</code> 更灵活的接收到来自 <code>DataProvider</code> 的参数。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//DataProvider 在内部会执行 render 函数来完成自己的渲染逻辑</span></span><br><span class="line"><span class="comment">// render 属性名可以是其他名字，并不必非得叫做 render</span></span><br><span class="line">&lt;DataProvider render=&#123;data =&gt; (       </span><br><span class="line">  &lt;h1&gt;Hello &#123;data.target&#125;&lt;<span class="regexp">/h1&gt;</span></span><br><span class="line"><span class="regexp">)&#125;/</span>&gt;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DataProvider</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">        	<span class="comment">//给渲染组件传递参数 ‘world’</span></span><br><span class="line">        	&#123;<span class="keyword">this</span>.props.render(<span class="string">'World'</span>)&#125;</span><br><span class="line">        &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+          <h1 id="是什么"><a href="#是什么" class="headerlink" title="是什么"></a>是什么</h1><p>高阶组件并不是 React API，只是一种编程技巧而已。</p>
+<p>从形式上看，高阶组件是<strong>参数</strong>和<strong>返回值</strong>都是<strong>组件</strong>的<strong>纯函数</strong>。</p>
+<p>从功能上看，高阶组件就是给原组件添加功能，将其转变成新的组件。</p>
+<h1 id="解决什么问题"><a href="#解决什么问题" class="headerlink" title="解决什么问题"></a>解决什么问题</h1><p>HOC 可以用来解决“横切关注点问题”，即不同组件间逻辑复用的问题。</p>
+<p>可以将组件间可复用的逻辑使用 HOC 来封装起来，各个组件将自己传递给 HOC 后，HOC 将返回新的添加了特定功能的组件。</p>
+<h1 id="约定"><a href="#约定" class="headerlink" title="约定"></a>约定</h1><h2 id="props-传递"><a href="#props-传递" class="headerlink" title="props 传递"></a>props 传递</h2><p>高阶组件需要将与自己无关的 props 传递给被包装的组件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">render() &#123;</span><br><span class="line">  // 过滤掉 HOC 额外的 props</span><br><span class="line">  const &#123; extraProp, ...passThroughProps &#125; = this.props;</span><br><span class="line"></span><br><span class="line">  // 将 props 注入到被包装的组件中。</span><br><span class="line">  // 通常为 state 的值或者实例方法。</span><br><span class="line">  const injectedProp = someStateOrInstanceMethod;</span><br><span class="line"></span><br><span class="line">  // 将 props 传递给被包装组件</span><br><span class="line">  return (</span><br><span class="line">    &lt;WrappedComponent</span><br><span class="line">      injectedProp=&#123;injectedProp&#125;</span><br><span class="line">      &#123;...passThroughProps&#125;</span><br><span class="line">    /&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h1 id="解决什么问题"><a href="#解决什么问题" class="headerlink" title="解决什么问题"></a>解决什么问题</h1><p>可以解决横切关注点（即 组件间逻辑复用问题）。通过 Render Props 能够将组件封装的状态或行为共享给其他组件。</p>
-<h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><p>Render Props 与 React.PureComponent 结合时，有可能使 React.PureCompnent 失去性能优势。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Mouse</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">PureComponent</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 与上面相同的代码......</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MouseTracker</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h1&gt;Move the mouse around!<span class="xml"><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line">        &#123;<span class="comment">/*</span></span><br><span class="line"><span class="comment">          这是不好的！</span></span><br><span class="line"><span class="comment">          每个渲染的 `render` prop的值将会是不同的。</span></span><br><span class="line"><span class="comment">          会使得 React.PureComponent 失去其性能优势</span></span><br><span class="line"><span class="comment">        */</span>&#125;</span><br><span class="line">        &lt;Mouse render=&#123;mouse =&gt; (</span><br><span class="line">          &lt;Cat mouse=&#123;mouse&#125; /&gt;</span><br><span class="line">        )&#125;/&gt;</span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+<h2 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h2><p>需要设置新组件的显示名称，以方便调试</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function withSubscription(WrappedComponent) &#123;</span><br><span class="line">  class WithSubscription extends React.Component &#123;/* ... */&#125;</span><br><span class="line">  WithSubscription.displayName = `WithSubscription($&#123;getDisplayName(WrappedComponent)&#125;)`;</span><br><span class="line">  return WithSubscription;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function getDisplayName(WrappedComponent) &#123;</span><br><span class="line">  return WrappedComponent.displayName || WrappedComponent.name || &apos;Component&apos;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MouseTracker</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 定义为实例方法，</span></span><br><span class="line">  <span class="comment">//`this.renderTheCat` 当我们在渲染中使用它时,它始终指向相同的函数</span></span><br><span class="line">  renderTheCat(mouse) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">Cat</span> <span class="attr">mouse</span>=<span class="string">&#123;mouse&#125;</span> /&gt;</span>;</span></span><br><span class="line"><span class="xml">  &#125;</span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml">  render() &#123;</span></span><br><span class="line"><span class="xml">    return (</span></span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h1&gt;Move the mouse around!&lt;/h1&gt;</span><br><span class="line">        &lt;Mouse render=&#123;this.renderTheCat&#125; /&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h1><h2 id="不要在-render-中调用-HOC"><a href="#不要在-render-中调用-HOC" class="headerlink" title="不要在 render 中调用 HOC"></a>不要在 render 中调用 HOC</h2><p>可以在组件的生命周期方法中调用HOC，但不要在 render 中调用 HOC，否则将导致子树每次渲染都会进行卸载和重新挂载的操作！</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line">不要在 render 中调用 HOC</span><br><span class="line">*/</span><br><span class="line">render() &#123;</span><br><span class="line">   // 下面语句会使得每次执行 render 函数都会创建一个新的 EnhancedComponent</span><br><span class="line">  // 导致 EnhancedComponentOld !== EnhancedComponentNew</span><br><span class="line">  // 进而导致子树每次渲染都会进行卸载和重新挂载的操作！</span><br><span class="line">    </span><br><span class="line">  const EnhancedComponent = enhance(MyComponent);</span><br><span class="line">  return &lt;EnhancedComponent /&gt;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<h2 id="组件静态方法"><a href="#组件静态方法" class="headerlink" title="组件静态方法"></a>组件静态方法</h2><p>需要对组件静态方法进行额外复制</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line">被包装后的组件默认没有原始组件的静态方法</span><br><span class="line">可以用下面两种方式进行处理</span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line">//方式一：返回前将静态方法拷贝给包裹后的组件</span><br><span class="line">//可以使用 hoist-non-react-statics 自动拷贝所有非 React 静态方法:</span><br><span class="line">import hoistNonReactStatic from &apos;hoist-non-react-statics&apos;;</span><br><span class="line">function enhance(WrappedComponent) &#123;</span><br><span class="line">  class Enhance extends React.Component &#123;/*...*/&#125;</span><br><span class="line">  hoistNonReactStatic(Enhance, WrappedComponent);</span><br><span class="line">  return Enhance;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//方式二：将原始组件的静态方法额外导出，使用的时候再导入</span><br><span class="line">MyComponent.someFunction = someFunction;</span><br><span class="line">export default MyComponent;</span><br><span class="line"></span><br><span class="line">// ...单独导出该方法...</span><br><span class="line">export &#123; someFunction &#125;;</span><br><span class="line"></span><br><span class="line">// ...并在要使用的组件中，import 它们</span><br><span class="line">import MyComponent, &#123; someFunction &#125; from &apos;./MyComponent.js&apos;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Refs-不会被传递"><a href="#Refs-不会被传递" class="headerlink" title="Refs 不会被传递"></a>Refs 不会被传递</h2><p>props 中没有包含 ref 属性，故不会被传递，可以通过使用 <code>React.forwardRef</code> API 解决此问题。</p>
 
         
       
@@ -304,7 +311,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/57/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/57/">57</a><span class="page-number current">58</span><a class="page-number" href="/page/59/">59</a><span class="space">&hellip;</span><a class="page-number" href="/page/108/">108</a><a class="extend next" rel="next" href="/page/59/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/57/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/57/">57</a><span class="page-number current">58</span><a class="page-number" href="/page/59/">59</a><span class="space">&hellip;</span><a class="page-number" href="/page/104/">104</a><a class="extend next" rel="next" href="/page/59/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -348,7 +355,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">108</span>
+          <span class="site-state-item-count">104</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -361,7 +368,7 @@
             <a href="/categories/">
           
         
-        <span class="site-state-item-count">32</span>
+        <span class="site-state-item-count">30</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -374,7 +381,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">73</span>
+        <span class="site-state-item-count">72</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>

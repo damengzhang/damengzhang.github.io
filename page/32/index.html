@@ -206,7 +206,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/web/react/State Hook/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/maven/Maven/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="DaMeng">
@@ -220,7 +220,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/web/react/State Hook/" class="post-title-link" itemprop="url">State Hook</a>
+            <a href="/maven/Maven/" class="post-title-link" itemprop="url">Maven</a>
           
         </h1>
 
@@ -235,7 +235,7 @@
                 
               
 
-              <time title="创建时间：2019-09-25 19:20:06" itemprop="dateCreated datePublished" datetime="2019-09-25T19:20:06+08:00">2019-09-25</time>
+              <time title="创建时间：2019-07-25 19:40:38" itemprop="dateCreated datePublished" datetime="2019-07-25T19:40:38+08:00">2019-07-25</time>
             </span>
           
             <span class="post-meta-item">
@@ -244,14 +244,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web/" itemprop="url" rel="index"><span itemprop="name">web</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web/react/" itemprop="url" rel="index"><span itemprop="name">react</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Maven/" itemprop="url" rel="index"><span itemprop="name">Maven</span></a></span>
 
                 
                 
@@ -270,39 +263,194 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="State-Hook-解决什么问题"><a href="#State-Hook-解决什么问题" class="headerlink" title="State Hook 解决什么问题"></a>State Hook 解决什么问题</h2><p><code>state hook</code> 可以用来给 <code>函数组件</code> 添加 <code>state</code>。</p>
-<p>没有 <code>state hook</code> 之前， <code>函数组件</code> 属于 <code>无状态组件</code>，想给 <code>函数组件</code> 添加 state 时，只能将其转换为 class 组件。</p>
-<h2 id="State-Hook-的使用方法"><a href="#State-Hook-的使用方法" class="headerlink" title="State Hook 的使用方法"></a>State Hook 的使用方法</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; useState &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line">[stateName, setStateFun] = useState(initValue);</span><br></pre></td></tr></table></figure>
-
-<p>在函数组件中，通过调用 <code>useState()</code> 函数来定义 state 变量，它与 class 里面的 this.state 提供的功能相同。</p>
-<p><strong>useState 的返回值</strong>：返回一个有两个值的数组。第一个值是 state 变量，第二个值是更新 state 变量的函数。上面示例中，count 就是刚刚定义的 state 变量，setCount 就是用来更新 count 的函数。</p>
-<p><strong>useState 的参数</strong>：用来初始化 state 变量。下面示例中的参数 0，即表示 count 的初始值。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line">定义：</span><br><span class="line">1、引入useState函数</span><br><span class="line">2、调用useState函数</span><br><span class="line">*/</span><br><span class="line">import React, &#123; useState &#125; from &apos;react&apos;;</span><br><span class="line"></span><br><span class="line">function Example() &#123;</span><br><span class="line">  // 声明一个叫 “count” 的 state 变量，和用来更新 count 的函数 setCount</span><br><span class="line">  const [count, setCount] = useState(0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="读取State"><a href="#读取State" class="headerlink" title="读取State"></a>读取State</h3><p>在 class 组件中，读取 state 变量时，通过 this.state，如 this.state.count。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;You clicked &#123;this.state.count&#125; times&lt;/p&gt;</span><br></pre></td></tr></table></figure>
-
-<p>在函数组件中，读取 state 变量时，直接使用即可，如 count。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;You clicked &#123;count&#125; times&lt;/p&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="更新State"><a href="#更新State" class="headerlink" title="更新State"></a>更新State</h3><p>在 class 组件中，需要调用 <code>this.setState()</code> 来更新 state 变量：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//setState 更新 State 时，会使用新值和旧值进行合并  </span></span><br><span class="line">&lt;button onClick=&#123;() =&gt; <span class="keyword">this</span>.setState(&#123; <span class="attr">count</span>: <span class="keyword">this</span>.state.count + <span class="number">1</span> &#125;)&#125;&gt;</span><br><span class="line">    Click me</span><br><span class="line">  &lt;<span class="regexp">/button&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>在函数组件中，使用 <code>useState()</code> 函数返回的 <code>更新函数</code>（如 setCount 函数）来更新对应的 state 变量：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//useState 更新 State 时，会直接用新值替换旧值</span></span><br><span class="line">&lt;button onClick=&#123;() =&gt; setCount(count + <span class="number">1</span>)&#125;&gt;</span><br><span class="line">   Click me</span><br><span class="line"> &lt;<span class="regexp">/button&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"> 1:  import React, &#123; useState &#125; from &apos;react&apos;;</span><br><span class="line"> 2:</span><br><span class="line"> 3:  function Example() &#123;</span><br><span class="line">     //使用useState函数定义state变量</span><br><span class="line"> 4:    const [count, setCount] = useState(0);</span><br><span class="line"> 5:</span><br><span class="line"> 6:    return (</span><br><span class="line"> 7:      &lt;div&gt;</span><br><span class="line">         &#123;/*使用state变量*/&#125;</span><br><span class="line"> 8:        &lt;p&gt;You clicked &#123;count&#125; times&lt;/p&gt;</span><br><span class="line">         </span><br><span class="line">         &#123;//修改state变量&#125;</span><br><span class="line"> 9:        &lt;button onClick=&#123;() =&gt; setCount(count + 1)&#125;&gt;</span><br><span class="line">10:         Click me</span><br><span class="line">11:        &lt;/button&gt;</span><br><span class="line">12:      &lt;/div&gt;</span><br><span class="line">13:    );</span><br><span class="line">14:  &#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>定义多个 state 变量方法</strong>：</p>
+          <h1 id="1-Maven-介绍"><a href="#1-Maven-介绍" class="headerlink" title="1 Maven 介绍"></a>1 Maven 介绍</h1><h2 id="1-1-是什么"><a href="#1-1-是什么" class="headerlink" title="1.1 是什么"></a>1.1 是什么</h2><p>Maven 是一个项目管理工具，可被用于构建和管理各种项目。例如java, C#，Ruby，Scala 和其他语言编写的项目。</p>
+<p>Maven 基于项目对象模型（缩写：POM），利用一个中央信息片断能管理一个项目的构建（编译、测试、运行、打包、安装、部署）、依赖管理等。</p>
+<h2 id="1-2-Maven-特点"><a href="#1-2-Maven-特点" class="headerlink" title="1.2 Maven 特点"></a>1.2 Maven 特点</h2><ul>
+<li>项目设置遵循统一的规则。</li>
+<li>任意工程中共享。</li>
+<li>依赖管理包括自动更新。</li>
+<li>一个庞大且不断增长的库。</li>
+<li>可扩展，能够轻松编写 Java 或脚本语言的插件。</li>
+<li>只需很少或不需要额外配置即可即时访问新功能。</li>
+<li><strong>基于模型的构建</strong> − Maven 能够将任意数量的项目构建到预定义的输出类型中，如 JAR，WAR 或基于项目元数据的分发，而不需要在大多数情况下执行任何脚本。</li>
+<li><strong>项目信息的一致性站点</strong> − 使用与构建过程相同的元数据，Maven 能够生成一个网站或PDF，包括您要添加的任何文档，并添加到关于项目开发状态的标准报告中。</li>
+<li><strong>发布管理和发布单独的输出</strong> − Maven 将不需要额外的配置，就可以与源代码管理系统（如 Subversion 或 Git）集成，并可以基于某个标签管理项目的发布。它也可以将其发布到分发位置供其他项目使用。Maven 能够发布单独的输出，如 JAR，包含其他依赖和文档的归档，或者作为源代码发布。</li>
+<li><strong>向后兼容性</strong> − 您可以很轻松的从旧版本 Maven 的多个模块移植到 Maven 3 中。</li>
+<li>子项目使用父项目依赖时，正常情况子项目应该继承父项目依赖，无需使用版本号，</li>
+<li><strong>并行构建</strong> − 编译的速度能普遍提高20 - 50 %。</li>
+<li><strong>更好的错误报告</strong> − Maven 改进了错误报告，它为您提供了 Maven wiki 页面的链接，您可以点击链接查看错误的完整描述。</li>
+</ul>
+<h2 id="1-3-项目目录结构"><a href="#1-3-项目目录结构" class="headerlink" title="1.3 项目目录结构"></a>1.3 项目目录结构</h2><p>Maven 提倡按照如下标准目录结构进行配置：</p>
+<table>
+<thead>
+<tr>
+<th align="left">目录</th>
+<th align="left">目的</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">${basedir}</td>
+<td align="left">存放 pom.xml 和所有的子目录</td>
+</tr>
+<tr>
+<td align="left">${basedir}/src/main/java</td>
+<td align="left">项目的 java 源代码</td>
+</tr>
+<tr>
+<td align="left">${basedir}/src/main/resources</td>
+<td align="left">项目的资源，比如说 property 文件，springmvc.xml</td>
+</tr>
+<tr>
+<td align="left">${basedir}/src/test/java</td>
+<td align="left">项目的测试类，比如说 Junit 代码</td>
+</tr>
+<tr>
+<td align="left">${basedir}/src/test/resources</td>
+<td align="left">测试用的资源</td>
+</tr>
+<tr>
+<td align="left">${basedir}/src/main/webapp/WEB-INF</td>
+<td align="left">web 应用文件目录，web 项目的信息，比如存放 web.xml、本地图片、jsp 视图页面</td>
+</tr>
+<tr>
+<td align="left">${basedir}/target</td>
+<td align="left">打包输出目录</td>
+</tr>
+<tr>
+<td align="left">${basedir}/target/classes</td>
+<td align="left">编译输出目录</td>
+</tr>
+<tr>
+<td align="left">${basedir}/target/test-classes</td>
+<td align="left">测试编译输出目录</td>
+</tr>
+<tr>
+<td align="left">Test.java</td>
+<td align="left">Maven 只会自动运行符合该命名规则的测试类</td>
+</tr>
+<tr>
+<td align="left">~/.m2/repository</td>
+<td align="left">Maven 默认的本地仓库目录位置</td>
+</tr>
+</tbody></table>
+<h1 id="2-Maven-POM"><a href="#2-Maven-POM" class="headerlink" title="2 Maven POM"></a>2 Maven POM</h1><p>Maven 使用 POM（Project Object Model，项目对象模型）用来描述项目基本信息。</p>
+<p>执行项目时，Maven 会在当前目录中找并读取 pom.xml 文件，获取所需的配置信息来执行。</p>
+<p>所有 pom.xml 都需要有 project 元素和三个必需字段：groupId，artifactId，version。</p>
+<table>
+<thead>
+<tr>
+<th align="left">节点</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">project</td>
+<td align="left">工程的根标签。</td>
+</tr>
+<tr>
+<td align="left">modelVersion</td>
+<td align="left">模型版本需要设置为 4.0。</td>
+</tr>
+<tr>
+<td align="left">groupId</td>
+<td align="left">这是工程组的标识。它在一个组织或者项目中通常是唯一的。例如，一个银行组织 com.companyname.project-group 拥有所有的和银行相关的项目。</td>
+</tr>
+<tr>
+<td align="left">artifactId</td>
+<td align="left">这是工程的标识。它通常是工程的名称。例如，消费者银行。groupId 和 artifactId 一起定义了 artifact 在仓库中的位置。</td>
+</tr>
+<tr>
+<td align="left">version</td>
+<td align="left">这是工程的版本号。在 artifact 的仓库中，它用来区分不同的版本。例如：<code>com.company.bank:consumer-banking:1.0 com.company.bank:consumer-banking:1.1</code></td>
+</tr>
+</tbody></table>
+<h1 id="3-Maven-构建生命周期"><a href="#3-Maven-构建生命周期" class="headerlink" title="3 Maven 构建生命周期"></a>3 Maven 构建生命周期</h1><p>Maven 的典型生命周期由下面几个阶段组成：</p>
+<table>
+<thead>
+<tr>
+<th align="left">阶段</th>
+<th align="left">处理</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">验证 validate</td>
+<td align="left">验证项目</td>
+<td align="left">验证项目是否正确且所有必须信息是可用的</td>
+</tr>
+<tr>
+<td align="left">编译 compile</td>
+<td align="left">执行编译</td>
+<td align="left">源代码编译在此阶段完成</td>
+</tr>
+<tr>
+<td align="left">测试 Test</td>
+<td align="left">测试</td>
+<td align="left">使用适当的单元测试框架（例如JUnit）运行测试。</td>
+</tr>
+<tr>
+<td align="left">包装 package</td>
+<td align="left">打包</td>
+<td align="left">创建JAR/WAR包如在 pom.xml 中定义提及的包</td>
+</tr>
+<tr>
+<td align="left">检查 verify</td>
+<td align="left">检查</td>
+<td align="left">对集成测试的结果进行检查，以保证质量达标</td>
+</tr>
+<tr>
+<td align="left">安装 install</td>
+<td align="left">安装</td>
+<td align="left">安装打包的项目到本地仓库，以供其他项目使用</td>
+</tr>
+<tr>
+<td align="left">部署 deploy</td>
+<td align="left">部署</td>
+<td align="left">拷贝最终的工程包到远程仓库中，以共享给其他开发人员和工程</td>
+</tr>
+</tbody></table>
+<h1 id="4-settings-xml"><a href="#4-settings-xml" class="headerlink" title="4 settings.xml"></a>4 settings.xml</h1><p>settings.xml 是 maven 的全局配置文件，pom.xml 是所在项目的局部配置文件。Settings.xml中包含类似本地仓储位置、修改远程仓储服务器、认证信息等配置。</p>
+<p>settings.xml文件一般存在于两个位置：</p>
 <ul>
-<li><p>多次调用 useState</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function ExampleWithManyStates() &#123;</span><br><span class="line">  // 声明多个 state 变量</span><br><span class="line">  const [age, setAge] = useState(42);</span><br><span class="line">  const [fruit, setFruit] = useState(&apos;banana&apos;);</span><br><span class="line">  const [todos, setTodos] = useState([&#123; text: &apos;学习 Hook&apos; &#125;]);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>将多个变量通过对象或数组的方式存入同一个 state 变量</p>
+<li>全局配置: ${M2_HOME}/conf/settings.xml</li>
+<li>用户配置: user.home/.m2/settings.xml     （用户配置优先于全局配置）</li>
+</ul>
+<p>配置优先级从高到低：pom.xml&gt; user settings &gt; global settings</p>
+<h1 id="5-Maven-仓库"><a href="#5-Maven-仓库" class="headerlink" title="5 Maven 仓库"></a>5 Maven 仓库</h1><p>Maven 项目中依赖的第三方库所在的位置叫做仓库。</p>
+<p>Maven 仓库有三种类型：</p>
+<ul>
+<li><p>本地（local）</p>
+<ul>
+<li><p>Maven 本地仓库默认被创建在 %USER_HOME% 目录下。要修改默认位置，在 %M2_HOME%\conf 目录中的 Maven 的 settings.xml 文件中定义另一个路径。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">settings</span> <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/SETTINGS/1.0.0"</span></span></span><br><span class="line"><span class="tag">   <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">   <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/SETTINGS/1.0.0 </span></span></span><br><span class="line"><span class="tag"><span class="string">   http://maven.apache.org/xsd/settings-1.0.0.xsd"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">localRepository</span>&gt;</span>C:/MyLocalRepository<span class="tag">&lt;/<span class="name">localRepository</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">settings</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
 </li>
 </ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Box</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> [state, setState] = useState(&#123; <span class="attr">left</span>: <span class="number">0</span>, <span class="attr">top</span>: <span class="number">0</span>, <span class="attr">width</span>: <span class="number">100</span>, <span class="attr">height</span>: <span class="number">100</span> &#125;);</span><br><span class="line">  </span><br><span class="line">  useEffect(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">handleWindowMouseMove</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">      <span class="comment">// 展开 「...state」 以确保我们没有 「丢失」 width 和 height</span></span><br><span class="line">      <span class="comment">// useState 更新 State 时，会用新值替换旧值，而不是新旧值合并</span></span><br><span class="line">      setState(<span class="function"><span class="params">state</span> =&gt;</span> (&#123; ...state, <span class="attr">left</span>: e.pageX, <span class="attr">top</span>: e.pageY &#125;));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 注意：这是个简化版的实现</span></span><br><span class="line">    <span class="built_in">window</span>.addEventListener(<span class="string">'mousemove'</span>, handleWindowMouseMove);</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">window</span>.removeEventListener(<span class="string">'mousemove'</span>, handleWindowMouseMove);</span><br><span class="line">  &#125;, []);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+</li>
+</ul>
+<ul>
+<li><p>中央（central）</p>
+<ul>
+<li>这个仓库由 Maven 社区管理，包含了大量常用的库。</li>
+<li>不需要配置，需要通过网络才能访问。</li>
+</ul>
+</li>
+<li><p>远程（remote，私服）</p>
+<ul>
+<li>开发人员自己定制仓库，包含了所需要的代码库或者其他工程中用到的 jar 文件</li>
+</ul>
+</li>
+</ul>
+<h1 id="6-Maven-快照"><a href="#6-Maven-快照" class="headerlink" title="6 Maven 快照"></a>6 Maven 快照</h1><p>快照是模块的临时版本。maven 根据模块的版本号( pom 文件中的 version )中是否带有<code>-SNAPSHOT</code>来判断是快照版本还是正式版本。</p>
+<ul>
+<li><p>对于快照版本，执行 mvn deploy 时会自动发布到快照版本库中，并覆盖老的快照版本。依赖快照版本的模块，在不更改版本号的情况下，编译打包时，maven 自动从镜像服务器上下载最新的快照版本。</p>
+</li>
+<li><p>对于正式发布版本，执行 mvn deploy 时会自动发布到正式版本库中。依赖正式版本的模块，在不更改版本号的情况下，编译打包时如果本地已经存在该版本的模块，则<strong>不会</strong>主动去镜像服务器上下载。</p>
+</li>
+</ul>
+<p>在开发阶段，使用快照版本进行开发，能够使依赖快照版本的模块不需要修改 pom 文件版本号也能下载新的版本，从而提升开发效率。</p>
 
         
       
@@ -326,7 +474,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/31/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/31/">31</a><span class="page-number current">32</span><a class="page-number" href="/page/33/">33</a><span class="space">&hellip;</span><a class="page-number" href="/page/108/">108</a><a class="extend next" rel="next" href="/page/33/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/31/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/31/">31</a><span class="page-number current">32</span><a class="page-number" href="/page/33/">33</a><span class="space">&hellip;</span><a class="page-number" href="/page/104/">104</a><a class="extend next" rel="next" href="/page/33/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -370,7 +518,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">108</span>
+          <span class="site-state-item-count">104</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -383,7 +531,7 @@
             <a href="/categories/">
           
         
-        <span class="site-state-item-count">32</span>
+        <span class="site-state-item-count">30</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -396,7 +544,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">73</span>
+        <span class="site-state-item-count">72</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>

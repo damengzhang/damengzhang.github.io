@@ -206,7 +206,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/web/浏览器/浏览器fps/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/web/javascript/Array 方法/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="DaMeng">
@@ -220,7 +220,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/web/浏览器/浏览器fps/" class="post-title-link" itemprop="url">浏览器 fps</a>
+            <a href="/web/javascript/Array 方法/" class="post-title-link" itemprop="url">Array 方法</a>
           
         </h1>
 
@@ -235,7 +235,7 @@
                 
               
 
-              <time title="创建时间：2018-06-25 19:40:38" itemprop="dateCreated datePublished" datetime="2018-06-25T19:40:38+08:00">2018-06-25</time>
+              <time title="创建时间：2018-05-15 18:40:38" itemprop="dateCreated datePublished" datetime="2018-05-15T18:40:38+08:00">2018-05-15</time>
             </span>
           
             <span class="post-meta-item">
@@ -251,7 +251,7 @@
                   ，
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web/浏览器/" itemprop="url" rel="index"><span itemprop="name">浏览器</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a></span>
 
                 
                 
@@ -270,16 +270,130 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="帧"><a href="#帧" class="headerlink" title="帧"></a>帧</h1><p>在网络传输中，帧是传输的数据单位。</p>
-<p>在屏幕显示中，帧是动画中最小的单位，每一帧都是一幅静止的图片，连续显示的帧形成了运动的假象。</p>
-<p>下面对帧相关的解释都从屏幕显示角度出发。</p>
-<h1 id="帧数"><a href="#帧数" class="headerlink" title="帧数"></a>帧数</h1><p>帧数即帧的数量，即图片的数量。</p>
-<h1 id="帧率（fps）"><a href="#帧率（fps）" class="headerlink" title="帧率（fps）"></a>帧率（fps）</h1><p>帧率（fps Frame Per Second），帧率为每秒的帧数，帧率 = 帧数 / 时间。因此帧率越高显示越流畅。</p>
-<p>一般浏览器的帧率（fps）为 60 fps，即 16.67 ms（1000 / 60） 渲染一次。</p>
-<p>浏览器的帧率由显示器的刷新率决定，当显示器的刷新率能够大于 60 fps 时，那么浏览器的帧率也可以相应提高。</p>
-<h1 id="屏幕刷新率"><a href="#屏幕刷新率" class="headerlink" title="屏幕刷新率"></a>屏幕刷新率</h1><p>屏幕刷新率是指屏幕每秒能够显示图像的次数，单位为 hz（赫兹）。屏幕的刷新率由显卡性能决定。</p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>浏览器帧率（fps） 是浏览器每一秒的帧数，当 fps 越大，动画就越流畅。</p>
-<p>浏览器的帧率（fps）小于等于显示器的刷新率。</p>
+          <h1 id="slice"><a href="#slice" class="headerlink" title="slice"></a>slice</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr.slice([begin[, end]])</span><br></pre></td></tr></table></figure>
+
+<p>作用：</p>
+<p>​    获取原数组从 begin（包括） 到 end（不包括） 元素的浅拷贝。不修改原数组。</p>
+<p>返回值：</p>
+<p>​    返回一个新数组，内容为元素组的 begin（包括） 到 end（不包括） 元素的浅拷贝。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> animals = [<span class="string">'ant'</span>, &#123;<span class="attr">a</span>:<span class="number">1</span>&#125;, <span class="string">'camel'</span>, <span class="string">'duck'</span>, <span class="string">'elephant'</span>];</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(animals.slice(<span class="number">2</span>));<span class="comment">// Array ["camel", "duck", "elephant"]</span></span><br><span class="line"><span class="built_in">console</span>.log(animals.slice(<span class="number">2</span>, <span class="number">4</span>));<span class="comment">//Array ["camel", "duck"]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> newArr = animals.slice(<span class="number">1</span>, <span class="number">5</span>); </span><br><span class="line"><span class="built_in">console</span>.log(newArr);<span class="comment">// Array [Object &#123; a: 1 &#125;, "camel", "duck", "elephant"]</span></span><br><span class="line">newArr[<span class="number">0</span>].a = <span class="number">2</span>;</span><br><span class="line"><span class="built_in">console</span>.log(newArr);<span class="comment">// Array [Object &#123; a: 2 &#125;, "camel", "duck", "elephant"]</span></span><br><span class="line"><span class="built_in">console</span>.log(animals);<span class="comment">// Array ["ant", Object &#123; a: 2 &#125;, "camel", "duck", "elephant"]</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="splice"><a href="#splice" class="headerlink" title="splice"></a>splice</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">array.splice(start[, deleteCount[, item1[, item2[, ...]]]])</span><br></pre></td></tr></table></figure>
+
+<p>作用：</p>
+<p>​    添加或修改原数组元素。</p>
+<p>参数：</p>
+<ul>
+<li><p>​    start    </p>
+<p>指定修改的开始位置（从 0 计数）。</p>
+<p>如果超出了数组的长度，则从数组末尾开始添加内容；</p>
+<p>如果是负值，则表示从数组末位开始的第几位（从 -1 计数，-n 是倒数第 n 个元素并且等价于 <code>array.length-n</code>）；</p>
+<p>如果负数的绝对值大于数组的长度，则表示开始位置为第 0 位。</p>
+</li>
+<li><p>deleteCount 可选</p>
+<p>整数，表示要移除的数组元素的个数。</p>
+<p>如果 <code>deleteCount</code> 大于 <code>start</code> 之后的元素的总数，则从 <code>start</code> 后面的元素都将被删除（含第 <code>start</code> 位）。</p>
+<p>如果 <code>deleteCount</code> 被省略了，或者它的值大于等于<code>array.length - start</code>(也就是说，如果它大于或者等于<code>start</code>之后的所有元素的数量)，那么<code>start</code>之后数组的所有元素都会被删除。</p>
+<p>如果 <code>deleteCount</code> 是 0 或者负数，则不移除元素。这种情况下，至少应添加一个新元素。</p>
+</li>
+<li><p>item1, item2, <em>…</em> 可选</p>
+<p>要添加进数组的元素，从<code>start</code> 位置开始。如果不指定，则 <code>splice()</code> 将只删除数组元素。</p>
+</li>
+</ul>
+<p>返回值：</p>
+<p>​    返回由被删除元素组成的数组</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myFish = [<span class="string">"angel"</span>, <span class="string">"clown"</span>, <span class="string">"mandarin"</span>, <span class="string">"sturgeon"</span>];</span><br><span class="line"><span class="keyword">var</span> removed = myFish.splice(<span class="number">2</span>, <span class="number">0</span>, <span class="string">"drum"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 运算后的 myFish: ["angel", "clown", "drum", "mandarin", "sturgeon"]</span></span><br><span class="line"><span class="comment">// 被删除的元素: [], 没有元素被删除</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="reduce"><a href="#reduce" class="headerlink" title="reduce"></a>reduce</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr.reduce( reducerFn(accumulator, currentValue[, index[, array]])  [, initialValue] )</span><br></pre></td></tr></table></figure>
+
+<p>作用：</p>
+<p>​    对数组中的每个元素执行一个由您提供的<strong>reducer</strong>函数(升序执行)，将其结果汇总为单个返回值。</p>
+<p>参数：</p>
+<ul>
+<li><p>reducerFn </p>
+<ul>
+<li><p>参数：</p>
+<ul>
+<li><p>accumulator</p>
+<p>上一次调用回调时返回的累积值，或 <code>initialValue</code></p>
+</li>
+<li><p>currentValue</p>
+<p>当前数组元素</p>
+</li>
+<li><p>index</p>
+<p>当前数组元素索引。</p>
+<p>如果没有提供 <code>initialValue</code>，index 从索引 1 开始，跳过第一个索引。如果提供 <code>initialValue</code>，从索引 0 开始。</p>
+</li>
+<li><p>array</p>
+<p>源数组</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>initailValue</p>
+<ul>
+<li>第一次调用 <code>callback</code>函数时的第一个参数的值。 如果没有提供初始值，则将使用数组中的第一个元素。 在没有初始值的空数组上调用 reducerFn 将报错。</li>
+</ul>
+</li>
+</ul>
+<p>返回值：</p>
+<p>​    所有数组元素依次执行完 reducerFn 后，最后一个数组元素执行完 reduceFn 的返回值。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>].reduce(<span class="function">(<span class="params">accumulator, currentValue, currentIndex, array</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> accumulator + currentValue</span><br><span class="line">&#125;, <span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+
+<p>每次调用的参数和返回值如下表：</p>
+<table>
+<thead>
+<tr>
+<th align="left"><code>callback</code></th>
+<th align="left"><code>accumulator</code></th>
+<th align="left"><code>currentValue</code></th>
+<th align="left"><code>currentIndex</code></th>
+<th align="left"><code>array</code></th>
+<th align="left">return value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">first call</td>
+<td align="left"><code>10</code></td>
+<td align="left"><code>0</code></td>
+<td align="left"><code>0</code></td>
+<td align="left"><code>[0, 1, 2, 3, 4]</code></td>
+<td align="left"><code>10</code></td>
+</tr>
+<tr>
+<td align="left">second call</td>
+<td align="left"><code>10</code></td>
+<td align="left"><code>1</code></td>
+<td align="left"><code>1</code></td>
+<td align="left"><code>[0, 1, 2, 3, 4]</code></td>
+<td align="left"><code>11</code></td>
+</tr>
+<tr>
+<td align="left">third call</td>
+<td align="left"><code>11</code></td>
+<td align="left"><code>2</code></td>
+<td align="left"><code>2</code></td>
+<td align="left"><code>[0, 1, 2, 3, 4]</code></td>
+<td align="left"><code>13</code></td>
+</tr>
+<tr>
+<td align="left">fourth call</td>
+<td align="left"><code>13</code></td>
+<td align="left"><code>3</code></td>
+<td align="left"><code>3</code></td>
+<td align="left"><code>[0, 1, 2, 3, 4]</code></td>
+<td align="left"><code>16</code></td>
+</tr>
+<tr>
+<td align="left">fifth call</td>
+<td align="left"><code>16</code></td>
+<td align="left"><code>4</code></td>
+<td align="left"><code>4</code></td>
+<td align="left"><code>[0, 1, 2, 3, 4]</code></td>
+<td align="left"><code>20</code></td>
+</tr>
+</tbody></table>
 
         
       
@@ -303,7 +417,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/83/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/83/">83</a><span class="page-number current">84</span><a class="page-number" href="/page/85/">85</a><span class="space">&hellip;</span><a class="page-number" href="/page/108/">108</a><a class="extend next" rel="next" href="/page/85/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/83/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/83/">83</a><span class="page-number current">84</span><a class="page-number" href="/page/85/">85</a><span class="space">&hellip;</span><a class="page-number" href="/page/104/">104</a><a class="extend next" rel="next" href="/page/85/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -347,7 +461,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">108</span>
+          <span class="site-state-item-count">104</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -360,7 +474,7 @@
             <a href="/categories/">
           
         
-        <span class="site-state-item-count">32</span>
+        <span class="site-state-item-count">30</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -373,7 +487,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">73</span>
+        <span class="site-state-item-count">72</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>

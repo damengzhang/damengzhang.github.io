@@ -206,7 +206,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/web/react/react setState/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/web/webpack/webpack 模块路径解析规则/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="DaMeng">
@@ -220,7 +220,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/web/react/react setState/" class="post-title-link" itemprop="url">react setState 原理</a>
+            <a href="/web/webpack/webpack 模块路径解析规则/" class="post-title-link" itemprop="url">webpack 模块路径解析规则</a>
           
         </h1>
 
@@ -235,7 +235,7 @@
                 
               
 
-              <time title="创建时间：2020-06-19 19:40:38" itemprop="dateCreated datePublished" datetime="2020-06-19T19:40:38+08:00">2020-06-19</time>
+              <time title="创建时间：2020-05-23 00:00:00" itemprop="dateCreated datePublished" datetime="2020-05-23T00:00:00+08:00">2020-05-23</time>
             </span>
           
             <span class="post-meta-item">
@@ -251,7 +251,7 @@
                   ，
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web/react/" itemprop="url" rel="index"><span itemprop="name">react</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web/webpack/" itemprop="url" rel="index"><span itemprop="name">webpack</span></a></span>
 
                 
                 
@@ -270,43 +270,31 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="1-使用方法"><a href="#1-使用方法" class="headerlink" title="1 使用方法"></a>1 使用方法</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setState(stateChange[, callback])</span><br></pre></td></tr></table></figure>
+          <p>webpack 使用 <code>enhanced-resolve</code> 来解析模块路径。</p>
+<h1 id="绝对路径"><a href="#绝对路径" class="headerlink" title="绝对路径"></a>绝对路径</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'/home/me/file'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">'C:\\Users\\me\\file'</span>;</span><br></pre></td></tr></table></figure>
 
+<p>对于绝对路径，webpack 不会对其进行解析。</p>
+<h1 id="相对路径"><a href="#相对路径" class="headerlink" title="相对路径"></a>相对路径</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'../src/file1'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'./file2'</span>;</span><br></pre></td></tr></table></figure>
+
+<p>对于相对路径，webpack 会使用当前 import 语句所在文件的路径作为上下文路径进行解析。</p>
+<h1 id="模块路径"><a href="#模块路径" class="headerlink" title="模块路径"></a>模块路径</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'module'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'module/lib/file'</span>;</span><br></pre></td></tr></table></figure>
+
+<p>webpack 首先会在 resolve.modules（ webpack 配置项） 配置的目录中进行检索。</p>
+<p>解析出路径后，可能会是文件或文件夹：</p>
 <ul>
-<li><p>stateChange</p>
-<ul>
-<li><p>stateChange 可以为对象 或 函数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">this.setState((state, props) =&gt; &#123;</span><br><span class="line">//参数 state 和 props 都为最新的，返回值会与 state 进行浅合并</span><br><span class="line">	return &#123;counter: state.counter + props.step&#125;;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">this.setState(&#123;quantity: 2&#125;) //对象参数会浅拷贝到新的 state 中</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
+<li>文件<ul>
+<li>有扩展名时，直接将文件打包</li>
+<li>没扩展名时，使用 <a href="https://webpack.docschina.org/configuration/resolve/#resolveextensions" target="_blank" rel="noopener"><code>resolve.extensions</code></a> （webpack 配置项）来解析文件扩展名</li>
 </ul>
 </li>
-</ul>
-<ul>
-<li><p>callback </p>
-<ul>
-<li>callback 为可选的回调函数，它将在 <code>setState</code> 完成合并并重新渲染组件后执行。通常，我们建议使用 <code>componentDidUpdate()</code> 来代替此方式</li>
-</ul>
+<li>文件夹<ol>
+<li>包含 package.json 文件时，会在此文件中查找第一个符合 <a href="https://webpack.docschina.org/configuration/resolve/#resolve-mainfields" target="_blank" rel="noopener"><code>resolve.mainFields</code></a> 配置的字段来确定文件路径</li>
+<li>不包含 package.json 或 <a href="https://webpack.docschina.org/configuration/resolve/#resolvemainfields" target="_blank" rel="noopener"><code>resolve.mainFields</code></a> 没有返回有效路径，则会根据 <a href="https://webpack.docschina.org/configuration/resolve/#resolvemainfiles" target="_blank" rel="noopener"><code>resolve.mainFiles</code></a> 配置项中指定的文件名顺序查找，看是否能在 import/require 的目录下匹配到一个存在的文件名。</li>
+<li>然后使用 <a href="https://webpack.docschina.org/configuration/resolve/#resolveextensions" target="_blank" rel="noopener"><code>resolve.extensions</code></a> 选项，以类似的方式解析文件扩展名。</li>
+</ol>
 </li>
 </ul>
-<h1 id="2-原理"><a href="#2-原理" class="headerlink" title="2 原理"></a>2 原理</h1><ul>
-<li><p>setState 内部会将 state 的更改添加到队列，通过批量更新来提高性能。</p>
-</li>
-<li><p>如果是由 React 引发的事件处理（比如通过 onClick 引发的事件处理），调用 setState 不会同步更新this.state，除此之外的setState调用会同步执行 this.state。所谓“除此之外”，指的是绕过 React 直接添加 JS 原生的事件处理函数，如 addEventListener、setTimeout、setInterval 等产生的调用</p>
-</li>
-<li><p>setState 总是会触发组件重新渲染（除非 shouldComponentUpdate 返回 false）。</p>
-</li>
-</ul>
-<h1 id="3-注意"><a href="#3-注意" class="headerlink" title="3 注意"></a>3 注意</h1><ul>
-<li><p>构造函数是唯一可以给 this.state 直接赋值的地方，其他地方都通过使用 setState 来修改state。</p>
-</li>
-<li><p>react 会将多个 setState 调用合并为一个，故不要直接使用 state 来更新下一个值</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// Wrong</span><br><span class="line">this.setState(&#123;</span><br><span class="line">  counter: this.state.counter + this.props.increment,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">// Correct</span><br><span class="line">this.setState((state, props) =&gt; (&#123;</span><br><span class="line">  counter: state.counter + props.increment</span><br><span class="line">&#125;));</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
+<h1 id="loader-解析"><a href="#loader-解析" class="headerlink" title="loader 解析"></a>loader 解析</h1><p>loader 的解析规则也遵循上面的规范。但是 <a href="https://webpack.docschina.org/configuration/resolve/#resolveloader" target="_blank" rel="noopener"><code>resolveLoader</code></a> 配置项可以为 loader 设置独立的解析规则。</p>
 
         
       
@@ -330,7 +318,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/12/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/page/108/">108</a><a class="extend next" rel="next" href="/page/14/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/12/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/page/104/">104</a><a class="extend next" rel="next" href="/page/14/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -374,7 +362,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">108</span>
+          <span class="site-state-item-count">104</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -387,7 +375,7 @@
             <a href="/categories/">
           
         
-        <span class="site-state-item-count">32</span>
+        <span class="site-state-item-count">30</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -400,7 +388,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">73</span>
+        <span class="site-state-item-count">72</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>

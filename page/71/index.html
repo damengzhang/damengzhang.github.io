@@ -206,7 +206,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/web/webpack/webpack入门/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/web/react/Refs/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="DaMeng">
@@ -220,7 +220,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/web/webpack/webpack入门/" class="post-title-link" itemprop="url">webpack 入门</a>
+            <a href="/web/react/Refs/" class="post-title-link" itemprop="url">Refs</a>
           
         </h1>
 
@@ -235,7 +235,7 @@
                 
               
 
-              <time title="创建时间：2019-03-17 00:00:00" itemprop="dateCreated datePublished" datetime="2019-03-17T00:00:00+08:00">2019-03-17</time>
+              <time title="创建时间：2019-03-14 19:08:00" itemprop="dateCreated datePublished" datetime="2019-03-14T19:08:00+08:00">2019-03-14</time>
             </span>
           
             <span class="post-meta-item">
@@ -251,7 +251,7 @@
                   ，
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web/webpack/" itemprop="url" rel="index"><span itemprop="name">webpack</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web/react/" itemprop="url" rel="index"><span itemprop="name">react</span></a></span>
 
                 
                 
@@ -270,48 +270,36 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><p>webpack 是前端模块化打包工具。</p>
-<p>对于webpack 来说，万物（js|img|css|sass|less..）皆模块，webpack 会根据模块依赖关系进行静态分析，将所有模块打包生成对应的静态资源（bundle）。</p>
-<h1 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h1><p>1、通过模块化解决了全局污染、命名冲突、依赖管理混乱问题</p>
-<p>2、兼容 AMD CMD</p>
-<p>3、适合大型项目</p>
-<p>4、与 react、vue 有很好的契合度</p>
-<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>1、node（通过 node 官网下载安装）</p>
-<p>2、通过 npm 命令初始化项目</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm init -y</span><br></pre></td></tr></table></figure>
+          <h1 id="1-是什么"><a href="#1-是什么" class="headerlink" title="1 是什么"></a>1 是什么</h1><p>Refs 是在 React 中获取节点（原生 DOM 或 React 组件）实例的方式。可以通过 Refs 来获取节点实例的引用，通过操作此引用达到操作节点的目的。</p>
+<h1 id="2-解决什么问题"><a href="#2-解决什么问题" class="headerlink" title="2 解决什么问题"></a>2 解决什么问题</h1><p>Refs 主要用来解决需要操作节点的场景，如：</p>
+<ul>
+<li>管理子节点焦点、文本选择</li>
+<li>强制动画</li>
+<li>集成第三方 DOM 库</li>
+</ul>
+<h1 id="3-使用方法"><a href="#3-使用方法" class="headerlink" title="3 使用方法"></a>3 使用方法</h1><h2 id="3-1-createRef"><a href="#3-1-createRef" class="headerlink" title="3.1 createRef"></a>3.1 createRef</h2><p>React.createRef 是 React 16.3 版本引入的创建 Refs 的方法。</p>
+<h3 id="3-1-1-创建-Refs"><a href="#3-1-1-创建-Refs" class="headerlink" title="3.1.1 创建 Refs"></a>3.1.1 创建 Refs</h3><p>通过 React.createRefs() 方法可以创建 Refs。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">class MyComponent extends React.Component &#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    super(props);</span><br><span class="line">      // 1、在组件中调用 createRef 函数创建 Refs 变量</span><br><span class="line">    this.myRef = React.createRef();</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">      // 2、使用 ref（此属性名固定） 属性将 Refs 变量和节点关联起来</span><br><span class="line">    return &lt;div ref=&#123;this.myRef&#125; /&gt;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>3、安装 webpack 和 webpack-cli</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install webpack webpack-cli -D</span><br></pre></td></tr></table></figure>
+<h3 id="3-1-2-访问-Refs"><a href="#3-1-2-访问-Refs" class="headerlink" title="3.1.2 访问 Refs"></a>3.1.2 访问 Refs</h3><p>通过 Refs 变量的 current 属性可以访问节点的引用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const node = this.myRef.current;// 此时 node 就是节点实例的引用</span><br></pre></td></tr></table></figure>
 
-<h1 id="组成"><a href="#组成" class="headerlink" title="组成"></a>组成</h1><h2 id="entry"><a href="#entry" class="headerlink" title="entry"></a>entry</h2><p>通过 entry 来配置 webpack 的入口文件，webpack 从 entry 开始分析模块间的依赖关系。</p>
-<p>webpack 将存在依赖关系的模块，打包为 trunk（代码分片），trunk 为代码在打包过程中的中间状态。</p>
-<p>由 trunk 最终产生的打包产物叫做bundle。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  entry: <span class="string">'./path/to/my/entry/file.js'</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>当组件挂载时，this.myRef.current 会被赋值为节点实例。</p>
+<p>当组件被卸载时，this.myRef.current 会被赋值为 null。</p>
+<h3 id="3-1-3-示例"><a href="#3-1-3-示例" class="headerlink" title="3.1.3 示例"></a>3.1.3 示例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">class CustomTextInput extends React.Component &#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    super(props);</span><br><span class="line">    //1、创建 Refs 变量 this.textInput</span><br><span class="line">    this.textInput = React.createRef();</span><br><span class="line">    this.focusTextInput = this.focusTextInput.bind(this);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  focusTextInput() &#123;</span><br><span class="line">    // 3、通过 this.textInput.current 属性访问节点实例</span><br><span class="line">    this.textInput.current.focus();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    // 2、通过给节点配置 ref 属性，将节点实例关联到 this.textInput</span><br><span class="line">    return (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;input</span><br><span class="line">          type=&quot;text&quot;</span><br><span class="line">          ref=&#123;this.textInput&#125; /&gt;</span><br><span class="line">        &lt;input</span><br><span class="line">          type=&quot;button&quot;</span><br><span class="line">          value=&quot;Focus the text input&quot;</span><br><span class="line">          onClick=&#123;this.focusTextInput&#125;</span><br><span class="line">        /&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="output"><a href="#output" class="headerlink" title="output"></a>output</h2><p>通过 output 来配置 webpack 的输出文件夹和输出文件名称。默认输出到文件夹 <code>./dist</code>，默认输出的文件为 <code>./dist/main.js</code>。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  entry: <span class="string">'./path/to/my/entry/file.js'</span>,</span><br><span class="line">  output: &#123;</span><br><span class="line">      <span class="comment">/*path 和 filename配置共同决定了bundles的输出地址*/</span></span><br><span class="line">      <span class="comment">//__dirname 为当前 webpack.config.js 所在文件夹名称</span></span><br><span class="line">    path: path.resolve(__dirname, <span class="string">'dist'</span>),</span><br><span class="line">    filename: <span class="string">'my-first-webpack.bundle.js'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="3-2-callback-Refs"><a href="#3-2-callback-Refs" class="headerlink" title="3.2 callback Refs"></a>3.2 callback Refs</h2><p>callback Refs 是指通过给节点的 ref 属性传递回调函数来获取节点实例。</p>
+<h3 id="3-2-1-示例"><a href="#3-2-1-示例" class="headerlink" title="3.2.1 示例"></a>3.2.1 示例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">class CustomTextInput extends React.Component &#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    super(props);</span><br><span class="line"></span><br><span class="line">    this.textInput = null;</span><br><span class="line"></span><br><span class="line">    this.setTextInputRef = element =&gt; &#123;</span><br><span class="line">        //2、回调函数会在节点挂载和卸载时被调用</span><br><span class="line">        //  节点的实例被作为参数（如 element）传给回调，卸载时 element 的值为 null </span><br><span class="line">      this.textInput = element;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    this.focusTextInput = () =&gt; &#123;</span><br><span class="line">      // 3、使用引用来操作节点</span><br><span class="line">      if (this.textInput) this.textInput.focus();</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  componentDidMount() &#123;</span><br><span class="line">    // 组件挂载后，让文本框自动获得焦点</span><br><span class="line">    this.focusTextInput();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    //  1、给节点的 `ref` 属性配置回调函数 this.setTextInputRef </span><br><span class="line">    return (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;input</span><br><span class="line">          type=&quot;text&quot;</span><br><span class="line">          ref=&#123;this.setTextInputRef&#125;</span><br><span class="line">        /&gt;</span><br><span class="line">        &lt;input</span><br><span class="line">          type=&quot;button&quot;</span><br><span class="line">          value=&quot;Focus the text input&quot;</span><br><span class="line">          onClick=&#123;this.focusTextInput&#125;</span><br><span class="line">        /&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="loader"><a href="#loader" class="headerlink" title="loader"></a>loader</h2><p>webpack 只能识别 js 和 json 文件，可以通过 loader 将 webpack 不认识的资源转换为 webpack 可以识别的。</p>
-<p>使用 loader 时，需要先安装，然后配置到 module.rules 中。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  output: &#123;</span><br><span class="line">    filename: <span class="string">'my-first-webpack.bundle.js'</span></span><br><span class="line">  &#125;,</span><br><span class="line">    <span class="comment">//loader 需要定义在module.rules 中</span></span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123; </span><br><span class="line">          <span class="comment">//test 用于指定需要转换的文件</span></span><br><span class="line">        test: <span class="regexp">/\.txt$/</span>, </span><br><span class="line">          <span class="comment">//use 用于指定使用哪个 loader 转换 test 指定的文件</span></span><br><span class="line">        use: <span class="string">'raw-loader'</span> </span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="3-2-2-注意"><a href="#3-2-2-注意" class="headerlink" title="3.2.2 注意"></a>3.2.2 注意</h3><p>ref 回调可以在组件间传递，进而可以解决嵌套组件间 ref 传递问题：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">function CustomTextInput(props) &#123;</span><br><span class="line">    // ref 属性值通过 props 从外部传递进来</span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;input ref=&#123;props.inputRef&#125; /&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Parent extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;CustomTextInput</span><br><span class="line">        inputRef=&#123;el =&gt; this.inputElement = el&#125;</span><br><span class="line">      /&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="plugins"><a href="#plugins" class="headerlink" title="plugins"></a>plugins</h2><p>plugin 可于执行更广泛的任务，如 打包优化、资源管理、注入环境变量。</p>
-<p><strong>使用方法</strong>：</p>
-<ol>
-<li>外部插件需要使用 npm 安装</li>
-<li>使用 require 来引用 </li>
-<li>通过 new 创建插件实例，将其添加到 plugins 数组中</li>
-<li>可根据不同目的多次使用同一个插件</li>
-<li>使用对象给插件实例传递参数</li>
-</ol>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">'html-webpack-plugin'</span>); <span class="comment">// 通过 npm 安装</span></span><br><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>); <span class="comment">// 用于访问内置插件</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123; <span class="attr">test</span>: <span class="regexp">/\.txt$/</span>, <span class="attr">use</span>: <span class="string">'raw-loader'</span> &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="keyword">new</span> HtmlWebpackPlugin(&#123;<span class="attr">template</span>: <span class="string">'./src/index.html'</span>&#125;)</span><br><span class="line">  ]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="3-3-String-Refs（过时的-API）"><a href="#3-3-String-Refs（过时的-API）" class="headerlink" title="3.3 String Refs（过时的 API）"></a>3.3 String Refs（过时的 API）</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">class CustomTextInput extends React.Component &#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    super(props);</span><br><span class="line">    this.focusTextInput = this.focusTextInput.bind(this);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  focusTextInput() &#123;</span><br><span class="line">    // 2、在父节点中通过 this.refs.myInput 属性访问子节点实例</span><br><span class="line">    this.refs.myInput.focus();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    // 1、通过给子节点配置 ref 属性，值为字符串 myInput</span><br><span class="line">    return (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;input</span><br><span class="line">          type=&quot;text&quot;</span><br><span class="line">          ref=&quot;myInput&quot; /&gt;</span><br><span class="line">        &lt;input</span><br><span class="line">          type=&quot;button&quot;</span><br><span class="line">          value=&quot;Focus the text input&quot;</span><br><span class="line">          onClick=&#123;this.focusTextInput&#125;</span><br><span class="line">        /&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="mode"><a href="#mode" class="headerlink" title="mode"></a>mode</h2><p>可以设置为 development、productions、none 中的一个，webpack 会根据不同的配置进行不同的默认优化。默认值为 production。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">  mode: &apos;production&apos;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>如果目前还在使用 <code>this.refs.textInput</code> 这种方式访问 refs ，建议用 callback refs 或  createRefs 的方式代替，String 类型的 Refs 在未来版本可能将会被移除。</p>
+<h1 id="4-注意"><a href="#4-注意" class="headerlink" title="4 注意"></a>4 注意</h1><p>1、默认情况下，不能在函数组件上使用 ref 属性，因为它没有实例。可以通过 forwardRef 创建函数组件，进而使其可以接收 ref 属性，或者将函数组件转化为 class 组件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">function MyFunctionComponent() &#123;</span><br><span class="line">  return &lt;input /&gt;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Parent extends React.Component &#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    super(props);</span><br><span class="line">    this.textInput = React.createRef();</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    // This will *not* work!</span><br><span class="line">    return (</span><br><span class="line">      &lt;MyFunctionComponent ref=&#123;this.textInput&#125; /&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h1 id="浏览器兼容性"><a href="#浏览器兼容性" class="headerlink" title="浏览器兼容性"></a>浏览器兼容性</h1><p>webpack 默认支持 es5 标准（不支持 ie8 及以下）。如果想要支持旧版本浏览器，在使用这些表达式之前，需要 <a href="https://webpack.docschina.org/guides/shimming/" target="_blank" rel="noopener">提前加载 polyfill</a>。</p>
-<p>参考：</p>
-<p><a href="https://www.cnblogs.com/skychx/p/webpack-module-chunk-bundle.html" target="_blank" rel="noopener">https://www.cnblogs.com/skychx/p/webpack-module-chunk-bundle.html</a></p>
 
         
       
@@ -335,7 +323,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/70/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/70/">70</a><span class="page-number current">71</span><a class="page-number" href="/page/72/">72</a><span class="space">&hellip;</span><a class="page-number" href="/page/108/">108</a><a class="extend next" rel="next" href="/page/72/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/70/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/70/">70</a><span class="page-number current">71</span><a class="page-number" href="/page/72/">72</a><span class="space">&hellip;</span><a class="page-number" href="/page/104/">104</a><a class="extend next" rel="next" href="/page/72/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -379,7 +367,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">108</span>
+          <span class="site-state-item-count">104</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -392,7 +380,7 @@
             <a href="/categories/">
           
         
-        <span class="site-state-item-count">32</span>
+        <span class="site-state-item-count">30</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -405,7 +393,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">73</span>
+        <span class="site-state-item-count">72</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>

@@ -206,7 +206,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/web/javascript/作用域 作用域链/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/web/webpack/webpack loader/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="DaMeng">
@@ -220,7 +220,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/web/javascript/作用域 作用域链/" class="post-title-link" itemprop="url">作用域 作用域链</a>
+            <a href="/web/webpack/webpack loader/" class="post-title-link" itemprop="url">webpack loader</a>
           
         </h1>
 
@@ -235,7 +235,7 @@
                 
               
 
-              <time title="创建时间：2019-06-08 19:18:38" itemprop="dateCreated datePublished" datetime="2019-06-08T19:18:38+08:00">2019-06-08</time>
+              <time title="创建时间：2019-06-03 00:00:00" itemprop="dateCreated datePublished" datetime="2019-06-03T00:00:00+08:00">2019-06-03</time>
             </span>
           
             <span class="post-meta-item">
@@ -251,7 +251,7 @@
                   ，
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web/webpack/" itemprop="url" rel="index"><span itemprop="name">webpack</span></a></span>
 
                 
                 
@@ -270,46 +270,36 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="1-作用域（Scope）"><a href="#1-作用域（Scope）" class="headerlink" title="1 作用域（Scope）"></a>1 作用域（Scope）</h1><h2 id="1-1-作用域的定义"><a href="#1-1-作用域的定义" class="headerlink" title="1.1 作用域的定义"></a>1.1 作用域的定义</h2><p><strong><code>作用域</code></strong>指的是变量可被访问的有效<strong>范围</strong>。</p>
-<h2 id="1-2-作用域的分类"><a href="#1-2-作用域的分类" class="headerlink" title="1.2 作用域的分类"></a>1.2 作用域的分类</h2><p>对于 js 来说，作用域有下面三类：</p>
+          <h2 id="是什么"><a href="#是什么" class="headerlink" title="是什么"></a>是什么</h2><p>loader 本质是一个导出函数的模块。</p>
+<h2 id="有什么作用"><a href="#有什么作用" class="headerlink" title="有什么作用"></a>有什么作用</h2><p>loader 的作用就是对源码进行转换（在 import 或 load 时进行预处理），可以通过 loader 将 webpack 不认识的资源转换为 webpack 可以识别的。</p>
+<h2 id="使用方式"><a href="#使用方式" class="headerlink" title="使用方式"></a>使用方式</h2><h3 id="配置文件（推荐）"><a href="#配置文件（推荐）" class="headerlink" title="配置文件（推荐）"></a>配置文件（推荐）</h3><p>在 webpack 配置文件（默认为 webpack.config.js）中进行配置。</p>
+<p>module.rules 字段用来配置 loader。配置多个 loader 时，执行顺序为从后向前（从右到左）。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    rules: [<span class="comment">// 配置 loader</span></span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.css$/</span>,</span><br><span class="line">        use: [<span class="comment">//执行顺序为： sass-loader css-loader style-loader</span></span><br><span class="line">          <span class="comment">// style-loader</span></span><br><span class="line">          &#123; <span class="attr">loader</span>: <span class="string">'style-loader'</span> &#125;,</span><br><span class="line">          <span class="comment">// css-loader</span></span><br><span class="line">          &#123;</span><br><span class="line">            loader: <span class="string">'css-loader'</span>,</span><br><span class="line">            options: &#123;</span><br><span class="line">              modules: <span class="literal">true</span></span><br><span class="line">            &#125;</span><br><span class="line">          &#125;,</span><br><span class="line">          <span class="comment">// sass-loader</span></span><br><span class="line">          &#123; <span class="attr">loader</span>: <span class="string">'sass-loader'</span> &#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Inline"><a href="#Inline" class="headerlink" title="Inline"></a>Inline</h3><ul>
+<li>可以通过 <code>import</code> 语句来导入 loader，多个 loader 间用<code>!</code> 分隔。loader 会相对于当前路径进行解析。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import Styles from &apos;style-loader!css-loader?modules!./styles.css&apos;;</span><br></pre></td></tr></table></figure>
+
 <ul>
-<li><p>全局作用域 </p>
-<p>​    变量在全局范围有效。</p>
-</li>
-<li><p>局部作用域（又叫函数作用域）</p>
-<p>​    变量在声明它的函数体中，及在这个函数体嵌套的任意函数体内有效。</p>
-</li>
-<li><p>块作用域（es6 新增的语法）</p>
-<p>​    变量在语句块内有效。</p>
+<li><p>通过为内联 <code>import</code> 语句添加前缀，可以覆盖 <a href="https://webpack.docschina.org/configuration" target="_blank" rel="noopener">配置</a> 中的所有 loader, preLoader 和 postLoader：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//使用 ! 前缀，将禁用所有已配置的 normal loader(普通 loader)</span></span><br><span class="line"><span class="keyword">import</span> Styles <span class="keyword">from</span> <span class="string">'!style-loader!css-loader?modules!./styles.css'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用 -! 前缀，将禁用所有已配置的 preLoader 和 loader，但是不禁用 postLoaders</span></span><br><span class="line"><span class="keyword">import</span> Styles <span class="keyword">from</span> <span class="string">'-!style-loader!css-loader?modules!./styles.css'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用 !! 前缀，将禁用所有已配置的 loader（preLoader, loader, postLoader）</span></span><br><span class="line"><span class="keyword">import</span> Styles <span class="keyword">from</span> <span class="string">'!!style-loader!css-loader?modules!./styles.css'</span>;</span><br></pre></td></tr></table></figure>
+
 </li>
 </ul>
-<h1 id="2-变量对象-Variable-Object"><a href="#2-变量对象-Variable-Object" class="headerlink" title="2 变量对象 ( Variable Object )"></a>2 变量对象 ( Variable Object )</h1><p><strong><code>变量对象</code></strong>，顾名思义就是保存变量的对象，只要是保存变量的对象，都可以称为<strong><code>变量对象</code></strong>。winows 对象、活动对象、闭包等都是保存变量的对象，都属于<strong><code>变量对象</code></strong>。</p>
-<h1 id="3-活动对象（Activation-Object）"><a href="#3-活动对象（Activation-Object）" class="headerlink" title="3 活动对象（Activation Object）"></a>3 活动对象（Activation Object）</h1><p>活动对象是在函数执行时产生的变量对象，活动对象保存了函数的局部变量、window对象。</p>
-<h1 id="4-作用域链-scopes"><a href="#4-作用域链-scopes" class="headerlink" title="4 作用域链 [[scopes]]"></a>4 作用域链 [[scopes]]</h1><p><strong><code>作用域链</code></strong>是函数的一个内部属性 [[scopes]]，是由函数可访问的所有<strong><code>外部作用域对象</code></strong>组成的<strong>数组</strong>。[[scopes]] 属性不能通过程序读取，只能由 js 引擎读取。js 通过<strong><code>作用域链</code></strong>实现了静态作用域（指作用域由定义时而非运行时决定）。</p>
-<p><strong><code>作用域链</code></strong>将可以将不同函数关联起来，并保证了函数解析变量的顺序。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">A</span>(<span class="params">aArg</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> aVar = <span class="string">'aVar'</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.dir(A) ;<span class="comment">//函数被创建时，会包含一个[[scope]]内部属性，用来保存作用域链</span></span><br></pre></td></tr></table></figure>
+<h3 id="cli"><a href="#cli" class="headerlink" title="cli"></a>cli</h3><p>通过 CLI 使用 loader：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">对 .jade 文件使用 pug-loader，以及对 .css 文件使用 style-loader 和 css-loader</span></span><br><span class="line">webpack --module-bind pug-loader --module-bind 'css=style-loader!css-loader'</span><br></pre></td></tr></table></figure>
 
-<p>上面代码 chrome 输出截图：</p>
-<img src="/web/javascript/作用域%20作用域链/2.png">
-
-<p>firefox 输出截图：</p>
-<img src="/web/javascript/作用域%20作用域链/3.png">
-
-<p>firefox 并没有输出 [[scopes]] 属性，chrome 虽然输出了，但却无法访问 [[scopes]] 属性。</p>
-<h1 id="5-执行上下文（或叫执行环境）"><a href="#5-执行上下文（或叫执行环境）" class="headerlink" title="5 执行上下文（或叫执行环境）"></a>5 执行上下文（或叫执行环境）</h1><p><strong>执行上下文</strong>是函数执行时创建的一个内部对象，定义了函数执行时的环境。</p>
-<p>函数每次执行时，都会创建对应的<strong>执行上下文</strong>，多次调用函数，将会创建多个<strong>执行上下文</strong>。当函数执行完毕，<strong>执行上下文</strong>将被销毁。</p>
-<p><strong>执行上下文</strong>是使用函数自身的作用域 [[scopes]] 属性来进行初始化的，并将活动对象（由函数的局部变量组成）追加为其第一个元素。</p>
-<h1 id="5-总结"><a href="#5-总结" class="headerlink" title="5 总结"></a>5 总结</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> B1Alias;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">A</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> aVar = <span class="string">'aVar'</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">B1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> bVar=<span class="string">'test'</span>;</span><br><span class="line">        <span class="built_in">console</span>.log(bVar);</span><br><span class="line">        <span class="built_in">console</span>.log(aVar);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    B1Alias = B1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">A();</span><br><span class="line">B1Alias();</span><br><span class="line"><span class="built_in">console</span>.dir(B1Alias);</span><br></pre></td></tr></table></figure>
-
-<img src="/web/javascript/作用域%20作用域链/scopeSum.png">
-
-<p>通过上面的示例和调试截图来总结下，将各个概念关联起来：</p>
-<p>每个函数被初始化时，会包含一个数组类型的属性  [[Scopes]] （即作用域链），[[Scopes]] 的内容是由此函数可以访问的<strong>外部作用域对象</strong>组成的。</p>
-<p>每次函数执行时，都会创建对应的执行上下文，会使用函数的 [[Scopes]] 来初始化执行上下文，并将<strong>活动对象</strong>（由函数的局部变量组成）追加到<strong>执行上下文</strong>的第一个元素。</p>
-<p><strong>作用域</strong>是一个范围，当把这个范围关联到某个对象时，可以把这个对象叫做<strong>作用域对象</strong>，如 windows 对象、活动对象、执行上下文 都可以称为<strong>作用域对象</strong>。</p>
-<p>保存变量的对象称为<strong>变量对象</strong>，也就是说变量对象包括了<strong>作用域对象</strong>，但并不止作用域对象。</p>
-<p>参考：</p>
-<p><a href="https://juejin.im/post/5b481cc9e51d45192562850f" target="_blank" rel="noopener">https://juejin.im/post/5b481cc9e51d45192562850f</a></p>
+<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><ul>
+<li>loader 支持链式调用。链中的每个 loader 会将转换应用在已处理过的资源上。一组链式的 loader 将按照相反的顺序执行。链中的第一个 loader 将其结果（也就是应用过转换后的资源）传递给下一个 loader，依此类推。最后，链中的最后一个 loader，返回 webpack 所期望的 JavaScript。</li>
+<li>loader 可以是同步的，也可以是异步的。</li>
+<li>loader 运行在 Node.js 中，并且能够执行任何操作。</li>
+<li>loader 可以通过 <code>options</code> 对象配置（仍然支持使用 <code>query</code> 参数来设置选项，但是这种方式已被废弃）。</li>
+<li>除了常见的通过 <code>package.json</code> 的 <code>main</code> 来将一个 npm 模块导出为 loader，还可以在 module.rules 中使用 <code>loader</code> 字段直接引用一个模块。</li>
+<li>插件(plugin)可以为 loader 带来更多特性。</li>
+<li>loader 能够产生额外的任意文件。</li>
+</ul>
+<h2 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h2><p>loader 遵循标准 <a href="https://webpack.docschina.org/concepts/module-resolution/" target="_blank" rel="noopener">模块解析</a> 规则。</p>
 
         
       
@@ -333,7 +323,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/42/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/42/">42</a><span class="page-number current">43</span><a class="page-number" href="/page/44/">44</a><span class="space">&hellip;</span><a class="page-number" href="/page/108/">108</a><a class="extend next" rel="next" href="/page/44/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/42/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/42/">42</a><span class="page-number current">43</span><a class="page-number" href="/page/44/">44</a><span class="space">&hellip;</span><a class="page-number" href="/page/104/">104</a><a class="extend next" rel="next" href="/page/44/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -377,7 +367,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">108</span>
+          <span class="site-state-item-count">104</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -390,7 +380,7 @@
             <a href="/categories/">
           
         
-        <span class="site-state-item-count">32</span>
+        <span class="site-state-item-count">30</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -403,7 +393,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">73</span>
+        <span class="site-state-item-count">72</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>

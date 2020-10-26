@@ -206,7 +206,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/web/webpack/webpack 代码分离/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/web/react/Hook规则/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="DaMeng">
@@ -220,7 +220,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/web/webpack/webpack 代码分离/" class="post-title-link" itemprop="url">webpack 代码分离</a>
+            <a href="/web/react/Hook规则/" class="post-title-link" itemprop="url">使用 React Hook 需要遵循的规则</a>
           
         </h1>
 
@@ -235,7 +235,7 @@
                 
               
 
-              <time title="创建时间：2020-03-10 00:00:00" itemprop="dateCreated datePublished" datetime="2020-03-10T00:00:00+08:00">2020-03-10</time>
+              <time title="创建时间：2019-10-17 20:00:28" itemprop="dateCreated datePublished" datetime="2019-10-17T20:00:28+08:00">2019-10-17</time>
             </span>
           
             <span class="post-meta-item">
@@ -251,14 +251,7 @@
                   ，
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web/webpack/" itemprop="url" rel="index"><span itemprop="name">webpack</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web/webpack/性能优化/" itemprop="url" rel="index"><span itemprop="name">性能优化</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web/react/" itemprop="url" rel="index"><span itemprop="name">react</span></a></span>
 
                 
                 
@@ -277,29 +270,19 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="代码分离是什么"><a href="#代码分离是什么" class="headerlink" title="代码分离是什么"></a>代码分离是什么</h1><p>代码分离指将代码分离到不同的 bundle 中。</p>
-<h1 id="有什么作用"><a href="#有什么作用" class="headerlink" title="有什么作用"></a>有什么作用</h1><p>代码分离后就可以按需加载或并行加载这些文件。</p>
-<h1 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h1><ol>
-<li>入口起点</li>
-<li>使用 <code>SplitChunksPlugin</code>  去重和分离 chunk</li>
-<li>动态导入（也叫 懒加载、延迟加载）</li>
-</ol>
-<h2 id="1、入口起点"><a href="#1、入口起点" class="headerlink" title="1、入口起点"></a>1、入口起点</h2><p>在 webpack.config.js 中配置多个 entry 入口，能够分离代码，进而产生多个 bundle。</p>
-<p>缺点： 多个 entry 引用的重复文件会被重复打包</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// webpack.config.js</span></span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  mode: <span class="string">'development'</span>,</span><br><span class="line">  entry: &#123;<span class="comment">//配置多个 entry 入口</span></span><br><span class="line">    index: <span class="string">'./src/index.js'</span>,</span><br><span class="line">    another: <span class="string">'./src/another-module.js'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  output: &#123;</span><br><span class="line">    filename: <span class="string">'[name].bundle.js'</span>,</span><br><span class="line">    path: path.resolve(__dirname, <span class="string">'dist'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+          <h1 id="使用-Hook-需要遵循的规则"><a href="#使用-Hook-需要遵循的规则" class="headerlink" title="使用 Hook 需要遵循的规则"></a>使用 Hook 需要遵循的规则</h1><p>Hook 的本质是 js 函数，使用 <code>Hook</code> 需要遵循下面两条规则：</p>
+<ul>
+<li><p>只在顶层使用 <code>Hook</code></p>
+<p>为了保证 <code>Hook</code> 在每次都以相同的顺序被调用（<strong>只有 Hook 的调用顺序在多次渲染之间保持一致，React 才能正确地将内部 state 和对应的 Hook 进行关联</strong>），确保总是在 React 函数的顶层调用 <code>Hook</code>，不要在循环、条件、嵌套中调用 <code>Hook</code></p>
+</li>
+<li><p>只在 React 函数组件中调用 <code>Hook</code>（<code>自定义 Hook</code> 中也可以调用 <code>Hook</code>）</p>
+</li>
+</ul>
+<h2 id="使用-ESlint-插件"><a href="#使用-ESlint-插件" class="headerlink" title="使用 ESlint 插件"></a>使用 ESlint 插件</h2><p>官方推荐使用 <a href="https://www.npmjs.com/package/eslint-plugin-react-hooks" target="_blank" rel="noopener"><code>eslint-plugin-react-hooks</code></a> 插件强制执行 <code>Hook</code> 规则。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">//下载插件</span><br><span class="line">npm install eslint-plugin-react-hooks --save-dev</span><br><span class="line"></span><br><span class="line">//配置eslint</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">"plugins"</span>: [</span><br><span class="line">    // ...</span><br><span class="line">    <span class="string">"react-hooks"</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">"rules"</span>: &#123;</span><br><span class="line">    // ...</span><br><span class="line">    "react-hooks/rules-of-hooks": "error", // 检查 Hook 的规则</span><br><span class="line">    "react-hooks/exhaustive-deps": "warn" // 检查 effect 的依赖</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="2、使用-SplitChunksPlugin"><a href="#2、使用-SplitChunksPlugin" class="headerlink" title="2、使用 SplitChunksPlugin"></a>2、使用 SplitChunksPlugin</h2><p><code>SplitChunkksPlugin</code> 可以将多个 entry 入口中的公共模块提取出来，达到去重公共模块的效果。</p>
-<p>webpack 的 <code>optimization.splitChunks</code> 选项默认使用 <code>SplitChunkPlugin</code> 插件。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">//webpack.config.js</span><br><span class="line">const path = require(&quot;path&quot;);</span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">	mode: &quot;development&quot;,</span><br><span class="line">	entry: &#123;</span><br><span class="line">		index: &quot;./src/js/index.js&quot;,</span><br><span class="line">		other: &quot;./src/js/other.js&quot;,</span><br><span class="line">	&#125;,</span><br><span class="line">	output: &#123;</span><br><span class="line">		filename: &quot;./js/[name].[contenthash:5].js&quot;,</span><br><span class="line">		path: path.resolve(__dirname, &quot;dist&quot;),</span><br><span class="line">	&#125;,</span><br><span class="line">	optimization: &#123;</span><br><span class="line">		splitChunks: &#123;</span><br><span class="line">			chunks: &quot;all&quot;,</span><br><span class="line">		&#125;,</span><br><span class="line">	&#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<h2 id="3、动态导入"><a href="#3、动态导入" class="headerlink" title="3、动态导入"></a>3、动态导入</h2><p><strong>动态导入（也叫 懒加载 或 延迟加载）</strong>，这个加载方式建立在<strong>代码分离</strong>的基础上，使得一些 trunk 可以在浏览器空闲 或 业务逻辑需要时才被加载。</p>
-<p>懒加载的作用是 <strong>为了提高应用的初始加载速度</strong>。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//webpack.config.js</span></span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">"path"</span>);</span><br><span class="line"><span class="keyword">const</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">"html-webpack-plugin"</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">	entry: &#123;</span><br><span class="line">		main: <span class="string">"./src/js/index.js"</span>,</span><br><span class="line">	&#125;,</span><br><span class="line">	output: &#123;</span><br><span class="line">		filename: <span class="string">"[name].[contenthash:10].js"</span>,</span><br><span class="line">	&#125;,</span><br><span class="line">	plugins: [<span class="keyword">new</span> HtmlWebpackPlugin()],</span><br><span class="line">	mode: <span class="string">"development"</span>,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//print.js</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"The print.js module has loaded! See the network tab in dev tools..."</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> () =&gt; &#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">'Button Clicked: Here\'s "some text"!'</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">"hello add"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>下面代码在 onclick 事件中通过 import 语句动态加载模块，从而提高首屏加载速度：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//index.js</span></span><br><span class="line"><span class="keyword">import</span> _ <span class="keyword">from</span> <span class="string">"lodash"</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">component</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> element = <span class="built_in">document</span>.createElement(<span class="string">"div"</span>);</span><br><span class="line">	<span class="keyword">var</span> button = <span class="built_in">document</span>.createElement(<span class="string">"button"</span>);</span><br><span class="line">	<span class="keyword">var</span> br = <span class="built_in">document</span>.createElement(<span class="string">"br"</span>);</span><br><span class="line"></span><br><span class="line">	button.innerHTML = <span class="string">"Click me and look at the console!"</span>;</span><br><span class="line">	element.appendChild(br);</span><br><span class="line">	element.appendChild(button);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//在 onclick 事件中通过 import 语句动态加载模块，从而提高首屏加载速度</span></span><br><span class="line">	button.onclick = <span class="function">(<span class="params">e</span>) =&gt;</span></span><br><span class="line">		<span class="keyword">import</span>(<span class="comment">/* webpackChunkName: "print" */</span> <span class="string">"./print"</span>).then(<span class="function">(<span class="params"><span class="built_in">module</span></span>) =&gt;</span> &#123;</span><br><span class="line">        	<span class="built_in">console</span>.log(<span class="built_in">module</span>); <span class="comment">//&#123;add:f add(), default: ()=&gt;&#123;...&#125;,...&#125;</span></span><br><span class="line"></span><br><span class="line">			<span class="keyword">var</span> print = <span class="built_in">module</span>.default;</span><br><span class="line"></span><br><span class="line">			print();</span><br><span class="line">		&#125;);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> element;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">document</span>.body.appendChild(component());</span><br></pre></td></tr></table></figure>
+<p>如果我们想要有条件地执行一个 effect，可以将判断放到 Hook 的<em>内部</em>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">useEffect(function persistForm() &#123;</span><br><span class="line">   // 👍 将条件判断放置在 effect 中</span><br><span class="line">   if (name !== &apos;&apos;) &#123;</span><br><span class="line">     localStorage.setItem(&apos;formData&apos;, name);</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;);</span><br></pre></td></tr></table></figure>
 
 
         
@@ -324,7 +307,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/23/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><span class="page-number current">24</span><a class="page-number" href="/page/25/">25</a><span class="space">&hellip;</span><a class="page-number" href="/page/108/">108</a><a class="extend next" rel="next" href="/page/25/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/23/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><span class="page-number current">24</span><a class="page-number" href="/page/25/">25</a><span class="space">&hellip;</span><a class="page-number" href="/page/104/">104</a><a class="extend next" rel="next" href="/page/25/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -368,7 +351,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">108</span>
+          <span class="site-state-item-count">104</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -381,7 +364,7 @@
             <a href="/categories/">
           
         
-        <span class="site-state-item-count">32</span>
+        <span class="site-state-item-count">30</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -394,7 +377,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">73</span>
+        <span class="site-state-item-count">72</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>

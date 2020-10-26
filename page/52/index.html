@@ -206,7 +206,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/web/http/http 安全头部/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/web/浏览器/浏览器跨域之-CORS/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="DaMeng">
@@ -220,7 +220,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/web/http/http 安全头部/" class="post-title-link" itemprop="url">HTTP 安全头部</a>
+            <a href="/web/浏览器/浏览器跨域之-CORS/" class="post-title-link" itemprop="url">浏览器跨域之 CORS</a>
           
         </h1>
 
@@ -235,7 +235,7 @@
                 
               
 
-              <time title="创建时间：2019-05-07 19:40:38" itemprop="dateCreated datePublished" datetime="2019-05-07T19:40:38+08:00">2019-05-07</time>
+              <time title="创建时间：2019-05-02 19:40:38" itemprop="dateCreated datePublished" datetime="2019-05-02T19:40:38+08:00">2019-05-02</time>
             </span>
           
             <span class="post-meta-item">
@@ -244,7 +244,14 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/http/" itemprop="url" rel="index"><span itemprop="name">http</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web/" itemprop="url" rel="index"><span itemprop="name">web</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web/浏览器/" itemprop="url" rel="index"><span itemprop="name">浏览器</span></a></span>
 
                 
                 
@@ -263,83 +270,122 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="1-HSTS"><a href="#1-HSTS" class="headerlink" title="1 HSTS"></a>1 HSTS</h1><h2 id="1-1-作用"><a href="#1-1-作用" class="headerlink" title="1.1 作用"></a>1.1 作用</h2><p><strong>HSTS</strong>（<strong>HTTP Strict Transport Secrity</strong>），服务器用此头部告知浏览器此网站只能使用 HTTPS 协议来访，浏览器应该自动把所有尝试使用 HTTP 的请求自动替换为 HTTPS 请求。</p>
-<p>Chrome、Firefox等浏览器会产生一个307 Internal Redirect（内部跳转），自动跳转到HTTPS 请求。</p>
-<img src="/web/http/http%20安全头部/hsts.png">
-
-<p>![hsts](F:\blog\source_\http\http 安全头部\hsts.png)</p>
-<h2 id="1-2-语法"><a href="#1-2-语法" class="headerlink" title="1.2 语法"></a>1.2 语法</h2><figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Strict-Transport-Security</span>: max-age=&lt;expire-time&gt;</span><br><span class="line"><span class="attribute">Strict-Transport-Security</span>: max-age=&lt;expire-time&gt;; includeSubDomains</span><br><span class="line"><span class="attribute">Strict-Transport-Security</span>: max-age=&lt;expire-time&gt;; preload</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><code>max-age=&lt;expire-time&gt;</code></li>
+          <h1 id="1-背景"><a href="#1-背景" class="headerlink" title="1 背景"></a>1 背景</h1><p>出于安全考虑，浏览器限制在脚本内（如 XMLHttpRequest 和 Fetch）进行跨域访问。</p>
+<p>CORS（跨域资源共享）是一种可以让浏览器进行跨域访问的机制。这个机制的本质是，当请求和响应的头部分别配置了特定的 HTTP 头部时，浏览器将判定此跨域请求是安全的，进而允许进行跨域访问。</p>
+<h1 id="2-使用-CORS-的场景"><a href="#2-使用-CORS-的场景" class="headerlink" title="2 使用 CORS 的场景"></a>2 使用 CORS 的场景</h1><ul>
+<li>使用 XMLHttpRequest 或 Fetch 发起的跨域请求</li>
+<li>Web 字体（CSS 通过 @font-face 使用跨域字体资源）</li>
+<li>WebGL 贴图</li>
+<li>使用 drawImage 将 Image/video 画面绘制到 canvas</li>
 </ul>
-<p>设置在浏览器收到这个请求后的<expire-time>秒的时间内凡是访问这个域名下的请求都使用HTTPS请求。</expire-time></p>
-<ul>
-<li><code>includeSubDomains</code> 可选</li>
-</ul>
-<p>如果这个可选的参数被指定，那么说明此规则也适用于该网站的所有子域名。</p>
-<ul>
-<li><code>preload</code> 可选</li>
-</ul>
-<p>查看 <a href="https://developer.mozilla.org/zh-CN/docs/Security/HTTP_Strict_Transport_Security#预加载_HSTS" target="_blank" rel="noopener">预加载 HSTS</a> 获得详情。不是标准的一部分</p>
-<h2 id="1-3-注意"><a href="#1-3-注意" class="headerlink" title="1.3 注意"></a>1.3 注意</h2><p>当网站没有证书错误时，浏览器才认为网站支持 HTTPS，然后才会使用 <code>Strict-Transport-Security</code> 的值，否则不会将 HTTP 自动转为 HTTPS。</p>
-<h1 id="2-CSP"><a href="#2-CSP" class="headerlink" title="2 CSP"></a>2 CSP</h1><h2 id="2-1-作用"><a href="#2-1-作用" class="headerlink" title="2.1 作用"></a>2.1 作用</h2><p><strong>CSP</strong>（<strong>Content-Security-Policy</strong>  内容安全策略），服务器用此头部来配置资源的可信来源白名单，从而减少和报告 XSS 攻击。当不包含 CSP 头部时，浏览器将使用同源策略。</p>
-<h2 id="2-2-语法"><a href="#2-2-语法" class="headerlink" title="2.2 语法"></a>2.2 语法</h2><figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Content-Security-Policy</span>: &lt;policy-directive&gt;; &lt;policy-directive&gt;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>policy 参数由一系列描述策略指令的字符串组成。每个策略指令都描述了某个特定类型资源的生效范围。策略应该包含一个 default-src 策略指令，作为资源类型的默认策略。</li>
-</ul>
-<p>  除此之外, <meta>元素也可以被用来配置该策略, 例如：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"Content-Security-Policy"</span> <span class="attr">content</span>=<span class="string">"default-src 'self'; img-src https://*; child-src 'none';"</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="2-3-示例"><a href="#2-3-示例" class="headerlink" title="2.3 示例"></a>2.3 示例</h2><p>配置网站所有内容均来自自身（不包括子域名）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Content-Security-Policy: default-src &apos;self&apos;</span><br></pre></td></tr></table></figure>
-
-<p>配置网站所有内容来自自身 或者 trusted.com及其子域</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Content-Security-Policy: default-src &apos;self&apos; *.trusted.com</span><br></pre></td></tr></table></figure>
-
-<p>配置网站内容中支持来自任何源的图片, 但是限制音频或视频需从信任的资源提供者(获得)，所有脚本必须从特定主机服务器获取可信的代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Content-Security-Policy: default-src &apos;self&apos;; img-src *; media-src media1.com media2.com; script-src userscripts.example.com</span><br></pre></td></tr></table></figure>
-
-<h1 id="3-X-Content-Type-Options"><a href="#3-X-Content-Type-Options" class="headerlink" title="3 X-Content-Type-Options"></a>3 X-Content-Type-Options</h1><h2 id="3-1-作用"><a href="#3-1-作用" class="headerlink" title="3.1 作用"></a>3.1 作用</h2><p>此头部可以用来限制客户端（如浏览器）按照 content-type 配置的 mime 类型对返回数据进行解析。禁止客户端的 MIME 类型嗅探（在缺失 MIME 类型或客户端认为文件设置了错误的 MIME 类型时，浏览器可能会通过查看资源来进行MIME嗅探，不同浏览器可能会执行不同的操作）。</p>
-<h2 id="3-2-语法"><a href="#3-2-语法" class="headerlink" title="3.2 语法"></a>3.2 语法</h2><figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">X-Content-Type-Options</span>: nosniff</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>nosniff</p>
-<p>下面两种情况的请求将被阻止：</p>
-<ul>
-<li>请求类型是”<code>style</code>“ 但是 MIME 类型不是 “<code>text/css</code>“，</li>
-<li>请求类型是”<code>script</code>“ 但是 MIME 类型不是  <a href="https://html.spec.whatwg.org/multipage/scripting.html#javascript-mime-type" target="_blank" rel="noopener">JavaScript MIME 类型</a>。</li>
+<h1 id="3-CORS-的使用方式"><a href="#3-CORS-的使用方式" class="headerlink" title="3 CORS 的使用方式"></a>3 CORS 的使用方式</h1><p>不同的请求类型，会使用不同的方式使用 CORS。</p>
+<h2 id="3-1-简单请求"><a href="#3-1-简单请求" class="headerlink" title="3.1 简单请求"></a>3.1 简单请求</h2><h3 id="3-1-1-定义"><a href="#3-1-1-定义" class="headerlink" title="3.1.1 定义"></a>3.1.1 定义</h3><p>满足下面所有条件时，被定义为 <strong>简单请求</strong>，该请求不会触发 <strong>CORS 预检请求</strong>：</p>
+<ol>
+<li>使用下面方法之一：<ul>
+<li>GET</li>
+<li>HEAD</li>
+<li>POST</li>
 </ul>
 </li>
+<li>请求头不超过如下集合：<ul>
+<li><code>Accept</code></li>
+<li><code>Accept-Language</code></li>
+<li><code>Content-Language</code></li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Content-Type" target="_blank" rel="noopener"><code>Content-Type</code></a> （需要注意额外的限制）</li>
+<li><code>DPR</code></li>
+<li><code>Downlink</code></li>
+<li><code>Save-Data</code></li>
+<li><code>Viewport-Width</code></li>
+<li><code>Width</code></li>
 </ul>
-<h1 id="4-X-Frame-Options"><a href="#4-X-Frame-Options" class="headerlink" title="4 X-Frame-Options"></a>4 X-Frame-Options</h1><h2 id="4-1-作用"><a href="#4-1-作用" class="headerlink" title="4.1 作用"></a>4.1 作用</h2><p>此头部用来限制客户端（如浏览器）是否可以在 frame iframe embed 或 object 中展示网页。</p>
-<h2 id="4-2-语法"><a href="#4-2-语法" class="headerlink" title="4.2 语法"></a>4.2 语法</h2><p>支持下面三种值</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">X-Frame-Options: deny</span><br><span class="line">X-Frame-Options: sameorigin</span><br><span class="line">X-Frame-Options: allow-from https://example.com/</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p><code>deny</code></p>
-<p>表示该页面不允许在 frame 中展示，即便是在相同域名的页面中嵌套也不允许。</p>
 </li>
-<li><p><code>sameorigin</code></p>
-<p>表示该页面可以在相同域名页面的 frame 中展示。</p>
-</li>
-<li><p><code>allow-from *uri*</code></p>
-<p>表示该页面可以在指定来源的 frame 中展示。</p>
-</li>
+<li>Content-Type 为下面三者之一：<ul>
+<li><code>text/plain</code></li>
+<li><code>multipart/form-data</code></li>
+<li><code>application/x-www-form-urlencoded</code></li>
 </ul>
-<h2 id="4-3-注意"><a href="#4-3-注意" class="headerlink" title="4.3 注意"></a>4.3 注意</h2><p>设置 meta 标签是无效的！例如 <code>&lt;meta http-equiv=&quot;X-Frame-Options&quot; content=&quot;deny&quot;&gt;</code> 没有任何效果。不要这样用！只有当像下面示例那样设置 HTTP 头 <code>X-Frame-Options</code> 才会生效。</p>
-<h1 id="5-X-Xss-Protection"><a href="#5-X-Xss-Protection" class="headerlink" title="5 X-Xss-Protection"></a>5 X-Xss-Protection</h1><h2 id="5-1-作用"><a href="#5-1-作用" class="headerlink" title="5.1 作用"></a>5.1 作用</h2><p>此响应头是 Internet Explorer，Chrome 和 Safari 的一个特性，当检测到跨站脚本攻击 (<a href="https://developer.mozilla.org/en-US/docs/Glossary/XSS" target="_blank" rel="noopener">XSS</a>)时，浏览器将停止加载页面。可以为尚不支持 <a href="https://developer.mozilla.org/zh-CN/docs/Glossary/CSP" target="_blank" rel="noopener">CSP</a> 的旧版浏览器的用户提供保护。</p>
-<h2 id="5-2-语法"><a href="#5-2-语法" class="headerlink" title="5.2 语法"></a>5.2 语法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">X-XSS-Protection: 0</span><br><span class="line">X-XSS-Protection: 1</span><br><span class="line">X-XSS-Protection: 1; mode=block</span><br><span class="line">X-XSS-Protection: 1; report=&lt;reporting-uri&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>4、请求中的任意<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequestUpload" target="_blank" rel="noopener"><code>XMLHttpRequestUpload</code></a> 对象均没有注册任何事件监听器；<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequestUpload" target="_blank" rel="noopener"><code>XMLHttpRequestUpload</code></a> 对象可以使用 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest/upload" target="_blank" rel="noopener"><code>XMLHttpRequest.upload</code></a> 属性访问。</p>
+<p>5、请求中没有使用 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/ReadableStream" target="_blank" rel="noopener"><code>ReadableStream</code></a> 对象。</p>
+<h3 id="3-1-2-代码示例"><a href="#3-1-2-代码示例" class="headerlink" title="3.1.2 代码示例"></a>3.1.2 代码示例</h3><p>站点 <a href="http://foo.example" target="_blank" rel="noopener">http://foo.example</a> 的网页应用访问 <a href="http://bar.other" target="_blank" rel="noopener">http://bar.other</a> 的资源 js 代码如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> invocation = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line"><span class="keyword">var</span> url = <span class="string">'http://bar.other/resources/public-data/'</span>;</span><br><span class="line">   </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">callOtherDomain</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(invocation) &#123;    </span><br><span class="line">    invocation.open(<span class="string">'GET'</span>, url, <span class="literal">true</span>);</span><br><span class="line">    invocation.onreadystatechange = handler;</span><br><span class="line">    invocation.send(); </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>0</p>
-<p>禁止XSS过滤。</p>
-<p>1</p>
-<p>启用XSS过滤（通常浏览器是默认的）。 如果检测到跨站脚本攻击，浏览器将清除页面（删除不安全的部分）。</p>
-<p>1;mode=block</p>
-<p>启用XSS过滤。 如果检测到攻击，浏览器将不会清除页面，而是阻止页面加载。</p>
-<p>1; report=<reporting-uri>  (Chromium only)</reporting-uri></p>
-<p>启用XSS过滤。 如果检测到跨站脚本攻击，浏览器将清除页面并使用CSP <a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Content-Security-Policy/report-uri" target="_blank" rel="noopener"><code>report-uri</code></a>指令的功能发送违规报告。</p>
+<p>浏览器发送的 HTTP 请求如下，第10行 的请求首部字段 <a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Origin" target="_blank" rel="noopener"><code>Origin</code></a> 表明该请求来源于 <code>http://foo.example</code>。：</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GET</span> <span class="string">/resources/public-data/</span> HTTP/1.1</span><br><span class="line"><span class="attribute">Host</span>: bar.other</span><br><span class="line"><span class="attribute">User-Agent</span>: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.5; en-US; rv:1.9.1b3pre) Gecko/20081130 Minefield/3.1b3pre</span><br><span class="line"><span class="attribute">Accept</span>: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8</span><br><span class="line"><span class="attribute">Accept-Language</span>: en-us,en;q=0.5</span><br><span class="line"><span class="attribute">Accept-Encoding</span>: gzip,deflate</span><br><span class="line"><span class="attribute">Accept-Charset</span>: ISO-8859-1,utf-8;q=0.7,*;q=0.7</span><br><span class="line"><span class="attribute">Connection</span>: keep-alive</span><br><span class="line"><span class="attribute">Referer</span>: http://foo.example/examples/access-control/simpleXSInvocation.html</span><br><span class="line"><span class="attribute">Origin</span>: http://foo.example</span><br></pre></td></tr></table></figure>
+
+<p>服务器返回的 HTTP 请求如下，服务端返回的 <code>Access-Control-Allow-Origin: *</code> 表明，该资源可以被<strong>任意</strong>外域访问。</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 <span class="number">200</span> OK</span><br><span class="line"><span class="attribute">Date</span>: Mon, 01 Dec 2008 00:23:53 GMT</span><br><span class="line"><span class="attribute">Server</span>: Apache/2.0.61 </span><br><span class="line"><span class="attribute">Access-Control-Allow-Origin</span>: *</span><br><span class="line"><span class="attribute">Keep-Alive</span>: timeout=2, max=100</span><br><span class="line"><span class="attribute">Connection</span>: Keep-Alive</span><br><span class="line"><span class="attribute">Transfer-Encoding</span>: chunked</span><br><span class="line"><span class="attribute">Content-Type</span>: application/xml</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-1-3、总结"><a href="#3-1-3、总结" class="headerlink" title="3.1.3、总结"></a>3.1.3、总结</h3><p>简单请求使用 <code>Origin</code>和 <code>Access-Control-Allow-Origin</code> 完成 CORS 的访问控制。</p>
+<p><code>Access-Control-Allow-Origin</code>  的值应当为 * 或者包含 Origin 首部字段所指明的域名，来使得此跨域请求成功返回。</p>
+<h2 id="3-2-需预检请求"><a href="#3-2-需预检请求" class="headerlink" title="3.2 需预检请求"></a>3.2 需预检请求</h2><h3 id="3-2-1-定义"><a href="#3-2-1-定义" class="headerlink" title="3.2.1 定义"></a>3.2.1 定义</h3><p><strong>需预检请求</strong> 指浏览器在发送实际请求前，先发送一个 OPTION 请求，当服务器响应为允许时，才发送的实际请求。当条件不满足 <strong>简单请求</strong> 时，为 <strong>需预检请求</strong>。</p>
+<h3 id="3-2-2-代码示例"><a href="#3-2-2-代码示例" class="headerlink" title="3.2.2 代码示例"></a>3.2.2 代码示例</h3><p>下面的代码使用 POST 请求包含了一个<strong>自定义的请求首部字段</strong>（X-PINGOTHER: pingpong），并且该请求的 <strong>Content-Type 为 application/xml</strong>。因此，该请求需要首先发起“<strong>预检请求</strong>”。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> invocation = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line"><span class="keyword">var</span> url = <span class="string">'http://bar.other/resources/post-here/'</span>;</span><br><span class="line"><span class="keyword">var</span> body = <span class="string">'&lt;?xml version="1.0"?&gt;&lt;person&gt;&lt;name&gt;Arun&lt;/name&gt;&lt;/person&gt;'</span>;</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">callOtherDomain</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(invocation)</span><br><span class="line">    &#123;</span><br><span class="line">      invocation.open(<span class="string">'POST'</span>, url, <span class="literal">true</span>);</span><br><span class="line">      invocation.setRequestHeader(<span class="string">'X-PINGOTHER'</span>, <span class="string">'pingpong'</span>);</span><br><span class="line">      invocation.setRequestHeader(<span class="string">'Content-Type'</span>, <span class="string">'application/xml'</span>);</span><br><span class="line">      invocation.onreadystatechange = handler;</span><br><span class="line">      invocation.send(body); </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>浏览器发起<strong>预检请求</strong>（OPTIONS 方法）：</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">OPTIONS /resources/post-here/ HTTP/1.1----&gt; 1、预检请求的方法</span><br><span class="line"><span class="attribute">Host</span>: bar.other</span><br><span class="line"><span class="attribute">User-Agent</span>: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.5; en-US; rv:1.9.1b3pre) Gecko/20081130 Minefield/3.1b3pre</span><br><span class="line"><span class="attribute">Accept</span>: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8</span><br><span class="line"><span class="attribute">Accept-Language</span>: en-us,en;q=0.5</span><br><span class="line"><span class="attribute">Accept-Encoding</span>: gzip,deflate</span><br><span class="line"><span class="attribute">Accept-Charset</span>: ISO-8859-1,utf-8;q=0.7,*;q=0.7</span><br><span class="line"><span class="attribute">Connection</span>: keep-alive</span><br><span class="line"><span class="attribute">Origin</span>: http://foo.example</span><br><span class="line"><span class="attribute">Access-Control-Request-Method</span>: POST---&gt;2、告知服务器实际请求的方法为 POST</span><br><span class="line"><span class="attribute">Access-Control-Request-Headers</span>: X-PINGOTHER, Content-Type---&gt;3、告知服务器实际请求包含这两个自定义头部</span><br></pre></td></tr></table></figure>
+
+<p>服务器返回<strong>对预检请求的响应</strong>：</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 <span class="number">200</span> OK</span><br><span class="line"><span class="attribute">Date</span>: Mon, 01 Dec 2008 01:15:39 GMT</span><br><span class="line"><span class="attribute">Server</span>: Apache/2.0.61 (Unix)</span><br><span class="line"><span class="attribute">Access-Control-Allow-Origin</span>: http://foo.example--&gt;1、告知浏览器跨域请求允许的源客户端</span><br><span class="line"><span class="attribute">Access-Control-Allow-Methods</span>: POST, GET, OPTIONS-&gt;2、告知浏览器跨域请求允许的方法</span><br><span class="line"><span class="attribute">Access-Control-Allow-Headers</span>: X-PINGOTHER, Content-Type--&gt;3、告知浏览器跨域齐全允许的自定义头部</span><br><span class="line"><span class="attribute">Access-Control-Max-Age</span>: 86400--&gt;告知浏览器该跨域请求被允许的有效时间，在此有效时间内，浏览器不会对此请求再次发起预检请求</span><br><span class="line"><span class="attribute">Vary</span>: Accept-Encoding, Origin</span><br><span class="line"><span class="attribute">Content-Encoding</span>: gzip</span><br><span class="line"><span class="attribute">Content-Length</span>: 0</span><br><span class="line"><span class="attribute">Keep-Alive</span>: timeout=2, max=100</span><br><span class="line"><span class="attribute">Connection</span>: Keep-Alive</span><br><span class="line"><span class="attribute">Content-Type</span>: text/plain</span><br></pre></td></tr></table></figure>
+
+<p>得到服务器允许后，浏览器才会发送下面实际请求：</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">POST</span> <span class="string">/resources/post-here/</span> HTTP/1.1</span><br><span class="line"><span class="attribute">Host</span>: bar.other</span><br><span class="line"><span class="attribute">User-Agent</span>: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.5; en-US; rv:1.9.1b3pre) Gecko/20081130 Minefield/3.1b3pre</span><br><span class="line"><span class="attribute">Accept</span>: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8</span><br><span class="line"><span class="attribute">Accept-Language</span>: en-us,en;q=0.5</span><br><span class="line"><span class="attribute">Accept-Encoding</span>: gzip,deflate</span><br><span class="line"><span class="attribute">Accept-Charset</span>: ISO-8859-1,utf-8;q=0.7,*;q=0.7</span><br><span class="line"><span class="attribute">Connection</span>: keep-alive</span><br><span class="line"><span class="attribute">X-PINGOTHER</span>: pingpong</span><br><span class="line"><span class="attribute">Content-Type</span>: text/xml; charset=UTF-8</span><br><span class="line"><span class="attribute">Referer</span>: http://foo.example/examples/preflightInvocation.html</span><br><span class="line"><span class="attribute">Content-Length</span>: 55</span><br><span class="line"><span class="attribute">Origin</span>: http://foo.example</span><br><span class="line"><span class="attribute">Pragma</span>: no-cache</span><br><span class="line"><span class="attribute">Cache-Control</span>: no-cache</span><br></pre></td></tr></table></figure>
+
+<p>下面是服务器对实际请求的响应：</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 <span class="number">200</span> OK</span><br><span class="line"><span class="attribute">Date</span>: Mon, 01 Dec 2008 01:15:40 GMT</span><br><span class="line"><span class="attribute">Server</span>: Apache/2.0.61 (Unix)</span><br><span class="line"><span class="attribute">Access-Control-Allow-Origin</span>: http://foo.example</span><br><span class="line"><span class="attribute">Vary</span>: Accept-Encoding, Origin</span><br><span class="line"><span class="attribute">Content-Encoding</span>: gzip</span><br><span class="line"><span class="attribute">Content-Length</span>: 235</span><br><span class="line"><span class="attribute">Keep-Alive</span>: timeout=2, max=99</span><br><span class="line"><span class="attribute">Connection</span>: Keep-Alive</span><br><span class="line"><span class="attribute">Content-Type</span>: text/plain</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-2-3-总结"><a href="#3-2-3-总结" class="headerlink" title="3.2.3 总结"></a>3.2.3 总结</h3><p>预检请求会使用 Origin、Access-Control-Request-Method 和 Access-Control-Request-Headers 告知服务器实际请求的来源、方法、自定义头部。</p>
+<p>预检响应通过 Access-Control-Allow-Origin、Access-Control-Allow-Methods 、Access-Control-Allow-Headers 头部来告知浏览器，请求是否被允许。</p>
+<p>当预检请求被重定向时，大多浏览器会报错，可通过如下方法规避：</p>
+<p>1、在服务端去掉预检请求的重定向</p>
+<p>2、将实际请求变成简单请求</p>
+<h1 id="4-附带身份凭证的请求"><a href="#4-附带身份凭证的请求" class="headerlink" title="4 附带身份凭证的请求"></a>4 附带身份凭证的请求</h1><h2 id="4-1-定义"><a href="#4-1-定义" class="headerlink" title="4.1 定义"></a>4.1 定义</h2><p>​    对于跨域的 XMLHttpRequest 或 Fetch 请求，浏览器默认不会发送身份凭证，当需要发送身份凭证时，需要给请求添加特殊标志位。</p>
+<h2 id="4-2-示例"><a href="#4-2-示例" class="headerlink" title="4.2 示例"></a>4.2 示例</h2><p>下面示例是配置了 cookie 的请求，将 <code>XMLHttpRequest</code>的 <code>withCredentials</code> 标志设置为 <code>true</code>，从而告知浏览器此请求发送给服务器时需要携带 Cookies。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> invocation = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line"><span class="keyword">var</span> url = <span class="string">'http://bar.other/resources/credentialed-content/'</span>;</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">callOtherDomain</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(invocation) &#123;</span><br><span class="line">    invocation.open(<span class="string">'GET'</span>, url, <span class="literal">true</span>);</span><br><span class="line">    invocation.withCredentials = <span class="literal">true</span>;<span class="comment">// 添加 withCredentials = true 告知浏览器此跨域请求需要携带 cookie</span></span><br><span class="line">    invocation.onreadystatechange = handler;</span><br><span class="line">    invocation.send(); </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>下面是浏览器向服务器发送的携带 cookie 的跨域请求：</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GET</span> <span class="string">/resources/access-control-with-credentials/</span> HTTP/1.1</span><br><span class="line"><span class="attribute">Host</span>: bar.other</span><br><span class="line"><span class="attribute">User-Agent</span>: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.5; en-US; rv:1.9.1b3pre) Gecko/20081130 Minefield/3.1b3pre</span><br><span class="line"><span class="attribute">Accept</span>: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8</span><br><span class="line"><span class="attribute">Accept-Language</span>: en-us,en;q=0.5</span><br><span class="line"><span class="attribute">Accept-Encoding</span>: gzip,deflate</span><br><span class="line"><span class="attribute">Connection</span>: keep-alive</span><br><span class="line"><span class="attribute">Referer</span>: http://foo.example/examples/credential.html</span><br><span class="line"><span class="attribute">Origin</span>: http://foo.example</span><br><span class="line"><span class="attribute">Cookie</span>: pageAccess=2</span><br></pre></td></tr></table></figure>
+
+<p>下面是服务器对携带 cookie 的跨域请求的响应：</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 <span class="number">200</span> OK</span><br><span class="line"><span class="attribute">Date</span>: Mon, 01 Dec 2008 01:34:52 GMT</span><br><span class="line"><span class="attribute">Server</span>: Apache/2</span><br><span class="line"><span class="attribute">Access-Control-Allow-Origin</span>: http://foo.example--》1、对于附带凭证的请求，此字段值需为请求发起者，而不是*,否则请求将失败</span><br><span class="line"><span class="attribute">Access-Control-Allow-Credentials</span>: true--&gt;2、此字段为 true 时，浏览器才会将响应返回给请求发起者</span><br><span class="line"><span class="attribute">Cache-Control</span>: no-cache</span><br><span class="line"><span class="attribute">Pragma</span>: no-cache</span><br><span class="line"><span class="attribute">Set-Cookie</span>: pageAccess=3; expires=Wed, 31-Dec-2008 01:34:53 GMT--&gt;3、将用户将浏览器端设置为拒绝第三方 cookie 时，此设置会失败</span><br><span class="line"><span class="attribute">Vary</span>: Accept-Encoding, Origin</span><br><span class="line"><span class="attribute">Content-Encoding</span>: gzip</span><br><span class="line"><span class="attribute">Content-Length</span>: 106</span><br><span class="line"><span class="attribute">Keep-Alive</span>: timeout=2, max=100</span><br><span class="line"><span class="attribute">Connection</span>: Keep-Alive</span><br><span class="line"><span class="attribute">Content-Type</span>: text/plain</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-3-总结"><a href="#4-3-总结" class="headerlink" title="4.3 总结"></a>4.3 总结</h2><p>请求中需要设置 <code>withCredentials</code> 为 true，浏览器才会将 cookie 携带给服务器。</p>
+<p>响应中不能缺失 <code>Access-Control-Allow-Credentials</code>: true（第 17 行），否则响应内容不会返回给请求的发起者。</p>
+<p>服务器必须将 <code>Access-Control-Allow-Origin</code> 的值设置为请求发起者，而不是“<code>*</code>”，必否则请求将失败。</p>
+<h1 id="5-CORS-相关头部总结"><a href="#5-CORS-相关头部总结" class="headerlink" title="5 CORS 相关头部总结"></a>5 CORS 相关头部总结</h1><h2 id="5-1-请求头部"><a href="#5-1-请求头部" class="headerlink" title="5.1 请求头部"></a>5.1 请求头部</h2><h3 id="5-1-1-Origin"><a href="#5-1-1-Origin" class="headerlink" title="5.1.1 Origin"></a>5.1.1 Origin</h3><p>Origin 表明实际请求的来源，它不包含任何路径信息，只是服务器名称。</p>
+<p>无论是否跨域此头部都会被发送。</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Origin</span>: origin</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-1-2-Access-Control-Request-Method"><a href="#5-1-2-Access-Control-Request-Method" class="headerlink" title="5.1.2 Access-Control-Request-Method"></a>5.1.2 Access-Control-Request-Method</h3><p>该首部字段用于预检请求。其作用是，将实际请求所使用的 HTTP 方法告诉服务器。</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Access-Control-Request-Method</span>: &lt;method&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-1-3-Access-Control-Request-Headers"><a href="#5-1-3-Access-Control-Request-Headers" class="headerlink" title="5.1.3 Access-Control-Request-Headers"></a>5.1.3 Access-Control-Request-Headers</h3><p>该首部字段用于预检请求。其作用是，将实际请求所携带的首部字段告诉服务器。</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Access-Control-Request-Headers</span>: &lt;field-name&gt;[, &lt;field-name&gt;]*</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-2-响应头部"><a href="#5-2-响应头部" class="headerlink" title="5.2 响应头部"></a>5.2 响应头部</h2><h3 id="5-2-1-Access-Control-Allow-Origin"><a href="#5-2-1-Access-Control-Allow-Origin" class="headerlink" title="5.2.1 Access-Control-Allow-Origin"></a>5.2.1 Access-Control-Allow-Origin</h3><figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Access-Control-Allow-Origin</span>: &lt;origin&gt; | *</span><br></pre></td></tr></table></figure>
+
+<p>此字段指定了允许访问该资源的跨域 URI，对于没携带身份凭证的请求，服务器可以指定该字段的值为通配符 “*”，表示允许来自所有域的请求。</p>
+<p>如果服务端指定了具体的域名而非 “*”，那么响应首部中的 Vary 字段的值必须包含 Origin。这将告诉客户端：服务器对不同的源站返回不同的内容。</p>
+<h3 id="5-2-2-Access-Control-Expose-Headers"><a href="#5-2-2-Access-Control-Expose-Headers" class="headerlink" title="5.2.2 Access-Control-Expose-Headers"></a>5.2.2 Access-Control-Expose-Headers</h3><p>在跨域访问时，XMLHttpRequest 对象的 getResponseHeader() 方法只能拿到一些最基本的响应头，Cache-Control、Content-Language、Content-Type、Expires、Last-Modified、Pragma，如果要访问其他头，则需要服务器设置此响应头。</p>
+<p>下面的响应使得请求发起者就能够通过 getResponseHeader 访问 <code>X-My-Custom-Header</code> 和  <code>X-Another-Custom-Header</code>  响应头。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Access-Control-Expose-Headers: X-My-Custom-Header, X-Another-Custom-Header</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-2-3-Access-Control-Allow-Credentials"><a href="#5-2-3-Access-Control-Allow-Credentials" class="headerlink" title="5.2.3 Access-Control-Allow-Credentials"></a>5.2.3 Access-Control-Allow-Credentials</h3><p>该响应字段头指定了当浏览器的 <code>credentials</code> 设置为 true 时，是否允许请求发起者读取 response的内容。</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Access-Control-Allow-Credentials</span>: true</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-2-4-Access-Control-Max-Age"><a href="#5-2-4-Access-Control-Max-Age" class="headerlink" title="5.2.4 Access-Control-Max-Age"></a>5.2.4 Access-Control-Max-Age</h3><p>该响应字段指定了该预检请求响应的有效期为多少秒。</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Access-Control-Max-Age</span>: &lt;delta-seconds&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-2-5-Access-Control-Allow-Methods"><a href="#5-2-5-Access-Control-Allow-Methods" class="headerlink" title="5.2.5 Access-Control-Allow-Methods"></a>5.2.5 Access-Control-Allow-Methods</h3><p>该响应字段其指定了实际请求所允许使用的 HTTP 方法。</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Access-Control-Allow-Methods</span>: &lt;method&gt;[, &lt;method&gt;]*</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-2-6-Access-Control-Allow-Headers"><a href="#5-2-6-Access-Control-Allow-Headers" class="headerlink" title="5.2.6 Access-Control-Allow-Headers"></a>5.2.6 Access-Control-Allow-Headers</h3><p>该响应字段指定了实际请求中允许携带的首部字段。</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Access-Control-Allow-Headers</span>: &lt;field-name&gt;[, &lt;field-name&gt;]*</span><br></pre></td></tr></table></figure>
+
+<p>参考链接：</p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS</a></p>
+<p><a href="http://arunranga.com/examples/access-control/" target="_blank" rel="noopener">http://arunranga.com/examples/access-control/</a></p>
 
         
       
@@ -363,7 +409,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/51/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/51/">51</a><span class="page-number current">52</span><a class="page-number" href="/page/53/">53</a><span class="space">&hellip;</span><a class="page-number" href="/page/108/">108</a><a class="extend next" rel="next" href="/page/53/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/51/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/51/">51</a><span class="page-number current">52</span><a class="page-number" href="/page/53/">53</a><span class="space">&hellip;</span><a class="page-number" href="/page/104/">104</a><a class="extend next" rel="next" href="/page/53/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -407,7 +453,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">108</span>
+          <span class="site-state-item-count">104</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -420,7 +466,7 @@
             <a href="/categories/">
           
         
-        <span class="site-state-item-count">32</span>
+        <span class="site-state-item-count">30</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -433,7 +479,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">73</span>
+        <span class="site-state-item-count">72</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>

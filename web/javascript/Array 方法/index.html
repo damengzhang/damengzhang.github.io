@@ -56,19 +56,19 @@
   };
 </script>
 
-  <meta name="description" content="slice1arr.slice([begin[, end]])  作用： ​    获取原数组从 begin（包括） 到 end（不包括） 元素的浅拷贝。不需要原数组。 返回值： ​    返回一个新数组，内容为元素组的 begin（包括） 到 end（不包括） 元素的浅拷贝。 12345678910const animals = [&apos;ant&apos;, &amp;#123;a:1&amp;#125;, &apos;camel&apos;,">
+  <meta name="description" content="slice1arr.slice([begin[, end]])  作用： ​    获取原数组从 begin（包括） 到 end（不包括） 元素的浅拷贝。不修改原数组。 返回值： ​    返回一个新数组，内容为元素组的 begin（包括） 到 end（不包括） 元素的浅拷贝。 12345678910const animals = [&apos;ant&apos;, &amp;#123;a:1&amp;#125;, &apos;camel&apos;,">
 <meta name="keywords" content="js">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Array 常用操作">
-<meta property="og:url" content="http://yoursite.com/web/javascript/Array 常用操作/index.html">
+<meta property="og:title" content="Array 方法">
+<meta property="og:url" content="http://yoursite.com/web/javascript/Array 方法/index.html">
 <meta property="og:site_name" content="DaMeng">
-<meta property="og:description" content="slice1arr.slice([begin[, end]])  作用： ​    获取原数组从 begin（包括） 到 end（不包括） 元素的浅拷贝。不需要原数组。 返回值： ​    返回一个新数组，内容为元素组的 begin（包括） 到 end（不包括） 元素的浅拷贝。 12345678910const animals = [&apos;ant&apos;, &amp;#123;a:1&amp;#125;, &apos;camel&apos;,">
+<meta property="og:description" content="slice1arr.slice([begin[, end]])  作用： ​    获取原数组从 begin（包括） 到 end（不包括） 元素的浅拷贝。不修改原数组。 返回值： ​    返回一个新数组，内容为元素组的 begin（包括） 到 end（不包括） 元素的浅拷贝。 12345678910const animals = [&apos;ant&apos;, &amp;#123;a:1&amp;#125;, &apos;camel&apos;,">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-09-26T10:39:10.000Z">
+<meta property="og:updated_time" content="2020-10-15T06:03:58.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Array 常用操作">
-<meta name="twitter:description" content="slice1arr.slice([begin[, end]])  作用： ​    获取原数组从 begin（包括） 到 end（不包括） 元素的浅拷贝。不需要原数组。 返回值： ​    返回一个新数组，内容为元素组的 begin（包括） 到 end（不包括） 元素的浅拷贝。 12345678910const animals = [&apos;ant&apos;, &amp;#123;a:1&amp;#125;, &apos;camel&apos;,">
-  <link rel="canonical" href="http://yoursite.com/web/javascript/Array 常用操作/">
+<meta name="twitter:title" content="Array 方法">
+<meta name="twitter:description" content="slice1arr.slice([begin[, end]])  作用： ​    获取原数组从 begin（包括） 到 end（不包括） 元素的浅拷贝。不修改原数组。 返回值： ​    返回一个新数组，内容为元素组的 begin（包括） 到 end（不包括） 元素的浅拷贝。 12345678910const animals = [&apos;ant&apos;, &amp;#123;a:1&amp;#125;, &apos;camel&apos;,">
+  <link rel="canonical" href="http://yoursite.com/web/javascript/Array 方法/">
 
 
 <script id="page-configurations">
@@ -82,7 +82,7 @@
   };
 </script>
 
-  <title>Array 常用操作 | DaMeng</title>
+  <title>Array 方法 | DaMeng</title>
   
 
 
@@ -208,7 +208,7 @@
   
   
   <div class="post-block post">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/web/javascript/Array 常用操作/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/web/javascript/Array 方法/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="DaMeng">
@@ -220,7 +220,7 @@
       <meta itemprop="name" content="DaMeng">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">Array 常用操作
+        <h1 class="post-title" itemprop="name headline">Array 方法
 
           
         </h1>
@@ -274,7 +274,7 @@
         <h1 id="slice"><a href="#slice" class="headerlink" title="slice"></a>slice</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr.slice([begin[, end]])</span><br></pre></td></tr></table></figure>
 
 <p>作用：</p>
-<p>​    获取原数组从 begin（包括） 到 end（不包括） 元素的浅拷贝。不需要原数组。</p>
+<p>​    获取原数组从 begin（包括） 到 end（不包括） 元素的浅拷贝。不修改原数组。</p>
 <p>返回值：</p>
 <p>​    返回一个新数组，内容为元素组的 begin（包括） 到 end（不包括） 元素的浅拷贝。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> animals = [<span class="string">'ant'</span>, &#123;<span class="attr">a</span>:<span class="number">1</span>&#125;, <span class="string">'camel'</span>, <span class="string">'duck'</span>, <span class="string">'elephant'</span>];</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(animals.slice(<span class="number">2</span>));<span class="comment">// Array ["camel", "duck", "elephant"]</span></span><br><span class="line"><span class="built_in">console</span>.log(animals.slice(<span class="number">2</span>, <span class="number">4</span>));<span class="comment">//Array ["camel", "duck"]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> newArr = animals.slice(<span class="number">1</span>, <span class="number">5</span>); </span><br><span class="line"><span class="built_in">console</span>.log(newArr);<span class="comment">// Array [Object &#123; a: 1 &#125;, "camel", "duck", "elephant"]</span></span><br><span class="line">newArr[<span class="number">0</span>].a = <span class="number">2</span>;</span><br><span class="line"><span class="built_in">console</span>.log(newArr);<span class="comment">// Array [Object &#123; a: 2 &#125;, "camel", "duck", "elephant"]</span></span><br><span class="line"><span class="built_in">console</span>.log(animals);<span class="comment">// Array ["ant", Object &#123; a: 2 &#125;, "camel", "duck", "elephant"]</span></span><br></pre></td></tr></table></figure>
@@ -339,7 +339,7 @@
 </li>
 </ul>
 <p>返回值：</p>
-<p>​    所有数组元素依次执行完 reducerFn 后的累积结果。</p>
+<p>​    所有数组元素依次执行完 reducerFn 后，最后一个数组元素执行完 reduceFn 的返回值。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>].reduce(<span class="function">(<span class="params">accumulator, currentValue, currentIndex, array</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> accumulator + currentValue</span><br><span class="line">&#125;, <span class="number">10</span>)</span><br></pre></td></tr></table></figure>
 
 <p>每次调用的参数和返回值如下表：</p>
@@ -495,7 +495,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">108</span>
+          <span class="site-state-item-count">104</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -508,7 +508,7 @@
             <a href="/categories/">
           
         
-        <span class="site-state-item-count">32</span>
+        <span class="site-state-item-count">30</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -521,7 +521,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">73</span>
+        <span class="site-state-item-count">72</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>

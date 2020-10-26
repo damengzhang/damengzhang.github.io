@@ -206,7 +206,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/web/react/react 生命周期/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/web/react/react setState/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="DaMeng">
@@ -220,7 +220,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/web/react/react 生命周期/" class="post-title-link" itemprop="url">react 生命周期</a>
+            <a href="/web/react/react setState/" class="post-title-link" itemprop="url">react setState 原理</a>
           
         </h1>
 
@@ -235,7 +235,7 @@
                 
               
 
-              <time title="创建时间：2020-06-20 19:40:38" itemprop="dateCreated datePublished" datetime="2020-06-20T19:40:38+08:00">2020-06-20</time>
+              <time title="创建时间：2020-06-19 19:40:38" itemprop="dateCreated datePublished" datetime="2020-06-19T19:40:38+08:00">2020-06-19</time>
             </span>
           
             <span class="post-meta-item">
@@ -270,148 +270,43 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>react 生命周期分为 挂载时、更新时、卸载时 。</p>
-<p>render 是唯一必须实现的组件生命周期。</p>
-<p>先贴两张声明周期函数的图：</p>
+          <h1 id="1-使用方法"><a href="#1-使用方法" class="headerlink" title="1 使用方法"></a>1 使用方法</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setState(stateChange[, callback])</span><br></pre></td></tr></table></figure>
+
 <ul>
-<li>常用的生命周期函数<ul>
-<li><img src="/web/react/react%20生命周期/simple.png"> </li>
-</ul>
-</li>
-<li>全部的生命周期函数<ul>
-<li><img src="/web/react/react%20生命周期/complex.png">
-
-</li>
-</ul>
-</li>
-</ul>
-<p>上面两张图的引用地址：</p>
+<li><p>stateChange</p>
 <ul>
-<li><a href="https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/" target="_blank" rel="noopener">https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/</a></li>
-</ul>
-<h1 id="1-挂载"><a href="#1-挂载" class="headerlink" title="1 挂载"></a>1 挂载</h1><p>当组件被创建并插入 DOM 中时，生命周期执行顺序如下，常用的生命周期用黑体表示：</p>
-<ul>
-<li><p><strong>constructor()</strong></p>
-</li>
-<li><p>static getDerivedStateFromProps(props, state)</p>
-</li>
-<li><p><strong>render()</strong></p>
-</li>
-<li><p><strong>componentDidMount()</strong></p>
-</li>
-</ul>
-<p>下面是即将过时的生命周期，新代码应避免使用：</p>
-<ul>
-<li>UNSAFE_componentWillMount</li>
-</ul>
-<h2 id="1-1-constructor"><a href="#1-1-constructor" class="headerlink" title="1.1 constructor"></a>1.1 constructor</h2><h3 id="1-1-1-作用"><a href="#1-1-1-作用" class="headerlink" title="1.1.1 作用"></a>1.1.1 作用</h3><ul>
-<li><p>初始化父类（使用 <code>super(props)</code> 语句）</p>
-</li>
-<li><p>初始化 this.state  </p>
-</li>
-<li><p>为事件处理函数绑定 this </p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">  <span class="keyword">super</span>(props);<span class="comment">// 必须先执行此句</span></span><br><span class="line">  <span class="comment">// 不要在这里调用 this.setState()</span></span><br><span class="line">  <span class="keyword">this</span>.state = &#123; <span class="attr">counter</span>: <span class="number">0</span> &#125;;</span><br><span class="line">  <span class="keyword">this</span>.handleClick = <span class="keyword">this</span>.handleClick.bind(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h3 id="1-1-2-注意"><a href="#1-1-2-注意" class="headerlink" title="1.1.2 注意"></a>1.1.2 注意</h3><ul>
-<li>super(props) 必须在其他语句之前</li>
-<li>在构造函数中只能直接为 this.state 赋值，其他地方只能通过调用 this.setState 来修改 state </li>
-</ul>
-<h2 id="1-2-getDerivedStateFromProps"><a href="#1-2-getDerivedStateFromProps" class="headerlink" title="1.2 getDerivedStateFromProps"></a>1.2 getDerivedStateFromProps</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">static getDerivedStateFromProps(props, state)</span><br></pre></td></tr></table></figure>
-
-<p>创建组件以及每次组件由于 props 或 state 的改变而重新渲染时，此方法都会被调用。</p>
-<p>只要父组件重新被渲染，此函数就会被调用，无论 props 和 states 是否发生变化。</p>
-<p>返回值为对象用来更新 state，返回 null 表示不更新 state。</p>
-<h3 id="1-2-1-作用"><a href="#1-2-1-作用" class="headerlink" title="1.2.1 作用"></a>1.2.1 作用</h3><p>​    监听  props 变化。 </p>
-<h2 id="1-3-render"><a href="#1-3-render" class="headerlink" title="1.3 render"></a>1.3 render</h2><p>render 函数应该为纯函数，使用相同的 state 时，render 的调用结果应该是相同的。</p>
-<h3 id="1-3-1-作用"><a href="#1-3-1-作用" class="headerlink" title="1.3.1 作用"></a>1.3.1 作用</h3><p>返回需要在界面展示的 UI 元素。</p>
-<p>render 返回值为下面类型之一：</p>
-<ul>
-<li>react 元素<ul>
-<li>自定义组件或 原生的html 元素</li>
-</ul>
-</li>
-<li>数组 或 fragments<ul>
-<li>用于返回多个元素</li>
-</ul>
-</li>
-<li>Protals<ul>
-<li>可以渲染子节点到不同的 DOM 子树中</li>
-</ul>
-</li>
-<li>字符串或数字<ul>
-<li>会被渲染成文本节点</li>
-</ul>
-</li>
-<li>布尔类型或 null<ul>
-<li>什么都不渲染（用于支持返回 <code>bool &amp;&amp; &lt;Child /&gt;</code> 的模式）</li>
-</ul>
-</li>
-</ul>
-<h3 id="1-3-2-注意"><a href="#1-3-2-注意" class="headerlink" title="1.3.2 注意"></a>1.3.2 注意</h3><p>当 shouldComponentUpdate 返回 false 时，render 则不会被调用。</p>
-<h2 id="1-4-componentDidMount"><a href="#1-4-componentDidMount" class="headerlink" title="1.4 componentDidMount"></a>1.4 componentDidMount</h2><p>组件插入 DOM 节点后会执行此函数。</p>
-<h3 id="1-4-1-作用"><a href="#1-4-1-作用" class="headerlink" title="1.4.1 作用"></a>1.4.1 作用</h3><p>放置依赖于 DOM 节点的初始化的地方，如网络请求、添加事件监听等。</p>
-<h1 id="2-更新"><a href="#2-更新" class="headerlink" title="2 更新"></a>2 更新</h1><p>当组件的 props 或 state 发生变化时，生命周期执行顺序如下，常用的用生命周期用黑体表示：</p>
-<ul>
-<li><p>static getDerivedStateFromProps(props, state)</p>
-</li>
-<li><p>shoudComponentUpdate(nextProps， nextState)</p>
-</li>
-<li><p><strong>render()</strong></p>
-</li>
-<li><p>getSnapshotBeforeUpdate()</p>
-</li>
-<li><p><strong>componentDidUpdate(</strong>prevProps, prevState, snapshot)</p>
-</li>
-</ul>
-<p>下面是即将过时的（17.x 版本时会废弃掉），新代码应避免使用：</p>
-<ul>
-<li><p>UNSAFE_componentWillUpdate()</p>
-</li>
-<li><p>UNSAFE_componentWillReceiveProps()</p>
-</li>
-</ul>
-<h2 id="2-1-getDerivedStateFromProps"><a href="#2-1-getDerivedStateFromProps" class="headerlink" title="2.1 getDerivedStateFromProps"></a>2.1 getDerivedStateFromProps</h2><h2 id="2-2-shoudComponentDidUpdate"><a href="#2-2-shoudComponentDidUpdate" class="headerlink" title="2.2 shoudComponentDidUpdate"></a>2.2 shoudComponentDidUpdate</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shouldComponentUpdate(nextProps, nextState)</span><br></pre></td></tr></table></figure>
-
-<p>react 会根据此函数的返回值来判断是否需要重新渲染组件，默认返回值为 true，表示需要重新渲染组件。</p>
-<h3 id="2-2-1-作用"><a href="#2-2-1-作用" class="headerlink" title="2.2.1 作用"></a>2.2.1 作用</h3><p>此方法可以用来优化性能。</p>
-<p>可以使用 <code>PureComponent</code> 组件来替代手动实现此函数，<code>PureComponent</code> 会对 props 和 state 进行浅层比较，并减少没必要的渲染。</p>
-<h3 id="2-2-2-注意"><a href="#2-2-2-注意" class="headerlink" title="2.2.2 注意"></a>2.2.2 注意</h3><ul>
-<li>返回 false 不会阻止子组件在 state 更改时的渲染。</li>
-<li>后续的 react 版本，当返回 false 时，组件可能已经会被重新渲染</li>
-<li>不建议在此函数中进行深层比较，会影响性能</li>
-</ul>
-<h2 id="2-3-render"><a href="#2-3-render" class="headerlink" title="2.3 render"></a>2.3 render</h2><h2 id="2-4-getSnapshotBeforeUpdate"><a href="#2-4-getSnapshotBeforeUpdate" class="headerlink" title="2.4 getSnapshotBeforeUpdate"></a>2.4 getSnapshotBeforeUpdate</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getSnapshotBeforeUpdate(prevProps, prevState)</span><br></pre></td></tr></table></figure>
-
-<p>此方法的返回值 snapshot（或 null） 会作为 componentDidUpdate 的最后一个参数。</p>
-<h3 id="2-4-1-作用"><a href="#2-4-1-作用" class="headerlink" title="2.4.1 作用"></a>2.4.1 作用</h3><p>使得能够在组件发生变化前，获取 dom 的一些信息（如滚动条位置）</p>
-<h2 id="2-5-componentDidUpdate"><a href="#2-5-componentDidUpdate" class="headerlink" title="2.5 componentDidUpdate"></a>2.5 componentDidUpdate</h2><p>组件被更新后此函数会被立即调用。</p>
-<h3 id="2-1-1-作用"><a href="#2-1-1-作用" class="headerlink" title="2.1.1 作用"></a>2.1.1 作用</h3><p>当组件更新后，可以在此处对 DOM 进行操作。</p>
-<h3 id="2-1-2-注意"><a href="#2-1-2-注意" class="headerlink" title="2.1.2 注意"></a>2.1.2 注意</h3><ul>
-<li><p>在 componentDidUpdate 中调用 setState 时，必须被包裹在条件语句中个，否则可能会导致死循环</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">componentDidUpdate(prevProps) &#123;</span><br><span class="line">  // 典型用法（不要忘记比较 props）：</span><br><span class="line">  if (this.props.userID !== prevProps.userID) &#123;</span><br><span class="line">    this.fetchData(this.props.userID);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li><p>stateChange 可以为对象 或 函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">this.setState((state, props) =&gt; &#123;</span><br><span class="line">//参数 state 和 props 都为最新的，返回值会与 state 进行浅合并</span><br><span class="line">	return &#123;counter: state.counter + props.step&#125;;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">this.setState(&#123;quantity: 2&#125;) //对象参数会浅拷贝到新的 state 中</span><br></pre></td></tr></table></figure>
 
 
 
+</li>
+</ul>
 </li>
 </ul>
 <ul>
-<li>如果 shouldComponentUpdate() 返回值为 false，则不会调用 componentDidUpdate()</li>
+<li><p>callback </p>
+<ul>
+<li>callback 为可选的回调函数，它将在 <code>setState</code> 完成合并并重新渲染组件后执行。通常，我们建议使用 <code>componentDidUpdate()</code> 来代替此方式</li>
 </ul>
-<h1 id="3-卸载"><a href="#3-卸载" class="headerlink" title="3 卸载"></a>3 卸载</h1><h2 id="3-1-componentWillUnmount"><a href="#3-1-componentWillUnmount" class="headerlink" title="3.1 componentWillUnmount"></a>3.1 componentWillUnmount</h2><p>此函数在组件卸载销毁之前调用。</p>
-<h3 id="3-1-1-作用"><a href="#3-1-1-作用" class="headerlink" title="3.1.1 作用"></a>3.1.1 作用</h3><p>在此方法中执行清理操作，如清除 timer、取消请求、取消监听等。</p>
-<h1 id="4-错误处理"><a href="#4-错误处理" class="headerlink" title="4 错误处理"></a>4 错误处理</h1><p>当渲染过程、生命周期或子组件的构造函数中抛出错误时，会调用如下方法：</p>
-<h2 id="4-1-static-getDerivedStateFromError"><a href="#4-1-static-getDerivedStateFromError" class="headerlink" title="4.1 static getDerivedStateFromError()"></a>4.1 static getDerivedStateFromError()</h2><p>此生命周期会在后代组件抛出错误后被调用。 它将抛出的错误作为参数，并返回一个值以更新 state</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">class ErrorBoundary extends React.Component &#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    super(props);</span><br><span class="line">    this.state = &#123; hasError: false &#125;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  static getDerivedStateFromError(error) &#123;</span><br><span class="line">    // 更新 state 使下一次渲染可以显降级 UI</span><br><span class="line">    return &#123; hasError: true &#125;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    if (this.state.hasError) &#123;</span><br><span class="line">      // 你可以渲染任何自定义的降级  UI</span><br><span class="line">      return &lt;h1&gt;Something went wrong.&lt;/h1&gt;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return this.props.children; </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="2-原理"><a href="#2-原理" class="headerlink" title="2 原理"></a>2 原理</h1><ul>
+<li><p>setState 内部会将 state 的更改添加到队列，通过批量更新来提高性能。</p>
+</li>
+<li><p>如果是由 React 引发的事件处理（比如通过 onClick 引发的事件处理），调用 setState 不会同步更新this.state，除此之外的setState调用会同步执行 this.state。所谓“除此之外”，指的是绕过 React 直接添加 JS 原生的事件处理函数，如 addEventListener、setTimeout、setInterval 等产生的调用</p>
+</li>
+<li><p>setState 总是会触发组件重新渲染（除非 shouldComponentUpdate 返回 false）。</p>
+</li>
+</ul>
+<h1 id="3-注意"><a href="#3-注意" class="headerlink" title="3 注意"></a>3 注意</h1><ul>
+<li><p>构造函数是唯一可以给 this.state 直接赋值的地方，其他地方都通过使用 setState 来修改state。</p>
+</li>
+<li><p>react 会将多个 setState 调用合并为一个，故不要直接使用 state 来更新下一个值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// Wrong</span><br><span class="line">this.setState(&#123;</span><br><span class="line">  counter: this.state.counter + this.props.increment,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">// Correct</span><br><span class="line">this.setState((state, props) =&gt; (&#123;</span><br><span class="line">  counter: state.counter + props.increment</span><br><span class="line">&#125;));</span><br></pre></td></tr></table></figure>
 
-<h2 id="4-2-componentDidCatch"><a href="#4-2-componentDidCatch" class="headerlink" title="4.2 componentDidCatch()"></a>4.2 componentDidCatch()</h2><p>此生命周期在后代组件抛出错误后被调用。 它接收两个参数：</p>
-<ol>
-<li><code>error</code> —— 抛出的错误。</li>
-<li><code>info</code> —— 带有 <code>componentStack</code> key 的对象，其中包含<a href="https://zh-hans.reactjs.org/docs/error-boundaries.html#component-stack-traces" target="_blank" rel="noopener">有关组件引发错误的栈信息</a>。</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">class ErrorBoundary extends React.Component &#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    super(props);</span><br><span class="line">    this.state = &#123; hasError: false &#125;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  static getDerivedStateFromError(error) &#123;</span><br><span class="line">    // 更新 state 使下一次渲染可以显示降级 UI</span><br><span class="line">    return &#123; hasError: true &#125;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  componentDidCatch(error, info) &#123;</span><br><span class="line">    // &quot;组件堆栈&quot; 例子:</span><br><span class="line">    //   in ComponentThatThrows (created by App)</span><br><span class="line">    //   in ErrorBoundary (created by App)</span><br><span class="line">    //   in div (created by App)</span><br><span class="line">    //   in App</span><br><span class="line">    logComponentStackToMyService(info.componentStack);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    if (this.state.hasError) &#123;</span><br><span class="line">      // 你可以渲染任何自定义的降级 UI</span><br><span class="line">      return &lt;h1&gt;Something went wrong.&lt;/h1&gt;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return this.props.children; </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+</li>
+</ul>
 
         
       
@@ -435,7 +330,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/11/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/108/">108</a><a class="extend next" rel="next" href="/page/13/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/11/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/104/">104</a><a class="extend next" rel="next" href="/page/13/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -479,7 +374,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">108</span>
+          <span class="site-state-item-count">104</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -492,7 +387,7 @@
             <a href="/categories/">
           
         
-        <span class="site-state-item-count">32</span>
+        <span class="site-state-item-count">30</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -505,7 +400,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">73</span>
+        <span class="site-state-item-count">72</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>

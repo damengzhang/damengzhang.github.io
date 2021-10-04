@@ -1,16 +1,543 @@
-{% extends '_layout.swig' %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/b_icon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/s_icon.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-{% block title %}{{ page.title }} | {{ title }}{% endblock %}
+<link rel="stylesheet" href="/css/main.css">
 
-{% block content %}
 
-  <div id="posts" class="posts-expand">
-    {{ partial('_macro/post.swig', {post: page}) }}
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.damengzhang.cn","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="1 是什么Redux 是一个可以管理数据的第三方库，能够协助 React 等界面库对数据进行统一管理。 Redux 并不是必须的，当应用中的数据交互比较简单，使用 React 内部的 state、props、context、ref 等可以轻松完成时，就不必使用 Redux 来对数据进行统一管理。  2 设计核心 唯一数据源 只能通过 Action 触发 Store 的修改 Reducer 是纯函数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Redux">
+<meta property="og:url" content="https://www.damengzhang.cn/web/redux/Redux/index.html">
+<meta property="og:site_name" content="DaMeng">
+<meta property="og:description" content="1 是什么Redux 是一个可以管理数据的第三方库，能够协助 React 等界面库对数据进行统一管理。 Redux 并不是必须的，当应用中的数据交互比较简单，使用 React 内部的 state、props、context、ref 等可以轻松完成时，就不必使用 Redux 来对数据进行统一管理。  2 设计核心 唯一数据源 只能通过 Action 触发 Store 的修改 Reducer 是纯函数">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-07-10T10:40:38.000Z">
+<meta property="article:modified_time" content="2020-10-09T13:20:02.000Z">
+<meta property="article:author" content="DaMeng">
+<meta property="article:tag" content="Redux">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://www.damengzhang.cn/web/redux/Redux/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Redux | DaMeng</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QE7RR3D8Y8"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-QE7RR3D8Y8');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
   </div>
 
-{% endblock %}
+  <div class="site-meta">
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">DaMeng</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.damengzhang.cn/web/redux/Redux/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="DaMeng">
+      <meta itemprop="description" content="forever">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaMeng">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Redux
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-10 18:40:38" itemprop="dateCreated datePublished" datetime="2020-07-10T18:40:38+08:00">2020-07-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web/" itemprop="url" rel="index"><span itemprop="name">web</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web/Redux/" itemprop="url" rel="index"><span itemprop="name">Redux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="1-是什么"><a href="#1-是什么" class="headerlink" title="1 是什么"></a>1 是什么</h1><p>Redux 是一个可以管理数据的第三方库，能够协助 React 等界面库对数据进行统一管理。</p>
+<p>Redux 并不是必须的，当应用中的数据交互比较简单，使用 React 内部的 state、props、context、ref 等可以轻松完成时，就不必使用 Redux 来对数据进行统一管理。 </p>
+<h1 id="2-设计核心"><a href="#2-设计核心" class="headerlink" title="2 设计核心"></a>2 设计核心</h1><ul>
+<li>唯一数据源</li>
+<li>只能通过 Action 触发 Store 的修改</li>
+<li>Reducer 是纯函数</li>
+</ul>
+<h1 id="3-中间件"><a href="#3-中间件" class="headerlink" title="3 中间件"></a>3 中间件</h1><h2 id="3-1-Middleware"><a href="#3-1-Middleware" class="headerlink" title="3.1 Middleware"></a>3.1 Middleware</h2><h3 id="3-1-1-是什么"><a href="#3-1-1-是什么" class="headerlink" title="3.1.1 是什么"></a>3.1.1 是什么</h3><p>在 Redux 中，从形式上讲，Middleware 的格式为 <code>(&#123; getState, dispatch &#125;) =&gt; next =&gt; action</code> 的函数。</p>
+<p>在 Redux 中，从功能上讲，Middleware 是 dispatch 之后、reducer 之前的扩展点。</p>
+<p>Middleware 最优秀的特性就是可以被链式组合，在一个项目中可以使用多个独立的第三方 middleware。</p>
+<h3 id="3-1-2-有什么作用"><a href="#3-1-2-有什么作用" class="headerlink" title="3.1.2 有什么作用"></a>3.1.2 有什么作用</h3><p>在 Redux 中，通过 Middleware 可以扩展 store.dispatch 功能 ，如 可以进行日志记录、创建崩溃报告、调用异步接口或者路由等等。Middleware 最常用的场景就是异步 action。</p>
+<h2 id="3-2-redux-thunk"><a href="#3-2-redux-thunk" class="headerlink" title="3.2 redux-thunk"></a>3.2 redux-thunk</h2><h3 id="3-2-1-是什么"><a href="#3-2-1-是什么" class="headerlink" title="3.2.1 是什么"></a>3.2.1 是什么</h3><p>thunk 是包裹了表达式的函数，通过函数来包裹表达式，进而达到延迟/异步执行表达式的目的。</p>
+<p>redux-thunk 是 Redux 中，用来延迟执行 dispatch 的中间件。</p>
+<h3 id="3-2-2-有什么作用"><a href="#3-2-2-有什么作用" class="headerlink" title="3.2.2 有什么作用"></a>3.2.2 有什么作用</h3><p>redux-thunk 的作用是使 redux 能够异步 dispatch action。</p>
+<p>redux-thunk 使 store.dispatch 可以接收函数类型的 actionCreator（dispatch 默认只支持对象类型的 actionCreator），将 strore.dispatch( actionObj ) 包裹在函数类型的 actionCreator 内部，进而达到**异步 dispatch(action) **的目的。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> getListDataAction = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// store.dispatch 接收到此函数类型的 action 时，会直接执行它，并给它传递 dispatch 参数。</span></span><br><span class="line">	<span class="keyword">return</span> <span class="function">(<span class="params">dispatch</span>) =&gt;</span> &#123;</span><br><span class="line">		axios.get(<span class="string">&quot;/api/list.json&quot;</span>).then(<span class="function">(<span class="params">response</span>) =&gt;</span> &#123;</span><br><span class="line">			dispatch(initListAction(response.data));</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-2-3-使用方法"><a href="#3-2-3-使用方法" class="headerlink" title="3.2.3 使用方法"></a>3.2.3 使用方法</h3><ul>
+<li><p>安装</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install redux-thunk</span><br></pre></td></tr></table></figure></li>
+<li><p>配置</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//store/index.js</span></span><br><span class="line"><span class="comment">//基本配置</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; createStore, applyMiddleware &#125; <span class="keyword">from</span> <span class="string">&#x27;redux&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> thunk <span class="keyword">from</span> <span class="string">&#x27;redux-thunk&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> rootReducer <span class="keyword">from</span> <span class="string">&#x27;./reducers/index&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Note: this API requires redux@&gt;=3.1.0</span></span><br><span class="line"><span class="keyword">const</span> store = createStore(rootReducer, applyMiddleware(thunk));</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//store/index.js</span></span><br><span class="line"><span class="comment">// 和 redux-devtools 一起使用时的配置</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">import</span> &#123; createStore, applyMiddleware, compose &#125; <span class="keyword">from</span> <span class="string">&quot;redux&quot;</span>;</span><br><span class="line">    <span class="keyword">import</span> thunk <span class="keyword">from</span> <span class="string">&quot;redux-thunk&quot;</span>;</span><br><span class="line">    <span class="keyword">import</span> reducer <span class="keyword">from</span> <span class="string">&quot;./reducer&quot;</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">const</span> composeEnhancers =</span><br><span class="line">    	<span class="keyword">typeof</span> <span class="built_in">window</span> === <span class="string">&quot;object&quot;</span> &amp;&amp; <span class="built_in">window</span>.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__</span><br><span class="line">    		? <span class="built_in">window</span>.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__(&#123;&#125;)</span><br><span class="line">    		: compose;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">const</span> enhancer = composeEnhancers(applyMiddleware(thunk));</span><br><span class="line">    </span><br><span class="line">  <span class="keyword">const</span> store = createStore(reducer, enhancer);</span><br></pre></td></tr></table></figure>
+
+<p>​    </p>
+</li>
+<li><p>使用</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// createAction.js 文件</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// getListDataAction 返回的 action 是个函数</span></span><br><span class="line"><span class="comment">// 这个函数被有一个 dispatch 参数</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> getListDataAction = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="function">(<span class="params">dispatch</span>) =&gt;</span> &#123;</span><br><span class="line">		axios.get(<span class="string">&quot;/api/list.json&quot;</span>).then(<span class="function">(<span class="params">response</span>) =&gt;</span> &#123;</span><br><span class="line">			dispatch(initListAction(response.data));</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//dispatch 一个函数后 store 会立即执行此函数</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TodoList</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">	<span class="function"><span class="title">componentDidMount</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">	<span class="comment">//getListDataAction() 返回一个函数</span></span><br><span class="line">    <span class="comment">//当 dispatch 接收到一个函数类型的 action 时，会立即执行返回的函数，并传递 dispatch 参数    </span></span><br><span class="line">		store.dispatch(getListDataAction());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="3-2-4-源码"><a href="#3-2-4-源码" class="headerlink" title="3.2.4 源码"></a>3.2.4 源码</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// redux-thunk 中间件核心代码实现******************************</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createThunkMiddleware</span>(<span class="params">extraArgument</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">_ref</span>) </span>&#123;</span><br><span class="line">	    <span class="keyword">var</span> dispatch = _ref.dispatch,</span><br><span class="line">	        getState = _ref.getState;</span><br><span class="line">	    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">next</span>) </span>&#123;</span><br><span class="line">	      <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">action</span>) </span>&#123;</span><br><span class="line">	        <span class="keyword">if</span> (<span class="keyword">typeof</span> action === <span class="string">&#x27;function&#x27;</span>) &#123;</span><br><span class="line">	          <span class="keyword">return</span> action(dispatch, getState, extraArgument);</span><br><span class="line">	        &#125;</span><br><span class="line"></span><br><span class="line">	        <span class="keyword">return</span> next(action);</span><br><span class="line">	      &#125;;</span><br><span class="line">	    &#125;;</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> thunk = createThunkMiddleware();<span class="comment">// 注意这里执行了一次</span></span><br><span class="line">thunk.withExtraArgument = createThunkMiddleware;</span><br><span class="line"><span class="comment">//***************************************************************</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="4-API"><a href="#4-API" class="headerlink" title="4 API"></a>4 API</h1><h2 id="4-1-createStore"><a href="#4-1-createStore" class="headerlink" title="4.1 createStore"></a>4.1 createStore</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">createStore(reducer, [preloadedState], enhancer)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>store.subscribe()</li>
+<li>store.dispatch(action)</li>
+<li>store.getState()</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//createStore 源码中，有 enhancer 参数时的核心代码实现************************</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createStore</span>(<span class="params">reducer, preloadedState, enhancer</span>) </span>&#123;</span><br><span class="line"> <span class="comment">//...    </span></span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> enhancer !== <span class="string">&#x27;undefined&#x27;</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> enhancer !== <span class="string">&#x27;function&#x27;</span>) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">&#x27;Expected the enhancer to be a function.&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> enhancer(createStore)(reducer, preloadedState);</span><br><span class="line">  &#125;</span><br><span class="line"> <span class="comment">//...   </span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//*****************************************************************</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="4-2-combineReducers"><a href="#4-2-combineReducers" class="headerlink" title="4.2 combineReducers"></a>4.2 combineReducers</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">combineReducers(reducers)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>可以合并多个 reducer</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">rootReducer = combineReducers(&#123;<span class="attr">potato</span>: potatoReducer, <span class="attr">tomato</span>: tomatoReducer&#125;)</span><br><span class="line"><span class="comment">// rootReducer 将返回如下的 state 对象</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">potato</span>: &#123;</span><br><span class="line">    <span class="comment">// ... potatoes, 和一些其他由 potatoReducer 管理的 state 对象 ... </span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">tomato</span>: &#123;</span><br><span class="line">    <span class="comment">// ... tomatoes, 和一些其他由 tomatoReducer 管理的 state 对象，比如说 sauce 属性 ...</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="4-3-applyMiddlleware"><a href="#4-3-applyMiddlleware" class="headerlink" title="4.3 applyMiddlleware"></a>4.3 applyMiddlleware</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">applyMiddlleware(...middlewares)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>参数： </p>
+<ul>
+<li>middlewares 是由中间件组成的数组，middleware 之间无需相互关心</li>
+<li>middleware 函数的形式为：({ getState, dispatch }) =&gt; next =&gt; action</li>
+</ul>
+</li>
+<li><p>功能描述：</p>
+<ul>
+<li>创建一个可以扩展 store 的函数</li>
+</ul>
+</li>
+<li><p>返回值：</p>
+<ul>
+<li>添加了 middleware 的 store ，返回值形式为： createStore =&gt; createStore</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line">  <span class="comment">//applyMiddlleware 源码*********************************</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">applyMiddleware</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">//将 middlleware 重新放进数组 middlewares 中 </span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> _len = <span class="built_in">arguments</span>.length, middlewares = <span class="keyword">new</span> <span class="built_in">Array</span>(_len), _key = <span class="number">0</span>; _key &lt; _len; _key++) &#123;</span><br><span class="line">      middlewares[_key] = <span class="built_in">arguments</span>[_key];</span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">createStore</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> store = createStore.apply(<span class="keyword">void</span> <span class="number">0</span>, <span class="built_in">arguments</span>);</span><br><span class="line">  </span><br><span class="line">        <span class="keyword">var</span> _dispatch = <span class="function"><span class="keyword">function</span> <span class="title">dispatch</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">          <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">&#x27;Dispatching while constructing your middleware is not allowed. &#x27;</span> + <span class="string">&#x27;Other middleware would not be applied to this dispatch.&#x27;</span>);</span><br><span class="line">        &#125;;</span><br><span class="line">  </span><br><span class="line">        <span class="keyword">var</span> middlewareAPI = &#123;</span><br><span class="line">          <span class="attr">getState</span>: store.getState,</span><br><span class="line">          <span class="attr">dispatch</span>: <span class="function"><span class="keyword">function</span> <span class="title">dispatch</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> _dispatch.apply(<span class="keyword">void</span> <span class="number">0</span>, <span class="built_in">arguments</span>);</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="keyword">var</span> chain = middlewares.map(<span class="function"><span class="keyword">function</span> (<span class="params">middleware</span>) </span>&#123;</span><br><span class="line">  		<span class="comment">/* midddleware 的函数形式：</span></span><br><span class="line"><span class="comment">  		function (_ref) &#123;</span></span><br><span class="line"><span class="comment">  			var dispatch = _ref.dispatch,</span></span><br><span class="line"><span class="comment">  				getState = _ref.getState;</span></span><br><span class="line"><span class="comment">  			return function (next) &#123;</span></span><br><span class="line"><span class="comment">  			  return function (action) &#123;</span></span><br><span class="line"><span class="comment">  				if (typeof action === &#x27;function&#x27;) &#123;</span></span><br><span class="line"><span class="comment">  				  return action(dispatch, getState, extraArgument);</span></span><br><span class="line"><span class="comment">  				&#125;</span></span><br><span class="line"><span class="comment">  </span></span><br><span class="line"><span class="comment">  				return next(action);</span></span><br><span class="line"><span class="comment">  			  &#125;;</span></span><br><span class="line"><span class="comment">  			&#125;;</span></span><br><span class="line"><span class="comment">  		&#125;;</span></span><br><span class="line"><span class="comment">  		*/</span></span><br><span class="line">          <span class="keyword">return</span> middleware(middlewareAPI);</span><br><span class="line">        &#125;);</span><br><span class="line">  	  </span><br><span class="line">  	  <span class="comment">/*chain 数组中的函数形式：</span></span><br><span class="line"><span class="comment">  		function (next) &#123;//next 为下一个中间件</span></span><br><span class="line"><span class="comment">  		  return function (action) &#123;</span></span><br><span class="line"><span class="comment">  			if (typeof action === &#x27;function&#x27;) &#123;</span></span><br><span class="line"><span class="comment">  			  return action(dispatch, getState, extraArgument);</span></span><br><span class="line"><span class="comment">  			&#125;</span></span><br><span class="line"><span class="comment">  </span></span><br><span class="line"><span class="comment">  			return next(action);</span></span><br><span class="line"><span class="comment">  		  &#125;;</span></span><br><span class="line"><span class="comment">  		&#125;;</span></span><br><span class="line"><span class="comment">  	  */</span></span><br><span class="line">  	  <span class="comment">/* </span></span><br><span class="line"><span class="comment">  	  执行 compose(f, g, h) 返回值为：</span></span><br><span class="line"><span class="comment">        (...args) =&gt; f(g(h(...args))</span></span><br><span class="line"><span class="comment">        </span></span><br><span class="line"><span class="comment">        故 _dispatch 为 f(g(h(store.dispatch))</span></span><br><span class="line"><span class="comment">  	  */</span></span><br><span class="line">        _dispatch = compose.apply(<span class="keyword">void</span> <span class="number">0</span>, chain)(store.dispatch);</span><br><span class="line">  	  </span><br><span class="line">        <span class="keyword">return</span> _objectSpread2(&#123;&#125;, store, &#123;</span><br><span class="line">          <span class="attr">dispatch</span>: _dispatch</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line">  <span class="comment">//*******************************************************************</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//示例</span></span><br><span class="line"><span class="keyword">import</span> &#123; createStore, applyMiddleware&#125; <span class="keyword">from</span> <span class="string">&quot;redux&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> thunk <span class="keyword">from</span> <span class="string">&quot;redux-thunk&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> reducer <span class="keyword">from</span> <span class="string">&quot;./reducer&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> enhancer = applyMiddleware(thunk);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> store = createStore(reducer, enhancer);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> store;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="4-4-compose"><a href="#4-4-compose" class="headerlink" title="4.4 compose"></a>4.4 compose</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compose( ...functions )</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>参数：</p>
+<ul>
+<li>多个需要组合的函数，除了最右边的函数，其余函数都只能接收一个参数，每个函数的返回值都会作为相邻左边函数的参数。</li>
+</ul>
+</li>
+<li><p>返回值：</p>
+<ul>
+<li>返回从右到左依次执行函数参数的组合函数，如 <code>compose(f, g, h)  会返回 (...args) =&gt; f(g(h(...args)))</code></li>
+</ul>
+</li>
+<li><p>功能描述：</p>
+<ul>
+<li>从右到左组合多个函数，使用 compose 来依次执行多个 store enhancer</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//redux 中 compose 核心代码实现*********************************</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">compose</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> _len = <span class="built_in">arguments</span>.length, funcs = <span class="keyword">new</span> <span class="built_in">Array</span>(_len), _key = <span class="number">0</span>; _key &lt; _len; _key++) &#123;</span><br><span class="line">    funcs[_key] = <span class="built_in">arguments</span>[_key];</span><br><span class="line">  &#125;</span><br><span class="line"><span class="comment">//.....</span></span><br><span class="line">  <span class="keyword">if</span> (funcs.length === <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> funcs[<span class="number">0</span>];</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> funcs.reduce(<span class="function"><span class="keyword">function</span> (<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> a(b.apply(<span class="keyword">void</span> <span class="number">0</span>, <span class="built_in">arguments</span>));</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//***************************************************************</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="4-5-bindActionCreator"><a href="#4-5-bindActionCreator" class="headerlink" title="4.5 bindActionCreator"></a>4.5 bindActionCreator</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bindActionCreator(actionCreators, dispatch)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>参数：</p>
+<ul>
+<li><p>actionCreators：如下两种类型</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//第一种： 一个 actionsCreator 的函数</span></span><br><span class="line">initItemAction = <span class="function">(<span class="params">value</span>) =&gt;</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> &#123;</span><br><span class="line">		<span class="attr">type</span>: INIT_ITEM,</span><br><span class="line">		value,</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//第二种：由多个 actionCreator 组成的对象</span></span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> TodoActionCreators <span class="keyword">from</span> <span class="string">&#x27;./TodoActionCreators&#x27;</span>;</span><br><span class="line"><span class="built_in">console</span>.log(TodoActionCreators);</span><br><span class="line"><span class="comment">// &#123;</span></span><br><span class="line"><span class="comment">//   addTodo: Function, </span></span><br><span class="line"><span class="comment">//   removeTodo: Function</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>dispatch： Store.dispatch</p>
+</li>
+</ul>
+</li>
+<li><p>返回值：</p>
+<ul>
+<li>actionCreators</li>
+</ul>
+</li>
+<li><p>功能描述：</p>
+<ul>
+<li><p>修改 actionCreators 中每个 actionCreator 的实现，将其包裹在 dispatch 中。修改后的效果为，执行 actionCreator 创建 action时 ，会同时执行 dispatch(action)，使得执行  actionCreator 的返回值为 dispatch(action) 后的结果。</p>
+</li>
+<li><p>下面例子对比使用 bindActionCreator 前后写法的变化</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> TodoActionCreators <span class="keyword">from</span> <span class="string">&#x27;./TodoActionCreators&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//不使用 bindActionCreator 时,创建完 action, 需要手动执行 dispatch</span></span><br><span class="line"><span class="keyword">let</span> action = TodoActionCreators.addTodo(<span class="string">&#x27;Use Redux&#x27;</span>);</span><br><span class="line">    dispatch(action);</span><br><span class="line">    </span><br><span class="line"><span class="comment">//使用 bindActionCreator 把 TodoActionCreators 和 dispatch 绑定后，创建完 action 的同时会在内部自动执行 dispatch</span></span><br><span class="line"> <span class="built_in">this</span>.boundActionCreators = bindActionCreators(TodoActionCreators, dispatch);</span><br><span class="line">    boundActionCreators.addTodo(<span class="string">&#x27;Use Redux&#x27;</span>);</span><br><span class="line">    </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//源码************************************************</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">bindActionCreator</span>(<span class="params">actionCreator, dispatch</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> dispatch(actionCreator.apply(<span class="built_in">this</span>, <span class="built_in">arguments</span>));</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//源码************************************************</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Redux/" rel="tag"># Redux</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/web/react/dom%20diff/" rel="prev" title="react dom diff">
+      <i class="fa fa-chevron-left"></i> react dom diff
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/npm/npm%20%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" rel="next" title="npm 常用命令">
+      npm 常用命令 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-text">1 是什么</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E8%AE%BE%E8%AE%A1%E6%A0%B8%E5%BF%83"><span class="nav-text">2 设计核心</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="nav-text">3 中间件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-Middleware"><span class="nav-text">3.1 Middleware</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-1-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-text">3.1.1 是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-2-%E6%9C%89%E4%BB%80%E4%B9%88%E4%BD%9C%E7%94%A8"><span class="nav-text">3.1.2 有什么作用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-redux-thunk"><span class="nav-text">3.2 redux-thunk</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-1-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-text">3.2.1 是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-2-%E6%9C%89%E4%BB%80%E4%B9%88%E4%BD%9C%E7%94%A8"><span class="nav-text">3.2.2 有什么作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-3-%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="nav-text">3.2.3 使用方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-4-%E6%BA%90%E7%A0%81"><span class="nav-text">3.2.4 源码</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-API"><span class="nav-text">4 API</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-createStore"><span class="nav-text">4.1 createStore</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-combineReducers"><span class="nav-text">4.2 combineReducers</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-applyMiddlleware"><span class="nav-text">4.3 applyMiddlleware</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-4-compose"><span class="nav-text">4.4 compose</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-5-bindActionCreator"><span class="nav-text">4.5 bindActionCreator</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">DaMeng</p>
+  <div class="site-description" itemprop="description">forever</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">103</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">71</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/damengzhang" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;damengzhang" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DaMeng</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

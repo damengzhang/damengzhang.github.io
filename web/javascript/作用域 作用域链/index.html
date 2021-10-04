@@ -1,16 +1,470 @@
-{% extends '_layout.swig' %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/b_icon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/s_icon.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-{% block title %}{{ page.title }} | {{ title }}{% endblock %}
+<link rel="stylesheet" href="/css/main.css">
 
-{% block content %}
 
-  <div id="posts" class="posts-expand">
-    {{ partial('_macro/post.swig', {post: page}) }}
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.damengzhang.cn","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="1 作用域（Scope）1.1 作用域的定义作用域指的是变量可被访问的有效范围。 1.2 作用域的分类对于 js 来说，作用域有下面三类：  全局作用域  ​    变量在全局范围有效。  局部作用域（又叫函数作用域） ​    变量在声明它的函数体中，及在这个函数体嵌套的任意函数体内有效。  块作用域（es6 新增的语法） ​    变量在语句块内有效。   2 变量对象 ( Variable">
+<meta property="og:type" content="article">
+<meta property="og:title" content="作用域 作用域链">
+<meta property="og:url" content="https://www.damengzhang.cn/web/javascript/%E4%BD%9C%E7%94%A8%E5%9F%9F%20%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE/index.html">
+<meta property="og:site_name" content="DaMeng">
+<meta property="og:description" content="1 作用域（Scope）1.1 作用域的定义作用域指的是变量可被访问的有效范围。 1.2 作用域的分类对于 js 来说，作用域有下面三类：  全局作用域  ​    变量在全局范围有效。  局部作用域（又叫函数作用域） ​    变量在声明它的函数体中，及在这个函数体嵌套的任意函数体内有效。  块作用域（es6 新增的语法） ​    变量在语句块内有效。   2 变量对象 ( Variable">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.damengzhang.cn/web/javascript/%E4%BD%9C%E7%94%A8%E5%9F%9F%20%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE/2.png">
+<meta property="og:image" content="https://www.damengzhang.cn/web/javascript/%E4%BD%9C%E7%94%A8%E5%9F%9F%20%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE/3.png">
+<meta property="og:image" content="https://www.damengzhang.cn/web/javascript/%E4%BD%9C%E7%94%A8%E5%9F%9F%20%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE/scopeSum.png">
+<meta property="article:published_time" content="2019-06-08T11:18:38.000Z">
+<meta property="article:modified_time" content="2020-08-05T13:23:20.000Z">
+<meta property="article:author" content="DaMeng">
+<meta property="article:tag" content="作用域链">
+<meta property="article:tag" content="作用域">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.damengzhang.cn/web/javascript/%E4%BD%9C%E7%94%A8%E5%9F%9F%20%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE/2.png">
+
+<link rel="canonical" href="https://www.damengzhang.cn/web/javascript/%E4%BD%9C%E7%94%A8%E5%9F%9F%20%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>作用域 作用域链 | DaMeng</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QE7RR3D8Y8"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-QE7RR3D8Y8');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
   </div>
 
-{% endblock %}
+  <div class="site-meta">
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">DaMeng</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.damengzhang.cn/web/javascript/%E4%BD%9C%E7%94%A8%E5%9F%9F%20%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="DaMeng">
+      <meta itemprop="description" content="forever">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaMeng">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          作用域 作用域链
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-06-08 19:18:38" itemprop="dateCreated datePublished" datetime="2019-06-08T19:18:38+08:00">2019-06-08</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web/" itemprop="url" rel="index"><span itemprop="name">web</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="1-作用域（Scope）"><a href="#1-作用域（Scope）" class="headerlink" title="1 作用域（Scope）"></a>1 作用域（Scope）</h1><h2 id="1-1-作用域的定义"><a href="#1-1-作用域的定义" class="headerlink" title="1.1 作用域的定义"></a>1.1 作用域的定义</h2><p><strong><code>作用域</code><strong>指的是变量可被访问的有效</strong>范围</strong>。</p>
+<h2 id="1-2-作用域的分类"><a href="#1-2-作用域的分类" class="headerlink" title="1.2 作用域的分类"></a>1.2 作用域的分类</h2><p>对于 js 来说，作用域有下面三类：</p>
+<ul>
+<li><p>全局作用域 </p>
+<p>​    变量在全局范围有效。</p>
+</li>
+<li><p>局部作用域（又叫函数作用域）</p>
+<p>​    变量在声明它的函数体中，及在这个函数体嵌套的任意函数体内有效。</p>
+</li>
+<li><p>块作用域（es6 新增的语法）</p>
+<p>​    变量在语句块内有效。</p>
+</li>
+</ul>
+<h1 id="2-变量对象-Variable-Object"><a href="#2-变量对象-Variable-Object" class="headerlink" title="2 变量对象 ( Variable Object )"></a>2 变量对象 ( Variable Object )</h1><p>**<code>变量对象</code><strong>，顾名思义就是保存变量的对象，只要是保存变量的对象，都可以称为</strong><code>变量对象</code><strong>。winows 对象、活动对象、闭包等都是保存变量的对象，都属于</strong><code>变量对象</code>**。</p>
+<h1 id="3-活动对象（Activation-Object）"><a href="#3-活动对象（Activation-Object）" class="headerlink" title="3 活动对象（Activation Object）"></a>3 活动对象（Activation Object）</h1><p>活动对象是在函数执行时产生的变量对象，活动对象保存了函数的局部变量、window对象。</p>
+<h1 id="4-作用域链-scopes"><a href="#4-作用域链-scopes" class="headerlink" title="4 作用域链 [[scopes]]"></a>4 作用域链 [[scopes]]</h1><p><strong><code>作用域链</code><strong>是函数的一个内部属性 [[scopes]]，是由函数可访问的所有</strong><code>外部作用域对象</code><strong>组成的</strong>数组</strong>。[[scopes]] 属性不能通过程序读取，只能由 js 引擎读取。js 通过**<code>作用域链</code>**实现了静态作用域（指作用域由定义时而非运行时决定）。</p>
+<p>**<code>作用域链</code>**将可以将不同函数关联起来，并保证了函数解析变量的顺序。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">A</span>(<span class="params">aArg</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> aVar = <span class="string">&#x27;aVar&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.dir(A) ;<span class="comment">//函数被创建时，会包含一个[[scope]]内部属性，用来保存作用域链</span></span><br></pre></td></tr></table></figure>
+
+<p>上面代码 chrome 输出截图：</p>
+<img src="/web/javascript/%E4%BD%9C%E7%94%A8%E5%9F%9F%20%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE/2.png" class="">
+
+<p>firefox 输出截图：</p>
+<img src="/web/javascript/%E4%BD%9C%E7%94%A8%E5%9F%9F%20%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE/3.png" class="">
+
+<p>firefox 并没有输出 [[scopes]] 属性，chrome 虽然输出了，但却无法访问 [[scopes]] 属性。</p>
+<h1 id="5-执行上下文（或叫执行环境）"><a href="#5-执行上下文（或叫执行环境）" class="headerlink" title="5 执行上下文（或叫执行环境）"></a>5 执行上下文（或叫执行环境）</h1><p><strong>执行上下文</strong>是函数执行时创建的一个内部对象，定义了函数执行时的环境。</p>
+<p>函数每次执行时，都会创建对应的<strong>执行上下文</strong>，多次调用函数，将会创建多个<strong>执行上下文</strong>。当函数执行完毕，<strong>执行上下文</strong>将被销毁。</p>
+<p><strong>执行上下文</strong>是使用函数自身的作用域 [[scopes]] 属性来进行初始化的，并将活动对象（由函数的局部变量组成）追加为其第一个元素。</p>
+<h1 id="5-总结"><a href="#5-总结" class="headerlink" title="5 总结"></a>5 总结</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> B1Alias;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">A</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> aVar = <span class="string">&#x27;aVar&#x27;</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">B1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> bVar=<span class="string">&#x27;test&#x27;</span>;</span><br><span class="line">        <span class="built_in">console</span>.log(bVar);</span><br><span class="line">        <span class="built_in">console</span>.log(aVar);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    B1Alias = B1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">A();</span><br><span class="line">B1Alias();</span><br><span class="line"><span class="built_in">console</span>.dir(B1Alias);</span><br></pre></td></tr></table></figure>
+
+<img src="/web/javascript/%E4%BD%9C%E7%94%A8%E5%9F%9F%20%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE/scopeSum.png" class="">
+
+<p>通过上面的示例和调试截图来总结下，将各个概念关联起来：</p>
+<p>每个函数被初始化时，会包含一个数组类型的属性  [[Scopes]] （即作用域链），[[Scopes]] 的内容是由此函数可以访问的<strong>外部作用域对象</strong>组成的。</p>
+<p>每次函数执行时，都会创建对应的执行上下文，会使用函数的 [[Scopes]] 来初始化执行上下文，并将<strong>活动对象</strong>（由函数的局部变量组成）追加到<strong>执行上下文</strong>的第一个元素。</p>
+<p><strong>作用域</strong>是一个范围，当把这个范围关联到某个对象时，可以把这个对象叫做<strong>作用域对象</strong>，如 windows 对象、活动对象、执行上下文 都可以称为<strong>作用域对象</strong>。</p>
+<p>保存变量的对象称为<strong>变量对象</strong>，也就是说变量对象包括了<strong>作用域对象</strong>，但并不止作用域对象。</p>
+<p>参考：</p>
+<p><a target="_blank" rel="noopener" href="https://juejin.im/post/5b481cc9e51d45192562850f">https://juejin.im/post/5b481cc9e51d45192562850f</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE/" rel="tag"># 作用域链</a>
+              <a href="/tags/%E4%BD%9C%E7%94%A8%E5%9F%9F/" rel="tag"># 作用域</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/web/eslint/eslint%E9%85%8D%E7%BD%AE/" rel="prev" title="ESLint使用">
+      <i class="fa fa-chevron-left"></i> ESLint使用
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/web/javascript/%E9%97%AD%E5%8C%85/" rel="next" title="闭包">
+      闭包 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E4%BD%9C%E7%94%A8%E5%9F%9F%EF%BC%88Scope%EF%BC%89"><span class="nav-text">1 作用域（Scope）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-%E4%BD%9C%E7%94%A8%E5%9F%9F%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-text">1.1 作用域的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-%E4%BD%9C%E7%94%A8%E5%9F%9F%E7%9A%84%E5%88%86%E7%B1%BB"><span class="nav-text">1.2 作用域的分类</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E5%8F%98%E9%87%8F%E5%AF%B9%E8%B1%A1-Variable-Object"><span class="nav-text">2 变量对象 ( Variable Object )</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-%E6%B4%BB%E5%8A%A8%E5%AF%B9%E8%B1%A1%EF%BC%88Activation-Object%EF%BC%89"><span class="nav-text">3 活动对象（Activation Object）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE-scopes"><span class="nav-text">4 作用域链 [[scopes]]</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87%EF%BC%88%E6%88%96%E5%8F%AB%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%EF%BC%89"><span class="nav-text">5 执行上下文（或叫执行环境）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-%E6%80%BB%E7%BB%93"><span class="nav-text">5 总结</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">DaMeng</p>
+  <div class="site-description" itemprop="description">forever</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">103</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">71</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/damengzhang" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;damengzhang" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DaMeng</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

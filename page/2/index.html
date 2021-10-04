@@ -1,18 +1,491 @@
-{% extends '_layout.swig' %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/b_icon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/s_icon.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-{% block title %}{{ title }}{%- if theme.index_with_subtitle and subtitle %} - {{ subtitle }}{%- endif %}{% endblock %}
+<link rel="stylesheet" href="/css/main.css">
 
-{% block content %}
-  <div id="posts" class="posts-expand">
-    {%- for post in page.posts %}
-      {{ partial('_macro/post.swig', {is_index: true}) }}
-    {%- endfor %}
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.damengzhang.cn","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="forever">
+<meta property="og:type" content="website">
+<meta property="og:title" content="DaMeng">
+<meta property="og:url" content="https://www.damengzhang.cn/page/2/index.html">
+<meta property="og:site_name" content="DaMeng">
+<meta property="og:description" content="forever">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="DaMeng">
+<meta property="article:tag" content="前端 教程 大梦 DaMeng Zhang">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://www.damengzhang.cn/page/2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>DaMeng</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QE7RR3D8Y8"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-QE7RR3D8Y8');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
   </div>
 
-  {% include '_partials/pagination.swig' %}
-{% endblock %}
+  <div class="site-meta">
 
-{% block sidebar %}
-  {{ sidebar_template.render(false) }}
-{% endblock %}
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">DaMeng</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.damengzhang.cn/web/javascript/JS%20%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="DaMeng">
+      <meta itemprop="description" content="forever">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaMeng">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/web/javascript/JS%20%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/" class="post-title-link" itemprop="url">JS 事件循环</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-20 18:40:38" itemprop="dateCreated datePublished" datetime="2020-08-20T18:40:38+08:00">2020-08-20</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web/" itemprop="url" rel="index"><span itemprop="name">web</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>此篇文章写的浏览器端的事件循环（ EventLoop），Node 端会有所不同。</p>
+<h1 id="1-事件循环（EventLoop）"><a href="#1-事件循环（EventLoop）" class="headerlink" title="1 事件循环（EventLoop）"></a>1 事件循环（EventLoop）</h1><p><strong>事件循环</strong>是 JS 主线程处理任务的过程，包含如下元素：</p>
+<ul>
+<li>堆</li>
+<li>调用栈（也叫执行栈）<ul>
+<li>由一系列函数调用组成的栈</li>
+</ul>
+</li>
+<li>消息队列（也叫任务队列、宏任务队列、callback queue）<ul>
+<li>由待处理的宏任务组成的队列，如 被触发的 click 事件、到达定时时间的任务、已完成的网络请求 等</li>
+</ul>
+</li>
+<li>微队列<ul>
+<li>由待处理的微任务组成，如 Promise 的回调，MutationObserver  回调等</li>
+</ul>
+</li>
+</ul>
+<h2 id="1-1-事件循环视图"><a href="#1-1-事件循环视图" class="headerlink" title="1.1 事件循环视图"></a>1.1 事件循环视图</h2><img src="/web/javascript/JS%20%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/eventLoop.PNG" class="">
+
+<p>上图展示了事件循环的过程：</p>
+<ol>
+<li>当前正在执行的函数被压入执行栈（stack）中<ol>
+<li>函数执行过程中调用 Promise、MutationObserver 等 WebAPI 产生的异步任务需要执行时，会被插入<strong>微任务队列（microtask queue）</strong> 中。</li>
+<li>函数执行过程中调用 Ajax、setTimeout 等 WebAPI 产生的异步任务需要执行时，会被插入<strong>宏任务队列（task queue）</strong>  中。</li>
+</ol>
+</li>
+<li>执行栈中的所有函数执行完成后（即栈空后），JS 主线程会首先从 microtask queue 中取出一个微任务进行执行，执行微任务就是把微任务对应的回调函数压入执行栈中进行执行，即回到步骤 1 。微任务队列为空时才会执行第 3 步。</li>
+<li>微任务队列为空时，JS 主线程再从 task queue 中取出一个宏任务进行执行，执行宏任务也是将宏任务对应的回调函数压入执行栈中进行执行，即回到了步骤 1。</li>
+</ol>
+<h1 id="2-堆"><a href="#2-堆" class="headerlink" title="2 堆"></a>2 堆</h1><p>对象会被分配到<code>堆</code>内存中。</p>
+<h1 id="3-调用栈（执行栈）"><a href="#3-调用栈（执行栈）" class="headerlink" title="3 调用栈（执行栈）"></a>3 调用栈（执行栈）</h1><p>函数被执行时，会产生对应的执行上下文（Execute Context，<strong>EC</strong>，也叫执行环境），<strong>EC</strong> 会被压入<code>调用栈</code> 执行。</p>
+<p>当有多个函数被嵌套调用时，会有多个 <strong>EC</strong> 被压入<code>调用栈</code>。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">b</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> a = <span class="number">10</span>;</span><br><span class="line">  <span class="keyword">return</span> a + b + <span class="number">11</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> y = <span class="number">3</span>;</span><br><span class="line">  <span class="keyword">return</span> foo(x * y) + y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(bar(<span class="number">7</span>)); <span class="comment">// 返回 42</span></span><br></pre></td></tr></table></figure>
+
+<p>上面代码执行过程：</p>
+<ol>
+<li>主代码的 <strong>EC</strong> 被压入栈中执行。</li>
+<li>当调用 bar 函数时，bar 的 <strong>EC</strong> 被压入栈中执行。</li>
+<li>当 bar 调用 foo 时，foo 的 <strong>EC</strong> 被压入栈中执行。</li>
+<li>当 foo 执行完成时，foo  的 <strong>EC</strong> 被弹出栈。</li>
+<li>当 bar 执行完成时，bar 的 <strong>EC</strong> 也被弹出栈。</li>
+<li>主代码块执行完成，其 <strong>EC</strong> 也被弹出栈，此时栈被清空了。</li>
+</ol>
+<h1 id="4-消息队列"><a href="#4-消息队列" class="headerlink" title="4 消息队列"></a>4 消息队列</h1><p>消息队列（也叫<strong>任务队列</strong>、<strong>宏任务队列</strong>、<strong>callback queue</strong>、<strong>task queue</strong>）由待处理的消息组成，事件循环会依次处理消息队列中的消息。</p>
+<p>消息被处理时会被移出消息队列，并作为输入参数来调用与之关联的回调，回调被执行会被压入调用栈中执行。</p>
+<h2 id="4-1-宏任务"><a href="#4-1-宏任务" class="headerlink" title="4.1 宏任务"></a>4.1 宏任务</h2><p>宏任务（MacroTask，也叫 Task），由下面类型的代码形成，并被加入到宏任务队列：</p>
+<ul>
+<li><p>被触发的事件回调，如 onClick、onLoad</p>
+</li>
+<li><p>setTimeout / setInterval </p>
+</li>
+</ul>
+<h1 id="5-微任务队列"><a href="#5-微任务队列" class="headerlink" title="5 微任务队列"></a>5 微任务队列</h1><p>微任务队列由微任务组成，事件循环会依次处理微任务队列中的微任务。</p>
+<h2 id="5-1-微任务"><a href="#5-1-微任务" class="headerlink" title="5.1 微任务"></a>5.1 微任务</h2><p>微任务（MicroTask，也叫 Jobs），下面类型的代码属于微任务，并被加入微任务队列：</p>
+<ul>
+<li><p>Promise</p>
+</li>
+<li><p>MutationObserver</p>
+<ul>
+<li><p>监控 DOM 树的更改</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 选择需要观察变动的节点</span></span><br><span class="line"><span class="keyword">const</span> targetNode = <span class="built_in">document</span>.getElementById(<span class="string">&#x27;some-id&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 观察器的配置（需要观察什么变动）</span></span><br><span class="line"><span class="keyword">const</span> config = &#123; <span class="attr">attributes</span>: <span class="literal">true</span>, <span class="attr">childList</span>: <span class="literal">true</span>, <span class="attr">subtree</span>: <span class="literal">true</span> &#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 当观察到变动时执行的回调函数</span></span><br><span class="line"><span class="keyword">const</span> callback = <span class="function"><span class="keyword">function</span>(<span class="params">mutationsList, observer</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// Use traditional &#x27;for loops&#x27; for IE 11</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> mutation <span class="keyword">of</span> mutationsList) &#123;</span><br><span class="line">        <span class="keyword">if</span> (mutation.type === <span class="string">&#x27;childList&#x27;</span>) &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">&#x27;A child node has been added or removed.&#x27;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (mutation.type === <span class="string">&#x27;attributes&#x27;</span>) &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">&#x27;The &#x27;</span> + mutation.attributeName + <span class="string">&#x27; attribute was modified.&#x27;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建一个观察器实例并传入回调函数</span></span><br><span class="line"><span class="keyword">const</span> observer = <span class="keyword">new</span> MutationObserver(callback);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 以上述配置开始观察目标节点</span></span><br><span class="line">observer.observe(targetNode, config);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 之后，可停止观察</span></span><br><span class="line">observer.disconnect();</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>queueMicrotask</p>
+<ul>
+<li>```js<br>queueMicrotask(() =&gt; {<br>  /* 微任务中将运行的代码 */<br>});<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  - 使用场景</span><br><span class="line">  </span><br><span class="line">    - 代码执行结果的一致性</span><br><span class="line">  </span><br><span class="line">    - 串行执行任务</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 6 执行顺序</span><br><span class="line"></span><br><span class="line">JS 主线程执行顺序：</span><br><span class="line"></span><br><span class="line">1. 当前执行栈中的代码 </span><br><span class="line">2. 当前执行栈所产生的 microtask（直到微任务队列中任务全部执行完成，即为空时才进行下一步）</span><br><span class="line">3. 渲染绘制 </span><br><span class="line">4. 下个 task</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">示例：</span><br><span class="line"></span><br><span class="line">```js</span><br><span class="line">setTimeout(function() &#123;</span><br><span class="line">        console.log(5)</span><br><span class="line">    	setTimeout(function()&#123;</span><br><span class="line">            console.log(9);</span><br><span class="line">        &#125;)</span><br><span class="line"></span><br><span class="line">        Promise.resolve().then(function() &#123;</span><br><span class="line">            console.log(6);</span><br><span class="line">        &#125;) </span><br><span class="line">&#125;, 0);</span><br><span class="line">    </span><br><span class="line">new Promise(function executor(resolve) &#123;</span><br><span class="line">    console.log(1);</span><br><span class="line">   </span><br><span class="line">    setTimeout(function()&#123;</span><br><span class="line">            console.log(7);</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">     Promise.resolve().then(function() &#123;</span><br><span class="line">         console.log(3);</span><br><span class="line"></span><br><span class="line">          Promise.resolve().then(function() &#123;</span><br><span class="line">         console.log(4);</span><br><span class="line"></span><br><span class="line">          setTimeout(function()&#123;</span><br><span class="line">            console.log(8);</span><br><span class="line">        &#125;);</span><br><span class="line">     &#125;)</span><br><span class="line">     &#125;)</span><br><span class="line"></span><br><span class="line">&#125;).then(function() &#123;</span><br><span class="line">    console.log(4);</span><br><span class="line">&#125;);</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">console.log(2);</span><br><span class="line"></span><br><span class="line">//输出顺序为：</span><br><span class="line">1 </span><br><span class="line">2 </span><br><span class="line">3 </span><br><span class="line">4</span><br><span class="line">undefined</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<p>参考资料：</p>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/EventLoop">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/EventLoop</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2014/10/event-loop.html">https://www.ruanyifeng.com/blog/2014/10/event-loop.html</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/103/">103</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">DaMeng</p>
+  <div class="site-description" itemprop="description">forever</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">103</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">71</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/damengzhang" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;damengzhang" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DaMeng</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink({
+        timeout : 3000,
+        priority: true,
+        ignores : [uri => uri.includes('#'),uri => uri === 'https://www.damengzhang.cn/page/2/',]
+      });
+      });
+  </script>
+
+</body>
+</html>

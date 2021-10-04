@@ -1,16 +1,456 @@
-{% extends '_layout.swig' %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/b_icon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/s_icon.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-{% block title %}{{ page.title }} | {{ title }}{% endblock %}
+<link rel="stylesheet" href="/css/main.css">
 
-{% block content %}
 
-  <div id="posts" class="posts-expand">
-    {{ partial('_macro/post.swig', {post: page}) }}
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.damengzhang.cn","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="1 是什么Refs 是在 React 中获取节点（原生 DOM 或 React 组件）实例的方式。可以通过 Refs 来获取节点实例的引用，通过操作此引用达到操作节点的目的。 2 解决什么问题Refs 主要用来解决需要操作节点的场景，如：  管理子节点焦点、文本选择 强制动画 集成第三方 DOM 库  3 使用方法3.1 createRefReact.createRef 是 React 16.3">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Refs">
+<meta property="og:url" content="https://www.damengzhang.cn/web/react/Refs/index.html">
+<meta property="og:site_name" content="DaMeng">
+<meta property="og:description" content="1 是什么Refs 是在 React 中获取节点（原生 DOM 或 React 组件）实例的方式。可以通过 Refs 来获取节点实例的引用，通过操作此引用达到操作节点的目的。 2 解决什么问题Refs 主要用来解决需要操作节点的场景，如：  管理子节点焦点、文本选择 强制动画 集成第三方 DOM 库  3 使用方法3.1 createRefReact.createRef 是 React 16.3">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-03-14T11:08:00.000Z">
+<meta property="article:modified_time" content="2020-08-22T03:30:18.000Z">
+<meta property="article:author" content="DaMeng">
+<meta property="article:tag" content="react">
+<meta property="article:tag" content="Refs">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://www.damengzhang.cn/web/react/Refs/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Refs | DaMeng</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QE7RR3D8Y8"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-QE7RR3D8Y8');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
   </div>
 
-{% endblock %}
+  <div class="site-meta">
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">DaMeng</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.damengzhang.cn/web/react/Refs/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="DaMeng">
+      <meta itemprop="description" content="forever">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaMeng">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Refs
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-03-14 19:08:00" itemprop="dateCreated datePublished" datetime="2019-03-14T19:08:00+08:00">2019-03-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web/" itemprop="url" rel="index"><span itemprop="name">web</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web/react/" itemprop="url" rel="index"><span itemprop="name">react</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="1-是什么"><a href="#1-是什么" class="headerlink" title="1 是什么"></a>1 是什么</h1><p>Refs 是在 React 中获取节点（原生 DOM 或 React 组件）实例的方式。可以通过 Refs 来获取节点实例的引用，通过操作此引用达到操作节点的目的。</p>
+<h1 id="2-解决什么问题"><a href="#2-解决什么问题" class="headerlink" title="2 解决什么问题"></a>2 解决什么问题</h1><p>Refs 主要用来解决需要操作节点的场景，如：</p>
+<ul>
+<li>管理子节点焦点、文本选择</li>
+<li>强制动画</li>
+<li>集成第三方 DOM 库</li>
+</ul>
+<h1 id="3-使用方法"><a href="#3-使用方法" class="headerlink" title="3 使用方法"></a>3 使用方法</h1><h2 id="3-1-createRef"><a href="#3-1-createRef" class="headerlink" title="3.1 createRef"></a>3.1 createRef</h2><p>React.createRef 是 React 16.3 版本引入的创建 Refs 的方法。</p>
+<h3 id="3-1-1-创建-Refs"><a href="#3-1-1-创建-Refs" class="headerlink" title="3.1.1 创建 Refs"></a>3.1.1 创建 Refs</h3><p>通过 React.createRefs() 方法可以创建 Refs。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">class MyComponent extends React.Component &#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    super(props);</span><br><span class="line">      // 1、在组件中调用 createRef 函数创建 Refs 变量</span><br><span class="line">    this.myRef = React.createRef();</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">      // 2、使用 ref（此属性名固定） 属性将 Refs 变量和节点关联起来</span><br><span class="line">    return &lt;div ref=&#123;this.myRef&#125; /&gt;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-1-2-访问-Refs"><a href="#3-1-2-访问-Refs" class="headerlink" title="3.1.2 访问 Refs"></a>3.1.2 访问 Refs</h3><p>通过 Refs 变量的 current 属性可以访问节点的引用。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const node = this.myRef.current;// 此时 node 就是节点实例的引用</span><br></pre></td></tr></table></figure>
+
+<p>当组件挂载时，this.myRef.current 会被赋值为节点实例。</p>
+<p>当组件被卸载时，this.myRef.current 会被赋值为 null。</p>
+<h3 id="3-1-3-示例"><a href="#3-1-3-示例" class="headerlink" title="3.1.3 示例"></a>3.1.3 示例</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">class CustomTextInput extends React.Component &#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    super(props);</span><br><span class="line">    //1、创建 Refs 变量 this.textInput</span><br><span class="line">    this.textInput = React.createRef();</span><br><span class="line">    this.focusTextInput = this.focusTextInput.bind(this);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  focusTextInput() &#123;</span><br><span class="line">    // 3、通过 this.textInput.current 属性访问节点实例</span><br><span class="line">    this.textInput.current.focus();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    // 2、通过给节点配置 ref 属性，将节点实例关联到 this.textInput</span><br><span class="line">    return (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;input</span><br><span class="line">          type=&quot;text&quot;</span><br><span class="line">          ref=&#123;this.textInput&#125; /&gt;</span><br><span class="line">        &lt;input</span><br><span class="line">          type=&quot;button&quot;</span><br><span class="line">          value=&quot;Focus the text input&quot;</span><br><span class="line">          onClick=&#123;this.focusTextInput&#125;</span><br><span class="line">        /&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-2-callback-Refs"><a href="#3-2-callback-Refs" class="headerlink" title="3.2 callback Refs"></a>3.2 callback Refs</h2><p>callback Refs 是指通过给节点的 ref 属性传递回调函数来获取节点实例。</p>
+<h3 id="3-2-1-示例"><a href="#3-2-1-示例" class="headerlink" title="3.2.1 示例"></a>3.2.1 示例</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">class CustomTextInput extends React.Component &#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    super(props);</span><br><span class="line"></span><br><span class="line">    this.textInput = null;</span><br><span class="line"></span><br><span class="line">    this.setTextInputRef = element =&gt; &#123;</span><br><span class="line">        //2、回调函数会在节点挂载和卸载时被调用</span><br><span class="line">        //  节点的实例被作为参数（如 element）传给回调，卸载时 element 的值为 null </span><br><span class="line">      this.textInput = element;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    this.focusTextInput = () =&gt; &#123;</span><br><span class="line">      // 3、使用引用来操作节点</span><br><span class="line">      if (this.textInput) this.textInput.focus();</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  componentDidMount() &#123;</span><br><span class="line">    // 组件挂载后，让文本框自动获得焦点</span><br><span class="line">    this.focusTextInput();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    //  1、给节点的 `ref` 属性配置回调函数 this.setTextInputRef </span><br><span class="line">    return (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;input</span><br><span class="line">          type=&quot;text&quot;</span><br><span class="line">          ref=&#123;this.setTextInputRef&#125;</span><br><span class="line">        /&gt;</span><br><span class="line">        &lt;input</span><br><span class="line">          type=&quot;button&quot;</span><br><span class="line">          value=&quot;Focus the text input&quot;</span><br><span class="line">          onClick=&#123;this.focusTextInput&#125;</span><br><span class="line">        /&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-2-2-注意"><a href="#3-2-2-注意" class="headerlink" title="3.2.2 注意"></a>3.2.2 注意</h3><p>ref 回调可以在组件间传递，进而可以解决嵌套组件间 ref 传递问题：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">function CustomTextInput(props) &#123;</span><br><span class="line">    // ref 属性值通过 props 从外部传递进来</span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;input ref=&#123;props.inputRef&#125; /&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Parent extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;CustomTextInput</span><br><span class="line">        inputRef=&#123;el =&gt; this.inputElement = el&#125;</span><br><span class="line">      /&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-3-String-Refs（过时的-API）"><a href="#3-3-String-Refs（过时的-API）" class="headerlink" title="3.3 String Refs（过时的 API）"></a>3.3 String Refs（过时的 API）</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">class CustomTextInput extends React.Component &#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    super(props);</span><br><span class="line">    this.focusTextInput = this.focusTextInput.bind(this);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  focusTextInput() &#123;</span><br><span class="line">    // 2、在父节点中通过 this.refs.myInput 属性访问子节点实例</span><br><span class="line">    this.refs.myInput.focus();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    // 1、通过给子节点配置 ref 属性，值为字符串 myInput</span><br><span class="line">    return (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;input</span><br><span class="line">          type=&quot;text&quot;</span><br><span class="line">          ref=&quot;myInput&quot; /&gt;</span><br><span class="line">        &lt;input</span><br><span class="line">          type=&quot;button&quot;</span><br><span class="line">          value=&quot;Focus the text input&quot;</span><br><span class="line">          onClick=&#123;this.focusTextInput&#125;</span><br><span class="line">        /&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果目前还在使用 <code>this.refs.textInput</code> 这种方式访问 refs ，建议用 callback refs 或  createRefs 的方式代替，String 类型的 Refs 在未来版本可能将会被移除。</p>
+<h1 id="4-注意"><a href="#4-注意" class="headerlink" title="4 注意"></a>4 注意</h1><p>1、默认情况下，不能在函数组件上使用 ref 属性，因为它没有实例。可以通过 forwardRef 创建函数组件，进而使其可以接收 ref 属性，或者将函数组件转化为 class 组件。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">function MyFunctionComponent() &#123;</span><br><span class="line">  return &lt;input /&gt;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Parent extends React.Component &#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    super(props);</span><br><span class="line">    this.textInput = React.createRef();</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    // This will *not* work!</span><br><span class="line">    return (</span><br><span class="line">      &lt;MyFunctionComponent ref=&#123;this.textInput&#125; /&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/react/" rel="tag"># react</a>
+              <a href="/tags/Refs/" rel="tag"># Refs</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/web/javascript/prototype/" rel="prev" title="prototype 详解">
+      <i class="fa fa-chevron-left"></i> prototype 详解
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/web/javascript/es6/class%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/" rel="next" title="es6 之 class（一） 基础用法">
+      es6 之 class（一） 基础用法 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-text">1 是什么</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E8%A7%A3%E5%86%B3%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98"><span class="nav-text">2 解决什么问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="nav-text">3 使用方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-createRef"><span class="nav-text">3.1 createRef</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-1-%E5%88%9B%E5%BB%BA-Refs"><span class="nav-text">3.1.1 创建 Refs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-2-%E8%AE%BF%E9%97%AE-Refs"><span class="nav-text">3.1.2 访问 Refs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-3-%E7%A4%BA%E4%BE%8B"><span class="nav-text">3.1.3 示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-callback-Refs"><span class="nav-text">3.2 callback Refs</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-1-%E7%A4%BA%E4%BE%8B"><span class="nav-text">3.2.1 示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-2-%E6%B3%A8%E6%84%8F"><span class="nav-text">3.2.2 注意</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-String-Refs%EF%BC%88%E8%BF%87%E6%97%B6%E7%9A%84-API%EF%BC%89"><span class="nav-text">3.3 String Refs（过时的 API）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-%E6%B3%A8%E6%84%8F"><span class="nav-text">4 注意</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">DaMeng</p>
+  <div class="site-description" itemprop="description">forever</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">103</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">71</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/damengzhang" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;damengzhang" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DaMeng</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

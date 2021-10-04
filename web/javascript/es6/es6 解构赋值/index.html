@@ -1,16 +1,446 @@
-{% extends '_layout.swig' %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/b_icon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/s_icon.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-{% block title %}{{ page.title }} | {{ title }}{% endblock %}
+<link rel="stylesheet" href="/css/main.css">
 
-{% block content %}
 
-  <div id="posts" class="posts-expand">
-    {{ partial('_macro/post.swig', {post: page}) }}
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.damengzhang.cn","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="什么是解构赋值解构赋值是 es6 新增语法，通过解构赋值可以从对象（数组 &#x2F; 字符串）中将属性值（元素 &#x2F; 字符）提取出来，赋值或初始化给其他变量。 应用场景赋值1234567891011121314151617&#x2F;&#x2F;数组var a, b;[a, b] &#x3D; [1, 2];&#x2F;&#x2F;给 a b 变量赋值var foo &#x3D; [&quot;one&quot;, &quot;two&quot;, &quot;th">
+<meta property="og:type" content="article">
+<meta property="og:title" content="es6 解构赋值">
+<meta property="og:url" content="https://www.damengzhang.cn/web/javascript/es6/es6%20%E8%A7%A3%E6%9E%84%E8%B5%8B%E5%80%BC/index.html">
+<meta property="og:site_name" content="DaMeng">
+<meta property="og:description" content="什么是解构赋值解构赋值是 es6 新增语法，通过解构赋值可以从对象（数组 &#x2F; 字符串）中将属性值（元素 &#x2F; 字符）提取出来，赋值或初始化给其他变量。 应用场景赋值1234567891011121314151617&#x2F;&#x2F;数组var a, b;[a, b] &#x3D; [1, 2];&#x2F;&#x2F;给 a b 变量赋值var foo &#x3D; [&quot;one&quot;, &quot;two&quot;, &quot;th">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-03-10T11:18:38.000Z">
+<meta property="article:modified_time" content="2020-09-14T10:59:34.000Z">
+<meta property="article:author" content="DaMeng">
+<meta property="article:tag" content="es6">
+<meta property="article:tag" content="解构赋值">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://www.damengzhang.cn/web/javascript/es6/es6%20%E8%A7%A3%E6%9E%84%E8%B5%8B%E5%80%BC/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>es6 解构赋值 | DaMeng</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QE7RR3D8Y8"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-QE7RR3D8Y8');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
   </div>
 
-{% endblock %}
+  <div class="site-meta">
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">DaMeng</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.damengzhang.cn/web/javascript/es6/es6%20%E8%A7%A3%E6%9E%84%E8%B5%8B%E5%80%BC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="DaMeng">
+      <meta itemprop="description" content="forever">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaMeng">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          es6 解构赋值
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-03-10 19:18:38" itemprop="dateCreated datePublished" datetime="2019-03-10T19:18:38+08:00">2019-03-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web/" itemprop="url" rel="index"><span itemprop="name">web</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web/javascript/es6/" itemprop="url" rel="index"><span itemprop="name">es6</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="什么是解构赋值"><a href="#什么是解构赋值" class="headerlink" title="什么是解构赋值"></a>什么是解构赋值</h1><p>解构赋值是 es6 新增语法，通过解构赋值可以从对象（数组 / 字符串）中将属性值（元素 / 字符）提取出来，赋值或初始化给其他变量。</p>
+<h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1><h2 id="赋值"><a href="#赋值" class="headerlink" title="赋值"></a>赋值</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//数组</span></span><br><span class="line"><span class="keyword">var</span> a, b;</span><br><span class="line">[a, b] = [<span class="number">1</span>, <span class="number">2</span>];<span class="comment">//给 a b 变量赋值</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> foo = [<span class="string">&quot;one&quot;</span>, <span class="string">&quot;two&quot;</span>, <span class="string">&quot;three&quot;</span>];</span><br><span class="line"><span class="keyword">var</span> [one, two, three] = foo;<span class="comment">//初始化 one two three 变量</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//对象</span></span><br><span class="line"><span class="keyword">var</span> o = &#123;<span class="attr">p</span>: <span class="number">42</span>, <span class="attr">q</span>: <span class="literal">true</span>&#125;;</span><br><span class="line"><span class="keyword">var</span> &#123;p, q&#125; = o;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(p); <span class="comment">// 42</span></span><br><span class="line"><span class="built_in">console</span>.log(q); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> a, b;</span><br><span class="line"></span><br><span class="line">(&#123;a, b&#125; = &#123;<span class="attr">a</span>: <span class="number">1</span>, <span class="attr">b</span>: <span class="number">2</span>&#125;);<span class="comment">//在使用对象字面量无声明解构赋值时是必须的</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="设置默认值"><a href="#设置默认值" class="headerlink" title="设置默认值"></a>设置默认值</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//数组</span></span><br><span class="line"><span class="keyword">var</span> a, b;</span><br><span class="line"></span><br><span class="line">[a=<span class="number">5</span>, b=<span class="number">7</span>] = [<span class="number">1</span>];</span><br><span class="line"><span class="built_in">console</span>.log(a); <span class="comment">// 1</span></span><br><span class="line"><span class="built_in">console</span>.log(b); <span class="comment">// 7</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//对象</span></span><br><span class="line"><span class="keyword">var</span> &#123;<span class="attr">a</span>:aa = <span class="number">10</span>, <span class="attr">b</span>:bb = <span class="number">5</span>&#125; = &#123;<span class="attr">a</span>: <span class="number">3</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(aa); <span class="comment">// 3</span></span><br><span class="line"><span class="built_in">console</span>.log(bb); <span class="comment">// 5</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="交换变量"><a href="#交换变量" class="headerlink" title="交换变量"></a>交换变量</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">var</span> b = <span class="number">3</span>;</span><br><span class="line"></span><br><span class="line">[a, b] = [b, a];</span><br></pre></td></tr></table></figure>
+
+<h2 id="接收函数返回值"><a href="#接收函数返回值" class="headerlink" title="接收函数返回值"></a>接收函数返回值</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> [<span class="number">1</span>, <span class="number">2</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> a, b; </span><br><span class="line">[a, b] = f(); <span class="comment">//a = 1  b = 2</span></span><br><span class="line">[, b] = f();<span class="comment">//b = 2</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="将剩余数组赋值给一个变量"><a href="#将剩余数组赋值给一个变量" class="headerlink" title="将剩余数组赋值给一个变量"></a>将剩余数组赋值给一个变量</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//数组</span></span><br><span class="line"><span class="keyword">var</span> [a, ...b] = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="built_in">console</span>.log(a); <span class="comment">// 1</span></span><br><span class="line"><span class="built_in">console</span>.log(b); <span class="comment">// [2, 3]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//对象</span></span><br><span class="line"><span class="keyword">let</span> &#123;a, b, ...rest&#125; = &#123;<span class="attr">a</span>: <span class="number">10</span>, <span class="attr">b</span>: <span class="number">20</span>, <span class="attr">c</span>: <span class="number">30</span>, <span class="attr">d</span>: <span class="number">40</span>&#125;</span><br><span class="line">a; <span class="comment">// 10 </span></span><br><span class="line">b; <span class="comment">// 20 </span></span><br><span class="line">rest; <span class="comment">// &#123; c: 30, d: 40 &#125;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><h2 id="解构对象时会查找原型链"><a href="#解构对象时会查找原型链" class="headerlink" title="解构对象时会查找原型链"></a>解构对象时会查找原型链</h2><p>如果属性不在对象自身，将从原型链中查找</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 声明对象 和 自身 self 属性</span></span><br><span class="line"><span class="keyword">var</span> obj = &#123;<span class="attr">self</span>: <span class="string">&#x27;123&#x27;</span>&#125;;</span><br><span class="line"><span class="comment">// 在原型链中定义一个属性 prot</span></span><br><span class="line">obj.__proto__.prot = <span class="string">&#x27;456&#x27;</span>;</span><br><span class="line"><span class="comment">// test</span></span><br><span class="line"><span class="keyword">const</span> &#123;self, prot&#125; = obj;</span><br><span class="line"><span class="comment">// self &quot;123&quot;</span></span><br><span class="line"><span class="comment">// prot &quot;456&quot;（访问到了原型链）</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="解构赋值是浅拷贝"><a href="#解构赋值是浅拷贝" class="headerlink" title="解构赋值是浅拷贝"></a>解构赋值是浅拷贝</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> src = &#123;<span class="attr">a</span>: &#123;<span class="attr">b</span>: <span class="number">1</span>&#125;&#125;;</span><br><span class="line"><span class="keyword">var</span> &#123;a&#125;  = src;</span><br><span class="line"></span><br><span class="line">a.b = <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log( <span class="built_in">JSON</span>.stringify(a) );<span class="comment">//&#123;&quot;b&quot;:2&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log( <span class="built_in">JSON</span>.stringify(src) );<span class="comment">//&#123;&quot;a&quot;:&#123;&quot;b&quot;:2&#125;&#125;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/es6/" rel="tag"># es6</a>
+              <a href="/tags/%E8%A7%A3%E6%9E%84%E8%B5%8B%E5%80%BC/" rel="tag"># 解构赋值</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/web/react/react%20Context/" rel="prev" title="react Context">
+      <i class="fa fa-chevron-left"></i> react Context
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/web/javascript/es6/Fetch/" rel="next" title="Fetch">
+      Fetch <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E8%A7%A3%E6%9E%84%E8%B5%8B%E5%80%BC"><span class="nav-text">什么是解构赋值</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-text">应用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B5%8B%E5%80%BC"><span class="nav-text">赋值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E9%BB%98%E8%AE%A4%E5%80%BC"><span class="nav-text">设置默认值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%A4%E6%8D%A2%E5%8F%98%E9%87%8F"><span class="nav-text">交换变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A5%E6%94%B6%E5%87%BD%E6%95%B0%E8%BF%94%E5%9B%9E%E5%80%BC"><span class="nav-text">接收函数返回值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%86%E5%89%A9%E4%BD%99%E6%95%B0%E7%BB%84%E8%B5%8B%E5%80%BC%E7%BB%99%E4%B8%80%E4%B8%AA%E5%8F%98%E9%87%8F"><span class="nav-text">将剩余数组赋值给一个变量</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F"><span class="nav-text">注意</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E6%9E%84%E5%AF%B9%E8%B1%A1%E6%97%B6%E4%BC%9A%E6%9F%A5%E6%89%BE%E5%8E%9F%E5%9E%8B%E9%93%BE"><span class="nav-text">解构对象时会查找原型链</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E6%9E%84%E8%B5%8B%E5%80%BC%E6%98%AF%E6%B5%85%E6%8B%B7%E8%B4%9D"><span class="nav-text">解构赋值是浅拷贝</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">DaMeng</p>
+  <div class="site-description" itemprop="description">forever</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">103</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">71</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/damengzhang" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;damengzhang" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DaMeng</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

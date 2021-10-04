@@ -1,18 +1,524 @@
-{% extends '_layout.swig' %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/b_icon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/s_icon.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-{% block title %}{{ title }}{%- if theme.index_with_subtitle and subtitle %} - {{ subtitle }}{%- endif %}{% endblock %}
+<link rel="stylesheet" href="/css/main.css">
 
-{% block content %}
-  <div id="posts" class="posts-expand">
-    {%- for post in page.posts %}
-      {{ partial('_macro/post.swig', {is_index: true}) }}
-    {%- endfor %}
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.damengzhang.cn","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="forever">
+<meta property="og:type" content="website">
+<meta property="og:title" content="DaMeng">
+<meta property="og:url" content="https://www.damengzhang.cn/page/15/index.html">
+<meta property="og:site_name" content="DaMeng">
+<meta property="og:description" content="forever">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="DaMeng">
+<meta property="article:tag" content="前端 教程 大梦 DaMeng Zhang">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://www.damengzhang.cn/page/15/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>DaMeng</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QE7RR3D8Y8"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-QE7RR3D8Y8');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
   </div>
 
-  {% include '_partials/pagination.swig' %}
-{% endblock %}
+  <div class="site-meta">
 
-{% block sidebar %}
-  {{ sidebar_template.render(false) }}
-{% endblock %}
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">DaMeng</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.damengzhang.cn/web/babel/Babel/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="DaMeng">
+      <meta itemprop="description" content="forever">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaMeng">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/web/babel/Babel/" class="post-title-link" itemprop="url">Babel</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-05-15 18:40:38" itemprop="dateCreated datePublished" datetime="2020-05-15T18:40:38+08:00">2020-05-15</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web/" itemprop="url" rel="index"><span itemprop="name">web</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web/Babel/" itemprop="url" rel="index"><span itemprop="name">Babel</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="1-Babel-是什么"><a href="#1-Babel-是什么" class="headerlink" title="1 Babel 是什么"></a>1 Babel 是什么</h1><p>Babel 是一个 JS 编译器，能够将 ES6+ 版本的 JS 语法编译为向后兼容的 JS 语法，进而使我们无需等待浏览器支持就可以使用新语法。</p>
+<h1 id="2-安装"><a href="#2-安装" class="headerlink" title="2 安装"></a>2 安装</h1><p>通过下面命令安装所需包：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev @babel/core @babel/cli @babel/preset-env</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-1-安装包介绍"><a href="#2-1-安装包介绍" class="headerlink" title="2.1 安装包介绍"></a>2.1 安装包介绍</h2><h3 id="2-1-1-babel-core"><a href="#2-1-1-babel-core" class="headerlink" title="2.1.1 @babel/core"></a>2.1.1 @babel/core</h3><p>​    @babel/core 是  Babel 的核心模块，可以将代码解析成 AST，各个插件会在 AST 的基础上进行语法转换。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> babel = <span class="built_in">require</span>(<span class="string">&quot;@babel/core&quot;</span>);</span><br><span class="line"></span><br><span class="line">babel.transform(<span class="string">&quot;code&quot;</span>, optionsObject);</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-1-2-babel-cli"><a href="#2-1-2-babel-cli" class="headerlink" title="2.1.2 @babel/cli"></a>2.1.2 @babel/cli</h3><p>@babel/cli 是 Babel 的命令行工具，可以使我们通过命令行使用使用 Babel。</p>
+<p>安装后可以通过下面方式使用 @babel/cli：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev @babel/core @babel/cli</span><br><span class="line"></span><br><span class="line">./node_modules/.bin/babel src --out-dir lib</span><br></pre></td></tr></table></figure>
+
+<p>这个命令将解析 src 目录中的所有 JS 文件，并将每个文件的转换结果输出到 lib 目录。 由于我们没告诉它应该如何转换，因此输出代码将与输入相同（不保留代码样式）。 我们可以通过选项参数来指定所需的转换。</p>
+<h3 id="2-1-3-Plugins-amp-Presets"><a href="#2-1-3-Plugins-amp-Presets" class="headerlink" title="2.1.3 Plugins &amp; Presets"></a>2.1.3 Plugins &amp; Presets</h3><h4 id="2-1-3-1-Plugins（插件）"><a href="#2-1-3-1-Plugins（插件）" class="headerlink" title="2.1.3.1 Plugins（插件）"></a>2.1.3.1 Plugins（插件）</h4><p>Babel 通过具体 Plugins（插件）来进行语法转换，如 @babel/plugin-transform-arrow-functions 可以将箭头函数转换为普通函数。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev @babel/plugin-transform-arrow-functions</span><br><span class="line"></span><br><span class="line">./node_modules/.bin/babel src --out-dir lib --plugins=@babel/plugin-transform-arrow-functions</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>配置</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;plugins&quot;</span>: [ <span class="string">&quot;myPlugin&quot;</span> ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>短名称</p>
+<p>如果插件名称的前缀为 <code>babel-plugin-</code>，则可以使用它的短名称</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;plugins&quot;</span>: [</span><br><span class="line">    <span class="string">&quot;myPlugin&quot;</span>,</span><br><span class="line">    <span class="string">&quot;babel-plugin-myPlugin&quot;</span> <span class="comment">// 两个插件实际是同一个</span></span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//这也适用于带有 scope 的插件</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;plugins&quot;</span>: [</span><br><span class="line">    <span class="string">&quot;@org/babel-plugin-name&quot;</span>,</span><br><span class="line">    <span class="string">&quot;@org/name&quot;</span> <span class="comment">// 两个插件实际是同一个</span></span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="2-1-3-2-Presets（预设）"><a href="#2-1-3-2-Presets（预设）" class="headerlink" title="2.1.3.2 Presets（预设）"></a>2.1.3.2 Presets（预设）</h4><p>@babel/presets-* 是一组插件的集合，安装一个 Presets 可以替代单独安装多个插件。可以通过创建自己的 Presets 来创建任意插件的组合。</p>
+<p>@babel/preset-env 是最常用的 Presets，包含了支持 ES6+ 特性的大多插件。如果源码使用了不在 @babel/preset-env 中的语法，编译时会报错，可根据具体错误提示安装对应插件，并将对应插件添加到 babel 配置文件中。</p>
+<ul>
+<li><p>配置</p>
+<p>直接配置 Presets 名称 Babel 会在 nodde_module 目录中查找：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;presets&quot;</span>: [<span class="string">&quot;babel-preset-myPreset&quot;</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>也可以配置 Presets 的绝对/相对路径：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;presets&quot;</span>: [<span class="string">&quot;./myProject/myPreset&quot;</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>短名称</p>
+<p>如果 Presets 名称的前缀为 <code>babel-preset-</code>，则还可以使用它的短名称：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;presets&quot;</span>: [</span><br><span class="line">    <span class="string">&quot;myPreset&quot;</span>,</span><br><span class="line">    <span class="string">&quot;babel-preset-myPreset&quot;</span> <span class="comment">// 这两个相同</span></span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>短名称也适用于带有冠名（scope）的 Presets：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;presets&quot;</span>: [</span><br><span class="line">    <span class="string">&quot;@org/babel-preset-name&quot;</span>,</span><br><span class="line">    <span class="string">&quot;@org/name&quot;</span> <span class="comment">// 这两个相同</span></span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="2-1-3-3-执行顺序"><a href="#2-1-3-3-执行顺序" class="headerlink" title="2.1.3.3 执行顺序"></a>2.1.3.3 执行顺序</h4><ul>
+<li><p>插件比 presets 先运行</p>
+</li>
+<li><p>插件按照<strong>从前往后</strong>的顺序执行</p>
+</li>
+<li><p>Presets 按照<strong>从后往前</strong>的顺序执行</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//执行顺序： transform-decorators-legacy  transform-class-properties</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;plugins&quot;</span>: [<span class="string">&quot;transform-decorators-legacy&quot;</span>, <span class="string">&quot;transform-class-properties&quot;</span>]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//执行顺序：stage-2、react 然后是 es2015。</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;presets&quot;</span>: [<span class="string">&quot;es2015&quot;</span>, <span class="string">&quot;react&quot;</span>, <span class="string">&quot;stage-2&quot;</span>]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="2-1-3-4-参数配置"><a href="#2-1-3-4-参数配置" class="headerlink" title="2.1.3.4 参数配置"></a>2.1.3.4 参数配置</h4><p>插件和 Presets 都可以接受参数，插件名和参数对象组成一个数组。</p>
+<p>下面几种情况都属于不配置参数：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;plugins&quot;</span>: [<span class="string">&quot;pluginA&quot;</span>, [<span class="string">&quot;pluginA&quot;</span>], [<span class="string">&quot;pluginA&quot;</span>, &#123;&#125;]]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>插件配置参数：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;plugins&quot;</span>: [</span><br><span class="line">    [</span><br><span class="line">      <span class="string">&quot;transform-async-to-module-method&quot;</span>,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">&quot;module&quot;</span>: <span class="string">&quot;bluebird&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;method&quot;</span>: <span class="string">&quot;coroutine&quot;</span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Presets 配置参数：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;presets&quot;</span>: [</span><br><span class="line">    [</span><br><span class="line">      <span class="string">&quot;env&quot;</span>,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">&quot;loose&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">&quot;modules&quot;</span>: <span class="literal">false</span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-1-4-babel-polyfill"><a href="#2-1-4-babel-polyfill" class="headerlink" title="2.1.4 @babel/polyfill"></a>2.1.4 @babel/polyfill</h3><p>polyfill 是垫片的意思。Babel 将 ES 标准分为 syntax 和 built-in 两种类型，对于可以通过改写覆盖方法实现的就是 built-in，如 Array.prototype.includes、Array.from、Object.assign、Promise 等，而对于如 const、let、import、class 则被分类为 syntax。 </p>
+<p>对于 built-in 类型会通过 @babel/polyfill 来进行转译，其实现方法即通过 Object.defineProperty 来实现这些标准。</p>
+<h3 id="2-1-5-core-js"><a href="#2-1-5-core-js" class="headerlink" title="2.1.5 core-js"></a>2.1.5 core-js</h3><p>Babel 在 7.4.0 版本中宣布废弃 @babel/polyfill，使用 core-js 替代。</p>
+<h4 id="2-1-5-1-安装"><a href="#2-1-5-1-安装" class="headerlink" title="2.1.5.1 安装"></a>2.1.5.1 安装</h4><p>生产环境也需要 core-js，所以使用 –save 安装。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install core-js --save</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-1-5-2-配置"><a href="#2-1-5-2-配置" class="headerlink" title="2.1.5.2 配置"></a>2.1.5.2 配置</h4><p>在 babel 配置文件中通过配置 <code>useBuiltIns</code> 来控制 built-in 类型垫片的注入。可以设置成 <code>entry</code>、<code>usage</code>和<code>false</code>， 默认值为 <code>false</code> 。</p>
+<ul>
+<li>entry：在入口注入目标环境所有不支持的 built-in，会增加代码体积。</li>
+<li>usage：编译时根据源码对 built-in  的使用情况，在对应页面注入相应的实现</li>
+<li>false：表示不注入垫片</li>
+</ul>
+<h3 id="2-1-6-babel-plugin-transform-runtime"><a href="#2-1-6-babel-plugin-transform-runtime" class="headerlink" title="2.1.6 @babel/plugin-transform-runtime"></a>2.1.6 @babel/plugin-transform-runtime</h3><p>@babel/plugin-transform-runtime 可以将编译后文件中的重复 helper 函数提取出来，并且能够提供沙箱环境，达到了节省代码体积、不会污染全局的效果。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev @babel/plugin-transform-runtime</span><br><span class="line">npm install --save @babel/runtime</span><br><span class="line"></span><br><span class="line"><span class="comment">#使用 core-js</span></span><br><span class="line">npm uninstall --save @babel/runtime</span><br><span class="line">npm install --save @babel/runtime-corejs3</span><br></pre></td></tr></table></figure>
+
+<p>@babel/plugin-transform-runtime 的默认配置不会包含 core-js ，需要通过 corejs 选项来设置，并且需要安装对应 corejs 的版本。</p>
+<table>
+<thead>
+<tr>
+<th>corejs option</th>
+<th>Install command</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>false</td>
+<td>npm install –save @babel/runtime</td>
+</tr>
+<tr>
+<td>2</td>
+<td>npm install –save @babel/runtime-corejs2</td>
+</tr>
+<tr>
+<td>3</td>
+<td>npm install –save @babel/runtime-corejs3</td>
+</tr>
+</tbody></table>
+<h1 id="3-配置"><a href="#3-配置" class="headerlink" title="3 配置"></a>3 配置</h1><p>项目根目录配置 babel.config.json 文件：</p>
+<p>targets 属性配置目标环境，babel 会根据目标环境来进行按需转译。</p>
+<p>不使用 @babel/plugin-transform-runtime 的配置</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="attr">&quot;presets&quot;</span>: [</span><br><span class="line">		[</span><br><span class="line">			<span class="string">&quot;@babel/env&quot;</span>,</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="attr">&quot;targets&quot;</span>: &#123;</span><br><span class="line">					<span class="attr">&quot;edge&quot;</span>: <span class="string">&quot;17&quot;</span>,</span><br><span class="line">					<span class="attr">&quot;firefox&quot;</span>: <span class="string">&quot;60&quot;</span>,</span><br><span class="line">					<span class="attr">&quot;chrome&quot;</span>: <span class="string">&quot;67&quot;</span>,</span><br><span class="line">					<span class="attr">&quot;safari&quot;</span>: <span class="string">&quot;11.1&quot;</span></span><br><span class="line">				&#125;,</span><br><span class="line">				<span class="attr">&quot;useBuiltIns&quot;</span>: <span class="string">&quot;usage&quot;</span>,</span><br><span class="line">				<span class="attr">&quot;corejs&quot;</span>: <span class="string">&quot;3&quot;</span></span><br><span class="line">			&#125;</span><br><span class="line">		]</span><br><span class="line">	]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用 @babel/plugin-transform-runtime 的配置：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="attr">&quot;presets&quot;</span>: [</span><br><span class="line">		[</span><br><span class="line">			<span class="string">&quot;@babel/env&quot;</span>,</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="attr">&quot;targets&quot;</span>: &#123;</span><br><span class="line">					<span class="attr">&quot;edge&quot;</span>: <span class="string">&quot;17&quot;</span>,</span><br><span class="line">					<span class="attr">&quot;firefox&quot;</span>: <span class="string">&quot;60&quot;</span>,</span><br><span class="line">					<span class="attr">&quot;chrome&quot;</span>: <span class="string">&quot;67&quot;</span>,</span><br><span class="line">					<span class="attr">&quot;safari&quot;</span>: <span class="string">&quot;11.1&quot;</span></span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		]</span><br><span class="line">	],</span><br><span class="line">	<span class="attr">&quot;plugins&quot;</span>: [[<span class="string">&quot;@babel/plugin-transform-runtime&quot;</span>, &#123; <span class="attr">&quot;corejs&quot;</span>: <span class="number">3</span> &#125;]]</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://juejin.im/post/6844903602822053895">https://juejin.im/post/6844903602822053895</a></p>
+<p><a target="_blank" rel="noopener" href="https://babeljs.io/docs/en/next/babel-preset-env.html">https://babeljs.io/docs/en/next/babel-preset-env.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/sefaultment/p/11631314.html">https://www.cnblogs.com/sefaultment/p/11631314.html</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/14/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><span class="page-number current">15</span><a class="page-number" href="/page/16/">16</a><span class="space">&hellip;</span><a class="page-number" href="/page/103/">103</a><a class="extend next" rel="next" href="/page/16/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">DaMeng</p>
+  <div class="site-description" itemprop="description">forever</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">103</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">71</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/damengzhang" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;damengzhang" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DaMeng</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink({
+        timeout : 3000,
+        priority: true,
+        ignores : [uri => uri.includes('#'),uri => uri === 'https://www.damengzhang.cn/page/15/',]
+      });
+      });
+  </script>
+
+</body>
+</html>

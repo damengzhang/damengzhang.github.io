@@ -1,18 +1,597 @@
-{% extends '_layout.swig' %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/b_icon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/s_icon.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-{% block title %}{{ title }}{%- if theme.index_with_subtitle and subtitle %} - {{ subtitle }}{%- endif %}{% endblock %}
+<link rel="stylesheet" href="/css/main.css">
 
-{% block content %}
-  <div id="posts" class="posts-expand">
-    {%- for post in page.posts %}
-      {{ partial('_macro/post.swig', {is_index: true}) }}
-    {%- endfor %}
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.damengzhang.cn","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="forever">
+<meta property="og:type" content="website">
+<meta property="og:title" content="DaMeng">
+<meta property="og:url" content="https://www.damengzhang.cn/page/32/index.html">
+<meta property="og:site_name" content="DaMeng">
+<meta property="og:description" content="forever">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="DaMeng">
+<meta property="article:tag" content="前端 教程 大梦 DaMeng Zhang">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://www.damengzhang.cn/page/32/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>DaMeng</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QE7RR3D8Y8"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-QE7RR3D8Y8');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
   </div>
 
-  {% include '_partials/pagination.swig' %}
-{% endblock %}
+  <div class="site-meta">
 
-{% block sidebar %}
-  {{ sidebar_template.render(false) }}
-{% endblock %}
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">DaMeng</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.damengzhang.cn/maven/Maven/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="DaMeng">
+      <meta itemprop="description" content="forever">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaMeng">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/maven/Maven/" class="post-title-link" itemprop="url">Maven</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-07-25 19:40:38" itemprop="dateCreated datePublished" datetime="2019-07-25T19:40:38+08:00">2019-07-25</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Maven/" itemprop="url" rel="index"><span itemprop="name">Maven</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="1-Maven-介绍"><a href="#1-Maven-介绍" class="headerlink" title="1 Maven 介绍"></a>1 Maven 介绍</h1><h2 id="1-1-是什么"><a href="#1-1-是什么" class="headerlink" title="1.1 是什么"></a>1.1 是什么</h2><p>Maven 是一个项目管理工具，可被用于构建和管理各种项目。例如java, C#，Ruby，Scala 和其他语言编写的项目。</p>
+<p>Maven 基于项目对象模型（缩写：POM），利用一个中央信息片断能管理一个项目的构建（编译、测试、运行、打包、安装、部署）、依赖管理等。</p>
+<h2 id="1-2-Maven-特点"><a href="#1-2-Maven-特点" class="headerlink" title="1.2 Maven 特点"></a>1.2 Maven 特点</h2><ul>
+<li>项目设置遵循统一的规则。</li>
+<li>任意工程中共享。</li>
+<li>依赖管理包括自动更新。</li>
+<li>一个庞大且不断增长的库。</li>
+<li>可扩展，能够轻松编写 Java 或脚本语言的插件。</li>
+<li>只需很少或不需要额外配置即可即时访问新功能。</li>
+<li><strong>基于模型的构建</strong> − Maven 能够将任意数量的项目构建到预定义的输出类型中，如 JAR，WAR 或基于项目元数据的分发，而不需要在大多数情况下执行任何脚本。</li>
+<li><strong>项目信息的一致性站点</strong> − 使用与构建过程相同的元数据，Maven 能够生成一个网站或PDF，包括您要添加的任何文档，并添加到关于项目开发状态的标准报告中。</li>
+<li><strong>发布管理和发布单独的输出</strong> − Maven 将不需要额外的配置，就可以与源代码管理系统（如 Subversion 或 Git）集成，并可以基于某个标签管理项目的发布。它也可以将其发布到分发位置供其他项目使用。Maven 能够发布单独的输出，如 JAR，包含其他依赖和文档的归档，或者作为源代码发布。</li>
+<li><strong>向后兼容性</strong> − 您可以很轻松的从旧版本 Maven 的多个模块移植到 Maven 3 中。</li>
+<li>子项目使用父项目依赖时，正常情况子项目应该继承父项目依赖，无需使用版本号，</li>
+<li><strong>并行构建</strong> − 编译的速度能普遍提高20 - 50 %。</li>
+<li><strong>更好的错误报告</strong> − Maven 改进了错误报告，它为您提供了 Maven wiki 页面的链接，您可以点击链接查看错误的完整描述。</li>
+</ul>
+<h2 id="1-3-项目目录结构"><a href="#1-3-项目目录结构" class="headerlink" title="1.3 项目目录结构"></a>1.3 项目目录结构</h2><p>Maven 提倡按照如下标准目录结构进行配置：</p>
+<table>
+<thead>
+<tr>
+<th align="left">目录</th>
+<th align="left">目的</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">${basedir}</td>
+<td align="left">存放 pom.xml 和所有的子目录</td>
+</tr>
+<tr>
+<td align="left">${basedir}/src/main/java</td>
+<td align="left">项目的 java 源代码</td>
+</tr>
+<tr>
+<td align="left">${basedir}/src/main/resources</td>
+<td align="left">项目的资源，比如说 property 文件，springmvc.xml</td>
+</tr>
+<tr>
+<td align="left">${basedir}/src/test/java</td>
+<td align="left">项目的测试类，比如说 Junit 代码</td>
+</tr>
+<tr>
+<td align="left">${basedir}/src/test/resources</td>
+<td align="left">测试用的资源</td>
+</tr>
+<tr>
+<td align="left">${basedir}/src/main/webapp/WEB-INF</td>
+<td align="left">web 应用文件目录，web 项目的信息，比如存放 web.xml、本地图片、jsp 视图页面</td>
+</tr>
+<tr>
+<td align="left">${basedir}/target</td>
+<td align="left">打包输出目录</td>
+</tr>
+<tr>
+<td align="left">${basedir}/target/classes</td>
+<td align="left">编译输出目录</td>
+</tr>
+<tr>
+<td align="left">${basedir}/target/test-classes</td>
+<td align="left">测试编译输出目录</td>
+</tr>
+<tr>
+<td align="left">Test.java</td>
+<td align="left">Maven 只会自动运行符合该命名规则的测试类</td>
+</tr>
+<tr>
+<td align="left">~/.m2/repository</td>
+<td align="left">Maven 默认的本地仓库目录位置</td>
+</tr>
+</tbody></table>
+<h1 id="2-Maven-POM"><a href="#2-Maven-POM" class="headerlink" title="2 Maven POM"></a>2 Maven POM</h1><p>Maven 使用 POM（Project Object Model，项目对象模型）用来描述项目基本信息。</p>
+<p>执行项目时，Maven 会在当前目录中找并读取 pom.xml 文件，获取所需的配置信息来执行。</p>
+<p>所有 pom.xml 都需要有 project 元素和三个必需字段：groupId，artifactId，version。</p>
+<table>
+<thead>
+<tr>
+<th align="left">节点</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">project</td>
+<td align="left">工程的根标签。</td>
+</tr>
+<tr>
+<td align="left">modelVersion</td>
+<td align="left">模型版本需要设置为 4.0。</td>
+</tr>
+<tr>
+<td align="left">groupId</td>
+<td align="left">这是工程组的标识。它在一个组织或者项目中通常是唯一的。例如，一个银行组织 com.companyname.project-group 拥有所有的和银行相关的项目。</td>
+</tr>
+<tr>
+<td align="left">artifactId</td>
+<td align="left">这是工程的标识。它通常是工程的名称。例如，消费者银行。groupId 和 artifactId 一起定义了 artifact 在仓库中的位置。</td>
+</tr>
+<tr>
+<td align="left">version</td>
+<td align="left">这是工程的版本号。在 artifact 的仓库中，它用来区分不同的版本。例如：<code>com.company.bank:consumer-banking:1.0 com.company.bank:consumer-banking:1.1</code></td>
+</tr>
+</tbody></table>
+<h1 id="3-Maven-构建生命周期"><a href="#3-Maven-构建生命周期" class="headerlink" title="3 Maven 构建生命周期"></a>3 Maven 构建生命周期</h1><p>Maven 的典型生命周期由下面几个阶段组成：</p>
+<table>
+<thead>
+<tr>
+<th align="left">阶段</th>
+<th align="left">处理</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">验证 validate</td>
+<td align="left">验证项目</td>
+<td align="left">验证项目是否正确且所有必须信息是可用的</td>
+</tr>
+<tr>
+<td align="left">编译 compile</td>
+<td align="left">执行编译</td>
+<td align="left">源代码编译在此阶段完成</td>
+</tr>
+<tr>
+<td align="left">测试 Test</td>
+<td align="left">测试</td>
+<td align="left">使用适当的单元测试框架（例如JUnit）运行测试。</td>
+</tr>
+<tr>
+<td align="left">包装 package</td>
+<td align="left">打包</td>
+<td align="left">创建JAR/WAR包如在 pom.xml 中定义提及的包</td>
+</tr>
+<tr>
+<td align="left">检查 verify</td>
+<td align="left">检查</td>
+<td align="left">对集成测试的结果进行检查，以保证质量达标</td>
+</tr>
+<tr>
+<td align="left">安装 install</td>
+<td align="left">安装</td>
+<td align="left">安装打包的项目到本地仓库，以供其他项目使用</td>
+</tr>
+<tr>
+<td align="left">部署 deploy</td>
+<td align="left">部署</td>
+<td align="left">拷贝最终的工程包到远程仓库中，以共享给其他开发人员和工程</td>
+</tr>
+</tbody></table>
+<h1 id="4-settings-xml"><a href="#4-settings-xml" class="headerlink" title="4 settings.xml"></a>4 settings.xml</h1><p>settings.xml 是 maven 的全局配置文件，pom.xml 是所在项目的局部配置文件。Settings.xml中包含类似本地仓储位置、修改远程仓储服务器、认证信息等配置。</p>
+<p>settings.xml文件一般存在于两个位置：</p>
+<ul>
+<li>全局配置: ${M2_HOME}/conf/settings.xml</li>
+<li>用户配置: user.home/.m2/settings.xml     （用户配置优先于全局配置）</li>
+</ul>
+<p>配置优先级从高到低：pom.xml&gt; user settings &gt; global settings</p>
+<h1 id="5-Maven-仓库"><a href="#5-Maven-仓库" class="headerlink" title="5 Maven 仓库"></a>5 Maven 仓库</h1><p>Maven 项目中依赖的第三方库所在的位置叫做仓库。</p>
+<p>Maven 仓库有三种类型：</p>
+<ul>
+<li><p>本地（local）</p>
+<ul>
+<li><p>Maven 本地仓库默认被创建在 %USER_HOME% 目录下。要修改默认位置，在 %M2_HOME%\conf 目录中的 Maven 的 settings.xml 文件中定义另一个路径。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">settings</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://maven.apache.org/SETTINGS/1.0.0&quot;</span></span></span><br><span class="line"><span class="tag">   <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">   <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://maven.apache.org/SETTINGS/1.0.0 </span></span></span><br><span class="line"><span class="string"><span class="tag">   http://maven.apache.org/xsd/settings-1.0.0.xsd&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">localRepository</span>&gt;</span>C:/MyLocalRepository<span class="tag">&lt;/<span class="name">localRepository</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">settings</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>中央（central）</p>
+<ul>
+<li>这个仓库由 Maven 社区管理，包含了大量常用的库。</li>
+<li>不需要配置，需要通过网络才能访问。</li>
+</ul>
+</li>
+<li><p>远程（remote，私服）</p>
+<ul>
+<li>开发人员自己定制仓库，包含了所需要的代码库或者其他工程中用到的 jar 文件</li>
+</ul>
+</li>
+</ul>
+<h1 id="6-Maven-快照"><a href="#6-Maven-快照" class="headerlink" title="6 Maven 快照"></a>6 Maven 快照</h1><p>快照是模块的临时版本。maven 根据模块的版本号( pom 文件中的 version )中是否带有<code>-SNAPSHOT</code>来判断是快照版本还是正式版本。</p>
+<ul>
+<li><p>对于快照版本，执行 mvn deploy 时会自动发布到快照版本库中，并覆盖老的快照版本。依赖快照版本的模块，在不更改版本号的情况下，编译打包时，maven 自动从镜像服务器上下载最新的快照版本。</p>
+</li>
+<li><p>对于正式发布版本，执行 mvn deploy 时会自动发布到正式版本库中。依赖正式版本的模块，在不更改版本号的情况下，编译打包时如果本地已经存在该版本的模块，则<strong>不会</strong>主动去镜像服务器上下载。</p>
+</li>
+</ul>
+<p>在开发阶段，使用快照版本进行开发，能够使依赖快照版本的模块不需要修改 pom 文件版本号也能下载新的版本，从而提升开发效率。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/31/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/31/">31</a><span class="page-number current">32</span><a class="page-number" href="/page/33/">33</a><span class="space">&hellip;</span><a class="page-number" href="/page/103/">103</a><a class="extend next" rel="next" href="/page/33/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">DaMeng</p>
+  <div class="site-description" itemprop="description">forever</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">103</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">71</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/damengzhang" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;damengzhang" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DaMeng</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink({
+        timeout : 3000,
+        priority: true,
+        ignores : [uri => uri.includes('#'),uri => uri === 'https://www.damengzhang.cn/page/32/',]
+      });
+      });
+  </script>
+
+</body>
+</html>

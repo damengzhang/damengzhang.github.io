@@ -1,16 +1,437 @@
-{% extends '_layout.swig' %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/b_icon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/s_icon.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-{% block title %}{{ page.title }} | {{ title }}{% endblock %}
+<link rel="stylesheet" href="/css/main.css">
 
-{% block content %}
 
-  <div id="posts" class="posts-expand">
-    {{ partial('_macro/post.swig', {post: page}) }}
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.damengzhang.cn","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="1 是什么Ref 转发指组件接收 ref 参数，并将 ref 参数传递给子节点。 2 解决什么问题解决需要在组件外部对组件内部节点进行管理的问题。 3 使用 只有通过 React.forwardRef 创建的组件，才有获取和转发 ref 的能力。普通组件的 props 中不存在 ref 属性，组件内部也获取不到 ref 参数。 ref 转发控制的节点既可以是原生的 DOM 节点，也可以是 Reac">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ref 转发">
+<meta property="og:url" content="https://www.damengzhang.cn/web/react/Ref%E8%BD%AC%E5%8F%91/index.html">
+<meta property="og:site_name" content="DaMeng">
+<meta property="og:description" content="1 是什么Ref 转发指组件接收 ref 参数，并将 ref 参数传递给子节点。 2 解决什么问题解决需要在组件外部对组件内部节点进行管理的问题。 3 使用 只有通过 React.forwardRef 创建的组件，才有获取和转发 ref 的能力。普通组件的 props 中不存在 ref 属性，组件内部也获取不到 ref 参数。 ref 转发控制的节点既可以是原生的 DOM 节点，也可以是 Reac">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-04-09T11:08:00.000Z">
+<meta property="article:modified_time" content="2020-08-22T04:19:46.000Z">
+<meta property="article:author" content="DaMeng">
+<meta property="article:tag" content="react">
+<meta property="article:tag" content="Ref">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://www.damengzhang.cn/web/react/Ref%E8%BD%AC%E5%8F%91/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Ref 转发 | DaMeng</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QE7RR3D8Y8"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-QE7RR3D8Y8');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
   </div>
 
-{% endblock %}
+  <div class="site-meta">
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">DaMeng</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.damengzhang.cn/web/react/Ref%E8%BD%AC%E5%8F%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="DaMeng">
+      <meta itemprop="description" content="forever">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaMeng">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Ref 转发
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-04-09 19:08:00" itemprop="dateCreated datePublished" datetime="2019-04-09T19:08:00+08:00">2019-04-09</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web/" itemprop="url" rel="index"><span itemprop="name">web</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web/react/" itemprop="url" rel="index"><span itemprop="name">react</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="1-是什么"><a href="#1-是什么" class="headerlink" title="1 是什么"></a>1 是什么</h1><p><code>Ref 转发</code>指组件接收 ref 参数，并将 ref 参数传递给子节点。</p>
+<h1 id="2-解决什么问题"><a href="#2-解决什么问题" class="headerlink" title="2 解决什么问题"></a>2 解决什么问题</h1><p>解决需要在组件外部对组件内部节点进行管理的问题。</p>
+<h1 id="3-使用"><a href="#3-使用" class="headerlink" title="3 使用"></a>3 使用</h1><ul>
+<li>只有通过 <code>React.forwardRef</code> 创建的组件，才有获取和转发 ref 的能力。普通组件的 props 中不存在 ref 属性，组件内部也获取不到 ref 参数。</li>
+<li>ref 转发控制的节点既可以是原生的 DOM 节点，也可以是 React 组件。</li>
+</ul>
+<h2 id="3-1-转发-Ref-到内部节点"><a href="#3-1-转发-Ref-到内部节点" class="headerlink" title="3.1 转发 Ref 到内部节点"></a>3.1 转发 Ref 到内部节点</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// 通过 React.forwardRef 函数创建的组件，才能接收到外部的 ref 属性，</span><br><span class="line">const FancyButton = React.forwardRef((props, ref) =&gt; (</span><br><span class="line">  &lt;button ref=&#123;ref&#125; className=&quot;FancyButton&quot;&gt;</span><br><span class="line">    &#123;props.children&#125;</span><br><span class="line">  &lt;/button&gt;</span><br><span class="line">));</span><br><span class="line"></span><br><span class="line">// 你可以直接获取 DOM button 的 ref：</span><br><span class="line">const ref = React.createRef();</span><br><span class="line">&lt;FancyButton ref=&#123;ref&#125;&gt;Click me!&lt;/FancyButton&gt;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-2-在高阶组件中转发-Ref"><a href="#3-2-在高阶组件中转发-Ref" class="headerlink" title="3.2 在高阶组件中转发 Ref"></a>3.2 在高阶组件中转发 Ref</h2><p>高阶组件默认无法透传 ref 属性给被包装组件，可以通过使用 React.forwardRef 来创建高阶组件的返回值以达到透传 ref 属性的能力。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">import React from &#x27;react&#x27;;</span><br><span class="line">import ReactDOM from &#x27;react-dom&#x27;;</span><br><span class="line"></span><br><span class="line">function logProps(WrappedCompoonents)&#123;</span><br><span class="line">    class LogProps extends React.Component&#123;</span><br><span class="line">        componentDidUpdate(prevProps)&#123;</span><br><span class="line">            console.log(&#x27;old props&#x27;, prevProps);</span><br><span class="line">            console.log(&#x27;new props&#x27;, this.props);</span><br><span class="line">        &#125;</span><br><span class="line">        render()&#123;</span><br><span class="line">            // 3、提取 forward 属性</span><br><span class="line">            const &#123;forward, ...rest&#125; = this.props;</span><br><span class="line">            // 4、将 forward 配置给被包装组件的 ref</span><br><span class="line">            return &lt;WrappedCompoonents ref=&#123;forward&#125; &#123;...rest&#125;&gt;&lt;/WrappedCompoonents&gt;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">   // 1、通过 React.forwardRef 创建有接受 ref 参数能力的组件</span><br><span class="line">   return React.forwardRef((props, ref)=&gt;&#123;</span><br><span class="line">       //2、 将 ref 属性值通过属性 forward 传递给包装组件</span><br><span class="line">        return &lt;LogProps &#123;...props&#125; forward=&#123;ref&#125;&gt;&lt;/LogProps&gt;</span><br><span class="line">   &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/react/" rel="tag"># react</a>
+              <a href="/tags/Ref/" rel="tag"># Ref</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/web/javascript/FormData/" rel="prev" title="FormData">
+      <i class="fa fa-chevron-left"></i> FormData
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/web/ts/TypeScript%E5%A3%B0%E6%98%8E%E6%96%87%E4%BB%B6/" rel="next" title="TypeScript 声明文件">
+      TypeScript 声明文件 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-text">1 是什么</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E8%A7%A3%E5%86%B3%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98"><span class="nav-text">2 解决什么问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-%E4%BD%BF%E7%94%A8"><span class="nav-text">3 使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-%E8%BD%AC%E5%8F%91-Ref-%E5%88%B0%E5%86%85%E9%83%A8%E8%8A%82%E7%82%B9"><span class="nav-text">3.1 转发 Ref 到内部节点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-%E5%9C%A8%E9%AB%98%E9%98%B6%E7%BB%84%E4%BB%B6%E4%B8%AD%E8%BD%AC%E5%8F%91-Ref"><span class="nav-text">3.2 在高阶组件中转发 Ref</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">DaMeng</p>
+  <div class="site-description" itemprop="description">forever</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">103</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">71</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/damengzhang" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;damengzhang" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DaMeng</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

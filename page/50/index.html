@@ -1,18 +1,494 @@
-{% extends '_layout.swig' %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/b_icon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/s_icon.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-{% block title %}{{ title }}{%- if theme.index_with_subtitle and subtitle %} - {{ subtitle }}{%- endif %}{% endblock %}
+<link rel="stylesheet" href="/css/main.css">
 
-{% block content %}
-  <div id="posts" class="posts-expand">
-    {%- for post in page.posts %}
-      {{ partial('_macro/post.swig', {is_index: true}) }}
-    {%- endfor %}
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.damengzhang.cn","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="forever">
+<meta property="og:type" content="website">
+<meta property="og:title" content="DaMeng">
+<meta property="og:url" content="https://www.damengzhang.cn/page/50/index.html">
+<meta property="og:site_name" content="DaMeng">
+<meta property="og:description" content="forever">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="DaMeng">
+<meta property="article:tag" content="前端 教程 大梦 DaMeng Zhang">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://www.damengzhang.cn/page/50/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>DaMeng</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QE7RR3D8Y8"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-QE7RR3D8Y8');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
   </div>
 
-  {% include '_partials/pagination.swig' %}
-{% endblock %}
+  <div class="site-meta">
 
-{% block sidebar %}
-  {{ sidebar_template.render(false) }}
-{% endblock %}
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">DaMeng</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.damengzhang.cn/web/http/http%20%E5%AE%89%E5%85%A8%E5%A4%B4%E9%83%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="DaMeng">
+      <meta itemprop="description" content="forever">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaMeng">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/web/http/http%20%E5%AE%89%E5%85%A8%E5%A4%B4%E9%83%A8/" class="post-title-link" itemprop="url">HTTP 安全头部</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-05-07 19:40:38" itemprop="dateCreated datePublished" datetime="2019-05-07T19:40:38+08:00">2019-05-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/http/" itemprop="url" rel="index"><span itemprop="name">http</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="1-HSTS"><a href="#1-HSTS" class="headerlink" title="1 HSTS"></a>1 HSTS</h1><h2 id="1-1-作用"><a href="#1-1-作用" class="headerlink" title="1.1 作用"></a>1.1 作用</h2><p><strong>HSTS</strong>（<strong>HTTP Strict Transport Secrity</strong>），服务器用此头部告知浏览器此网站只能使用 HTTPS 协议来访，浏览器应该自动把所有尝试使用 HTTP 的请求自动替换为 HTTPS 请求。</p>
+<p>Chrome、Firefox等浏览器会产生一个307 Internal Redirect（内部跳转），自动跳转到HTTPS 请求。</p>
+<img src="/web/http/http%20%E5%AE%89%E5%85%A8%E5%A4%B4%E9%83%A8/hsts.png" class="">
+
+<h2 id="1-2-语法"><a href="#1-2-语法" class="headerlink" title="1.2 语法"></a>1.2 语法</h2><figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Strict-Transport-Security</span><span class="punctuation">: </span>max-age=&lt;expire-time&gt;</span><br><span class="line"><span class="attribute">Strict-Transport-Security</span><span class="punctuation">: </span>max-age=&lt;expire-time&gt;; includeSubDomains</span><br><span class="line"><span class="attribute">Strict-Transport-Security</span><span class="punctuation">: </span>max-age=&lt;expire-time&gt;; preload</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>max-age=&lt;expire-time&gt;</code></li>
+</ul>
+<p>设置在浏览器收到这个请求后的<expire-time>秒的时间内凡是访问这个域名下的请求都使用HTTPS请求。</p>
+<ul>
+<li><code>includeSubDomains</code> 可选</li>
+</ul>
+<p>如果这个可选的参数被指定，那么说明此规则也适用于该网站的所有子域名。</p>
+<ul>
+<li><code>preload</code> 可选</li>
+</ul>
+<p>查看 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Security/HTTP_Strict_Transport_Security#%E9%A2%84%E5%8A%A0%E8%BD%BD_HSTS">预加载 HSTS</a> 获得详情。不是标准的一部分</p>
+<h2 id="1-3-注意"><a href="#1-3-注意" class="headerlink" title="1.3 注意"></a>1.3 注意</h2><p>当网站没有证书错误时，浏览器才认为网站支持 HTTPS，然后才会使用 <code>Strict-Transport-Security</code> 的值，否则不会将 HTTP 自动转为 HTTPS。</p>
+<h1 id="2-CSP"><a href="#2-CSP" class="headerlink" title="2 CSP"></a>2 CSP</h1><h2 id="2-1-作用"><a href="#2-1-作用" class="headerlink" title="2.1 作用"></a>2.1 作用</h2><p><strong>CSP</strong>（<strong>Content-Security-Policy</strong>  内容安全策略），服务器用此头部来配置资源的可信来源白名单，从而减少和报告 XSS 攻击。当不包含 CSP 头部时，浏览器将使用同源策略。</p>
+<h2 id="2-2-语法"><a href="#2-2-语法" class="headerlink" title="2.2 语法"></a>2.2 语法</h2><figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Content-Security-Policy</span><span class="punctuation">: </span>&lt;policy-directive&gt;; &lt;policy-directive&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>policy 参数由一系列描述策略指令的字符串组成。每个策略指令都描述了某个特定类型资源的生效范围。策略应该包含一个 default-src 策略指令，作为资源类型的默认策略。</p>
+<p>除此之外, <meta>元素也可以被用来配置该策略, 例如：</p>
+</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;Content-Security-Policy&quot;</span> <span class="attr">content</span>=<span class="string">&quot;default-src &#x27;self&#x27;; img-src https://*; child-src &#x27;none&#x27;;&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="2-3-示例"><a href="#2-3-示例" class="headerlink" title="2.3 示例"></a>2.3 示例</h2><p>配置网站所有内容均来自自身（不包括子域名）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Content-Security-Policy: default-src &#x27;self&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>配置网站所有内容来自自身 或者 trusted.com及其子域</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Content-Security-Policy: default-src &#x27;self&#x27; *.trusted.com</span><br></pre></td></tr></table></figure>
+
+<p>配置网站内容中支持来自任何源的图片, 但是限制音频或视频需从信任的资源提供者(获得)，所有脚本必须从特定主机服务器获取可信的代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Content-Security-Policy: default-src &#x27;self&#x27;; img-src *; media-src media1.com media2.com; script-src userscripts.example.com</span><br></pre></td></tr></table></figure>
+
+<h1 id="3-X-Content-Type-Options"><a href="#3-X-Content-Type-Options" class="headerlink" title="3 X-Content-Type-Options"></a>3 X-Content-Type-Options</h1><h2 id="3-1-作用"><a href="#3-1-作用" class="headerlink" title="3.1 作用"></a>3.1 作用</h2><p>此头部可以用来限制客户端（如浏览器）按照 content-type 配置的 mime 类型对返回数据进行解析。禁止客户端的 MIME 类型嗅探（在缺失 MIME 类型或客户端认为文件设置了错误的 MIME 类型时，浏览器可能会通过查看资源来进行MIME嗅探，不同浏览器可能会执行不同的操作）。</p>
+<h2 id="3-2-语法"><a href="#3-2-语法" class="headerlink" title="3.2 语法"></a>3.2 语法</h2><figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">X-Content-Type-Options</span><span class="punctuation">: </span>nosniff</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>nosniff</p>
+<p>下面两种情况的请求将被阻止：</p>
+<ul>
+<li>请求类型是”<code>style</code>“ 但是 MIME 类型不是 “<code>text/css</code>“，</li>
+<li>请求类型是”<code>script</code>“ 但是 MIME 类型不是  <a target="_blank" rel="noopener" href="https://html.spec.whatwg.org/multipage/scripting.html#javascript-mime-type">JavaScript MIME 类型</a>。</li>
+</ul>
+</li>
+</ul>
+<h1 id="4-X-Frame-Options"><a href="#4-X-Frame-Options" class="headerlink" title="4 X-Frame-Options"></a>4 X-Frame-Options</h1><h2 id="4-1-作用"><a href="#4-1-作用" class="headerlink" title="4.1 作用"></a>4.1 作用</h2><p>此头部用来限制客户端（如浏览器）是否可以在 frame iframe embed 或 object 中展示网页。</p>
+<h2 id="4-2-语法"><a href="#4-2-语法" class="headerlink" title="4.2 语法"></a>4.2 语法</h2><p>支持下面三种值</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">X-Frame-Options: deny</span><br><span class="line">X-Frame-Options: sameorigin</span><br><span class="line">X-Frame-Options: allow-from https://example.com/</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><code>deny</code></p>
+<p>表示该页面不允许在 frame 中展示，即便是在相同域名的页面中嵌套也不允许。</p>
+</li>
+<li><p><code>sameorigin</code></p>
+<p>表示该页面可以在相同域名页面的 frame 中展示。</p>
+</li>
+<li><p><code>allow-from *uri*</code></p>
+<p>表示该页面可以在指定来源的 frame 中展示。</p>
+</li>
+</ul>
+<h2 id="4-3-注意"><a href="#4-3-注意" class="headerlink" title="4.3 注意"></a>4.3 注意</h2><p>设置 meta 标签是无效的！例如 <code>&lt;meta http-equiv=&quot;X-Frame-Options&quot; content=&quot;deny&quot;&gt;</code> 没有任何效果。不要这样用！只有当像下面示例那样设置 HTTP 头 <code>X-Frame-Options</code> 才会生效。</p>
+<h1 id="5-X-Xss-Protection"><a href="#5-X-Xss-Protection" class="headerlink" title="5 X-Xss-Protection"></a>5 X-Xss-Protection</h1><h2 id="5-1-作用"><a href="#5-1-作用" class="headerlink" title="5.1 作用"></a>5.1 作用</h2><p>此响应头是 Internet Explorer，Chrome 和 Safari 的一个特性，当检测到跨站脚本攻击 (<a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Glossary/XSS">XSS</a>)时，浏览器将停止加载页面。可以为尚不支持 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Glossary/CSP">CSP</a> 的旧版浏览器的用户提供保护。</p>
+<h2 id="5-2-语法"><a href="#5-2-语法" class="headerlink" title="5.2 语法"></a>5.2 语法</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">X-XSS-Protection: 0</span><br><span class="line">X-XSS-Protection: 1</span><br><span class="line">X-XSS-Protection: 1; mode=block</span><br><span class="line">X-XSS-Protection: 1; report=&lt;reporting-uri&gt;</span><br></pre></td></tr></table></figure>
+
+<p>0</p>
+<p>禁止XSS过滤。</p>
+<p>1</p>
+<p>启用XSS过滤（通常浏览器是默认的）。 如果检测到跨站脚本攻击，浏览器将清除页面（删除不安全的部分）。</p>
+<p>1;mode=block</p>
+<p>启用XSS过滤。 如果检测到攻击，浏览器将不会清除页面，而是阻止页面加载。</p>
+<p>1; report=<reporting-URI>  (Chromium only)</p>
+<p>启用XSS过滤。 如果检测到跨站脚本攻击，浏览器将清除页面并使用CSP <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Content-Security-Policy/report-uri"><code>report-uri</code></a>指令的功能发送违规报告。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/49/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/49/">49</a><span class="page-number current">50</span><a class="page-number" href="/page/51/">51</a><span class="space">&hellip;</span><a class="page-number" href="/page/103/">103</a><a class="extend next" rel="next" href="/page/51/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">DaMeng</p>
+  <div class="site-description" itemprop="description">forever</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">103</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">71</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/damengzhang" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;damengzhang" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DaMeng</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink({
+        timeout : 3000,
+        priority: true,
+        ignores : [uri => uri.includes('#'),uri => uri === 'https://www.damengzhang.cn/page/50/',]
+      });
+      });
+  </script>
+
+</body>
+</html>

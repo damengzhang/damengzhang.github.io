@@ -1,18 +1,507 @@
-{% extends '_layout.swig' %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/b_icon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/s_icon.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-{% block title %}{{ title }}{%- if theme.index_with_subtitle and subtitle %} - {{ subtitle }}{%- endif %}{% endblock %}
+<link rel="stylesheet" href="/css/main.css">
 
-{% block content %}
-  <div id="posts" class="posts-expand">
-    {%- for post in page.posts %}
-      {{ partial('_macro/post.swig', {is_index: true}) }}
-    {%- endfor %}
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.damengzhang.cn","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="forever">
+<meta property="og:type" content="website">
+<meta property="og:title" content="DaMeng">
+<meta property="og:url" content="https://www.damengzhang.cn/page/60/index.html">
+<meta property="og:site_name" content="DaMeng">
+<meta property="og:description" content="forever">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="DaMeng">
+<meta property="article:tag" content="前端 教程 大梦 DaMeng Zhang">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://www.damengzhang.cn/page/60/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>DaMeng</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QE7RR3D8Y8"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-QE7RR3D8Y8');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
   </div>
 
-  {% include '_partials/pagination.swig' %}
-{% endblock %}
+  <div class="site-meta">
 
-{% block sidebar %}
-  {{ sidebar_template.render(false) }}
-{% endblock %}
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">DaMeng</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.damengzhang.cn/web/javascript/Blob%EF%BC%88Binary%20Large%20Object%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="DaMeng">
+      <meta itemprop="description" content="forever">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaMeng">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/web/javascript/Blob%EF%BC%88Binary%20Large%20Object%EF%BC%89/" class="post-title-link" itemprop="url">Blob</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-04-15 19:40:38" itemprop="dateCreated datePublished" datetime="2019-04-15T19:40:38+08:00">2019-04-15</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web/" itemprop="url" rel="index"><span itemprop="name">web</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>Blob（Binary Large Object）是对数据块的引用或句柄，通过 Blob 表示二进制数据、文本文件，进而可以对其进行一些操作。</p>
+<h1 id="Blob-语法"><a href="#Blob-语法" class="headerlink" title="Blob 语法"></a>Blob 语法</h1><h2 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h2><h4 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var aBlob = new Blob( array[, options ]);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>参数<ul>
+<li><code>array</code> 是一个由<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer"><code>ArrayBuffer</code></a>, <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/ArrayBufferView"><code>ArrayBufferView</code></a>, <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Blob"><code>Blob</code></a>, <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/DOMString"><code>DOMString</code></a> 等对象构成的 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Array"><code>Array</code></a> ，或者其他类似对象的混合体，它将会被放进 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Blob"><code>Blob</code></a>。DOMStrings会被编码为UTF-8。</li>
+<li><code>options</code> 它可能会指定如下两个属性：<ul>
+<li><code>type</code>，默认值为 <code>&quot;&quot;</code>，表示 array 参数中数据的 MIME 类型。</li>
+<li><code>endings</code>，用于指定包含行结束符<code>\n</code>的字符串如何被写入<ul>
+<li><code>&quot;transparent&quot;</code>，默认值，表示保持 Blob 中的结束符</li>
+<li> <code>&quot;native&quot;</code>，表示行结束符会被更改为适合宿主操作系统文件系统的换行符</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>  返回值</li>
+<li>Blob 对象</li>
+</ul>
+<h4 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> aFileParts = [<span class="string">&#x27;&lt;a id=&quot;a&quot;&gt;&lt;b id=&quot;b&quot;&gt;hey!&lt;/b&gt;&lt;/a&gt;&#x27;</span>]; <span class="comment">// 一个包含DOMString的数组</span></span><br><span class="line"><span class="keyword">var</span> oMyBlob = <span class="keyword">new</span> Blob(aFileParts, &#123;<span class="attr">type</span> : <span class="string">&#x27;text/html&#x27;</span>&#125;); <span class="comment">// 得到 blob</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><h3 id="Blob-size"><a href="#Blob-size" class="headerlink" title="Blob.size"></a>Blob.size</h3><p>Blob.size 为只读，返回 <code>Blob</code> 对象中所包含数据的大小（字节）。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// fileInput是一个HTMLInputElement元素: &lt;input type=&quot;file&quot; multiple id=&quot;myfileinput&quot;&gt;</span></span><br><span class="line"><span class="keyword">var</span> fileInput = <span class="built_in">document</span>.getElementById(<span class="string">&quot;myfileinput&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// files是一个FileList对象(类似于NodeList)</span></span><br><span class="line"><span class="keyword">var</span> files = fileInput.files;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; files.length; i++)</span><br><span class="line">&#123;</span><br><span class="line">    alert(files[i].name + <span class="string">&quot;文件的大小为 &quot;</span> + files[i].size + <span class="string">&quot; 字节&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Blob-type"><a href="#Blob-type" class="headerlink" title="Blob.type"></a>Blob.type</h3><p>Blob.type 为只读，返回一个字符串，表明该 <code>Blob</code> 对象所包含数据的 MIME 类型。如果类型未知，则该值为空字符串。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// fileInput是一个 HTMLInputElement，HTML Input 元素: &lt;input type=&quot;file&quot; multiple id=&quot;myfileinput&quot;&gt;</span></span><br><span class="line"><span class="keyword">var</span> fileInput = <span class="built_in">document</span>.getElementById(<span class="string">&quot;myfileinput&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// files 是一个 FileList 对象（与 NodeList 相似，是多个 File 对象的集合）</span></span><br><span class="line"><span class="keyword">var</span> files = fileInput.files;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 仅允许 *.png, *.jpeg *.gif 类型的图片文件</span></span><br><span class="line"><span class="keyword">var</span> allowedFileTypes = [<span class="string">&quot;image/png&quot;</span>, <span class="string">&quot;image/jpeg&quot;</span>, <span class="string">&quot;image/gif&quot;</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; files.length; i++) &#123;</span><br><span class="line">    <span class="comment">// 检查文件的文件类型是否属于 allowFileTypes 中的一种</span></span><br><span class="line">    <span class="keyword">if</span> (allowedFileTypes.indexOf(files[i].type) &gt; -<span class="number">1</span>) &#123;</span><br><span class="line">        <span class="comment">// 对符合条件的文件进行处理</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><h3 id="Blob-slice"><a href="#Blob-slice" class="headerlink" title="Blob.slice"></a>Blob.slice</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Blob.slice([start[, end[, contentType]])</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>参数</p>
+<ul>
+<li><p><code>start</code> 可选，表示拷贝的起始位置下标，默认值为 0。</p>
+<p>如果是负数，将会从数据的末尾从后到前开始计算。如 -10 表示  <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Blob"><code>Blob</code></a> 的倒数第十个字节。</p>
+<p>如果值大于源 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Blob"><code>Blob</code></a> 的长度，则返回一个长度为 0 并且不包含任何数据的一个 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Blob"><code>Blob</code></a> 对象。</p>
+</li>
+<li><p><code>end</code> 可选，表示拷贝结束位置的下标，默认值为原始 Blob 的 size 属性值。</p>
+<p>负数表示从数据的末尾从后到前开始计算。</p>
+</li>
+<li><p><code>contentType</code> 可选，新 Blob 的文档类型，默认值是一个空的字符串</p>
+<p>此值会被设置为新 Blob 的 type 属性值。</p>
+</li>
+</ul>
+</li>
+<li><p>返回值</p>
+<ul>
+<li>返回一个新的 <code>Blob</code> 对象，包含了源 <code>Blob</code> 对象中指定范围内的数据。</li>
+</ul>
+</li>
+</ul>
+<h3 id="Blob-stream"><a href="#Blob-stream" class="headerlink" title="Blob.stream"></a>Blob.stream</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Blob.stream()</span><br></pre></td></tr></table></figure>
+
+<p>返回 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/ReadableStream"><code>ReadableStream</code></a> 对象，能读取 Blob 内容。</p>
+<h3 id="Blob-text"><a href="#Blob-text" class="headerlink" title="Blob.text"></a>Blob.text</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Blob.text()</span><br></pre></td></tr></table></figure>
+
+<p>方法返回一个 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> 对象，包含 Blob 中的内容，使用 UTF-8 格式编码。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> textPromise = Blob.text();</span><br><span class="line"></span><br><span class="line">Blob.text().then(<span class="function"><span class="params">text</span> =&gt;</span> <span class="comment">/* 执行的操作…… */</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> text = <span class="keyword">await</span> blob.text();</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Blob-arrayBuffer"><a href="#Blob-arrayBuffer" class="headerlink" title="Blob.arrayBuffer"></a>Blob.arrayBuffer</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Blob.arrayBuffer()</span><br></pre></td></tr></table></figure>
+
+<p>方法返回一个 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> 对象，包含 Blob 中的数据， <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/ArrayBuffer"><code>ArrayBuffer</code></a> 使用二进制格式编码。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> bufferPromise = blob.arrayBuffer();</span><br><span class="line"></span><br><span class="line">blob.arrayBuffer().then(<span class="function"><span class="params">buffer</span> =&gt;</span> <span class="comment">/* 处理 ArrayBuffer 数据的代码……*/</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> buffer = <span class="keyword">await</span> blob.arrayBuffer();</span><br></pre></td></tr></table></figure>
+
+<h1 id="Blob-数据来源"><a href="#Blob-数据来源" class="headerlink" title="Blob 数据来源"></a>Blob 数据来源</h1><ul>
+<li><p>由其他 Blob 复制而来</p>
+</li>
+<li><p>从客户端数据库读取</p>
+</li>
+<li><p>通过 HTTP 由 web下载</p>
+</li>
+<li><p>使用 Blob 构造函数，从字符串、ArrayBuffer对象、或其他 Blob 创建</p>
+</li>
+<li><p>File 对象，File 对象是 Blob 对象的子类</p>
+<p>​    <strong>File对象来源</strong></p>
+<ul>
+<li><input type="file"></li>
+<li>拖放 API</li>
+<li>文件系统 API</li>
+</ul>
+</li>
+</ul>
+<p>​        </p>
+<p>​    </p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/59/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/59/">59</a><span class="page-number current">60</span><a class="page-number" href="/page/61/">61</a><span class="space">&hellip;</span><a class="page-number" href="/page/103/">103</a><a class="extend next" rel="next" href="/page/61/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">DaMeng</p>
+  <div class="site-description" itemprop="description">forever</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">103</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">71</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/damengzhang" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;damengzhang" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DaMeng</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink({
+        timeout : 3000,
+        priority: true,
+        ignores : [uri => uri.includes('#'),uri => uri === 'https://www.damengzhang.cn/page/60/',]
+      });
+      });
+  </script>
+
+</body>
+</html>

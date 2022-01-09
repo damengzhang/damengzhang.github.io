@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 5.4.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/b_icon.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/s_icon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/blank/180x180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/blank/32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/blank/16x16.png">
   <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
 <link rel="stylesheet" href="/css/main.css">
@@ -18,7 +18,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"www.damengzhang.cn","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"www.damengzhang.cn","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"right","width":230,"display":"always","offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="1 Promise 是什么Promise 可以被理解为对象（或值）的代理，被代理的对象在被创建时状态是未知的，当被代理对象执行完成时，可以通过设置 Promise 的状态来触发相应的回调函数。 Promise 有下面三种状态：  pending：初始状态，既不是成功，也不是失败 fulfiled：操作成功 rejected：操作失败  下面例子中，通过 Promise 的构造函数参数来配置异步操作">
@@ -114,6 +114,7 @@
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
@@ -123,35 +124,58 @@
 
 <nav class="site-nav">
   <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-tags">
+        <li class="menu-item menu-item-home">
 
-    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>标签</a>
+    <a href="/categories/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
 
   </li>
-        <li class="menu-item menu-item-categories">
+        <li class="menu-item menu-item-tags">
 
-    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分类</a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">71</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">103</span></a>
 
   </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
   </ul>
 </nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
 
 </div>
     </header>
 
     
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
 
 
     <main class="main">
@@ -191,6 +215,13 @@
 
               <time title="创建时间：2019-07-19 19:40:38" itemprop="dateCreated datePublished" datetime="2019-07-19T19:40:38+08:00">2019-07-19</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-15 10:47:12" itemprop="dateModified" datetime="2020-09-15T10:47:12+08:00">2020-09-15</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -301,10 +332,28 @@
     
     
     
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>DaMeng
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://www.damengzhang.cn/web/javascript/es6/promise%E8%AF%A6%E8%A7%A3/" title="Promise 详解">https://www.damengzhang.cn/web/javascript/es6/promise详解/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
 
       <footer class="post-footer">
+          
           <div class="post-tags">
-              <a href="/tags/promise/" rel="tag"># promise</a>
+              <a href="/tags/promise/" rel="tag"><i class="fa fa-tag"></i> promise</a>
           </div>
 
         
@@ -378,7 +427,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Promise-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-text">1 Promise 是什么</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Promise-%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-text">2 Promise 的作用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-Promise-%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="nav-text">3 Promise 使用方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-%E5%88%9B%E5%BB%BA-Promise"><span class="nav-text">3.1 创建 Promise</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-%E7%B1%BB%E6%96%B9%E6%B3%95"><span class="nav-text">3.2 类方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Promise-all-iterable"><span class="nav-text">Promise.all(iterable)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Promise-allSettled-iterable"><span class="nav-text">Promise.allSettled(iterable)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Promise-race-iterable"><span class="nav-text">Promise.race(iterable)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Promise-reject-reason"><span class="nav-text">Promise.reject(reason)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Promise-resolve-value"><span class="nav-text">Promise.resolve(value)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-%E5%AE%9E%E4%BE%8B%E6%96%B9%E6%B3%95"><span class="nav-text">3.3 实例方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Promise-prototype-then-onFulfilled-onRejected"><span class="nav-text">Promise.prototype.then(onFulfilled, onRejected)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Promise-prototype-catch-onRejected"><span class="nav-text">Promise.prototype.catch(onRejected)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Promise-prototype-finally-onFinally"><span class="nav-text">Promise.prototype.finally(onFinally)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-%E6%B3%A8%E6%84%8F"><span class="nav-text">4 注意</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-%E5%9B%9E%E8%B0%83%E6%89%A7%E8%A1%8C%E6%97%B6%E5%BA%8F"><span class="nav-text">4.1 回调执行时序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-%E9%93%BE%E5%BC%8F%E8%B0%83%E7%94%A8"><span class="nav-text">4.2 链式调用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-%E7%BB%84%E5%90%88"><span class="nav-text">4.3 组合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-4-%E5%B5%8C%E5%A5%97"><span class="nav-text">4.4 嵌套</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-5-%E5%BC%82%E5%B8%B8"><span class="nav-text">4.5 异常</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-6-Promise-%E6%8B%92%E7%BB%9D%E4%BA%8B%E4%BB%B6"><span class="nav-text">4.6 Promise 拒绝事件</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Promise-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-number">1.</span> <span class="nav-text">1 Promise 是什么</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Promise-%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-number">2.</span> <span class="nav-text">2 Promise 的作用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-Promise-%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">3 Promise 使用方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-%E5%88%9B%E5%BB%BA-Promise"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 创建 Promise</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-%E7%B1%BB%E6%96%B9%E6%B3%95"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 类方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Promise-all-iterable"><span class="nav-number">3.2.1.</span> <span class="nav-text">Promise.all(iterable)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Promise-allSettled-iterable"><span class="nav-number">3.2.2.</span> <span class="nav-text">Promise.allSettled(iterable)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Promise-race-iterable"><span class="nav-number">3.2.3.</span> <span class="nav-text">Promise.race(iterable)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Promise-reject-reason"><span class="nav-number">3.2.4.</span> <span class="nav-text">Promise.reject(reason)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Promise-resolve-value"><span class="nav-number">3.2.5.</span> <span class="nav-text">Promise.resolve(value)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-%E5%AE%9E%E4%BE%8B%E6%96%B9%E6%B3%95"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 实例方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Promise-prototype-then-onFulfilled-onRejected"><span class="nav-number">3.3.1.</span> <span class="nav-text">Promise.prototype.then(onFulfilled, onRejected)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Promise-prototype-catch-onRejected"><span class="nav-number">3.3.2.</span> <span class="nav-text">Promise.prototype.catch(onRejected)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Promise-prototype-finally-onFinally"><span class="nav-number">3.3.3.</span> <span class="nav-text">Promise.prototype.finally(onFinally)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-%E6%B3%A8%E6%84%8F"><span class="nav-number">4.</span> <span class="nav-text">4 注意</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-%E5%9B%9E%E8%B0%83%E6%89%A7%E8%A1%8C%E6%97%B6%E5%BA%8F"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 回调执行时序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-%E9%93%BE%E5%BC%8F%E8%B0%83%E7%94%A8"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 链式调用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-%E7%BB%84%E5%90%88"><span class="nav-number">4.3.</span> <span class="nav-text">4.3 组合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-4-%E5%B5%8C%E5%A5%97"><span class="nav-number">4.4.</span> <span class="nav-text">4.4 嵌套</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-5-%E5%BC%82%E5%B8%B8"><span class="nav-number">4.5.</span> <span class="nav-text">4.5 异常</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-6-Promise-%E6%8B%92%E7%BB%9D%E4%BA%8B%E4%BB%B6"><span class="nav-number">4.6.</span> <span class="nav-text">4.6 Promise 拒绝事件</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -398,7 +447,6 @@
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-          
         <span class="site-state-item-count">30</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
@@ -412,13 +460,23 @@
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="https://github.com/damengzhang" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;damengzhang" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+        <a href="https://github.com/damengzhang" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;damengzhang" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
       </span>
+      <span class="links-of-author-item">
+        <a href="/damengzhang@163.com" title="E-Mail → damengzhang@163.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
   </div>
 
 
 
       </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
 
     </div>
   </aside>
@@ -437,14 +495,12 @@
 <div class="copyright">
   
   &copy; 2019 – 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
-    <i class="user"></i>
+    <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">DaMeng</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
-  </div>
 
         
 
@@ -484,6 +540,8 @@
 
 
 
+  
+<script src="/js/local-search.js"></script>
 
 
 
@@ -493,6 +551,21 @@
 
 
 
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
 
 
   

@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 5.4.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/b_icon.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/s_icon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/blank/180x180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/blank/32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/blank/16x16.png">
   <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
 <link rel="stylesheet" href="/css/main.css">
@@ -18,7 +18,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"www.damengzhang.cn","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"www.damengzhang.cn","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"right","width":230,"display":"always","offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="Hook 是什么Hook 是 React 16.8.0 的新特性。 Hook 是钩子函数，通过使用 Hook 可以在 函数组件 中引入 React state 及 生命周期 等特性，它可以让我们在不编写 class 的情况下使用 state 及其他的 React 特性。 Hook 可以解决什么问题Hook 可以解决如下问题：  组件间复用状态逻辑困难 ​    React 之前用 render p">
@@ -115,6 +115,7 @@
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
@@ -124,35 +125,58 @@
 
 <nav class="site-nav">
   <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-tags">
+        <li class="menu-item menu-item-home">
 
-    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>标签</a>
+    <a href="/categories/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
 
   </li>
-        <li class="menu-item menu-item-categories">
+        <li class="menu-item menu-item-tags">
 
-    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分类</a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">71</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">103</span></a>
 
   </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
   </ul>
 </nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
 
 </div>
     </header>
 
     
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
 
 
     <main class="main">
@@ -192,6 +216,13 @@
 
               <time title="创建时间：2019-09-22 19:20:49" itemprop="dateCreated datePublished" datetime="2019-09-22T19:20:49+08:00">2019-09-22</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-21 19:18:42" itemprop="dateModified" datetime="2020-08-21T19:18:42+08:00">2020-08-21</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -251,11 +282,29 @@
     
     
     
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>DaMeng
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://www.damengzhang.cn/web/react/Hook%E7%AE%80%E4%BB%8B/" title="Hook 简介">https://www.damengzhang.cn/web/react/Hook简介/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
 
       <footer class="post-footer">
+          
           <div class="post-tags">
-              <a href="/tags/react/" rel="tag"># react</a>
-              <a href="/tags/Hook/" rel="tag"># Hook</a>
+              <a href="/tags/react/" rel="tag"><i class="fa fa-tag"></i> react</a>
+              <a href="/tags/Hook/" rel="tag"><i class="fa fa-tag"></i> Hook</a>
           </div>
 
         
@@ -329,7 +378,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Hook-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-text">Hook 是什么</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hook-%E5%8F%AF%E4%BB%A5%E8%A7%A3%E5%86%B3%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98"><span class="nav-text">Hook 可以解决什么问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hook-%E5%AF%B9%E7%8E%B0%E6%9C%89%E4%BB%A3%E7%A0%81%E7%9A%84%E5%BD%B1%E5%93%8D"><span class="nav-text">Hook 对现有代码的影响</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Hook-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-number">1.</span> <span class="nav-text">Hook 是什么</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hook-%E5%8F%AF%E4%BB%A5%E8%A7%A3%E5%86%B3%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">Hook 可以解决什么问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hook-%E5%AF%B9%E7%8E%B0%E6%9C%89%E4%BB%A3%E7%A0%81%E7%9A%84%E5%BD%B1%E5%93%8D"><span class="nav-number">3.</span> <span class="nav-text">Hook 对现有代码的影响</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -349,7 +398,6 @@
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-          
         <span class="site-state-item-count">30</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
@@ -363,13 +411,23 @@
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="https://github.com/damengzhang" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;damengzhang" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+        <a href="https://github.com/damengzhang" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;damengzhang" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
       </span>
+      <span class="links-of-author-item">
+        <a href="/damengzhang@163.com" title="E-Mail → damengzhang@163.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
   </div>
 
 
 
       </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
 
     </div>
   </aside>
@@ -388,14 +446,12 @@
 <div class="copyright">
   
   &copy; 2019 – 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
-    <i class="user"></i>
+    <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">DaMeng</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
-  </div>
 
         
 
@@ -435,6 +491,8 @@
 
 
 
+  
+<script src="/js/local-search.js"></script>
 
 
 
@@ -444,6 +502,21 @@
 
 
 
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
 
 
   

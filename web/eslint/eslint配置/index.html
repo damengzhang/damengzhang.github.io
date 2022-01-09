@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 5.4.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/b_icon.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/s_icon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/blank/180x180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/blank/32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/blank/16x16.png">
   <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
 <link rel="stylesheet" href="/css/main.css">
@@ -18,7 +18,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"www.damengzhang.cn","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"www.damengzhang.cn","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"right","width":230,"display":"always","offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="1 lint 简介lint 最早用于 c 语言，用来检查代码。目前作为通用术语，用来表示代码检查工具。 JS 经历的主流 lint 工具如下： 1、JSLint 2、JSHint 3、Eslint 2 ESlint 配置2.1 初始化项目12&#x2F;&#x2F;在新建好的文件夹下，执行如下命令，得到 package.jsonnpm init -y   2.2 安装&amp;初始化 ESLint1234567891">
@@ -116,6 +116,7 @@
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
@@ -125,35 +126,58 @@
 
 <nav class="site-nav">
   <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-tags">
+        <li class="menu-item menu-item-home">
 
-    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>标签</a>
+    <a href="/categories/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
 
   </li>
-        <li class="menu-item menu-item-categories">
+        <li class="menu-item menu-item-tags">
 
-    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分类</a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">71</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">103</span></a>
 
   </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
   </ul>
 </nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
 
 </div>
     </header>
 
     
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
 
 
     <main class="main">
@@ -193,6 +217,13 @@
 
               <time title="创建时间：2019-06-06 18:25:13" itemprop="dateCreated datePublished" datetime="2019-06-06T18:25:13+08:00">2019-06-06</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-15 13:39:00" itemprop="dateModified" datetime="2020-09-15T13:39:00+08:00">2020-09-15</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -336,6 +367,23 @@
     
     
     
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>DaMeng
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://www.damengzhang.cn/web/eslint/eslint%E9%85%8D%E7%BD%AE/" title="ESLint使用">https://www.damengzhang.cn/web/eslint/eslint配置/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
 
       <footer class="post-footer">
 
@@ -410,7 +458,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-lint-%E7%AE%80%E4%BB%8B"><span class="nav-text">1 lint 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-ESlint-%E9%85%8D%E7%BD%AE"><span class="nav-text">2 ESlint 配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E5%88%9D%E5%A7%8B%E5%8C%96%E9%A1%B9%E7%9B%AE"><span class="nav-text">2.1 初始化项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E5%AE%89%E8%A3%85-amp-%E5%88%9D%E5%A7%8B%E5%8C%96-ESLint"><span class="nav-text">2.2 安装&amp;初始化 ESLint</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-%E9%85%8D%E7%BD%AEESLint%E8%A7%84%E5%88%99"><span class="nav-text">2.3 配置ESLint规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-1-%E9%85%8D%E7%BD%AE%E6%96%B9%E5%BC%8F"><span class="nav-text">2.3.1 配置方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B3%A8%E9%87%8A"><span class="nav-text">注释</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-text">配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%B1%BB%E5%9E%8B"><span class="nav-text">配置文件类型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F"><span class="nav-text">配置文件使用方式</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#eslintrc-%E5%92%8C-package-json"><span class="nav-text">.eslintrc.* 和 package.json</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E6%95%B0-c"><span class="nav-text">命令行参数 -c</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E8%A7%84%E5%88%99%E4%BC%98%E5%85%88%E7%BA%A7%E6%80%BB%E7%BB%93"><span class="nav-text">配置规则优先级总结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-%E9%85%8D%E7%BD%AE%E5%BF%BD%E7%95%A5%E6%96%87%E4%BB%B6"><span class="nav-text">2.4 配置忽略文件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#eslintignore"><span class="nav-text">.eslintignore</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E2%80%93ignore-path"><span class="nav-text">–ignore-path</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#package-json"><span class="nav-text">package.json</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%AF%B4%E6%98%8E"><span class="nav-text">2.5 命令行说明</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-lint-%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">1 lint 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-ESlint-%E9%85%8D%E7%BD%AE"><span class="nav-number">2.</span> <span class="nav-text">2 ESlint 配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E5%88%9D%E5%A7%8B%E5%8C%96%E9%A1%B9%E7%9B%AE"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 初始化项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E5%AE%89%E8%A3%85-amp-%E5%88%9D%E5%A7%8B%E5%8C%96-ESLint"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 安装&amp;初始化 ESLint</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-%E9%85%8D%E7%BD%AEESLint%E8%A7%84%E5%88%99"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 配置ESLint规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-1-%E9%85%8D%E7%BD%AE%E6%96%B9%E5%BC%8F"><span class="nav-number">2.4.</span> <span class="nav-text">2.3.1 配置方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B3%A8%E9%87%8A"><span class="nav-number">2.4.1.</span> <span class="nav-text">注释</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">2.4.2.</span> <span class="nav-text">配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%B1%BB%E5%9E%8B"><span class="nav-number">2.4.2.1.</span> <span class="nav-text">配置文件类型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F"><span class="nav-number">2.4.2.2.</span> <span class="nav-text">配置文件使用方式</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#eslintrc-%E5%92%8C-package-json"><span class="nav-number">2.4.2.2.1.</span> <span class="nav-text">.eslintrc.* 和 package.json</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E6%95%B0-c"><span class="nav-number">2.4.2.2.2.</span> <span class="nav-text">命令行参数 -c</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E8%A7%84%E5%88%99%E4%BC%98%E5%85%88%E7%BA%A7%E6%80%BB%E7%BB%93"><span class="nav-number">2.4.2.3.</span> <span class="nav-text">配置规则优先级总结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-%E9%85%8D%E7%BD%AE%E5%BF%BD%E7%95%A5%E6%96%87%E4%BB%B6"><span class="nav-number">2.5.</span> <span class="nav-text">2.4 配置忽略文件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#eslintignore"><span class="nav-number">2.5.0.1.</span> <span class="nav-text">.eslintignore</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E2%80%93ignore-path"><span class="nav-number">2.5.0.2.</span> <span class="nav-text">–ignore-path</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#package-json"><span class="nav-number">2.5.0.3.</span> <span class="nav-text">package.json</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%AF%B4%E6%98%8E"><span class="nav-number">2.6.</span> <span class="nav-text">2.5 命令行说明</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -430,7 +478,6 @@
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-          
         <span class="site-state-item-count">30</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
@@ -444,13 +491,23 @@
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="https://github.com/damengzhang" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;damengzhang" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+        <a href="https://github.com/damengzhang" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;damengzhang" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
       </span>
+      <span class="links-of-author-item">
+        <a href="/damengzhang@163.com" title="E-Mail → damengzhang@163.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
   </div>
 
 
 
       </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
 
     </div>
   </aside>
@@ -469,14 +526,12 @@
 <div class="copyright">
   
   &copy; 2019 – 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
-    <i class="user"></i>
+    <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">DaMeng</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
-  </div>
 
         
 
@@ -516,6 +571,8 @@
 
 
 
+  
+<script src="/js/local-search.js"></script>
 
 
 
@@ -525,6 +582,21 @@
 
 
 
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
 
 
   

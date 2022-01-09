@@ -21,15 +21,15 @@
     var CONFIG = {"hostname":"www.damengzhang.cn","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"right","width":230,"display":"always","offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="noParse 是 module 的配置项，通过配置 webpack.module.noParse 可以让 webpack 不对匹配到的文件进行依赖解析，进而提高打包效率。">
+  <meta name="description" content="noParse作用noParse 是 module 的配置项，通过配置 webpack.module.noParse 可以让 webpack 不对匹配到的文件进行依赖解析，进而提高打包效率。 只是忽略解析匹配到的文件，匹配到的文件依旧会参与打包。 使用场景如果公共库中没有依赖其他模块（即没有导入其他模块，如 jquery 中没有导入其他模块），则可以通过 noParse 来配置此公共库，使 web">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Webpack 中 noParse extertals IgnorePlugin 区别">
 <meta property="og:url" content="https://www.damengzhang.cn/web/webpack/webpack%20%E4%B8%AD%20noParse%20extertals%20ignorePlugin%20%E5%8C%BA%E5%88%AB/index.html">
 <meta property="og:site_name" content="DaMeng">
-<meta property="og:description" content="noParse 是 module 的配置项，通过配置 webpack.module.noParse 可以让 webpack 不对匹配到的文件进行依赖解析，进而提高打包效率。">
+<meta property="og:description" content="noParse作用noParse 是 module 的配置项，通过配置 webpack.module.noParse 可以让 webpack 不对匹配到的文件进行依赖解析，进而提高打包效率。 只是忽略解析匹配到的文件，匹配到的文件依旧会参与打包。 使用场景如果公共库中没有依赖其他模块（即没有导入其他模块，如 jquery 中没有导入其他模块），则可以通过 noParse 来配置此公共库，使 web">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-08-20T10:40:38.000Z">
-<meta property="article:modified_time" content="2022-01-09T11:46:27.820Z">
+<meta property="article:modified_time" content="2022-01-09T11:58:37.877Z">
 <meta property="article:author" content="DaMeng">
 <meta property="article:tag" content="noParse">
 <meta property="article:tag" content="externals">
@@ -222,7 +222,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-01-09 19:46:27" itemprop="dateModified" datetime="2022-01-09T19:46:27+08:00">2022-01-09</time>
+                <time title="修改时间：2022-01-09 19:58:37" itemprop="dateModified" datetime="2022-01-09T19:58:37+08:00">2022-01-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -239,7 +239,6 @@
             </span>
 
           
-            <div class="post-description">noParse 是 module 的配置项，通过配置 webpack.module.noParse 可以让 webpack 不对匹配到的文件进行依赖解析，进而提高打包效率。</div>
 
         </div>
       </header>

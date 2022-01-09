@@ -218,7 +218,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-30 22:42:16" itemprop="dateModified" datetime="2021-12-30T22:42:16+08:00">2021-12-30</time>
+                <time title="修改时间：2022-01-09 19:59:27" itemprop="dateModified" datetime="2022-01-09T19:59:27+08:00">2022-01-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -247,7 +247,6 @@
       
           <img src="/web/react/react%20Props/react_props.PNG" class="">
 
-<p>![react_props](react Props/react_props.PNG)</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; Component &#125; from &quot;react&quot;;</span><br><span class="line">import &#123; PropTypes &#125; from &quot;prop-types&quot;;</span><br><span class="line"></span><br><span class="line">class TodoItem extends Component &#123;</span><br><span class="line">	render() &#123;</span><br><span class="line">		const &#123; index, deleteItem, content &#125; = this.props;</span><br><span class="line">		return (</span><br><span class="line">			&lt;li index=&#123;index&#125; onClick=&#123;() =&gt; deleteItem(index)&#125;&gt;</span><br><span class="line">				&#123;content&#125;</span><br><span class="line">			&lt;/li&gt;</span><br><span class="line">		);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">TodoItem.propType = &#123;</span><br><span class="line">	content: PropTypes.string,</span><br><span class="line">	index: PropTypes.number,</span><br><span class="line">	deleteItem: PropTypes.func,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">export default TodoItem;</span><br></pre></td></tr></table></figure>
 
 
